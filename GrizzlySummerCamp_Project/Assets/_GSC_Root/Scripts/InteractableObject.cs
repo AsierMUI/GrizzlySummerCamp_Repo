@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class InteractableObject : MonoBehaviour
 {
-    public float interactionDistance = 2f; //Distancia para interactuar con el objeto
+    public float interactionDistance = 4f; //Distancia para interactuar con el objeto
     public int sceneToLoad; //numero de la escena
     public GameObject textObject; //ref al texto
 
