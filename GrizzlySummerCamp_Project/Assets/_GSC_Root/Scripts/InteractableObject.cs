@@ -37,6 +37,12 @@ public class InteractableObject : MonoBehaviour
 
     void LoadScene()
     {
+        SavePlayerPosition();
         SceneManager.LoadScene(sceneToLoad);
+    }
+    void SavePlayerPosition()
+    {
+        PlayerData.lastPosition = player.transform.position;
+        PlayerData.hasSavedPosition = true;
     }
 }
