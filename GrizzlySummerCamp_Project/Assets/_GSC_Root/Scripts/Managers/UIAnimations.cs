@@ -4,6 +4,7 @@ public class UIAnimations : MonoBehaviour
 {
     [SerializeField] private GameObject logo;
     [SerializeField] private GameObject inicio;
+    [SerializeField] private GameObject libreta;
 
 
     private void Start()
@@ -16,6 +17,16 @@ public class UIAnimations : MonoBehaviour
     {
         LeanTween.alpha(inicio.GetComponent<RectTransform>(), 0f, 1f).setDelay(0.5f);
         inicio.GetComponent<CanvasGroup>().blocksRaycasts = false; //blockea la interaccion con los demas elementos del canva
+    }
+
+    public void ActivarLibreta()
+    {
+        LeanTween.moveY(libreta.GetComponent<RectTransform>(), 0, 1f).setEase(LeanTweenType.easeOutSine);
+    }
+
+    public void DesactivarLibreta()
+    {
+        LeanTween.moveY(libreta.GetComponent<RectTransform>(), -609, 1f).setEase(LeanTweenType.easeOutSine);
     }
 
 }
