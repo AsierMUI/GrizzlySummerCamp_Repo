@@ -4,7 +4,12 @@ public class PauseGame : MonoBehaviour
 {
     public GameObject menuPausa;
     public bool juegoPausado = false;
-    
+
+
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
