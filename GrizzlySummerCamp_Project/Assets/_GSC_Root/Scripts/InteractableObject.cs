@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+//using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class InteractableObject : MonoBehaviour
 
     void Start()
     {
+        //Asigna el jugador al iniciar.
         player = GameObject.FindGameObjectWithTag("Player");
         textObject.SetActive(false);
     }
@@ -22,11 +24,11 @@ public class InteractableObject : MonoBehaviour
         if (player != null)
         {
             float distance = Vector3.Distance(player.transform.position, transform.position);
-            isPlayerInRange = distance < interactionDistance;
+            isPlayerInRange = distance < interactionDistance; //Booleano, se vuelve verdadero(true) sí "distancia" es menor a "interactionDistance";
 
-            textObject.SetActive(isPlayerInRange);
+            textObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
 
-            if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
+            if (isPlayerInRange && Input.GetKeyDown(KeyCode.E)) //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
             {
                 LoadScene();
             }
