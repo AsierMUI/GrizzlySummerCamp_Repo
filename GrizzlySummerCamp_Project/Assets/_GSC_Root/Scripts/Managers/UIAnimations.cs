@@ -6,6 +6,7 @@ public class UIAnimations : MonoBehaviour
     [SerializeField] private GameObject inicio;
     [SerializeField] private GameObject libreta;
 
+    private bool isLibretaActive = false;
 
     private void Start()
     {
@@ -17,6 +18,20 @@ public class UIAnimations : MonoBehaviour
     {
         LeanTween.alpha(inicio.GetComponent<RectTransform>(), 0f, 1f).setDelay(0.5f);
         inicio.GetComponent<CanvasGroup>().blocksRaycasts = false; //blockea la interaccion con los demas elementos del canva
+    }
+
+
+    public void CambiarLibreta()
+    {
+        if (isLibretaActive)
+        {
+            DesactivarLibreta();
+        }
+        else
+        {
+            ActivarLibreta();
+        }
+        isLibretaActive = !isLibretaActive; //cambia el estado al inverso
     }
 
     public void ActivarLibreta()
