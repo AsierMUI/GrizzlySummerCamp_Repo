@@ -8,6 +8,11 @@ public class Pesca_Prueba : MonoBehaviour
 
     [SerializeField] Transform fish;
 
+    [SerializeField] Transform hook;
+    float hookPosition;
+    [SerializeField] float hookSize;
+    [SerializeField] float hookPower;
+
     //This won't do for now
     //[SerializeField] Transform leftPivot;
     //[SerializeField] Transform rightPivot;
