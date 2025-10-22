@@ -67,7 +67,7 @@ public class Temporizador : MonoBehaviour
 
     public void MostrarResultados()
     {
-        resultadoTexto.text = "Has conseguido:";
+        resultadoTexto.text = "You got:";
         canvasResultado.SetActive(true);
     }
 }

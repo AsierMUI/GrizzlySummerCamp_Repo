@@ -154,12 +154,12 @@ public class Pesca_Prueba : MonoBehaviour
         isFishing = false;
         fishingUI.SetActive(false);
         resultUI.SetActive(true);
-        resultText.text = "Got the fish";
+        resultText.text = "Got it!";
 
         puntos += 100;
 
         if (puntosTexto != null)
-            puntosTexto.text = "Puntos:" + puntos.ToString();
+            puntosTexto.text = "Points:" + puntos.ToString();
 
         ActualizarInsignia();
 
@@ -171,7 +171,7 @@ public class Pesca_Prueba : MonoBehaviour
         isFishing = false;
         fishingUI.SetActive(false);
         resultUI.SetActive(true);
-        resultText.text = "You lost the fish";
+        resultText.text = "It escaped :(";
         StartCoroutine(HideResultUIAfterDelay());
     }
 
@@ -264,11 +264,11 @@ public class Pesca_Prueba : MonoBehaviour
         if (puntos >= 300)
             mensaje = "¡Wow!";
         else if (puntos == 200)
-            mensaje = "¡Excelente!";
+            mensaje = "Incredible!";
         else if (puntos == 100)
-            mensaje = "¡Bien echo!";
+            mensaje = "Well done!";
         else
-            mensaje = "No has conseguido ninguna insignia :(";
+            mensaje = "Oops :(";
         if(mensajeFinalText != null)
             mensajeFinalText.text = mensaje;
 
