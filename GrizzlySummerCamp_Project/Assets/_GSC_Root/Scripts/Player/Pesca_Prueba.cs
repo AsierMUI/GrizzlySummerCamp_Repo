@@ -77,6 +77,9 @@ public class Pesca_Prueba : MonoBehaviour
         biteTimer = timeBetweenBites;
 
         fishingTimer = totalFishingTime;
+
+        if(instruccionesUI != null)
+        instruccionesUI.SetActive(true);
     }
     void Update()
     {
