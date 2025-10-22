@@ -26,6 +26,8 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] float hookGravityPower = 0.005f;
     [SerializeField] float hookProgressDegradationPower = 0.1f;
 
+    [SerializeField] SpriteRenderer hookSpriteRenderer;
+
     //This won't do for now
     //[SerializeField] Transform leftPivot;
     //[SerializeField] Transform rightPivot;
@@ -37,12 +39,16 @@ public class Pesca_Prueba : MonoBehaviour
 
     void Start()
     {
-        
+        Resize();
     }
     void Update()
     {
         Fish();
         Hook();
+    }
+    void Resize() 
+    {
+    
     }
     void Hook() 
     {
@@ -53,7 +59,7 @@ public class Pesca_Prueba : MonoBehaviour
         hookPullVelocity -= hookGravityPower * Time.deltaTime;
 
         hookPosition += hookPullVelocity;
-        hookPosition = Mathf.Clamp(hookPosition, 0, 1);
+        hookPosition = Mathf.Clamp(hookPosition, hookSize / 2, 1 - hookSize / 2);
         hook.position = Vector3.Lerp(bottomPivot.position, topPivot.position, hookPosition);
     }
     void Fish() 
