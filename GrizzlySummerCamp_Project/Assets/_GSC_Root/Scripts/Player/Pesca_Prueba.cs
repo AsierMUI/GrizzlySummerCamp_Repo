@@ -56,6 +56,19 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] float totalFishingTime = 120f;
     float fishingTimer;
 
+    [Header("Score System")]
+    [SerializeField] TextMeshProUGUI puntosTexto;
+    [SerializeField] Image insigniaImage;
+
+    [SerializeField] Sprite insigniaBronce;
+    [SerializeField] Sprite insigniaPlata;
+    [SerializeField] Sprite insigniaOro;
+    int puntos = 0;
+
+    bool minijuegoTerminado = false;
+
+    [SerializeField] TMPro.TextMeshProUGUI mensajeFinalText;
+
     void Start()
     {
         fishPosition = UnityEngine.Random.Range(0f, 1f);
@@ -70,13 +83,24 @@ public class Pesca_Prueba : MonoBehaviour
         if (instruccionesUI != null && instruccionesUI.activeSelf)
             return;
 
-        if (fishingTimer > 0f)
+        if(!minijuegoTerminado)
         {
-            fishingTimer -= Time.deltaTime;
-        }
+            if (fishingTimer > 0f)
+            {
+                fishingTimer -= Time.deltaTime;
+            }
 
-        if (fishingTimer <= 0f)
+            if (fishingTimer <= 0f)
+            {
+                minijuegoTerminado = true;
+                MostrarResultadoFinal();
+                return;
+            }
+        }
+        else
+        {
             return;
+        }
 
         if (!isFishing)
         {
@@ -131,6 +155,14 @@ public class Pesca_Prueba : MonoBehaviour
         fishingUI.SetActive(false);
         resultUI.SetActive(true);
         resultText.text = "Got the fish";
+
+        puntos += 100;
+
+        if (puntosTexto != null)
+            puntosTexto.text = "Puntos:" + puntos.ToString();
+
+        ActualizarInsignia();
+
         StartCoroutine(HideResultUIAfterDelay());
     }
 
@@ -197,6 +229,49 @@ public class Pesca_Prueba : MonoBehaviour
 
         fishPosition = UnityEngine.Random.Range(0f, 1f);
         fishDestination = fishPosition;
+    }
+
+    void ActualizarInsignia()
+    {
+        if (insigniaImage == null) return;
+
+        if (puntos >= 300)
+        {
+            insigniaImage.sprite = insigniaOro;
+        }
+        else if (puntos == 200)
+        {
+            insigniaImage.sprite = insigniaPlata;
+        }
+        else if (puntos == 100)
+        {
+            insigniaImage.sprite = insigniaBronce;
+        }
+        else
+        {
+            insigniaImage.sprite = null;
+        }
+    }
+
+    void MostrarResultadoFinal()
+    {
+        isFishing = false;
+        fishingUI.SetActive(false);
+        resultUI.SetActive(true);
+
+        string mensaje = "";
+
+        if (puntos >= 300)
+            mensaje = "¡Wow!";
+        else if (puntos == 200)
+            mensaje = "¡Excelente!";
+        else if (puntos == 100)
+            mensaje = "¡Bien echo!";
+        else
+            mensaje = "No has conseguido ninguna insignia :(";
+        if(mensajeFinalText != null)
+            mensajeFinalText.text = mensaje;
+
     }
 
 }
