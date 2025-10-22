@@ -3,6 +3,7 @@ using UnityEngine;
 public class PauseGame : MonoBehaviour
 {
     public GameObject menuPausa;
+    public GameObject canvasInstrucciones;
     public bool juegoPausado = false;
 
 
@@ -12,7 +13,7 @@ public class PauseGame : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !canvasInstrucciones.activeSelf)
         {
             if (juegoPausado)
             {
