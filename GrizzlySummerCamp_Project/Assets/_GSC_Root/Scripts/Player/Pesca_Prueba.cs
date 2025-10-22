@@ -46,9 +46,14 @@ public class Pesca_Prueba : MonoBehaviour
         Fish();
         Hook();
     }
-    void Resize() 
+    void Resize()
     {
-    
+        Bounds b = hookSpriteRenderer.bounds;
+        float ySize = b.size.y;
+        Vector3 ls = hook.localScale;
+        float distance = Vector3.Distance(topPivot.position, bottomPivot.position);
+        ls.y = (distance / ySize * hookSize);
+        hook.localScale = ls;
     }
     void Hook() 
     {
