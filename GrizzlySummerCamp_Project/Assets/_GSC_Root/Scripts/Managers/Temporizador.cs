@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Temporizador : MonoBehaviour
 {
     [SerializeField] private float tiempoMax;
     [SerializeField] private Slider slider;
+    [SerializeField] private GameObject canvasResultado;
+    [SerializeField] private TMP_Text resultadoTexto;
     private float tiempoActual;
     private bool tiempoActivado = false;
 
@@ -35,6 +38,7 @@ public class Temporizador : MonoBehaviour
         if (tiempoActual <= 0)
         {
             CambiarTemporizador(false);
+            MostrarResultados();
         }
     }
 
@@ -59,5 +63,11 @@ public class Temporizador : MonoBehaviour
         {
             ActivarTemporizador();
         }
+    }
+
+    public void MostrarResultados()
+    {
+        resultadoTexto.text = "Has conseguido:";
+        canvasResultado.SetActive(true);
     }
 }
