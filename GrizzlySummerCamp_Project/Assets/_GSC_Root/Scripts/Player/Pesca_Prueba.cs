@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections;
 
 public class Pesca_Prueba : MonoBehaviour
 {
@@ -19,37 +22,72 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] Transform hook;
     float hookPosition;
     [SerializeField] float hookSize = 0.1f;
-    [SerializeField] float hookPower = 0.1f;
+    [SerializeField] float hookPower = 0.3f;
+    [SerializeField] float hookProgressLossSpeed = 0.1f;
     float hookProgress;
     float hookPullVelocity;
     [SerializeField] float hookPullPower = 0.01f;
     [SerializeField] float hookGravityPower = 0.005f;
     [SerializeField] float hookProgressDegradationPower = 0.1f;
 
-    [SerializeField] SpriteRenderer hookSpriteRenderer;
+    [SerializeField] Image hookImage;
 
     [SerializeField] Transform progressBarContainer;
 
 
-    bool pause = false;
+    [SerializeField] float failTimer = 40f;
 
-    [SerializeField] float failTimer = 10f;
+    [Header("UI References")]
+    [SerializeField] GameObject fishingUI;
+    [SerializeField] GameObject resultUI;
+    [SerializeField] TMPro.TextMeshProUGUI resultText;
 
-    //This won't do for now
-    //[SerializeField] Transform leftPivot;
-    //[SerializeField] Transform rightPivot;
 
-    //Will need to add fish stats
+    [SerializeField] float timeBetweenBites = 5f;
+    float biteTimer;
+    bool isFishing = false;
+
+    [SerializeField] float resultDisplayTime = 3f;
+
+    [Header("Instructions UI")]
+    [SerializeField] GameObject instruccionesUI;
+
+    [Header("Fishing Time Limit")]
+    [SerializeField] float totalFishingTime = 120f;
+    float fishingTimer;
 
     void Start()
     {
-        Resize();
         fishPosition = UnityEngine.Random.Range(0f, 1f);
         fishDestination = fishPosition;
+
+        biteTimer = timeBetweenBites;
+
+        fishingTimer = totalFishingTime;
     }
     void Update()
     {
-        if (pause) { return; }
+        if (instruccionesUI != null && instruccionesUI.activeSelf)
+            return;
+
+        if (fishingTimer > 0f)
+        {
+            fishingTimer -= Time.deltaTime;
+        }
+
+        if (fishingTimer <= 0f)
+            return;
+
+        if (!isFishing)
+        {
+            biteTimer -= Time.deltaTime;
+            if (biteTimer <= 0f)
+            {
+                StartFishing();
+            }
+            return;
+        }
+
         Fish();
         Hook();
         ProgressCheck();
@@ -61,16 +99,16 @@ public class Pesca_Prueba : MonoBehaviour
         ls.y = hookProgress;
         progressBarContainer.localScale = ls;
 
-        float min = hookPosition - hookSize / 2;
-        float max = hookPosition + hookSize / 2;
+        float min = hookPosition - hookSize / 1;
+        float max = hookPosition + hookSize / 1;
 
         if (min < fishPosition && fishPosition < max)
         {
-            hookProgress = Mathf.Lerp(hookProgress, 1f,hookPower * Time.deltaTime);
+            hookProgress = Mathf.MoveTowards(hookProgress, 1f,hookPower * Time.deltaTime);
         }
         else
         {
-            hookProgress -= hookProgressDegradationPower * Time.deltaTime;
+            hookProgress = Mathf.Lerp(hookProgress, 0f, hookProgressLossSpeed * Time.deltaTime);
 
             failTimer -= Time.deltaTime;
             if (failTimer < 0)
@@ -87,26 +125,28 @@ public class Pesca_Prueba : MonoBehaviour
         hookProgress = Mathf.Clamp(hookProgress, 0f, 1f);
     }
 
-    void Resize()
-    {
-        Bounds b = hookSpriteRenderer.bounds;
-        float ySize = b.size.y;
-        Vector3 ls = hook.localScale;
-        float distance = Vector3.Distance(topPivot.position, bottomPivot.position);
-        ls.y = (distance / ySize * hookSize);
-        hook.localScale = ls;
-    }
-
     private void Win()
     {
-        pause = true;
-        Debug.Log("goty");
+        isFishing = false;
+        fishingUI.SetActive(false);
+        resultUI.SetActive(true);
+        resultText.text = "Got the fish";
+        StartCoroutine(HideResultUIAfterDelay());
     }
 
     private void Lose()
     {
-        pause = true;
-        Debug.Log("payaso");
+        isFishing = false;
+        fishingUI.SetActive(false);
+        resultUI.SetActive(true);
+        resultText.text = "You lost the fish";
+        StartCoroutine(HideResultUIAfterDelay());
+    }
+
+    IEnumerator HideResultUIAfterDelay()
+    {
+        yield return new WaitForSeconds(resultDisplayTime);
+        resultUI.SetActive(false);
     }
     void Hook() 
     {
@@ -144,4 +184,19 @@ public class Pesca_Prueba : MonoBehaviour
         fishPosition = Mathf.SmoothDamp(fishPosition, fishDestination, ref fishSpeed, smoothMotion);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPosition);
     }
+    void StartFishing()
+    {
+        isFishing = true;
+        biteTimer = timeBetweenBites;
+
+        fishingUI.SetActive(true);
+        resultUI.SetActive(false);
+
+        hookProgress = 0f;
+        failTimer = 10f;
+
+        fishPosition = UnityEngine.Random.Range(0f, 1f);
+        fishDestination = fishPosition;
+    }
+
 }
