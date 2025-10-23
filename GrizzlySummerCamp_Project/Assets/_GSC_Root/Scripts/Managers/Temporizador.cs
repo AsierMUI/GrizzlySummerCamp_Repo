@@ -65,7 +65,7 @@ public class Temporizador : MonoBehaviour
         }
     }
 
-    public void MostrarResultados()
+    public void MostrarResultados() //Este es el temporizador que manda para que se termine el juego (por tiempo)
     {
         resultadoTexto.text = "You got:";
         canvasResultado.SetActive(true);
