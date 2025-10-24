@@ -7,7 +7,7 @@ public class InteractableObject : MonoBehaviour
 {
     public float interactionDistance = 4f; //Distancia para interactuar con el objeto
     public int sceneToLoad; //numero de la escena
-    public GameObject textObject; //ref al texto
+    public GameObject spriteObject; //ref al sprite
 
     private GameObject player; //ref al player
     private bool isPlayerInRange = false;
@@ -16,7 +16,7 @@ public class InteractableObject : MonoBehaviour
     {
         //Asigna el jugador al iniciar.
         player = GameObject.FindGameObjectWithTag("Player");
-        textObject.SetActive(false);
+        spriteObject.SetActive(false);
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class InteractableObject : MonoBehaviour
             float distance = Vector3.Distance(player.transform.position, transform.position);
             isPlayerInRange = distance < interactionDistance; //Booleano, se vuelve verdadero(true) sí "distancia" es menor a "interactionDistance";
 
-            textObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
+            spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
 
             if (isPlayerInRange && Input.GetKeyDown(KeyCode.E)) //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
             {
