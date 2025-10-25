@@ -6,13 +6,13 @@ using System.Collections;
 public class Pesca_Prueba : MonoBehaviour
 {
     [Header("Movement Stats")]
-    [SerializeField] Transform topPivot;
-    [SerializeField] Transform bottomPivot;
+    [SerializeField] Transform topPivot; //Punto/Limite superior pez y gancho
+    [SerializeField] Transform bottomPivot; //Punto/Limite inferior pez y gancho
 
     [Header("Fish Stats")]
-    [SerializeField] Transform fish;
+    [SerializeField] Transform fish; //Posición Pescado
     float fishPosition;
-    float fishDestination;
+    float fishDestination; //Posición a la que el pescado se quiere mover, alterna entre top y botton pivot
     [SerializeField] float fishTimer;
     [SerializeField] float timerMultiplicator = 3f;
     [SerializeField] float fishSpeed;
@@ -20,14 +20,14 @@ public class Pesca_Prueba : MonoBehaviour
 
     [Header("Hook Stats")]
     [SerializeField] Transform hook;
-    float hookPosition;
-    [SerializeField] float hookSize = 0.1f;
-    [SerializeField] float hookPower = 0.3f;
+    float hookPosition; //Posición inicial del gancho
+    [SerializeField] float hookSize = 0.1f; //tamaño del gancho
+    [SerializeField] float hookPower = 0.3f; 
     [SerializeField] float hookProgressLossSpeed = 0.1f;
     float hookProgress;
     float hookPullVelocity;
     [SerializeField] float hookPullPower = 0.01f;
-    [SerializeField] float hookGravityPower = 0.005f;
+    [SerializeField] float hookGravityPower = 0.005f; //Simula la gravedad disminuyendo la fuerza del gancho
     [SerializeField] float hookProgressDegradationPower = 0.1f;
 
     [SerializeField] Image hookImage;
@@ -35,7 +35,7 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] Transform progressBarContainer;
 
 
-    [SerializeField] float failTimer = 40f;
+    [SerializeField] float failTimer;
 
     [Header("UI References")]
     [SerializeField] GameObject fishingUI;
@@ -53,19 +53,19 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] GameObject instruccionesUI;
 
     [Header("Fishing Time Limit")]
-    [SerializeField] float totalFishingTime = 120f;
-    float fishingTimer;
+    //[SerializeField] float totalFishingTime = 120f;
+    [SerializeField] float fishingTimer;
 
     [Header("Score System")]
     [SerializeField] TextMeshProUGUI puntosTexto;
-    [SerializeField] Image insigniaImage;
+    [SerializeField] Image insigniaImage; //Imagen de la insignia que se obtenga
 
-    [SerializeField] Sprite insigniaBronce;
-    [SerializeField] Sprite insigniaPlata;
-    [SerializeField] Sprite insigniaOro;
-    int puntos = 0;
+    [SerializeField] Sprite insigniaBronce; //Referencia a bronce 3º Posición
+    [SerializeField] Sprite insigniaPlata; //Referencia a plata, 2º Posición
+    [SerializeField] Sprite insigniaOro; //Referencia a oro, 1º Posición
+    int puntos = 0; //Contador de puntos (enteros, ie 1 != 1,00)
 
-    bool minijuegoTerminado = false;
+    bool minijuegoTerminado = false; //Booleano para controlar la finalización del juego.
 
     [SerializeField] TMPro.TextMeshProUGUI mensajeFinalText;
 
@@ -76,7 +76,7 @@ public class Pesca_Prueba : MonoBehaviour
 
         biteTimer = timeBetweenBites;
 
-        fishingTimer = totalFishingTime;
+        fishingTimer = 120f;
 
         if(instruccionesUI != null)
         instruccionesUI.SetActive(true);
@@ -218,6 +218,7 @@ public class Pesca_Prueba : MonoBehaviour
 
         fishPosition = Mathf.SmoothDamp(fishPosition, fishDestination, ref fishSpeed, smoothMotion);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPosition);
+        // Hacer un vector con 3 tipos de pez, pequeño, medio y grande, cada uno modifica el tiempo de fallo, el hook size, Progress Degradation [...]
     }
     void StartFishing()
     {
@@ -228,7 +229,7 @@ public class Pesca_Prueba : MonoBehaviour
         resultUI.SetActive(false);
 
         hookProgress = 0f;
-        failTimer = 10f;
+        failTimer = 25f;
 
         fishPosition = UnityEngine.Random.Range(0f, 1f);
         fishDestination = fishPosition;
@@ -260,7 +261,6 @@ public class Pesca_Prueba : MonoBehaviour
     {
         isFishing = false;
         fishingUI.SetActive(false);
-        resultUI.SetActive(true);
 
         string mensaje = "";
 
