@@ -1,17 +1,23 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
-//using UnityEngine.InputSystem;
+//using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour
 {
+    /*
     public float interactionDistance = 4f; //Distancia para interactuar con el objeto
     public int sceneToLoad; //numero de la escena
     public GameObject spriteObject; //ref al sprite
 
     private GameObject player; //ref al player
     private bool isPlayerInRange = false;
-
+    */
+    [Header("TETAS")]
+    [SerializeField] float interactionDistance = 4f;
+    [SerializeField];
+    [SerializeField];
+    [SerializeField];
     void Start()
     {
         //Asigna el jugador al iniciar.
