@@ -5,15 +5,15 @@ using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour
 {
-    
+    /*
     public float interactionDistance = 4f; //Distancia para interactuar con el objeto
     public int sceneToLoad; //numero de la escena
     public GameObject spriteObject; //ref al sprite
 
     private GameObject player; //ref al player
     private bool isPlayerInRange = false;
+    */
     
-    /*
     [Header("TETAS")]
     [SerializeField] float interactionDistance = 4f;
     [SerializeField] int sceneToLoad;
@@ -22,28 +22,39 @@ public class InteractableObject : MonoBehaviour
     private GameObject player;
     private PlayerInput playerInput;
     private InputAction interactAction;
-    */
+
+    private bool isPlayerInRange = false;
+    
     void Start()
     {
+        /*
         //Asigna el jugador al iniciar.
         player = GameObject.FindGameObjectWithTag("Player");
         spriteObject.SetActive(false);
+        */
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerInput = player.GetComponent<PlayerInput>();
+        interactAction = playerInput.actions.FindAction("Interact");
+        
+        spriteObject.SetActive(false);
+
     }
 
     void Update()
     {
-        if (player != null)
+        if (player == null) return;
+       
+        float distance = Vector3.Distance(player.transform.position, transform.position);
+        isPlayerInRange = distance < interactionDistance; //Booleano, se vuelve verdadero(true) sí "distancia" es menor a "interactionDistance";
+
+        spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
+
+        if (isPlayerInRange && interactAction.WasPressedThisFrame())//Input.GetKeyDown(KeyCode.E)) //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
         {
-            float distance = Vector3.Distance(player.transform.position, transform.position);
-            isPlayerInRange = distance < interactionDistance; //Booleano, se vuelve verdadero(true) sí "distancia" es menor a "interactionDistance";
-
-            spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
-
-            if (isPlayerInRange && Input.GetKeyDown(KeyCode.E)) //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
-            {
-                LoadScene();
-            }
+            LoadScene();
         }
+    
     }
 
     void LoadScene()
