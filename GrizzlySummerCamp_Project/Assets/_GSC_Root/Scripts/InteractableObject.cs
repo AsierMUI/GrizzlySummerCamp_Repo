@@ -4,16 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour
-{
-    /*
-    public float interactionDistance = 4f; //Distancia para interactuar con el objeto
-    public int sceneToLoad; //numero de la escena
-    public GameObject spriteObject; //ref al sprite
-
-    private GameObject player; //ref al player
-    private bool isPlayerInRange = false;
-    */
-    
+{  
     [Header("TETAS")]
     [SerializeField] float interactionDistance = 4f;
     [SerializeField] int sceneToLoad;
@@ -27,12 +18,7 @@ public class InteractableObject : MonoBehaviour
     
     void Start()
     {
-        /*
         //Asigna el jugador al iniciar.
-        player = GameObject.FindGameObjectWithTag("Player");
-        spriteObject.SetActive(false);
-        */
-
         player = GameObject.FindGameObjectWithTag("Player");
         playerInput = player.GetComponent<PlayerInput>();
         interactAction = playerInput.actions.FindAction("Interact");
@@ -50,7 +36,7 @@ public class InteractableObject : MonoBehaviour
 
         spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
 
-        if (isPlayerInRange && interactAction.WasPressedThisFrame())//Input.GetKeyDown(KeyCode.E)) //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
+        if (isPlayerInRange && interactAction.WasPressedThisFrame()) //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
         {
             LoadScene();
         }
