@@ -8,21 +8,27 @@ public class PlayerCollision : MonoBehaviour
     private bool isStunned = false;
 
     private Rigidbody rb;
-    private PlayerMovement movementScript;
+    private BoatMovement movementScript;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        movementScript = GetComponent<PlayerMovement>();
+        movementScript = GetComponent<BoatMovement>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Vector3 bounceDir = (transform.position - collision.transform.position).normalized; //calcula la direccion opuesta
+            //calcula la direccion opuesta
+            Vector3 bounceDir = (transform.position - collision.transform.position).normalized;
 
-            rb.AddForce(bounceDir * bounceForce, ForceMode.Impulse); //aplica la fuerza del rebote
+            //elimina la inercia del barco
+            if (movementScript != null)
+                movementScript.ResetVelocity();
+
+            //fuera de  reborte
+            rb.AddForce(bounceDir * bounceForce, ForceMode.Impulse);
 
             if (!isStunned)
                 StartCoroutine(StunPlayer());
