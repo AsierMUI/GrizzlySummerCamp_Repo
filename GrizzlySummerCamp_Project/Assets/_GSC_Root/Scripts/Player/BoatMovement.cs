@@ -1,14 +1,7 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BoatMovement : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    
 }
