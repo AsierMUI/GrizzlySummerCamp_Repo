@@ -3,8 +3,10 @@ using UnityEngine.InputSystem;
 
 public class FishingMinigameInteractable : MonoBehaviour
 {
+    [Header("Conf interacción")]
     [SerializeField] float interactionDistance = 4f;
     [SerializeField] GameObject spriteObject;
+    [SerializeField] Pesca_Prueba pescaScript;
 
     private GameObject player;
     private PlayerInput playerInput;
@@ -38,7 +40,11 @@ public class FishingMinigameInteractable : MonoBehaviour
 
     void ShowInterface()
     {
+        var pescaScript = Object.FindFirstObjectByType<Pesca_Prueba>();
 
-        Debug.Log("pne");
+        if (pescaScript != null)
+            pescaScript.StartFishing();
+
+        gameObject.SetActive(false);
     }
 }
