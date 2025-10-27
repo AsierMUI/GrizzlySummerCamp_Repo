@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour
-{  
-    [Header("TETAS")]
+{
     [SerializeField] float interactionDistance = 4f;
     [SerializeField] int sceneToLoad;
     [SerializeField] GameObject spriteObject;
