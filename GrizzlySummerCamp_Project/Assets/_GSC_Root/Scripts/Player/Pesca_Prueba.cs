@@ -7,13 +7,13 @@ using UnityEngine.InputSystem;
 public class Pesca_Prueba : MonoBehaviour
 {
     [Header("Movement Stats")]
-    [SerializeField] Transform topPivot; //Punto/Limite superior pez y gancho
-    [SerializeField] Transform bottomPivot; //Punto/Limite inferior pez y gancho
+    [SerializeField] Transform topPivot;
+    [SerializeField] Transform bottomPivot;
 
     [Header("Fish Stats")]
-    [SerializeField] Transform fish; //Posición Pescado
+    [SerializeField] Transform fish;
     float fishPosition;
-    float fishDestination; //Posición a la que el pescado se quiere mover, alterna entre top y botton pivot
+    float fishDestination;
     [SerializeField] float fishTimer;
     [SerializeField] float timerMultiplicator = 3f;
     [SerializeField] float fishSpeed;
@@ -21,23 +21,21 @@ public class Pesca_Prueba : MonoBehaviour
 
     [Header("Hook Stats")]
     [SerializeField] Transform hook;
-    float hookPosition; //Posición inicial del gancho
-    [SerializeField] float hookSize = 0.1f; //tamaño del gancho
-    [SerializeField] float hookPower = 0.3f; 
+    float hookPosition;
+    [SerializeField] float hookSize = 0.1f;
+    [SerializeField] float hookPower = 0.3f;
     [SerializeField] float hookProgressLossSpeed = 0.1f;
     float hookProgress;
     float hookPullVelocity;
     [SerializeField] float hookPullPower = 0.01f;
-    [SerializeField] float hookGravityPower = 0.005f; //Simula la gravedad disminuyendo la fuerza del gancho
-    [SerializeField] float hookProgressDegradationPower = 0.1f;
-    [SerializeField] Image hookImage;
+    [SerializeField] float hookGravityPower = 0.005f;
     [SerializeField] Transform progressBarContainer;
     [SerializeField] float failTimer;
 
     [Header("UI References")]
     [SerializeField] GameObject fishingUI;
     [SerializeField] GameObject resultUI;
-    [SerializeField] TMPro.TextMeshProUGUI resultText;
+    [SerializeField] TextMeshProUGUI resultText;
     [SerializeField] float resultDisplayTime = 3f;
 
     [Header("Instructions UI")]
@@ -48,41 +46,36 @@ public class Pesca_Prueba : MonoBehaviour
 
     [Header("Score System")]
     [SerializeField] TextMeshProUGUI puntosTexto;
-    [SerializeField] Image insigniaImage; //Imagen de la insignia que se obtenga
-    [SerializeField] Sprite insigniaBronce; //Referencia a bronce 3º Posición
-    [SerializeField] Sprite insigniaPlata; //Referencia a plata, 2º Posición
-    [SerializeField] Sprite insigniaOro; //Referencia a oro, 1º Posición
-    int puntos = 0; //Contador de puntos (enteros, ie 1 != 1,00)
+    [SerializeField] Image insigniaImage;
+    [SerializeField] Sprite insigniaBronce;
+    [SerializeField] Sprite insigniaPlata;
+    [SerializeField] Sprite insigniaOro;
+    int puntos = 0;
 
-    bool minijuegoTerminado = false; //Booleano para controlar la finalización del juego.
+    bool minijuegoTerminado = false;
     bool isFishing = false;
 
-    [Header("UI Final")]
-    [SerializeField] TMPro.TextMeshProUGUI mensajeFinalText;
+    [SerializeField] TextMeshProUGUI mensajeFinalText;
 
-    [Header("Pausa del player")]
-    [SerializeField] BoatMovement playerMovementScript;
-    [SerializeField] PlayerInput playerInput;
-
+    // Start is called before the first frame update
     void Start()
     {
         fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
+        fishingTimer = 120f;
 
-        if(instruccionesUI != null)
+        if (instruccionesUI != null)
             instruccionesUI.SetActive(true);
 
-        if (fishingUI != null)
-            fishingUI.SetActive(false);
-
-        if (resultUI !=null)
-            resultUI.SetActive(false);
+        fishingUI.SetActive(false);
+        resultUI.SetActive(false);
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if ((instruccionesUI != null && instruccionesUI.activeSelf) || minijuegoTerminado)
-            return;
+        if (instruccionesUI != null && instruccionesUI.activeSelf) return;
+        if (minijuegoTerminado) return;
 
         if (fishingTimer > 0f)
             fishingTimer -= Time.deltaTime;
@@ -100,7 +93,7 @@ public class Pesca_Prueba : MonoBehaviour
         ProgressCheck();
     }
 
-    private void ProgressCheck()
+    void ProgressCheck()
     {
         Vector3 ls = progressBarContainer.localScale;
         ls.y = hookProgress;
@@ -110,22 +103,22 @@ public class Pesca_Prueba : MonoBehaviour
         float max = hookPosition + hookSize / 1;
 
         if (min < fishPosition && fishPosition < max)
-        {
             hookProgress = Mathf.MoveTowards(hookProgress, 1f, hookPower * Time.deltaTime);
-        }
         else
         {
             hookProgress = Mathf.Lerp(hookProgress, 0f, hookProgressLossSpeed * Time.deltaTime);
             failTimer -= Time.deltaTime;
-            if (failTimer < 0) Lose();
+            if (failTimer < 0)
+                Lose();
         }
 
-        if (hookProgress >= 1f) Win();
+        if (hookProgress >= 1f)
+            Win();
 
         hookProgress = Mathf.Clamp(hookProgress, 0f, 1f);
     }
 
-    private void Win()
+    void Win()
     {
         isFishing = false;
         fishingUI.SetActive(false);
@@ -133,34 +126,18 @@ public class Pesca_Prueba : MonoBehaviour
         resultText.text = "Got it!";
 
         puntos += 100;
-        if (puntosTexto != null) puntosTexto.text = $"Points: {puntos}";
+        puntosTexto.text = "Points: " + puntos;
         ActualizarInsignia();
-
-        if (playerMovementScript != null) playerMovementScript.enabled = true;
-
-        if (playerInput != null)
-        {
-            var playerMap = playerInput.actions.FindActionMap("Movement");
-            if (playerMap != null) playerMap.Enable();
-        }
 
         StartCoroutine(HideResultUIAfterDelay());
     }
 
-    private void Lose()
+    void Lose()
     {
         isFishing = false;
         fishingUI.SetActive(false);
         resultUI.SetActive(true);
         resultText.text = "It escaped :(";
-
-        if (playerMovementScript != null) playerMovementScript.enabled = true;
-
-        if (playerInput != null)
-        {
-            var playerMap = playerInput.actions.FindActionMap("Movement");
-            if (playerMap != null) playerMap.Enable();
-        }
 
         StartCoroutine(HideResultUIAfterDelay());
     }
@@ -171,7 +148,7 @@ public class Pesca_Prueba : MonoBehaviour
         resultUI.SetActive(false);
     }
 
-    void Hook() 
+    void Hook()
     {
         if (Input.GetMouseButton(0))
             hookPullVelocity += hookPullPower * Time.deltaTime;
@@ -179,17 +156,17 @@ public class Pesca_Prueba : MonoBehaviour
         hookPullVelocity -= hookGravityPower * Time.deltaTime;
         hookPosition += hookPullVelocity;
 
-        if(hookPosition - hookSize / 2 <= 0f && hookPullVelocity < 0f)
+        if (hookPosition - hookSize / 2 <= 0f && hookPullVelocity < 0f)
             hookPullVelocity = 0f;
 
-        if(hookPosition + hookSize / 2 >= 1f && hookPullVelocity > 0f)
+        if (hookPosition + hookSize / 2 >= 1f && hookPullVelocity > 0f)
             hookPullVelocity = 0f;
 
         hookPosition = Mathf.Clamp(hookPosition, hookSize / 2, 1 - hookSize / 2);
         hook.position = Vector3.Lerp(bottomPivot.position, topPivot.position, hookPosition);
     }
 
-    void Fish() 
+    void Fish()
     {
         fishTimer -= Time.deltaTime;
         if (fishTimer < 0)
@@ -200,32 +177,17 @@ public class Pesca_Prueba : MonoBehaviour
 
         fishPosition = Mathf.SmoothDamp(fishPosition, fishDestination, ref fishSpeed, smoothMotion);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPosition);
-        // Hacer un vector con 3 tipos de pez, pequeño, medio y grande, cada uno modifica el tiempo de fallo, el hook size, Progress Degradation [...]
     }
 
     public void StartFishing()
     {
         isFishing = true;
-
-        if (playerMovementScript != null)
-            playerMovementScript.enabled = false;
-
-        if (playerInput != null)
-        {
-            var playerMap = playerInput.actions.FindActionMap("Movement");
-            if (playerMap != null)
-                playerMap.Disable();
-        }
-
-        if (fishingUI != null)
-            fishingUI.SetActive(true);
-        if (resultUI != null)
-            resultUI.SetActive(false);
+        fishingUI.SetActive(true);
+        resultUI.SetActive(false);
 
         hookProgress = 0f;
         failTimer = 25f;
-
-        fishPosition = UnityEngine.Random.Range(0f, 1f);
+        fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
     }
 
@@ -233,10 +195,14 @@ public class Pesca_Prueba : MonoBehaviour
     {
         if (insigniaImage == null) return;
 
-        if (puntos >= 300) insigniaImage.sprite = insigniaOro;
-        else if (puntos == 200) insigniaImage.sprite = insigniaPlata;
-        else if (puntos == 100) insigniaImage.sprite = insigniaBronce;
-        else insigniaImage.sprite = null;
+        if (puntos >= 300)
+            insigniaImage.sprite = insigniaOro;
+        else if (puntos >= 200)
+            insigniaImage.sprite = insigniaPlata;
+        else if (puntos >= 100)
+            insigniaImage.sprite = insigniaBronce;
+        else
+            insigniaImage.sprite = null;
     }
 
     void MostrarResultadoFinal()
@@ -244,24 +210,12 @@ public class Pesca_Prueba : MonoBehaviour
         isFishing = false;
         fishingUI.SetActive(false);
 
-        string mensaje = puntos switch
-        {
-            >= 300 => "Wow!",
-            200 => "Incredible!",
-            100 => "Well done!",
-            _ => "Oops :("
-        };
+        string mensaje =
+            (puntos >= 300) ? "Â¡Wow!" :
+            (puntos >= 200) ? "Incredible!" :
+            (puntos >= 100) ? "Well done!" : "Oops :(";
 
-       // if (puntos >= 300)
-         //   mensaje = "¡Wow!";
-       // else if (puntos == 200)
-         //   mensaje = "Incredible!";
-       // else if (puntos == 100)
-         //   mensaje = "Well done!";
-       // else
-         //   mensaje = "Oops :(";
-
-        if(mensajeFinalText != null)
+        if (mensajeFinalText != null)
             mensajeFinalText.text = mensaje;
     }
 }
