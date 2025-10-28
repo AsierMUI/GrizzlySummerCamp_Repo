@@ -23,7 +23,7 @@ public class BoatMovement : MonoBehaviour
 
     void Start()
     {
-        moveAction = playerInput.actions.FindAction("Move");
+        moveAction = playerInput.actions.FindAction("Movement");
     }
 
     void FixedUpdate()
