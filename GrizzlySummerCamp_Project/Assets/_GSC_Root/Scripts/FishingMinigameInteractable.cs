@@ -8,7 +8,7 @@ public class FishingMinigameInteractable : MonoBehaviour
     [SerializeField] GameObject spriteObject;
     [SerializeField] Pesca_Prueba pescaScript;
 
-    GameObject player;
+    [SerializeField] GameObject player;
     PlayerInput playerInput;
     InputAction interactAction;
 

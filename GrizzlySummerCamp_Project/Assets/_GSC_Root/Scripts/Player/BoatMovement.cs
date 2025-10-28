@@ -15,6 +15,8 @@ public class BoatMovement : MonoBehaviour
 
     private Vector3 velocity;
 
+    public bool canMove = true;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -28,7 +30,11 @@ public class BoatMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        MoveBoat();
+        if (canMove)
+        {
+            MoveBoat();
+        }
+        else { ResetVelocity(); }
     }
 
     void MoveBoat()

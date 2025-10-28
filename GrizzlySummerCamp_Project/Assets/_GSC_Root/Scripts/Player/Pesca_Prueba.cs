@@ -146,6 +146,10 @@ public class Pesca_Prueba : MonoBehaviour
     {
         yield return new WaitForSeconds(resultDisplayTime);
         resultUI.SetActive(false);
+
+        var boat = FindFirstObjectByType<BoatMovement>();
+        if (boat != null)
+            boat.canMove = true;
     }
 
     void Hook()
@@ -181,7 +185,14 @@ public class Pesca_Prueba : MonoBehaviour
 
     public void StartFishing()
     {
-        isFishing = true;
+        var boat = FindFirstObjectByType<BoatMovement>();
+        if (boat != null)
+            isFishing = true;
+        {
+            boat.canMove = false;
+            boat.ResetVelocity();
+        }
+
         fishingUI.SetActive(true);
         resultUI.SetActive(false);
 
@@ -218,4 +229,5 @@ public class Pesca_Prueba : MonoBehaviour
         if (mensajeFinalText != null)
             mensajeFinalText.text = mensaje;
     }
+
 }
