@@ -38,7 +38,6 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] GameObject fishingUI;
     [SerializeField] GameObject resultUI;
     [SerializeField] TMPro.TextMeshProUGUI resultText;
-
     [SerializeField] float resultDisplayTime = 3f;
 
     [Header("Instructions UI")]
@@ -56,54 +55,45 @@ public class Pesca_Prueba : MonoBehaviour
     int puntos = 0; //Contador de puntos (enteros, ie 1 != 1,00)
 
     bool minijuegoTerminado = false; //Booleano para controlar la finalización del juego.
-
-    [SerializeField] TMPro.TextMeshProUGUI mensajeFinalText;
-
     bool isFishing = false;
 
-    [Header("Parametros para pausar al player")]
-    [SerializeField] GameObject player;
+    [Header("UI Final")]
+    [SerializeField] TMPro.TextMeshProUGUI mensajeFinalText;
+
+    [Header("Pausa del player")]
     [SerializeField] BoatMovement playerMovementScript;
     [SerializeField] PlayerInput playerInput;
 
     void Start()
     {
-        fishPosition = UnityEngine.Random.Range(0f, 1f);
+        fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
-
-        fishingTimer = 120f;
 
         if(instruccionesUI != null)
             instruccionesUI.SetActive(true);
 
         if (fishingUI != null)
             fishingUI.SetActive(false);
+
         if (resultUI !=null)
             resultUI.SetActive(false);
     }
 
     void Update()
     {
-        if (instruccionesUI != null && instruccionesUI.activeSelf)
-            return;
-
-        if (minijuegoTerminado)
+        if ((instruccionesUI != null && instruccionesUI.activeSelf) || minijuegoTerminado)
             return;
 
         if (fishingTimer > 0f)
-        {
             fishingTimer -= Time.deltaTime;
-        }
-
-        if (fishingTimer <= 0f)
+        else
         {
             minijuegoTerminado = true;
             MostrarResultadoFinal();
             return;
         }
-        if (!isFishing)
-            return;
 
+        if (!isFishing) return;
 
         Fish();
         Hook();
@@ -127,16 +117,10 @@ public class Pesca_Prueba : MonoBehaviour
         {
             hookProgress = Mathf.Lerp(hookProgress, 0f, hookProgressLossSpeed * Time.deltaTime);
             failTimer -= Time.deltaTime;
-            if (failTimer < 0)
-            {
-                Lose();
-            }
+            if (failTimer < 0) Lose();
         }
 
-        if (hookProgress >= 1f)
-        {
-            Win();
-        }
+        if (hookProgress >= 1f) Win();
 
         hookProgress = Mathf.Clamp(hookProgress, 0f, 1f);
     }
@@ -149,17 +133,16 @@ public class Pesca_Prueba : MonoBehaviour
         resultText.text = "Got it!";
 
         puntos += 100;
-
-        if (puntosTexto != null)
-            puntosTexto.text = "Points:" + puntos.ToString();
-
+        if (puntosTexto != null) puntosTexto.text = $"Points: {puntos}";
         ActualizarInsignia();
 
-        if (playerMovementScript != null)
-            playerMovementScript.enabled = true;
+        if (playerMovementScript != null) playerMovementScript.enabled = true;
 
         if (playerInput != null)
-            playerInput.enabled = true;
+        {
+            var playerMap = playerInput.actions.FindActionMap("Movement");
+            if (playerMap != null) playerMap.Enable();
+        }
 
         StartCoroutine(HideResultUIAfterDelay());
     }
@@ -171,11 +154,13 @@ public class Pesca_Prueba : MonoBehaviour
         resultUI.SetActive(true);
         resultText.text = "It escaped :(";
 
-        if (playerMovementScript != null)
-            playerMovementScript.enabled = true;
+        if (playerMovementScript != null) playerMovementScript.enabled = true;
 
         if (playerInput != null)
-            playerInput.enabled = true;
+        {
+            var playerMap = playerInput.actions.FindActionMap("Movement");
+            if (playerMap != null) playerMap.Enable();
+        }
 
         StartCoroutine(HideResultUIAfterDelay());
     }
@@ -185,21 +170,19 @@ public class Pesca_Prueba : MonoBehaviour
         yield return new WaitForSeconds(resultDisplayTime);
         resultUI.SetActive(false);
     }
+
     void Hook() 
     {
         if (Input.GetMouseButton(0))
-        {
             hookPullVelocity += hookPullPower * Time.deltaTime;
-        }
 
         hookPullVelocity -= hookGravityPower * Time.deltaTime;
         hookPosition += hookPullVelocity;
 
         if(hookPosition - hookSize / 2 <= 0f && hookPullVelocity < 0f)
             hookPullVelocity = 0f;
-   
 
-    if(hookPosition + hookSize / 2 >= 1f && hookPullVelocity > 0f)
+        if(hookPosition + hookSize / 2 >= 1f && hookPullVelocity > 0f)
             hookPullVelocity = 0f;
 
         hookPosition = Mathf.Clamp(hookPosition, hookSize / 2, 1 - hookSize / 2);
@@ -211,14 +194,15 @@ public class Pesca_Prueba : MonoBehaviour
         fishTimer -= Time.deltaTime;
         if (fishTimer < 0)
         {
-            fishTimer = UnityEngine.Random.value * timerMultiplicator;
-            fishDestination = UnityEngine.Random.value;
+            fishTimer = Random.value * timerMultiplicator;
+            fishDestination = Random.value;
         }
 
         fishPosition = Mathf.SmoothDamp(fishPosition, fishDestination, ref fishSpeed, smoothMotion);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPosition);
         // Hacer un vector con 3 tipos de pez, pequeño, medio y grande, cada uno modifica el tiempo de fallo, el hook size, Progress Degradation [...]
     }
+
     public void StartFishing()
     {
         isFishing = true;
@@ -227,7 +211,11 @@ public class Pesca_Prueba : MonoBehaviour
             playerMovementScript.enabled = false;
 
         if (playerInput != null)
-            playerInput.enabled = false;
+        {
+            var playerMap = playerInput.actions.FindActionMap("Movement");
+            if (playerMap != null)
+                playerMap.Disable();
+        }
 
         if (fishingUI != null)
             fishingUI.SetActive(true);
@@ -245,14 +233,10 @@ public class Pesca_Prueba : MonoBehaviour
     {
         if (insigniaImage == null) return;
 
-        if (puntos >= 300)
-            insigniaImage.sprite = insigniaOro;
-        else if (puntos == 200)
-            insigniaImage.sprite = insigniaPlata;
-        else if (puntos == 100)
-            insigniaImage.sprite = insigniaBronce;
-        else
-            insigniaImage.sprite = null;
+        if (puntos >= 300) insigniaImage.sprite = insigniaOro;
+        else if (puntos == 200) insigniaImage.sprite = insigniaPlata;
+        else if (puntos == 100) insigniaImage.sprite = insigniaBronce;
+        else insigniaImage.sprite = null;
     }
 
     void MostrarResultadoFinal()
@@ -260,16 +244,22 @@ public class Pesca_Prueba : MonoBehaviour
         isFishing = false;
         fishingUI.SetActive(false);
 
-        string mensaje = "";
+        string mensaje = puntos switch
+        {
+            >= 300 => "Wow!",
+            200 => "Incredible!",
+            100 => "Well done!",
+            _ => "Oops :("
+        };
 
-        if (puntos >= 300)
-            mensaje = "¡Wow!";
-        else if (puntos == 200)
-            mensaje = "Incredible!";
-        else if (puntos == 100)
-            mensaje = "Well done!";
-        else
-            mensaje = "Oops :(";
+       // if (puntos >= 300)
+         //   mensaje = "¡Wow!";
+       // else if (puntos == 200)
+         //   mensaje = "Incredible!";
+       // else if (puntos == 100)
+         //   mensaje = "Well done!";
+       // else
+         //   mensaje = "Oops :(";
 
         if(mensajeFinalText != null)
             mensajeFinalText.text = mensaje;

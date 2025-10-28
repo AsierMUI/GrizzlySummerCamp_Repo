@@ -8,24 +8,23 @@ public class FishingMinigameInteractable : MonoBehaviour
     [SerializeField] GameObject spriteObject;
     [SerializeField] Pesca_Prueba pescaScript;
 
-    private GameObject player;
-    private PlayerInput playerInput;
-    private InputAction interactAction;
+    GameObject player;
+    PlayerInput playerInput;
+    InputAction interactAction;
 
-    private bool isPlayerInRange = false;
+    bool isPlayerInRange = false;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerInput = player.GetComponent<PlayerInput>();
         interactAction = playerInput.actions.FindAction("Interact");
-
         spriteObject.SetActive(false);
-        
     }
+
     void Update()
     {
-        if (player == null) return;
+        if (player == null || interactAction == null) return;
 
         float distance = Vector3.Distance(player.transform.position, transform.position);
         isPlayerInRange = distance < interactionDistance;
@@ -33,9 +32,7 @@ public class FishingMinigameInteractable : MonoBehaviour
         spriteObject.SetActive(isPlayerInRange);
 
         if (isPlayerInRange && interactAction.WasPressedThisFrame())
-        {
             ShowInterface();
-        }
     }
 
     void ShowInterface()
