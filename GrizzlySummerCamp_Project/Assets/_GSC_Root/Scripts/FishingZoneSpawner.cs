@@ -21,6 +21,32 @@ public class FishingZoneSpawner : MonoBehaviour
 
     void SpawnFishingZones()
     {
+        int zonesToSpawn = Mathf.Min(numberOfZones, spawnPoints.Count);
 
+        usedPoints.Clear();
+
+        for (int i = 0; i < zonesToSpawn; i++)
+        {
+            Transform spawnPoint = GetRandomUnusedSpawnPoint();
+            if (spawnPoint == null)
+                return;
+
+            GameObject zone = Instantiate(fishingZonePrefab, spawnPoint.position, spawnPoint.rotation);
+            zone.name = "FishingZone_" + (i + 1);
+
+            usedPoints.Add(spawnPoint);
+        }
+    }
+
+    Transform GetRandomUnusedSpawnPoint()
+    {
+        List<Transform> avaliablePoints = new List<Transform>(spawnPoints);
+        avaliablePoints.RemoveAll(point => usedPoints.Contains(point));
+
+        if (avaliablePoints.Count == 0)
+            return null;
+
+        int randomIndex = Random.Range(0, avaliablePoints.Count);
+        return avaliablePoints[randomIndex];
     }
 }
