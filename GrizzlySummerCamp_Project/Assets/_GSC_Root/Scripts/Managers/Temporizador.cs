@@ -8,13 +8,15 @@ public class Temporizador : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private GameObject canvasResultado;
     [SerializeField] private TMP_Text resultadoTexto;
+
     private float tiempoActual;
     private bool tiempoActivado = false;
 
     private void Start()
     {
+        tiempoActual = tiempoMax;
         slider.maxValue = tiempoMax;
-        slider.value = 0;
+        slider.value = tiempoActual;//0;
     }
 
 
@@ -34,12 +36,20 @@ public class Temporizador : MonoBehaviour
         {
             slider.value = tiempoActual; //el slider cambia su valor conforme pasa el tiempo
         }
-
-        if (tiempoActual <= 0)
+        else 
         {
+            tiempoActual = 0;
+            slider.value = 0;
+
             CambiarTemporizador(false);
             MostrarResultados();
         }
+
+        /*if (tiempoActual <= 0)
+        {
+            CambiarTemporizador(false);
+            MostrarResultados();
+        }*/
     }
 
     private void CambiarTemporizador(bool estado)

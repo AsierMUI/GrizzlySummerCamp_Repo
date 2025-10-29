@@ -42,6 +42,7 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] GameObject instruccionesUI;
 
     [Header("Fishing Time Limit")]
+    [SerializeField] Temporizador temporizador;
     [SerializeField] float fishingTimer;
 
     [Header("Score System")]
@@ -60,6 +61,11 @@ public class Pesca_Prueba : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0f;
+        if (temporizador == null) 
+        {
+            temporizador = FindFirstObjectByType<Temporizador>();
+        }
         fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
         fishingTimer = 120f;
@@ -228,6 +234,16 @@ public class Pesca_Prueba : MonoBehaviour
 
         if (mensajeFinalText != null)
             mensajeFinalText.text = mensaje;
+    }
+    public void EmpezarJuego() 
+    {
+        instruccionesUI.SetActive(false);
+        Time.timeScale = 1f;
+
+        var boat = FindFirstObjectByType<BoatMovement>();
+        boat.canMove = true;
+        temporizador.IniciarTemporizador();
+        
     }
 
 }
