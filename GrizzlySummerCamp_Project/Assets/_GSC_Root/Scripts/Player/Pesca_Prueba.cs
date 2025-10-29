@@ -36,7 +36,7 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] GameObject fishingUI;
     [SerializeField] GameObject resultUI;
     [SerializeField] TextMeshProUGUI resultText;
-    [SerializeField] float resultDisplayTime = 3f;
+    [SerializeField] float resultDisplayTime = 1f;
 
     [Header("Instructions UI")]
     [SerializeField] GameObject instruccionesUI;
@@ -103,22 +103,29 @@ public class Pesca_Prueba : MonoBehaviour
     void ControlarMovimientoBarco()
     {
         var boat = FindFirstObjectByType<BoatMovement>();
+        var pauseGame = FindFirstObjectByType<PauseGame>();
 
         bool hayUIBloqueante =
             (instruccionesUI != null && instruccionesUI.activeSelf) ||
             (fishingUI != null && fishingUI.activeSelf) ||
             (resultUI != null && resultUI.activeSelf) ||
+            (pauseGame != null && pauseGame.menuPausa != null && pauseGame.menuPausa.activeSelf) ||
             (temporizador != null && temporizador.gameObject.activeInHierarchy &&
             TieneCanvasResultadoActivo());
 
-        if (hayUIBloqueante)
+        if (pauseGame != null && pauseGame.juegoPausado)
         {
             boat.canMove = false;
             boat.ResetVelocity();
         }
-        else
+        else if (!hayUIBloqueante)
         {
             boat.canMove = true;
+        }
+        else
+        {
+            boat.canMove = false;
+            boat.ResetVelocity();
         }
     }
 
