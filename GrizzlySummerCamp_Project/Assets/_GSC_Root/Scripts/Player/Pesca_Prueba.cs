@@ -58,7 +58,6 @@ public class Pesca_Prueba : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI mensajeFinalText;
 
-    // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 0f;
@@ -76,8 +75,6 @@ public class Pesca_Prueba : MonoBehaviour
         fishingUI.SetActive(false);
         resultUI.SetActive(false);
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (instruccionesUI != null && instruccionesUI.activeSelf) return;
