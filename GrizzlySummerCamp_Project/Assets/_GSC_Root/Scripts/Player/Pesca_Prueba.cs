@@ -62,9 +62,8 @@ public class Pesca_Prueba : MonoBehaviour
     {
         Time.timeScale = 0f;
         if (temporizador == null) 
-        {
             temporizador = FindFirstObjectByType<Temporizador>();
-        }
+
         fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
         fishingTimer = 120f;
@@ -74,10 +73,15 @@ public class Pesca_Prueba : MonoBehaviour
 
         fishingUI.SetActive(false);
         resultUI.SetActive(false);
+
+        ControlarMovimientoBarco();
+
     }
     void Update()
     {
-        if (instruccionesUI != null && instruccionesUI.activeSelf) return;
+        if (Time.timeScale > 0)
+            ControlarMovimientoBarco();
+
         if (minijuegoTerminado) return;
 
         if (fishingTimer > 0f)
@@ -94,6 +98,35 @@ public class Pesca_Prueba : MonoBehaviour
         Fish();
         Hook();
         ProgressCheck();
+    }
+
+    void ControlarMovimientoBarco()
+    {
+        var boat = FindFirstObjectByType<BoatMovement>();
+
+        bool hayUIBloqueante =
+            (instruccionesUI != null && instruccionesUI.activeSelf) ||
+            (fishingUI != null && fishingUI.activeSelf) ||
+            (resultUI != null && resultUI.activeSelf) ||
+            (temporizador != null && temporizador.gameObject.activeInHierarchy &&
+            TieneCanvasResultadoActivo());
+
+        if (hayUIBloqueante)
+        {
+            boat.canMove = false;
+            boat.ResetVelocity();
+        }
+        else
+        {
+            boat.canMove = true;
+        }
+    }
+
+    bool TieneCanvasResultadoActivo()
+    {
+        return temporizador != null &&
+            temporizador.GetCanvasResultado() != null &&
+            temporizador.GetCanvasResultado().activeSelf;
     }
 
     void ProgressCheck()
@@ -149,10 +182,6 @@ public class Pesca_Prueba : MonoBehaviour
     {
         yield return new WaitForSeconds(resultDisplayTime);
         resultUI.SetActive(false);
-
-        var boat = FindFirstObjectByType<BoatMovement>();
-        if (boat != null)
-            boat.canMove = true;
     }
 
     void Hook()
@@ -188,13 +217,7 @@ public class Pesca_Prueba : MonoBehaviour
 
     public void StartFishing()
     {
-        var boat = FindFirstObjectByType<BoatMovement>();
-        if (boat != null)
-            isFishing = true;
-        {
-            boat.canMove = false;
-            boat.ResetVelocity();
-        }
+        isFishing = true;
 
         fishingUI.SetActive(true);
         resultUI.SetActive(false);
@@ -203,6 +226,8 @@ public class Pesca_Prueba : MonoBehaviour
         failTimer = 25f;
         fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
+
+        ControlarMovimientoBarco();
     }
 
     void ActualizarInsignia()
@@ -232,15 +257,16 @@ public class Pesca_Prueba : MonoBehaviour
         if (mensajeFinalText != null)
             mensajeFinalText.text = mensaje;
     }
+
     public void EmpezarJuego() 
     {
         instruccionesUI.SetActive(false);
         Time.timeScale = 1f;
+        temporizador.IniciarTemporizador();
 
         var boat = FindFirstObjectByType<BoatMovement>();
-        boat.canMove = true;
-        temporizador.IniciarTemporizador();
-        
+        if (boat != null)
+            boat.canMove = true;
     }
 
 }

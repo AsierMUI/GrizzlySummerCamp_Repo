@@ -80,4 +80,9 @@ public class Temporizador : MonoBehaviour
         resultadoTexto.text = "You got:";
         canvasResultado.SetActive(true);
     }
+
+    public GameObject GetCanvasResultado()
+    {
+        return canvasResultado;
+    }
 }
