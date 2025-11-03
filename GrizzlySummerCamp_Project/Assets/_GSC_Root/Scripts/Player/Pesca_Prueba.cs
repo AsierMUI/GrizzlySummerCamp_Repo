@@ -274,6 +274,7 @@ public class Pesca_Prueba : MonoBehaviour
         var boat = FindFirstObjectByType<BoatMovement>();
         if (boat != null)
             boat.canMove = true;
+
     }
 
 }
