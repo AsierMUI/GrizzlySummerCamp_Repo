@@ -51,6 +51,7 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] Sprite insigniaBronce;
     [SerializeField] Sprite insigniaPlata;
     [SerializeField] Sprite insigniaOro;
+    int mejorMedalla = 0;
     int puntos = 0;
 
     bool minijuegoTerminado = false;
@@ -241,6 +242,20 @@ public class Pesca_Prueba : MonoBehaviour
     {
         if (insigniaImage == null) return;
 
+        int medallaActual = ObtenerNivelMedalla();
+
+        switch (medallaActual) 
+        {
+            case 3: insigniaImage.sprite = insigniaOro; break;
+            case 2: insigniaImage.sprite = insigniaPlata; break;
+            case 1: insigniaImage.sprite = insigniaBronce; break;
+            default: insigniaImage.sprite = null; break;
+        }
+
+        if (medallaActual > mejorMedalla) { mejorMedalla = medallaActual; }
+        /*
+        if (insigniaImage == null) return;
+
         if (puntos >= 300)
             insigniaImage.sprite = insigniaOro;
         else if (puntos >= 200)
@@ -249,6 +264,14 @@ public class Pesca_Prueba : MonoBehaviour
             insigniaImage.sprite = insigniaBronce;
         else
             insigniaImage.sprite = null;
+    */
+    }
+    int ObtenerNivelMedalla() 
+    {
+        if (puntos >= 300) return 3;
+        if (puntos >= 200) return 2;
+        if (puntos >= 100) return 1;
+        return 0;
     }
 
     void MostrarResultadoFinal()
