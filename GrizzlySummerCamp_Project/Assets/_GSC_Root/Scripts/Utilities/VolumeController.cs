@@ -11,7 +11,7 @@ public class VolumeController : MonoBehaviour
     void Start()
     {
         //cargar el volumen guardado si es q existe
-        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        float savedVolume = PlayerPrefs.GetFloat("Music", 1f);
         slider.value = savedVolume;
 
         SetVolume(savedVolume);
@@ -23,8 +23,8 @@ public class VolumeController : MonoBehaviour
     {
         float dB = Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20f;
 
-        audioMixer.SetFloat("Volume", dB);
+        audioMixer.SetFloat("Music", dB);
 
-        PlayerPrefs.SetFloat("MusicVolume", value);
+        PlayerPrefs.SetFloat("Music", value);
     }
 }
