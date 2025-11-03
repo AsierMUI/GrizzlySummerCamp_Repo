@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
@@ -7,17 +8,19 @@ public class PauseGame : MonoBehaviour
     public GameObject menuPausa;
     public GameObject canvasInstrucciones;
     public bool juegoPausado = false;
+    [SerializeField] int EscenaJuego = 2;
 
     private void Start()
     {
         Time.timeScale = 1;
         juegoPausado = false;
         menuPausa.SetActive(false);
+        
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) &&
-            (canvasInstrucciones == null || !canvasInstrucciones.activeSelf))
+        if (SceneManager.GetActiveScene().buildIndex != EscenaJuego) { return; }
+        if (Input.GetKeyDown(KeyCode.Escape) && (canvasInstrucciones == null || !canvasInstrucciones.activeSelf))
         {
             TogglePausa();
         }
