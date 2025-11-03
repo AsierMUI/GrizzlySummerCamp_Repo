@@ -1,2 +1,27 @@
 fileFormatVersion: 2
 guid: 7410c7a0fccf26e4fabc58a1f07a19fe
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - topPivot: {instanceID: 0}
+  - bottomPivot: {instanceID: 0}
+  - fish: {instanceID: 0}
+  - hook: {instanceID: 0}
+  - progressBarContainer: {instanceID: 0}
+  - fishingUI: {instanceID: 0}
+  - resultUI: {instanceID: 0}
+  - resultText: {instanceID: 0}
+  - instruccionesUI: {instanceID: 0}
+  - temporizador: {instanceID: 0}
+  - puntosTexto: {instanceID: 0}
+  - insigniaImage: {instanceID: 0}
+  - insigniaBronce: {fileID: 21300000, guid: ef1191c381cd19f47a2fcfabaeebd9f3, type: 3}
+  - insigniaPlata: {fileID: 21300000, guid: 8d0f39955bf8a0748ae765f6726f3c47, type: 3}
+  - insigniaOro: {fileID: 21300000, guid: 8b7f8534226836c4da722d70ada8feca, type: 3}
+  - mensajeFinalText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
