@@ -51,7 +51,6 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] Sprite insigniaBronce;
     [SerializeField] Sprite insigniaPlata;
     [SerializeField] Sprite insigniaOro;
-    int mejorMedalla = 0;
     int puntos = 0;
 
     bool minijuegoTerminado = false;
@@ -240,22 +239,7 @@ public class Pesca_Prueba : MonoBehaviour
 
     void ActualizarInsignia()
     {
-        if (insigniaImage == null) return;
 
-        int medallaActual = ObtenerNivelMedalla();
-
-        switch (medallaActual) 
-        {
-            case 3: insigniaImage.sprite = insigniaOro; break;
-            case 2: insigniaImage.sprite = insigniaPlata; break;
-            case 1: insigniaImage.sprite = insigniaBronce; break;
-            default: insigniaImage.sprite = null; break;
-        }
-
-        if (medallaActual > mejorMedalla) { mejorMedalla = medallaActual; }
-        PlayerPrefs.SetInt("MejorMedallaPesca", mejorMedalla);
-        PlayerPrefs.Save();
-        /*
         if (insigniaImage == null) return;
 
         if (puntos >= 300)
@@ -266,7 +250,6 @@ public class Pesca_Prueba : MonoBehaviour
             insigniaImage.sprite = insigniaBronce;
         else
             insigniaImage.sprite = null;
-    */
     }
     int ObtenerNivelMedalla() 
     {
@@ -299,7 +282,6 @@ public class Pesca_Prueba : MonoBehaviour
         var boat = FindFirstObjectByType<BoatMovement>();
         if (boat != null)
             boat.canMove = true;
-
     }
 
 }
