@@ -7,26 +7,27 @@ using System.Collections.Generic;
 public class ButtonClickSound : MonoBehaviour
 {
     public AudioSource audioSource;
-    public AudioClip clickSound;
+    public List<AudioClip> clickSounds;
     public List<Button> buttons;
 
     private void Start()
     {
-        if (buttons.Count == 0)
+        if (buttons.Count == 0 || clickSounds.Count != buttons.Count)
         {
             Debug.LogWarning("no hay botones");
             return;
         }
 
-        foreach (Button button in buttons)
+        for (int i = 0; i < buttons.Count; i++)
         {
-            button.onClick.AddListener(() => OnClick(button));
+            int index = i;
+            buttons[i].onClick.AddListener(() => OnClick(index));
         }
     }
 
-    void OnClick(Button button)
+    void OnClick(int buttonIndex)
     {
-        if (audioSource != null && clickSound != null)
-            audioSource.PlayOneShot(clickSound);
+        if (audioSource != null && buttonIndex < clickSounds.Count)
+            audioSource.PlayOneShot(clickSounds[buttonIndex]);
     }
 }
