@@ -253,6 +253,8 @@ public class Pesca_Prueba : MonoBehaviour
         }
 
         if (medallaActual > mejorMedalla) { mejorMedalla = medallaActual; }
+        PlayerPrefs.SetInt("MejorMedallaPesca", mejorMedalla);
+        PlayerPrefs.Save();
         /*
         if (insigniaImage == null) return;
 
