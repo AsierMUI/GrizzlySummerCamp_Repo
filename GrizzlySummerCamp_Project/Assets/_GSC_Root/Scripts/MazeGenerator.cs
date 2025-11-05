@@ -8,6 +8,7 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] private MazeCell _mazeCellPrefab;
     [SerializeField] private int _mazeWidth;
     [SerializeField] private int _mazeDepth;
+    [SerializeField] private float _cellSize = 1f;
 
     private MazeCell[,] _mazeGrid;
 
@@ -15,11 +16,15 @@ public class MazeGenerator : MonoBehaviour
     {
         _mazeGrid = new MazeCell[_mazeWidth, _mazeDepth];
 
-        for (int x = 0; x < _mazeWidth; x++)
+        for (int x = 0; x <_mazeWidth; x++)
         {
             for (int z = 0; z < _mazeDepth; z++)
             {
-                _mazeGrid[x, z] = Instantiate(_mazeCellPrefab, new Vector3(x, 0, z), Quaternion.identity);
+                MazeCell newCell = Instantiate(_mazeCellPrefab, new Vector3(x * _cellSize, 0, z * _cellSize), Quaternion.identity, transform);
+
+                newCell.X = x;
+                newCell.Z = z;
+                _mazeGrid[x, z] = newCell;
             }
         }
 
@@ -54,8 +59,8 @@ public class MazeGenerator : MonoBehaviour
 
     private IEnumerable<MazeCell> GetUnvisitedCells(MazeCell currentCell)
     {
-        int x = (int)currentCell.transform.position.x;
-        int z = (int)currentCell.transform.position.z;
+        int x = currentCell.X;
+        int z = currentCell.Z;
 
         if (x + 1 < _mazeWidth)
         {
@@ -101,41 +106,34 @@ public class MazeGenerator : MonoBehaviour
     private void ClearWalls(MazeCell previousCell, MazeCell currentCell)
     {
         if (previousCell == null)
-        {
             return;
-        }
 
-        if (previousCell.transform.position.x < currentCell.transform.position.x)
+        if (previousCell.X < currentCell.X)
         {
             previousCell.ClearRightWall();
             currentCell.ClearLeftWall();
             return;
         }
 
-        if (previousCell.transform.position.x > currentCell.transform.position.x)
+        if (previousCell.X > currentCell.X)
         {
             previousCell.ClearLeftWall();
             currentCell.ClearRightWall();
             return;
         }
 
-        if (previousCell.transform.position.z < currentCell.transform.position.z)
+        if (previousCell.Z < currentCell.Z)
         {
             previousCell.ClearFrontWall();
             currentCell.ClearBackWall();
             return;
         }
 
-        if (previousCell.transform.position.z > currentCell.transform.position.z)
+        if (previousCell.Z > currentCell.Z)
         {
             previousCell.ClearBackWall();
             currentCell.ClearFrontWall();
             return;
         }
-    }
-
-    void Update()
-    {
-        
     }
 }

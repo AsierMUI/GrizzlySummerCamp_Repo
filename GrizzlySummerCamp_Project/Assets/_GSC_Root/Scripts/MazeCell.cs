@@ -8,11 +8,15 @@ public class MazeCell : MonoBehaviour
     [SerializeField] private GameObject _backWall;
     [SerializeField] private GameObject _unvisitedBlock;
 
-    public bool IsVisited { get;private set; }
+    public bool IsVisited { get; private set; }
+    public int X { get; set; }
+    public int Z { get; set; }
+
     public void Visit()
     {
         IsVisited = true;
-        _unvisitedBlock.SetActive(false);
+        if (_unvisitedBlock != null)
+            _unvisitedBlock.SetActive(false);
     }
 
     public void ClearLeftWall()
