@@ -30,10 +30,11 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] float hookPullPower = 0.01f;
     [SerializeField] float hookGravityPower = 0.005f;
     [SerializeField] Transform progressBarContainer;
-    //Fail Timer Stats
-    [SerializeField] float failTimer;
+    
     [Header("Escape Bar")]
-    [SerializeField] Image escapeBar;
+    [SerializeField] float failTimer;
+    [SerializeField] Transform escapeBarContainer;
+    //[SerializeField] Image escapeBar;
     float failTimerMax = 25f;
 
     [Header("UI References")]
@@ -219,8 +220,18 @@ public class Pesca_Prueba : MonoBehaviour
     }
     void UpdateEscapeBar()
     {
-        if (escapeBar != null)
-            escapeBar.fillAmount = 1f - (failTimer / failTimerMax);
+        if(escapeBarContainer == null) return;
+
+        float t = 1f - (failTimer / failTimerMax);
+        t = Mathf.Clamp01(t);
+
+        Vector3 ls = escapeBarContainer.localScale;
+        ls.y = t;
+        escapeBarContainer.localScale = ls;
+        /*
+         * if (escapeBar != null)
+         *  escapeBar.fillAmount = 1f - (failTimer / failTimerMax);
+        */
     }
     void Fish()
     {
