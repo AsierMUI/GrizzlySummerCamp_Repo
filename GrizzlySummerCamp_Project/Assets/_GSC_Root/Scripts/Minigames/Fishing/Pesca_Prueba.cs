@@ -30,7 +30,11 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] float hookPullPower = 0.01f;
     [SerializeField] float hookGravityPower = 0.005f;
     [SerializeField] Transform progressBarContainer;
+    //Fail Timer Stats
     [SerializeField] float failTimer;
+    [Header("Escape Bar")]
+    [SerializeField] Image escapeBar;
+    float failTimerMax = 25f;
 
     [Header("UI References")]
     [SerializeField] GameObject fishingUI;
@@ -153,6 +157,7 @@ public class Pesca_Prueba : MonoBehaviour
             failTimer -= Time.deltaTime;
             if (failTimer < 0)
                 Lose();
+            UpdateEscapeBar();
         }
 
         if (hookProgress >= 1f)
@@ -164,6 +169,8 @@ public class Pesca_Prueba : MonoBehaviour
     void Win()
     {
         isFishing = false;
+        failTimer = failTimerMax;
+        UpdateEscapeBar();
         fishingUI.SetActive(false);
         resultUI.SetActive(true);
         resultText.text = "Got it!";
@@ -178,6 +185,8 @@ public class Pesca_Prueba : MonoBehaviour
     void Lose()
     {
         isFishing = false;
+        failTimer = failTimerMax;
+        UpdateEscapeBar();
         fishingUI.SetActive(false);
         resultUI.SetActive(true);
         resultText.text = "It escaped :(";
@@ -208,7 +217,11 @@ public class Pesca_Prueba : MonoBehaviour
         hookPosition = Mathf.Clamp(hookPosition, hookSize / 2, 1 - hookSize / 2);
         hook.position = Vector3.Lerp(bottomPivot.position, topPivot.position, hookPosition);
     }
-
+    void UpdateEscapeBar()
+    {
+        if (escapeBar != null)
+            escapeBar.fillAmount = 1f - (failTimer / failTimerMax);
+    }
     void Fish()
     {
         fishTimer -= Time.deltaTime;
@@ -231,6 +244,8 @@ public class Pesca_Prueba : MonoBehaviour
 
         hookProgress = 0f;
         failTimer = 25f;
+        failTimerMax = failTimer;
+        UpdateEscapeBar();
         fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
 

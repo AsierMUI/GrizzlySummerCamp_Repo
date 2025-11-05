@@ -6,6 +6,7 @@ public class PlayerCollision : MonoBehaviour
     public float bounceForce = 5f;
     public float stunDuration = 2f;
     private bool isStunned = false;
+    public ParticleSystem stunEffect;
 
     private Rigidbody rb;
     private BoatMovement movementScript;
@@ -30,6 +31,9 @@ public class PlayerCollision : MonoBehaviour
             //fuera de  reborte
             rb.AddForce(bounceDir * bounceForce, ForceMode.Impulse);
 
+            if (stunEffect != null)
+                stunEffect.Play();
+
             if (!isStunned)
                 StartCoroutine(StunPlayer());
         }
@@ -48,5 +52,7 @@ public class PlayerCollision : MonoBehaviour
             movementScript.enabled = true;
 
         isStunned = false;
+        if (stunEffect != null)
+            stunEffect.Stop();
     }
 }
