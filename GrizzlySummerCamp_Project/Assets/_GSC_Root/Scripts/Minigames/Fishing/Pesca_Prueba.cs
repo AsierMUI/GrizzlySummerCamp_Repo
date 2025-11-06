@@ -34,8 +34,15 @@ public class Pesca_Prueba : MonoBehaviour
     [Header("Escape Bar")]
     [SerializeField] float failTimer;
     [SerializeField] Transform escapeBarContainer;
-    //[SerializeField] Image escapeBar;
     float failTimerMax = 25f;
+
+    [Header("Escape Bar Effects")]
+    [SerializeField] float shakeThreshold = 0.2f;
+    [SerializeField] float shakeIntensity = 3f;
+    //[SerializeField] float shakeIntensityIncrease = 0.1f;
+    [SerializeField] float shakeSpeed = 25f;
+
+    Vector3 escapeOriginalPos;
 
     [Header("UI References")]
     [SerializeField] GameObject fishingUI;
@@ -75,6 +82,11 @@ public class Pesca_Prueba : MonoBehaviour
 
         if (instruccionesUI != null)
             instruccionesUI.SetActive(true);
+
+        if (escapeBarContainer != null) 
+        {
+            escapeOriginalPos = escapeBarContainer.localPosition;
+        }
 
         fishingUI.SetActive(false);
         resultUI.SetActive(false);
@@ -228,10 +240,16 @@ public class Pesca_Prueba : MonoBehaviour
         Vector3 ls = escapeBarContainer.localScale;
         ls.y = t;
         escapeBarContainer.localScale = ls;
-        /*
-         * if (escapeBar != null)
-         *  escapeBar.fillAmount = 1f - (failTimer / failTimerMax);
-        */
+
+        if (t > shakeThreshold)
+        {
+            float shake = Mathf.Sin(Time.time * shakeSpeed) * shakeIntensity;
+            escapeBarContainer.localPosition = escapeOriginalPos + new Vector3(shake, 0, 0);
+        }
+        else 
+        {
+            escapeBarContainer.localPosition = escapeOriginalPos;
+        }
     }
     void Fish()
     {
