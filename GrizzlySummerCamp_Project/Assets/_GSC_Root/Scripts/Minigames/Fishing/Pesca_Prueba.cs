@@ -240,20 +240,14 @@ public class Pesca_Prueba : MonoBehaviour
         Vector3 ls = escapeBarContainer.localScale;
         ls.y = t;
         escapeBarContainer.localScale = ls;
-     
+
+        //Vibración al llegar al 50% del threshold para fallar 
         if (t > shakeThreshold)
         {
-            float dangerPercent = Mathf.InverseLerp(shakeThreshold, 1f, t);
-            
-            float dynamicShake = shakeIntensity * dangerPercent;
-
-            float shake = Mathf.Sin(Time.time * shakeSpeed) * dynamicShake;
-
+            float shake = Mathf.Sin(Time.time * shakeSpeed) * shakeIntensity;
             escapeBarContainer.localPosition = escapeOriginalPos + new Vector3(shake, 0, 0);
-            /*float shake = Mathf.Sin(Time.time * shakeSpeed) * shakeIntensity;
-            escapeBarContainer.localPosition = escapeOriginalPos + new Vector3(shake, 0, 0);*/
         }
-        else 
+        else
         {
             escapeBarContainer.localPosition = escapeOriginalPos;
         }
