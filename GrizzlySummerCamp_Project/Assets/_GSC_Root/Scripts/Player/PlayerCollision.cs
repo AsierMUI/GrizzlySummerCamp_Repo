@@ -3,10 +3,13 @@ using System.Collections;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public float bounceForce = 5f;
-    public float stunDuration = 2f;
+    [Header("Stun Stats")]
+    [SerializeField] public float bounceForce = 5f;
+    [SerializeField] public float stunDuration = 2f;
     private bool isStunned = false;
-    public ParticleSystem stunEffect;
+
+    [Header("Effect Prefab")]
+    [SerializeField] public ParticleSystem stunEffect;
 
     private Rigidbody rb;
     private BoatMovement movementScript;
@@ -31,15 +34,48 @@ public class PlayerCollision : MonoBehaviour
             //fuera de  reborte
             rb.AddForce(bounceDir * bounceForce, ForceMode.Impulse);
 
+            //Nuevo:
+            ContactPoint contact = collision.contacts[0];
+            Vector3 hitPoint = contact.point;
+            Vector3 hitNormal = contact.normal;
+
+            if (stunEffect != null) 
+            {
+                ParticleSystem effect = Instantiate(stunEffect, hitPoint, Quaternion.LookRotation(hitNormal));
+                effect.Play();
+                Destroy(effect.gameObject, effect.main.duration); //No es la forma más eficiente, tal vez probar con apagar uno y moverlo de algun modo sería mejor.
+            }
+
+            /*  Código Viejo
             if (stunEffect != null)
                 stunEffect.Play();
-
+            */
             if (!isStunned)
                 StartCoroutine(StunPlayer());
         }
     }
 
-    private System.Collections.IEnumerator StunPlayer()
+    /* Stun Player nuevo*/
+    private IEnumerator StunPlayer() 
+    {
+        isStunned = true;
+
+        if (movementScript != null)
+        {
+            movementScript.enabled = false;
+        }
+
+        yield return new WaitForSeconds(stunDuration);
+
+        if (movementScript != null)
+        {
+            movementScript.enabled = true;
+        }
+        isStunned = false;
+    }
+
+    /* Stun Player Antiguo
+     * private System.Collections.IEnumerator StunPlayer()
     {
         isStunned = true;
 
@@ -54,5 +90,5 @@ public class PlayerCollision : MonoBehaviour
         isStunned = false;
         if (stunEffect != null)
             stunEffect.Stop();
-    }
+    }*/
 }
