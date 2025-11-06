@@ -168,9 +168,9 @@ public class Pesca_Prueba : MonoBehaviour
         {
             hookProgress = Mathf.Lerp(hookProgress, 0f, hookProgressLossSpeed * Time.deltaTime);
             failTimer -= Time.deltaTime;
+            UpdateEscapeBar();
             if (failTimer < 0)
                 Lose();
-            UpdateEscapeBar();
         }
 
         if (hookProgress >= 1f)
@@ -232,7 +232,7 @@ public class Pesca_Prueba : MonoBehaviour
     }
     void UpdateEscapeBar()
     {
-        if(escapeBarContainer == null) return;
+        if (escapeBarContainer == null) return;
 
         float t = 1f - (failTimer / failTimerMax);
         t = Mathf.Clamp01(t);
@@ -240,11 +240,18 @@ public class Pesca_Prueba : MonoBehaviour
         Vector3 ls = escapeBarContainer.localScale;
         ls.y = t;
         escapeBarContainer.localScale = ls;
-
+     
         if (t > shakeThreshold)
         {
-            float shake = Mathf.Sin(Time.time * shakeSpeed) * shakeIntensity;
+            float dangerPercent = Mathf.InverseLerp(shakeThreshold, 1f, t);
+            
+            float dynamicShake = shakeIntensity * dangerPercent;
+
+            float shake = Mathf.Sin(Time.time * shakeSpeed) * dynamicShake;
+
             escapeBarContainer.localPosition = escapeOriginalPos + new Vector3(shake, 0, 0);
+            /*float shake = Mathf.Sin(Time.time * shakeSpeed) * shakeIntensity;
+            escapeBarContainer.localPosition = escapeOriginalPos + new Vector3(shake, 0, 0);*/
         }
         else 
         {
@@ -274,7 +281,7 @@ public class Pesca_Prueba : MonoBehaviour
         hookProgress = 0f;
         failTimer = 25f;
         failTimerMax = failTimer;
-        UpdateEscapeBar();
+        //UpdateEscapeBar();
         fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
 
