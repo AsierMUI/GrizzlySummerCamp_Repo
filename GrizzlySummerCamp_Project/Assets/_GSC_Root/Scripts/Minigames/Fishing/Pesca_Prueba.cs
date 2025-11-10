@@ -71,6 +71,12 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] TextMeshProUGUI mensajeFinalText;
 
 
+    [Header("Sound Effects")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip sonidoCaptura;
+    [SerializeField] AudioClip sonidoEscape;
+
+
     //prueba dificultad
     enum Dificultad { Facil, Normal, Dificil }
     Dificultad dificultadActual;
@@ -159,6 +165,11 @@ public class Pesca_Prueba : MonoBehaviour
             temporizador.GetCanvasResultado().activeSelf;
     }
 
+    void ReproducirSonido(AudioClip clip)
+    {
+        if (audioSource != null && clip != null) { audioSource.PlayOneShot(clip); }
+    }
+
     void ProgressCheck()
     {
         Vector3 ls = progressBarContainer.localScale;
@@ -200,6 +211,8 @@ public class Pesca_Prueba : MonoBehaviour
         resultUI.SetActive(true);
         resultText.text = "Got it!";
 
+        ReproducirSonido(sonidoCaptura);
+
         int puntosGanados = PuntosPorDificultad();
         puntos += puntosGanados;
 
@@ -230,7 +243,9 @@ public class Pesca_Prueba : MonoBehaviour
         resultUI.SetActive(true);
         resultText.text = "It escaped :(";
 
-        StartCoroutine(HideResultUIAfterDelay());
+            ReproducirSonido(sonidoEscape);
+
+            StartCoroutine(HideResultUIAfterDelay());
     }
     IEnumerator HideResultUIAfterDelay()
     {
@@ -327,7 +342,7 @@ public class Pesca_Prueba : MonoBehaviour
                 hookProgressLossSpeed = 0.05f;
                 break;
             case Dificultad.Dificil:
-                hookPower = 0.05f;
+                hookPower = 0.03f;
                 hookProgressLossSpeed = 0.1f;
                 break;
         }
