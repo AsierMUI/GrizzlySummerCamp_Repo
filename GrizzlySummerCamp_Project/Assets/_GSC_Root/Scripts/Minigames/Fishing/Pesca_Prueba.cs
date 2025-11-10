@@ -23,8 +23,8 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] Transform hook;
     float hookPosition;
     [SerializeField] float hookSize = 0.1f;
-    [SerializeField] float hookPower = 0.3f;
-    [SerializeField] float hookProgressLossSpeed = 0.1f;
+    [SerializeField] float hookPower;
+    [SerializeField] float hookProgressLossSpeed;
     float hookProgress;
     float hookPullVelocity;
     [SerializeField] float hookPullPower = 0.01f;
@@ -175,8 +175,8 @@ public class Pesca_Prueba : MonoBehaviour
 
             //modificacion tiempo que tarda en escapar segund su dificultad
             float dificultadMultiplicadorEscape =
-                (dificultadActual == Dificultad.Facil) ? 0.5f :
-                (dificultadActual == Dificultad.Normal) ? 1f : 1.5f;
+                (dificultadActual == Dificultad.Facil) ? 1f :
+                (dificultadActual == Dificultad.Normal) ? 2f : 4f;
 
             hookProgress = Mathf.Lerp(hookProgress, 0f, hookProgressLossSpeed * Time.deltaTime);
             failTimer -= Time.deltaTime;
@@ -191,7 +191,6 @@ public class Pesca_Prueba : MonoBehaviour
 
         hookProgress = Mathf.Clamp(hookProgress, 0f, 1f);
     }
-
     void Win()
     {
         isFishing = false;
@@ -201,7 +200,6 @@ public class Pesca_Prueba : MonoBehaviour
         resultUI.SetActive(true);
         resultText.text = "Got it!";
 
-        // calcular puntos segund dificultad
         int puntosGanados = PuntosPorDificultad();
         puntos += puntosGanados;
 
@@ -210,7 +208,6 @@ public class Pesca_Prueba : MonoBehaviour
 
         StartCoroutine(HideResultUIAfterDelay());
     }
-
     int PuntosPorDificultad()
     {
         switch (dificultadActual)
@@ -224,7 +221,6 @@ public class Pesca_Prueba : MonoBehaviour
             default: return 100;
         }
     }
-
     void Lose()
     {
         isFishing = false;
@@ -236,13 +232,11 @@ public class Pesca_Prueba : MonoBehaviour
 
         StartCoroutine(HideResultUIAfterDelay());
     }
-
     IEnumerator HideResultUIAfterDelay()
     {
         yield return new WaitForSeconds(resultDisplayTime);
         resultUI.SetActive(false);
     }
-
     void Hook()
     {
         if (Input.GetMouseButton(0))
@@ -293,13 +287,12 @@ public class Pesca_Prueba : MonoBehaviour
 
         //velocidad segun dificultad
         float dificultadMultiplicadorPez =
-            (dificultadActual == Dificultad.Facil) ? 0.5f :
-            (dificultadActual == Dificultad.Normal) ? 1f : 1.8f;
+            (dificultadActual == Dificultad.Facil) ? 1.8f :
+            (dificultadActual == Dificultad.Normal) ? 1f : 0.5f;
 
         fishPosition = Mathf.SmoothDamp(fishPosition, fishDestination, ref fishSpeed, smoothMotion);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPosition);
     }
-
     public void StartFishing()
     {
         isFishing = true;
@@ -314,12 +307,9 @@ public class Pesca_Prueba : MonoBehaviour
         fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
 
-        //seleccionar dificultad aleatoria
         SeleccionarDificultadAleatoria();
-
         ControlarMovimientoBarco();
     }
-
     void SeleccionarDificultadAleatoria()
     {
         dificultadActual = (Dificultad)Random.Range(0, 3);
@@ -329,20 +319,19 @@ public class Pesca_Prueba : MonoBehaviour
         switch (dificultadActual)
         {
             case Dificultad.Facil:
-                hookPower = 0.07f;
+                hookPower = 0.09f;
                 hookProgressLossSpeed = 0.03f;
                 break;
             case Dificultad.Normal:
+                hookPower = 0.07f;
+                hookProgressLossSpeed = 0.05f;
+                break;
+            case Dificultad.Dificil:
                 hookPower = 0.05f;
                 hookProgressLossSpeed = 0.07f;
                 break;
-            case Dificultad.Dificil:
-                hookPower = 0.02f;
-                hookProgressLossSpeed = 0.1f;
-                break;
         }
     }
-
     void ActualizarInsignia()
     {
 
@@ -364,7 +353,6 @@ public class Pesca_Prueba : MonoBehaviour
         if (puntos >= 100) return 1;
         return 0;
     }
-
     void MostrarResultadoFinal()
     {
         isFishing = false;
@@ -379,12 +367,10 @@ public class Pesca_Prueba : MonoBehaviour
             mensajeFinalText.text = mensaje;
 
         // guardar la insignia guardada si se termina el tiempo
-
         int nivel = ObtenerNivelMedalla();
         if (InsigniaManager.Instance != null)
             InsigniaManager.Instance.GuardarInsignia(nivel);
     }
-
     public void EmpezarJuego() 
     {
         instruccionesUI.SetActive(false);
@@ -395,5 +381,4 @@ public class Pesca_Prueba : MonoBehaviour
         if (boat != null)
             boat.canMove = true;
     }
-
 }
