@@ -17,10 +17,12 @@ public class PlayerMovement : MonoBehaviour
     //Player Input = El input es una función que recive valores y los traduce (teclado&ratón,mando,etc. a dirección,cantidad,etc) se usa para efectuar acciones
     PlayerInput playerInput;
     InputAction moveAction;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true; // Evita que vuelque
 
     }
     void Start()
@@ -28,24 +30,26 @@ public class PlayerMovement : MonoBehaviour
         moveAction = playerInput.actions.FindAction("Move");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         MovePlayer();
     }
-
     //Función que se llama para mover al player.
     void MovePlayer()
     {
         Vector2 direction = moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(direction.x, 0, direction.y);
 
-        transform.position += moveDir * Speed * Time.deltaTime;
+        //transform.position += moveDir * Speed * Time.deltaTime;
+        Vector3 targetPosition = rb.position + moveDir * Speed * Time.fixedDeltaTime;
+        rb.MovePosition(targetPosition);
 
         //Este código sirve para rotar al personaje, si su movimiento es mayor de 0.01.
         if (moveDir.sqrMagnitude > 0.01f) 
         {
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Lerp(transform.rotation,targetRotation, rotationSpeed * Time.deltaTime);
+            rb.MoveRotation(Quaternion.Lerp(rb.rotation, targetRotation, rotationSpeed * Time.deltaTime));
+            //transform.rotation = Quaternion.Lerp(transform.rotation,targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 }
