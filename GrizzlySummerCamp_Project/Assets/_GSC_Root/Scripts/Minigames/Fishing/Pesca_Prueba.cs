@@ -328,7 +328,7 @@ public class Pesca_Prueba : MonoBehaviour
                 break;
             case Dificultad.Dificil:
                 hookPower = 0.05f;
-                hookProgressLossSpeed = 0.07f;
+                hookProgressLossSpeed = 0.1f;
                 break;
         }
     }
