@@ -8,20 +8,35 @@ public class Temporizador : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private GameObject canvasResultado;
     [SerializeField] private TMP_Text resultadoTexto;
+    [SerializeField] private GameObject canvasInstrucciones;
 
     private float tiempoActual;
     private bool tiempoActivado = false;
+    private bool tiempoFinalizado = false;
 
     private void Start()
     {
         tiempoActual = tiempoMax;
         slider.maxValue = tiempoMax;
-        slider.value = tiempoActual;//0;
+        slider.value = tiempoActual;
+
+        if (canvasInstrucciones !=null && canvasInstrucciones.activeSelf)
+            tiempoActivado=false;
+        else
+            tiempoActivado=true;
     }
 
 
     private void Update()
     {
+        if (!tiempoActivado &&  !tiempoFinalizado && canvasInstrucciones != null)
+        {
+            if (!canvasInstrucciones.activeSelf)
+            {
+                ActivarTemporizador();
+            }
+        }
+
         if (tiempoActivado)
         {
             CambiarContador();
@@ -34,48 +49,31 @@ public class Temporizador : MonoBehaviour
 
         if (tiempoActual >= 0)
         {
-            slider.value = tiempoActual; //el slider cambia su valor conforme pasa el tiempo
+            slider.value = tiempoActual;
         }
         else 
         {
             tiempoActual = 0;
             slider.value = 0;
 
-            CambiarTemporizador(false);
+            tiempoActivado = false;
+            tiempoFinalizado = true;
             MostrarResultados();
         }
-
-        /*if (tiempoActual <= 0)
-        {
-            CambiarTemporizador(false);
-            MostrarResultados();
-        }*/
-    }
-
-    private void CambiarTemporizador(bool estado)
-    {
-        tiempoActivado = estado;
     }
     public void ActivarTemporizador()
     {
-        tiempoActual = tiempoMax;
-        CambiarTemporizador(true);
-    }
-
-    public void DesactivarTemporizador()
-    {
-        CambiarTemporizador(false);
-    }
-
-    public void IniciarTemporizador()
-    {
-        if (!tiempoActivado)
+        if (!tiempoFinalizado)
         {
-            ActivarTemporizador();
+            tiempoActual = tiempoMax;
+            tiempoActivado = true;
         }
     }
-
-    public void MostrarResultados() //Este es el temporizador que manda para que se termine el juego (por tiempo)
+    public void DesactivarTemporizador()
+    {
+        tiempoActivado = false;
+    }
+    public void MostrarResultados()
     {
         resultadoTexto.text = "You got:";
         canvasResultado.SetActive(true);

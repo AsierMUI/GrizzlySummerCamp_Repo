@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using UnityEngine.InputSystem;
+using UnityEditor.MemoryProfiler;
 
 public class Pesca_Prueba : MonoBehaviour
 {
@@ -46,9 +47,13 @@ public class Pesca_Prueba : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] GameObject fishingUI;
-    [SerializeField] GameObject resultUI;
+    [SerializeField] GameObject miniResultUI;
     [SerializeField] TextMeshProUGUI resultText;
     [SerializeField] float resultDisplayTime = 1f;
+
+    [Header("Final Result UI")]
+    [SerializeField] GameObject finalUI;
+    [SerializeField] TextMeshProUGUI mensajeFinalText;
 
     [Header("Instructions UI")]
     [SerializeField] GameObject instruccionesUI;
@@ -67,9 +72,6 @@ public class Pesca_Prueba : MonoBehaviour
 
     bool minijuegoTerminado = false;
     bool isFishing = false;
-
-    [SerializeField] TextMeshProUGUI mensajeFinalText;
-
 
     [Header("Sound Effects")]
     [SerializeField] AudioSource audioSource;
@@ -101,7 +103,8 @@ public class Pesca_Prueba : MonoBehaviour
         }
 
         fishingUI.SetActive(false);
-        resultUI.SetActive(false);
+        miniResultUI.SetActive(false);
+        finalUI.SetActive(false);
 
         ControlarMovimientoBarco();
 
@@ -137,7 +140,8 @@ public class Pesca_Prueba : MonoBehaviour
         bool hayUIBloqueante =
             (instruccionesUI != null && instruccionesUI.activeSelf) ||
             (fishingUI != null && fishingUI.activeSelf) ||
-            (resultUI != null && resultUI.activeSelf) ||
+            (miniResultUI != null && miniResultUI.activeSelf) ||
+            (finalUI != null && finalUI.activeSelf) ||
             (pauseGame != null && pauseGame.menuPausa != null && pauseGame.menuPausa.activeSelf) ||
             (temporizador != null && temporizador.gameObject.activeInHierarchy &&
             TieneCanvasResultadoActivo());
@@ -208,7 +212,7 @@ public class Pesca_Prueba : MonoBehaviour
         failTimer = failTimerMax;
         UpdateEscapeBar();
         fishingUI.SetActive(false);
-        resultUI.SetActive(true);
+        miniResultUI.SetActive(true);
         resultText.text = "Got it!";
 
         ReproducirSonido(sonidoCaptura);
@@ -240,7 +244,7 @@ public class Pesca_Prueba : MonoBehaviour
         failTimer = failTimerMax;
         UpdateEscapeBar();
         fishingUI.SetActive(false);
-        resultUI.SetActive(true);
+        miniResultUI.SetActive(true);
         resultText.text = "It escaped :(";
 
             ReproducirSonido(sonidoEscape);
@@ -250,7 +254,7 @@ public class Pesca_Prueba : MonoBehaviour
     IEnumerator HideResultUIAfterDelay()
     {
         yield return new WaitForSeconds(resultDisplayTime);
-        resultUI.SetActive(false);
+        miniResultUI.SetActive(false);
     }
     void Hook()
     {
@@ -313,7 +317,7 @@ public class Pesca_Prueba : MonoBehaviour
         isFishing = true;
 
         fishingUI.SetActive(true);
-        resultUI.SetActive(false);
+        miniResultUI.SetActive(false);
 
         hookProgress = 0f;
         failTimer = 25f;
@@ -372,11 +376,20 @@ public class Pesca_Prueba : MonoBehaviour
     {
         isFishing = false;
         fishingUI.SetActive(false);
+        miniResultUI.SetActive(false);
+        finalUI.SetActive(true);
 
-        string mensaje =
-            (puntos >= 300) ? "¡Wow!" :
-            (puntos >= 200) ? "Incredible!" :
-            (puntos >= 100) ? "Well done!" : "Oops :(";
+        string mensaje;
+        if (puntos >= 300)
+            mensaje = "!Wow!";
+        else if (puntos >= 200)
+            mensaje = "Incredible!";
+        else if (puntos >= 100)
+            mensaje = "Well done";
+        else if (puntos == 0)
+            mensaje = "Oops :(";
+        else
+            mensaje = "Oops :(";
 
         if (mensajeFinalText != null)
             mensajeFinalText.text = mensaje;
@@ -390,7 +403,8 @@ public class Pesca_Prueba : MonoBehaviour
     {
         instruccionesUI.SetActive(false);
         Time.timeScale = 1f;
-        temporizador.IniciarTemporizador();
+        if (temporizador != null)
+            temporizador.ActivarTemporizador();
 
         var boat = FindFirstObjectByType<BoatMovement>();
         if (boat != null)
