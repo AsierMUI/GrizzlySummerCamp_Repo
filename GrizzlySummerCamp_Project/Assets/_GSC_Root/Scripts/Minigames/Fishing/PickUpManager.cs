@@ -47,5 +47,10 @@ public class PickUpManager : MonoBehaviour
             winUI.SetActive(true);
 
         boatMovement.enabled = false;
+
+        if (InsigniaManager.Instance != null)
+        {
+            InsigniaManager.Instance.GuardarEstrella(1);
+        }
     }    
 }

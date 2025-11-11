@@ -1,24 +1,31 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MostrarInsigniaHub : MonoBehaviour
 {
+    [Header("Insignias pesca")]
     [SerializeField] private Image insigniaImage;
     [SerializeField] private Sprite insignianull;
     [SerializeField] private Sprite insigniaBronce;
     [SerializeField] private Sprite insigniaPlata;
     [SerializeField] private Sprite insigniaOro;
 
+    [Header("Estrella")]
+    [SerializeField] private Image estrellaImage;
+    [SerializeField] private Sprite estrellaNull;
+    [SerializeField] private Sprite estrellaSprite;
+
     private void OnEnable()
     {
-        ActualizarInsignia();
+        ActualizarVisual();
     }
     private void Start()
     {
-        ActualizarInsignia();
+        ActualizarVisual();
     }
 
-    void ActualizarInsignia()
+    void ActualizarVisual()
     {
         if (InsigniaManager.Instance == null)
         {
@@ -26,6 +33,7 @@ public class MostrarInsigniaHub : MonoBehaviour
             return;
         }
 
+        //Insignia
         if (insigniaImage == null)
         {
             Debug.LogWarning("[MostrarInsigniaHub] No se asignó la imagen dela insignia.");
@@ -50,6 +58,16 @@ public class MostrarInsigniaHub : MonoBehaviour
                 insigniaImage.sprite = insignianull;
                 break;
         }
-    }
 
+        //Estrella
+        if (estrellaImage != null)
+        {
+            int tieneEstrella = InsigniaManager.Instance.ultimaEstrella;
+
+            if (tieneEstrella > 0)
+                estrellaImage.sprite = estrellaSprite;
+            else
+                estrellaImage.sprite = estrellaNull;
+        }
+    }
 }
