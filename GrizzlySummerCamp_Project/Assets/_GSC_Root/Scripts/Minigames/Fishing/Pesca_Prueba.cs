@@ -228,7 +228,7 @@ public class Pesca_Prueba : MonoBehaviour
             default: return 100;
         }
     }
-    void Lose()
+    public void Lose()
     {
         isFishing = false;
         failTimer = failTimerMax;
