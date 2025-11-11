@@ -237,9 +237,20 @@ public class Pesca_Prueba : MonoBehaviour
         miniResultUI.SetActive(true);
         resultText.text = "It escaped :(";
 
-            ReproducirSonido(sonidoEscape);
+        ReproducirSonido(sonidoEscape);
+        StartCoroutine(HideResultUIAfterDelay());
+    }
 
-            StartCoroutine(HideResultUIAfterDelay());
+    public void LetGo()
+    {
+        isFishing = false;
+        UpdateEscapeBar();
+        fishingUI.SetActive(false);
+        miniResultUI.SetActive(true);
+        resultText.text = "you've let it go";
+
+        ReproducirSonido(sonidoEscape);
+        StartCoroutine(HideResultUIAfterDelay());
     }
     IEnumerator HideResultUIAfterDelay()
     {
