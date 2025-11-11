@@ -49,6 +49,5 @@ public class TempLaberinto : MonoBehaviour
             temporizadorActivo = false;
             LoseUI.SetActive(true);
         }
-
     }
 }
