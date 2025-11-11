@@ -68,6 +68,7 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] Sprite insigniaPlata;
     [SerializeField] Sprite insigniaOro;
     int puntos = 0;
+    int puntosC = 0;
 
     bool minijuegoTerminado = false;
     bool isFishing = false;
@@ -390,7 +391,7 @@ public class Pesca_Prueba : MonoBehaviour
 
         if (InsigniaManager.Instance != null)
         {
-            if (puntos > 0)
+            if (puntosC > 0)
                 InsigniaManager.Instance.GuardarEstrella(1);
         }
     }
