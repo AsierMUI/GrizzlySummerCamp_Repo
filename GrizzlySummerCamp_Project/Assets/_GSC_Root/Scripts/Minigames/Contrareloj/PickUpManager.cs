@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PickUpManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PickUpManager : MonoBehaviour
     public int score = 0;
     public int maxScore = 4;
 
+    [SerializeField] TMP_Text scoreText;
     [SerializeField] GameObject goal;
     [SerializeField] GameObject winUI;
     [SerializeField] GameObject boat;
@@ -27,13 +29,26 @@ public class PickUpManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        UpdateScoreUI();
+    }
+
     public void AddScore(int value)
     {
         score += value;
         Debug.Log("Score:" + score);
 
+        UpdateScoreUI();
+
         if (score >= maxScore)
             ActivateGoal();
+    }
+
+    private void UpdateScoreUI()
+    {
+        if (scoreText != null)
+            scoreText.text = $"Points:{score}/{maxScore}";
     }
 
     void ActivateGoal()
