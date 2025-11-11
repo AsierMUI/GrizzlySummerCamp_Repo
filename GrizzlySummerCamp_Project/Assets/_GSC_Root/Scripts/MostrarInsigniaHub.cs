@@ -18,30 +18,63 @@ public class MostrarInsigniaHub : MonoBehaviour
 
     private void OnEnable()
     {
-        ActualizarVisual();
-    }
-    private void Start()
-    {
+        BuscarReferenciasUI(); //  Se asegura de tener las imágenes correctas
         ActualizarVisual();
     }
 
-    void ActualizarVisual()
+    private void Start()
+    {
+        BuscarReferenciasUI();
+        ActualizarVisual();
+    }
+    private void BuscarReferenciasUI()
+    {
+        // Busca los objetos por nombre si no están asignados manualmente
+        if (insigniaImage == null)
+        {
+            GameObject obj = GameObject.Find("InsigniaImage"); //  cambia el nombre al que uses en tu Canvas
+            if (obj != null)
+            {
+                insigniaImage = obj.GetComponent<Image>();
+                Debug.Log("[MostrarInsigniaHub] Se reasignó la imagen de insignia automáticamente.");
+            }
+            else
+            {
+                Debug.LogWarning("[MostrarInsigniaHub] No se encontró el objeto 'InsigniaImage'.");
+            }
+        }
+
+        if (estrellaImage == null)
+        {
+            GameObject obj = GameObject.Find("EstrellaImage"); //  cambia el nombre al real en tu escena
+            if (obj != null)
+            {
+                estrellaImage = obj.GetComponent<Image>();
+                Debug.Log("[MostrarInsigniaHub] Se reasignó la imagen de estrella automáticamente.");
+            }
+            else
+            {
+                Debug.LogWarning("[MostrarInsigniaHub] No se encontró el objeto 'EstrellaImage'.");
+            }
+        }
+    }
+
+    private void ActualizarVisual()
     {
         if (InsigniaManager.Instance == null)
         {
-            Debug.LogWarning("[MostrarInsigniaHub] No se encontró GameData.");
+            Debug.LogWarning("[MostrarInsigniaHub] No se encontró InsigniaManager.");
             return;
         }
 
-        //Insignia
         if (insigniaImage == null)
         {
-            Debug.LogWarning("[MostrarInsigniaHub] No se asignó la imagen dela insignia.");
+            Debug.LogWarning("[MostrarInsigniaHub] No se asignó la imagen de la insignia.");
             return;
         }
+
         int nivel = InsigniaManager.Instance.ultimaInsignia;
         Debug.Log($"[MostrarInsigniaHub] Mostrando insignia nivel {nivel}");
-
 
         switch (nivel)
         {
@@ -59,15 +92,10 @@ public class MostrarInsigniaHub : MonoBehaviour
                 break;
         }
 
-        //Estrella
         if (estrellaImage != null)
         {
             int tieneEstrella = InsigniaManager.Instance.ultimaEstrella;
-
-            if (tieneEstrella > 0)
-                estrellaImage.sprite = estrellaSprite;
-            else
-                estrellaImage.sprite = estrellaNull;
+            estrellaImage.sprite = (tieneEstrella > 0) ? estrellaSprite : estrellaNull;
         }
     }
 }
