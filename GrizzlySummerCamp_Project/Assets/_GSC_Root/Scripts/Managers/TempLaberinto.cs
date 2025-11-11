@@ -13,6 +13,7 @@ public class TempLaberinto : MonoBehaviour
     [SerializeField] private GameObject canvasInstrucciones;
     [SerializeField] private GameObject LoseUI;
     [SerializeField] private GameObject temporizadorUI;
+    [SerializeField] private GameObject WinUI;
 
     private bool temporizadorActivo = false;
 
@@ -24,6 +25,7 @@ public class TempLaberinto : MonoBehaviour
         LoseUI.SetActive(false);
         canvasInstrucciones.SetActive(true);
         temporizadorUI.SetActive(false);
+        WinUI.SetActive(false);
     }
 
     private void Update()
@@ -35,6 +37,9 @@ public class TempLaberinto : MonoBehaviour
         }
 
         if (!temporizadorActivo) return;
+
+        if (WinUI != null && WinUI.activeSelf)
+            return;
 
         tiempoRestante -= Time.deltaTime;
         slider.value = Mathf.Clamp(tiempoRestante, 0, tiempoMax);
