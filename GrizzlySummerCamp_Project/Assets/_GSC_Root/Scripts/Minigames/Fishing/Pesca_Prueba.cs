@@ -387,6 +387,12 @@ public class Pesca_Prueba : MonoBehaviour
         int nivel = ObtenerNivelMedalla();
         if (InsigniaManager.Instance != null)
             InsigniaManager.Instance.GuardarInsignia(nivel);
+
+        if (InsigniaManager.Instance != null)
+        {
+            if (puntos > 0)
+                InsigniaManager.Instance.GuardarEstrella(1);
+        }
     }
     public void EmpezarJuego() 
     {

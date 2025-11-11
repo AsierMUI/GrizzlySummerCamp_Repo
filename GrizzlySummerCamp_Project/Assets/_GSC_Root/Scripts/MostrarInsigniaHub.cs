@@ -32,7 +32,7 @@ public class MostrarInsigniaHub : MonoBehaviour
         // Busca los objetos por nombre si no están asignados manualmente
         if (insigniaImage == null)
         {
-            GameObject obj = GameObject.Find("InsigniaImage"); //  cambia el nombre al que uses en tu Canvas
+            GameObject obj = GameObject.Find("ImageInsignia"); //  cambia el nombre al que uses en tu Canvas
             if (obj != null)
             {
                 insigniaImage = obj.GetComponent<Image>();
@@ -46,7 +46,7 @@ public class MostrarInsigniaHub : MonoBehaviour
 
         if (estrellaImage == null)
         {
-            GameObject obj = GameObject.Find("EstrellaImage"); //  cambia el nombre al real en tu escena
+            GameObject obj = GameObject.Find("ImageEstrella"); //  cambia el nombre al real en tu escena
             if (obj != null)
             {
                 estrellaImage = obj.GetComponent<Image>();
