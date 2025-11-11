@@ -60,7 +60,6 @@ public class Pesca_Prueba : MonoBehaviour
 
     [Header("Fishing Time Limit")]
     [SerializeField] Temporizador temporizador;
-    [SerializeField] float fishingTimer;
 
     [Header("Score System")]
     [SerializeField] TextMeshProUGUI puntosTexto;
@@ -92,7 +91,6 @@ public class Pesca_Prueba : MonoBehaviour
 
         fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
-        fishingTimer = 120f;
 
         if (instruccionesUI != null)
             instruccionesUI.SetActive(true);
@@ -115,15 +113,6 @@ public class Pesca_Prueba : MonoBehaviour
             ControlarMovimientoBarco();
 
         if (minijuegoTerminado) return;
-
-        if (fishingTimer > 0f)
-            fishingTimer -= Time.deltaTime;
-        else
-        {
-            minijuegoTerminado = true;
-            MostrarResultadoFinal();
-            return;
-        }
 
         if (!isFishing) return;
 
@@ -347,7 +336,7 @@ public class Pesca_Prueba : MonoBehaviour
                 break;
             case Dificultad.Dificil:
                 hookPower = 0.03f;
-                hookProgressLossSpeed = 0.1f;
+                hookProgressLossSpeed = 0.07f;
                 break;
         }
     }
@@ -409,5 +398,13 @@ public class Pesca_Prueba : MonoBehaviour
         var boat = FindFirstObjectByType<BoatMovement>();
         if (boat != null)
             boat.canMove = true;
+    }
+
+    public void FinalizarPorTiempo()
+    {
+        if (minijuegoTerminado) return;
+
+        minijuegoTerminado = true;
+        MostrarResultadoFinal();
     }
 }

@@ -14,19 +14,22 @@ public class Temporizador : MonoBehaviour
     private bool tiempoActivado = false;
     private bool tiempoFinalizado = false;
 
+    [SerializeField] private Pesca_Prueba pescaScript;
+
     private void Start()
     {
         tiempoActual = tiempoMax;
         slider.maxValue = tiempoMax;
         slider.value = tiempoActual;
 
+        if (pescaScript == null)
+            pescaScript = FindFirstObjectByType<Pesca_Prueba>();
+
         if (canvasInstrucciones !=null && canvasInstrucciones.activeSelf)
             tiempoActivado=false;
         else
             tiempoActivado=true;
     }
-
-
     private void Update()
     {
         if (!tiempoActivado &&  !tiempoFinalizado && canvasInstrucciones != null)
@@ -42,7 +45,6 @@ public class Temporizador : MonoBehaviour
             CambiarContador();
         }
     }
-
     private void CambiarContador()
     {
         tiempoActual -= Time.deltaTime;
@@ -77,6 +79,10 @@ public class Temporizador : MonoBehaviour
     {
         resultadoTexto.text = "You got:";
         canvasResultado.SetActive(true);
+
+        if (pescaScript != null)
+            pescaScript.FinalizarPorTiempo();
+
     }
 
     public GameObject GetCanvasResultado()
