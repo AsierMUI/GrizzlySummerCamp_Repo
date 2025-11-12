@@ -14,6 +14,9 @@ public class PickUpManager : MonoBehaviour
     [SerializeField] GameObject winUI;
     [SerializeField] GameObject boat;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip pointSound;
+
     private BoatMovement boatMovement;
 
     private void Awake()
@@ -27,6 +30,9 @@ public class PickUpManager : MonoBehaviour
         {
             boatMovement = boat.GetComponent<BoatMovement>();
         }
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -38,6 +44,8 @@ public class PickUpManager : MonoBehaviour
     {
         score += value;
         Debug.Log("Score:" + score);
+
+        PlayPointSound();
 
         UpdateScoreUI();
 
@@ -67,5 +75,11 @@ public class PickUpManager : MonoBehaviour
         {
             InsigniaManager.Instance.GuardarEstrella(1);
         }
-    }    
+    }
+
+    void PlayPointSound()
+    {
+        if (audioSource != null && pointSound != null)
+            audioSource.PlayOneShot(pointSound);
+    }
 }
