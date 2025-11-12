@@ -22,6 +22,8 @@ public class GunController : MonoBehaviour
 
     private PlayerInput playerInput;
     private InputAction shootAction;
+    public GameObject aimPointerPrefab;
+    private GameObject aimPointerInstance;
     private bool canShoot = true;
     private bool showLine = true;
 
@@ -29,21 +31,23 @@ public class GunController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         shootAction = playerInput.actions["Shoot"];
+        if (aimPointerPrefab != null)
+            aimPointerInstance = Instantiate(aimPointerPrefab);
     }
 
     void OnEnable()
     {
-        shootAction.performed += OnShoot;
+        shootAction.performed += Shoot;
     }
 
     void OnDisable()
     {
-        shootAction.performed -= OnShoot;
+        shootAction.performed -= Shoot;
     }
 
     void Update()
     {
-        // Mostrar la l�nea solo cuando se puede disparar
+        // Mostrar la linea solo cuando se puede disparar
         if (showLine && canShoot)
         {
             UpdateAimLine();
@@ -55,7 +59,7 @@ public class GunController : MonoBehaviour
         }
     }
 
-    void OnShoot(InputAction.CallbackContext context)
+    void Shoot(InputAction.CallbackContext context)
     {
         if (!canShoot) return;
         StartCoroutine(ShootRoutine());
@@ -64,19 +68,25 @@ public class GunController : MonoBehaviour
     private IEnumerator ShootRoutine()
     {
         canShoot = false;
-        showLine = false;      // ocultar l�nea durante disparo y recarga
+        showLine = false;
+        if (aimPointerInstance != null)
+            aimPointerInstance.SetActive(false);
+        // ocultar linea durante disparo y recarga
         lineRenderer.enabled = false;
 
         // Crear y lanzar la bala
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.linearVelocity = firePoint.forward * bulletSpeed;
-        Destroy(bullet, 3f);
+        Destroy(bullet, 3f); //Destruye la bala pasado unos segundos
 
-        // Esperar el tiempo de recarga antes de volver a mostrar la l�nea
+        // Esperar el tiempo de recarga antes de volver a mostrar la linea
         yield return new WaitForSeconds(reloadDuration);
 
+
         canShoot = true;
+        if (aimPointerInstance != null)
+            aimPointerInstance.SetActive(true);
         showLine = true;
     }
 
@@ -94,7 +104,11 @@ public class GunController : MonoBehaviour
         {
             targetPoint = ray.origin + ray.direction * maxShootDistance;
         }
-
+        if (aimPointerInstance != null)
+        {
+            aimPointerInstance.SetActive(true);
+            aimPointerInstance.transform.position = targetPoint;
+        }
         // Orientar el firePoint hacia el punto de impacto
         Vector3 aimDir = (targetPoint - firePoint.position).normalized;
         firePoint.forward = aimDir;
