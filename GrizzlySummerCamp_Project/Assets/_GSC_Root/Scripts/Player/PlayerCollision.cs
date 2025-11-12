@@ -31,10 +31,9 @@ public class PlayerCollision : MonoBehaviour
             if (movementScript != null)
                 movementScript.ResetVelocity();
 
-            //fuera de  reborte
+            //fuerza de  reborte
             rb.AddForce(bounceDir * bounceForce, ForceMode.Impulse);
 
-            //Nuevo:
             ContactPoint contact = collision.contacts[0];
             Vector3 hitPoint = contact.point;
             Vector3 hitNormal = contact.normal;
@@ -46,16 +45,11 @@ public class PlayerCollision : MonoBehaviour
                 Destroy(effect.gameObject, effect.main.duration); //No es la forma más eficiente, tal vez probar con apagar uno y moverlo de algun modo sería mejor.
             }
 
-            /*  Código Viejo
-            if (stunEffect != null)
-                stunEffect.Play();
-            */
             if (!isStunned)
                 StartCoroutine(StunPlayer());
         }
     }
 
-    /* Stun Player nuevo*/
     private IEnumerator StunPlayer() 
     {
         isStunned = true;
@@ -73,22 +67,4 @@ public class PlayerCollision : MonoBehaviour
         }
         isStunned = false;
     }
-
-    /* Stun Player Antiguo
-     * private System.Collections.IEnumerator StunPlayer()
-    {
-        isStunned = true;
-
-        if (movementScript != null)
-            movementScript.enabled = false;
-
-        yield return new WaitForSeconds(stunDuration);
-
-        if (movementScript != null)
-            movementScript.enabled = true;
-
-        isStunned = false;
-        if (stunEffect != null)
-            stunEffect.Stop();
-    }*/
 }

@@ -13,9 +13,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Rigidbody rb;
 
 
-    [SerializeField] float collisionSlowdown = 0.6f; //Entre 0.0-1.0 (0 a 100) //NUEVO
+    [SerializeField] float collisionSlowdown = 0.6f; //Entre 0.0-1.0 (0 a 100) 
 
-    [SerializeField] float drag = 5f; //NUEVO
+    [SerializeField] float drag = 5f; 
 
 
     //Player Input = El input es una función que recive valores y los traduce (teclado&ratón,mando,etc. a dirección,cantidad,etc) se usa para efectuar acciones
@@ -28,15 +28,14 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true; // Evita que vuelque/Congela la rotación
 
-        rb.interpolation = RigidbodyInterpolation.Interpolate; //NUEVO
-        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic; //NUEVO
-        rb.linearDamping = drag; //NUEVO
+        rb.interpolation = RigidbodyInterpolation.Interpolate; 
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic; 
+        rb.linearDamping = drag; 
 
     }
     void Start()
     {
-        //moveAction = playerInput.actions.FindAction("Move");
-        moveAction = playerInput.actions["Move"]; //NUEVO
+        moveAction = playerInput.actions["Move"]; 
     }
 
     void FixedUpdate()
@@ -71,26 +70,4 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity *= collisionSlowdown;
         }
     }
-
-    /*
-    //Función que se llama para mover al player Antiguo.
-    void MovePlayer()
-    {
-        Vector2 direction = moveAction.ReadValue<Vector2>();
-        Vector3 moveDir = new Vector3(direction.x, 0, direction.y);
-
-        //transform.position += moveDir * Speed * Time.deltaTime;
-        Vector3 targetPosition = rb.position + moveDir * Speed * Time.fixedDeltaTime;
-        rb.MovePosition(targetPosition);
-
-        //Este código sirve para rotar al personaje, si su movimiento es mayor de 0.01.
-        if (moveDir.sqrMagnitude > 0.01f) 
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-            rb.MoveRotation(Quaternion.Lerp(rb.rotation, targetRotation, rotationSpeed * Time.deltaTime));
-            //transform.rotation = Quaternion.Lerp(transform.rotation,targetRotation, rotationSpeed * Time.deltaTime);
-        }
-    }
-    */
-
 }
