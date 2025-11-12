@@ -15,7 +15,7 @@ public class BoatMovement : MonoBehaviour
 
     private Vector3 velocity;
 
-    public bool canMove = true;
+    public bool canMove = false;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class BoatMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (canMove)
+        if (canMove == true)
         {
             MoveBoat();
         }
@@ -58,6 +58,10 @@ public class BoatMovement : MonoBehaviour
         }
     }
 
+    public void CanMove() 
+    {
+        canMove = true;
+    }
     public void ResetVelocity()
     {
         velocity = Vector3.zero; //para quitar la inercia
