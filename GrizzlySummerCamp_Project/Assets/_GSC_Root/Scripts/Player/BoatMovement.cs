@@ -17,6 +17,9 @@ public class BoatMovement : MonoBehaviour
 
     public bool canMove = false;
 
+    [Header("Child Player Animator")]
+    [SerializeField] private Animator childAnimator;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -26,6 +29,8 @@ public class BoatMovement : MonoBehaviour
     void Start()
     {
         moveAction = playerInput.actions.FindAction("Move");
+        if(childAnimator == null)
+            childAnimator = GetComponentInChildren<Animator>();
     }
 
     void FixedUpdate()
@@ -55,6 +60,15 @@ public class BoatMovement : MonoBehaviour
         {
             Quaternion targetRotation = Quaternion.LookRotation(velocity);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+        }
+
+        //Animaciones
+
+        if (childAnimator != null)
+        {
+            bool isMoving = velocity.sqrMagnitude > 0.01f;
+            childAnimator.SetBool("isRowing", isMoving);
+            childAnimator.SetBool("isIdleBoat", !isMoving);
         }
     }
 

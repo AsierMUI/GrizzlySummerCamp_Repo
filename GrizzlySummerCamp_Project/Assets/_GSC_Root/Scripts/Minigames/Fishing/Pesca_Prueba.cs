@@ -79,11 +79,22 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] AudioClip sonidoEscape;
 
 
+    [Header("References")]
+    [SerializeField] private GameObject boatPrefab;
+    private Animator childAnimator;
+
+
     //prueba dificultad
     enum Dificultad { Facil, Normal, Dificil }
     Dificultad dificultadActual;
 
-
+    private void Awake()
+    {
+        if (boatPrefab != null)
+        {
+            childAnimator = boatPrefab.GetComponentInChildren<Animator>();
+        }
+    }
     void Start()
     {
         Time.timeScale = 0f;
@@ -207,6 +218,14 @@ public class Pesca_Prueba : MonoBehaviour
 
         ReproducirSonido(sonidoCaptura);
 
+        //Animaciones
+        if (childAnimator != null)
+        {
+            childAnimator.SetTrigger("hasCaught");
+            childAnimator.SetBool("isFishingIdle", false);
+            childAnimator.SetBool("isPulling", false);
+        }
+
         int puntosGanados = PuntosPorDificultad();
         puntos += puntosGanados;
 
@@ -238,6 +257,16 @@ public class Pesca_Prueba : MonoBehaviour
         resultText.text = "It escaped :(";
 
         ReproducirSonido(sonidoEscape);
+
+        //animaciones
+        if (childAnimator != null)
+        {
+            childAnimator.SetTrigger("hasFailed");
+            childAnimator.SetBool("isFishingIdle", false);
+            childAnimator.SetBool("isPulling", false);
+        }
+
+        
         StartCoroutine(HideResultUIAfterDelay());
     }
 
@@ -250,6 +279,15 @@ public class Pesca_Prueba : MonoBehaviour
         resultText.text = "you've let it go";
 
         ReproducirSonido(sonidoEscape);
+
+        //animaciones
+        if (childAnimator != null)
+        {
+            childAnimator.SetTrigger("hasFailed");
+            childAnimator.SetBool("isFishingIdle", false);
+            childAnimator.SetBool("isPulling", false);
+        }
+
         StartCoroutine(HideResultUIAfterDelay());
     }
     IEnumerator HideResultUIAfterDelay()
