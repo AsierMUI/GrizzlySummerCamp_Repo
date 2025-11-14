@@ -7,6 +7,11 @@ using UnityEditor.MemoryProfiler;
 
 public class Pesca_Prueba : MonoBehaviour
 {
+    [Header("Player animator")]
+    [SerializeField] Animator niñaAnimator;
+    private bool isMoving = false;
+    private bool hasThrownRod = false;
+
     [Header("Movement Stats")]
     [SerializeField] Transform topPivot;
     [SerializeField] Transform bottomPivot;
@@ -106,6 +111,7 @@ public class Pesca_Prueba : MonoBehaviour
         finalUI.SetActive(false);
 
         ControlarMovimientoBarco();
+        ActualizarAnimatorIdle();
 
     }
     void Update()
@@ -117,7 +123,17 @@ public class Pesca_Prueba : MonoBehaviour
 
         if (!isFishing) return;
 
-        Fish();
+        if (!hasThrownRod)
+        {
+            niñaAnimator.SetTrigger("ThrowRod");
+            hasThrownRod = true;
+        }
+        else
+        {
+            niñaAnimator.SetBool("IdleRod", true);
+        }
+
+            Fish();
         Hook();
         ProgressCheck();
     }
@@ -149,6 +165,33 @@ public class Pesca_Prueba : MonoBehaviour
         {
             boat.canMove = false;
             boat.ResetVelocity();
+        }
+
+        //Actualizar animacion segun movimiento
+        if (niñaAnimator !=null)
+        {
+            bool moving = boat != null && boat.canMove && boat.IsMoving();
+            if (moving != isMoving)
+            {
+                isMoving = moving;
+                ActualizarAnimatorIdle();
+            }
+        }
+
+    }
+
+    void ActualizarAnimatorIdle()
+    {
+        if (niñaAnimator == null) return;
+
+        if (isFishing)
+        {
+            niñaAnimator.SetBool("Idle", false);
+        }
+        else
+        {
+            niñaAnimator.SetBool("Idle", !isMoving);
+            niñaAnimator.SetBool("Remar", isMoving);
         }
     }
 

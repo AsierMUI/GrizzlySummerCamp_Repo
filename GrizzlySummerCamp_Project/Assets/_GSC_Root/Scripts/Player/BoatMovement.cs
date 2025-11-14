@@ -80,4 +80,9 @@ public class BoatMovement : MonoBehaviour
     {
         velocity = Vector3.zero; //para quitar la inercia
     }
+
+    public bool IsMoving()
+    {
+        return velocity.magnitude > 0.01f;
+    }
 }
