@@ -125,12 +125,12 @@ public class Pesca_Prueba : MonoBehaviour
 
         if (!hasThrownRod)
         {
-            niñaAnimator.SetTrigger("Remar");
+            niñaAnimator.SetTrigger("cast");
             hasThrownRod = true;
         }
         else
         {
-            niñaAnimator.SetBool("IsIdle", true);
+            niñaAnimator.SetBool("isFishing", true);
         }
 
             Fish();
@@ -186,12 +186,13 @@ public class Pesca_Prueba : MonoBehaviour
 
         if (isFishing)
         {
-            niñaAnimator.SetBool("Idle", false);
+            niñaAnimator.SetBool("isFishing", true);
+            niñaAnimator.SetBool("isMoving", false);
         }
         else
         {
-            niñaAnimator.SetBool("Idle", !isMoving);
-            niñaAnimator.SetBool("Remar", isMoving);
+            niñaAnimator.SetBool("isFishing", false);
+            niñaAnimator.SetBool("isMoving", isMoving);
         }
     }
 
