@@ -125,12 +125,12 @@ public class Pesca_Prueba : MonoBehaviour
 
         if (!hasThrownRod)
         {
-            niñaAnimator.SetTrigger("ThrowRod");
+            niñaAnimator.SetTrigger("Remar");
             hasThrownRod = true;
         }
         else
         {
-            niñaAnimator.SetBool("IdleRod", true);
+            niñaAnimator.SetBool("IsIdle", true);
         }
 
             Fish();

@@ -67,8 +67,7 @@ public class BoatMovement : MonoBehaviour
         if (childAnimator != null)
         {
             bool isMoving = velocity.sqrMagnitude > 0.01f;
-            childAnimator.SetBool("isRowing", isMoving);
-            childAnimator.SetBool("isIdleBoat", !isMoving);
+            childAnimator.SetBool("isMoving", isMoving);
         }
     }
 
