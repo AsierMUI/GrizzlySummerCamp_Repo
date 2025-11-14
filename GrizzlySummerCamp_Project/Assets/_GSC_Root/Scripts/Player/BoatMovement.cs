@@ -15,7 +15,7 @@ public class BoatMovement : MonoBehaviour
 
     private Vector3 velocity;
 
-    public bool canMove = false;
+    [SerializeField] public bool canMove = false;
 
     [Header("Child Player Animator")]
     [SerializeField] private Animator childAnimator;
@@ -75,6 +75,7 @@ public class BoatMovement : MonoBehaviour
     {
         canMove = true;
     }
+
     public void ResetVelocity()
     {
         velocity = Vector3.zero; //para quitar la inercia

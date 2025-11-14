@@ -4,6 +4,8 @@ using TMPro;
 using System.Collections;
 using UnityEngine.InputSystem;
 using UnityEditor.MemoryProfiler;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class Pesca_Prueba : MonoBehaviour
 {
@@ -88,6 +90,7 @@ public class Pesca_Prueba : MonoBehaviour
     enum Dificultad { Facil, Normal, Dificil }
     Dificultad dificultadActual;
 
+    int escenaIndex;
 
     void Start()
     {
@@ -112,7 +115,7 @@ public class Pesca_Prueba : MonoBehaviour
 
         ControlarMovimientoBarco();
         ActualizarAnimatorIdle();
-
+        escenaIndex = SceneManager.GetActiveScene().buildIndex;
     }
     void Update()
     {
@@ -142,6 +145,8 @@ public class Pesca_Prueba : MonoBehaviour
     {
         var boat = FindFirstObjectByType<BoatMovement>();
         var pauseGame = FindFirstObjectByType<PauseGame>();
+        if (escenaIndex != 2)
+            return;
 
         bool hayUIBloqueante =
             (instruccionesUI != null && instruccionesUI.activeSelf) ||
@@ -159,7 +164,7 @@ public class Pesca_Prueba : MonoBehaviour
         }
         else if (!hayUIBloqueante)
         {
-            boat.canMove = true;
+            boat.canMove = true; //Esta linea rompe el booleano
         }
         else
         {
