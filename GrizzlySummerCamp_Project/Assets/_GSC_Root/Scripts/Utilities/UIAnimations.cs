@@ -6,7 +6,7 @@ public class UIAnimations : MonoBehaviour
     [SerializeField] private GameObject inicio;
     [SerializeField] private GameObject libreta;
 
-    private bool isLibretaActive = false;
+    private bool isLibretaActive = true;
 
     private void Start()
     {
