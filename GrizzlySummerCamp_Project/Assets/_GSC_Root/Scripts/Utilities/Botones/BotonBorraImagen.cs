@@ -3,19 +3,21 @@ using UnityEngine;
 public class BotonBorraImagen : MonoBehaviour
 {
     public GameObject imageToDestroy;
-    public string idImage = "image1Destroyed";
+
+    //Static hace que solo pase mientras este el juego abierto incluso entre las diferentes escenas, y al cerrar y volver a abrir el juego vuelve a aparecer
+    private static bool imageDestroyedInSession = false;
 
     void Start()
     {
-        if (PlayerPrefs.GetInt(idImage, 0) == 1)
+        if (imageDestroyedInSession)
             imageToDestroy.SetActive(false);
+        else
+            imageToDestroy.SetActive(true);
     }
 
     public void DestroyImage()
     {
         imageToDestroy.SetActive(false);
-
-        PlayerPrefs.SetInt(idImage, 1);
-        PlayerPrefs.Save();
+        imageDestroyedInSession = true;
     }
 }
