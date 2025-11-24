@@ -4,34 +4,17 @@ public class MostrarPrimeraVez : MonoBehaviour
 {
     [SerializeField] private GameObject contenedorObjeto; //objeto que se quiere ocultar despues de la primera vez en pantalla
 
-    int storedData = 0;
-
-    public string dataStoredName = "mensaje primera vez";
-
-    [SerializeField] bool deleteStoredDataInEditor = false; //sirve para volver a ver la cinematica una vez ha pasado 
+    private static bool yaMostradoEnSesion = false;
 
     private void Awake()
     {
-        storedData = PlayerPrefs.GetInt(dataStoredName, 0);
+        bool debeMostrarse = !yaMostradoEnSesion;
 
         if (contenedorObjeto != null)
-        {
-            contenedorObjeto.SetActive(storedData == 0);
-        }
+            contenedorObjeto.SetActive(debeMostrarse);
 
-        PlayerPrefs.SetInt(dataStoredName, 1);
+        if (debeMostrarse)
+            yaMostradoEnSesion = true;
 
     }
-
-    private void OnValidate()
-    {
-        if (deleteStoredDataInEditor)
-        {
-            deleteStoredDataInEditor = false;
-            PlayerPrefs.DeleteKey(dataStoredName);
-        }
-    }
-
-
-
 }
