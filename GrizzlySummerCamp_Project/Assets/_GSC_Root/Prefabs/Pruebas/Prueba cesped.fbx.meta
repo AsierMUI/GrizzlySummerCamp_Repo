@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: uv_checker_material_uv_grid_2048x2048
-    second: {fileID: 5622699239029104488, guid: 7bc85eb722633e54693b6d78aa8c7c4b, type: 3}
+    second: {fileID: 2100000, guid: a6f98e5e3ee09f142b03af0276e6d714, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
