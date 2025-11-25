@@ -12,11 +12,14 @@ public class VolumeController : MonoBehaviour
     {
         //cargar el volumen guardado si es q existe
         float savedVolume = PlayerPrefs.GetFloat("Music", 1f);
-        slider.value = savedVolume;
+        if (slider != null)
+        {
+            slider.value = savedVolume;
 
-        SetVolume(savedVolume);
+            SetVolume(savedVolume);
 
-        slider.onValueChanged.AddListener(SetVolume);
+            slider.onValueChanged.AddListener(SetVolume);
+        }
     }
 
     public void SetVolume(float value)
