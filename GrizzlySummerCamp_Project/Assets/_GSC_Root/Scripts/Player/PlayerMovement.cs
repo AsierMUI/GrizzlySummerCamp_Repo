@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         Vector2 input = moveAction.ReadValue<Vector2>();
-        Vector3 moveDir = new Vector3(input.x, 0, input.y).normalized;
+        Vector3 moveDir = new Vector3(-input.x, 0, -input.y).normalized; //Código está en negativa "-input.x" para que mueva en dirección del mapa
 
         //animacion andar / idle
         bool isWalking = moveDir.sqrMagnitude > 0.01;
