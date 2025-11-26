@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    public bool canMove = true;
+
     //Player Input = El input es una función que recive valores y los traduce (teclado&ratón,mando,etc. a dirección,cantidad,etc) se usa para efectuar acciones
     PlayerInput playerInput;
     InputAction moveAction;
@@ -43,7 +45,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        MovePlayer();
+        if (canMove) 
+        {
+            MovePlayer();
+        }
     }
 
 

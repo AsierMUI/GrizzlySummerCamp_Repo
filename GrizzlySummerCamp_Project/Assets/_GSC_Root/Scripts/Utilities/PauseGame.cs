@@ -14,8 +14,10 @@ public class PauseGame : MonoBehaviour
     {
         Time.timeScale = 1;
         juegoPausado = false;
-        menuPausa.SetActive(false);
-        
+        if (menuPausa != null) 
+        {
+            menuPausa.SetActive(false);
+        }
     }
     void Update()
     {

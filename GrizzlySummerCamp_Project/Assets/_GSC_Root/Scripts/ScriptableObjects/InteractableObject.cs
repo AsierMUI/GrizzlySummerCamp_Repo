@@ -8,12 +8,14 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] float interactionDistance = 4f;
     [SerializeField] int sceneToLoad;
     [SerializeField] GameObject spriteObject;
+    [SerializeField] GameObject InstructionsUI;
 
     private GameObject player;
     private PlayerInput playerInput;
     private InputAction interactAction;
 
     private bool isPlayerInRange = false;
+    bool UIactive;
     
     void Start()
     {
@@ -29,23 +31,34 @@ public class InteractableObject : MonoBehaviour
     void Update()
     {
         if (player == null) return;
-       
         float distance = Vector3.Distance(player.transform.position, transform.position);
         isPlayerInRange = distance < interactionDistance; //Booleano, se vuelve verdadero(true) sí "distancia" es menor a "interactionDistance";
 
         spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
-
-        if (isPlayerInRange && interactAction.WasPressedThisFrame()) //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
+        if (InstructionsUI != null) 
         {
-            LoadScene();
+            if (!InstructionsUI.activeInHierarchy)
+            {
+                var playersc = FindFirstObjectByType<PlayerMovement>();
+                playersc.canMove = true;
+            }
+            else
+            {
+                var playersc = FindFirstObjectByType<PlayerMovement>();
+                playersc.canMove = false;
+            }
+
+            if (isPlayerInRange && interactAction.WasPressedThisFrame()) //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
+            {
+                LoadScene();
+            }
         }
-    
     }
 
     void LoadScene()
     {
         SavePlayerPosition();
-        SceneManager.LoadScene(sceneToLoad);
+        InstructionsUI.SetActive(true);
     }
     void SavePlayerPosition()
     {
