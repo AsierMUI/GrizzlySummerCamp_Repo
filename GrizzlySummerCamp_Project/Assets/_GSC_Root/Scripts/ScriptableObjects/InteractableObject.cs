@@ -5,9 +5,11 @@ using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour
 {
+
     [SerializeField] float interactionDistance = 4f;
-    [SerializeField] int sceneToLoad;
+    //[SerializeField] int sceneToLoad;
     [SerializeField] GameObject spriteObject;
+    [SerializeField] GameObject InstructionsUI;
 
     private GameObject player;
     private PlayerInput playerInput;
@@ -35,21 +37,28 @@ public class InteractableObject : MonoBehaviour
 
         spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
 
-        if (isPlayerInRange && interactAction.WasPressedThisFrame()) //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
+
+        if (InstructionsUI != null) 
         {
-            LoadScene();
+            if (isPlayerInRange && interactAction.WasPressedThisFrame()) //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
+            {
+                OpenUI();
+            }
         }
     
     }
 
-    void LoadScene()
+    void OpenUI()
     {
         SavePlayerPosition();
-        SceneManager.LoadScene(sceneToLoad);
+        InstructionsUI.SetActive(isPlayerInRange);
+        //SceneManager.LoadScene(sceneToLoad);
+
     }
     void SavePlayerPosition()
     {
         PlayerData.lastPosition = player.transform.position;
         PlayerData.hasSavedPosition = true;
     }
+
 }

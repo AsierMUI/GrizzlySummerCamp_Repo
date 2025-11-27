@@ -1703,8 +1703,8 @@
     "m_ObjectId": "2fba19d79e114affa53f07c36906e9e0",
     "m_Title": "Foam",
     "m_Position": {
-        "x": 20.000059127807618,
-        "y": 948.9999389648438
+        "x": 20.0,
+        "y": 949.0
     }
 }
 
@@ -1941,8 +1941,8 @@
     "m_ObjectId": "4057e40f84eb4c37b92d3ed18dabfa27",
     "m_Title": "Wave_Effect",
     "m_Position": {
-        "x": -374.99993896484377,
-        "y": -893.9999389648438
+        "x": -375.0,
+        "y": -894.0
     }
 }
 
@@ -5169,7 +5169,7 @@
     "m_ObjectId": "dc21f83ee8144c74ad659ab3809358c2",
     "m_Title": "Water_Shader_Effect",
     "m_Position": {
-        "x": 27.000059127807618,
+        "x": 27.0,
         "y": 74.0
     }
 }
