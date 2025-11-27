@@ -108,10 +108,12 @@ public class Pesca_Prueba : MonoBehaviour
         {
             escapeOriginalPos = escapeBarContainer.localPosition;
         }
-
-        fishingUI.SetActive(false);
-        miniResultUI.SetActive(false);
-        finalUI.SetActive(false);
+        if(fishingUI!=null)
+            fishingUI.SetActive(false);
+        if (miniResultUI != null)
+            miniResultUI.SetActive(false);
+        if (finalUI != null)
+            finalUI.SetActive(false);
 
         ControlarMovimientoBarco();
         ActualizarAnimatorIdle();

@@ -35,7 +35,8 @@ public class InteractableObject : MonoBehaviour
         float distance = Vector3.Distance(player.transform.position, transform.position);
         isPlayerInRange = distance < interactionDistance; //Booleano, se vuelve verdadero(true) sí "distancia" es menor a "interactionDistance";
 
-        spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
+        if(spriteObject!=null)
+            spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
 
 
         if (InstructionsUI != null) 
@@ -44,6 +45,11 @@ public class InteractableObject : MonoBehaviour
             {
                 OpenUI();
             }
+            else if(!isPlayerInRange) //Si el jugador sale del rango, el tutorial se apaga.
+            {
+                InstructionsUI.SetActive(false);
+            }
+
         }
     
     }
