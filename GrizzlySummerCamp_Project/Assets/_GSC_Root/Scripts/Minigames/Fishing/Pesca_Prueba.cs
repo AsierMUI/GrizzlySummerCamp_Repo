@@ -37,11 +37,13 @@ public class Pesca_Prueba : MonoBehaviour
     float hookPullVelocity;
     [SerializeField] float hookPullPower = 0.01f;
     [SerializeField] float hookGravityPower = 0.005f;
-    [SerializeField] Transform progressBarContainer;
-    
+
+    [Header("Progress Bar(slider)")]
+    [SerializeField] Slider progressSlider;
+
     [Header("Escape Bar")]
     [SerializeField] float failTimer;
-    [SerializeField] Transform escapeBarContainer;
+    [SerializeField] Slider escapeSlider;
     float failTimerMax = 25f;
 
     [Header("Escape Bar Effects")]
@@ -104,10 +106,9 @@ public class Pesca_Prueba : MonoBehaviour
         if (instruccionesUI != null)
             instruccionesUI.SetActive(true);
 
-        if (escapeBarContainer != null) 
-        {
-            escapeOriginalPos = escapeBarContainer.localPosition;
-        }
+        if (escapeSlider != null) 
+            escapeOriginalPos = escapeSlider.transform.localPosition;
+
         if(fishingUI!=null)
             fishingUI.SetActive(false);
         if (miniResultUI != null)
@@ -217,9 +218,8 @@ public class Pesca_Prueba : MonoBehaviour
 
     void ProgressCheck()
     {
-        Vector3 ls = progressBarContainer.localScale;
-        ls.y = hookProgress;
-        progressBarContainer.localScale = ls;
+        if (progressSlider != null)
+            progressSlider.value = hookProgress;
 
         float min = hookPosition - hookSize / 1;
         float max = hookPosition + hookSize / 1;
@@ -327,24 +327,22 @@ public class Pesca_Prueba : MonoBehaviour
     }
     void UpdateEscapeBar()
     {
-        if (escapeBarContainer == null) return;
+        if (escapeSlider == null) return;
 
         float t = 1f - (failTimer / failTimerMax);
         t = Mathf.Clamp01(t);
 
-        Vector3 ls = escapeBarContainer.localScale;
-        ls.y = t;
-        escapeBarContainer.localScale = ls;
+        escapeSlider.value = t;
 
         //Vibración al llegar al 50% del threshold para fallar 
         if (t > shakeThreshold)
         {
             float shake = Mathf.Sin(Time.time * shakeSpeed) * shakeIntensity;
-            escapeBarContainer.localPosition = escapeOriginalPos + new Vector3(shake, 0, 0);
+            escapeSlider.transform.localPosition = escapeOriginalPos + new Vector3(shake, 0, 0);
         }
         else
         {
-            escapeBarContainer.localPosition = escapeOriginalPos;
+            escapeSlider.transform.localPosition = escapeOriginalPos;
         }
     }
     void Fish()
@@ -374,7 +372,10 @@ public class Pesca_Prueba : MonoBehaviour
         hookProgress = 0f;
         failTimer = 25f;
         failTimerMax = failTimer;
-        //UpdateEscapeBar();
+
+        if (escapeSlider != null) escapeSlider.value = 0;
+        if (progressSlider != null) progressSlider.value = 0;
+
         fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
 
