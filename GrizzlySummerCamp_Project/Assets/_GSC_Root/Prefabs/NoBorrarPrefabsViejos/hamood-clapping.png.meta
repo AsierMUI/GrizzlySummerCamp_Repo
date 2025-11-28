@@ -1,0 +1,2498 @@
+fileFormatVersion: 2
+guid: 5bb3dc5f251380c40a4475edfd1f1f7a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hamood-clapping_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2520
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5627cca9de33919438c8e4dc4aa2e831
+      internalID: 130678775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_1
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 2520
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0827472d4327efb4daf35ea77822d92c
+      internalID: -1499428622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_2
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 2520
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d799bdaab84e13548953462a68035f95
+      internalID: -75087732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_3
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 2520
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 247cb7a94d19d2347a362a645acb1c39
+      internalID: -573055112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_4
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 2520
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f86d1ab7cb4b3c842a08c7597fdca220
+      internalID: 1407522154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_5
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 2520
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ba42d6a956bd0b4eab882414a449e5b
+      internalID: -1450677354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_6
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 2520
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 866b7fe9af5407142892ba3d4bfae586
+      internalID: 1802402396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2340
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b924c4e0a8605074c8398995a6fe6374
+      internalID: -224007981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_8
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 2340
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f29b081f9b05f04194a468f907b0cf8
+      internalID: 931915928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_9
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 2340
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcde09b793e12804ba064c3233b88b7f
+      internalID: -1958993054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 2340
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 198bb525fb933a94187270f717160719
+      internalID: -1858599730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_11
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 2340
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62847ea7c7a0adb4381d6516038949f4
+      internalID: -1692225435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_12
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 2340
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a074efb09c420e47be7171b0bc9fa58
+      internalID: -104051113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_13
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 2340
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c62fee344cdc741bd33a227d02ed29
+      internalID: 932508702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2160
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62c8c5bd4db62724d83077a0767d5791
+      internalID: -175548780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_15
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 2160
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35bb5e832233a264f87f18fff5310411
+      internalID: 1255377497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_16
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 2160
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc1d18703907d343a8ebc963a60cbb0
+      internalID: 2053835875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_17
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 2160
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d0973ac039684e408b20759ad1e6e13
+      internalID: -1678042029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_18
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 2160
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6379edc2c9117254283099aeaaf75977
+      internalID: 1919804786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_19
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 2160
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba8a3f338647eb4cb9214b04d03d5e6
+      internalID: 696177514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_20
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 2160
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f8550eb0a405fe49a5ed7c099618523
+      internalID: -1437690154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1980
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcfb6165a33461547bd786dd1ef400bc
+      internalID: 1730921547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_22
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 1980
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56b6ea40433db6f45bce84ba1ec1d46e
+      internalID: -1993373259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_23
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 1980
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5529961dcf034a45a47a4c2833ce2f0
+      internalID: 677253904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_24
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 1980
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 732163efbf606ed469a176ca09cc08bd
+      internalID: 1464208830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_25
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1980
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16977a1f226b9e84aba2a73c76eb3ee4
+      internalID: 1984885506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_26
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1980
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba1ef5a819df292468da5f28c7d1c52e
+      internalID: 1762456796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_27
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1980
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 986b9dd38d02c98429db84ce58fda347
+      internalID: -1357587174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1800
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e312d0ec93eb3546829f6df888950b8
+      internalID: -687232175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_29
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 1800
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47af2839fe3355044b921ce293009b2e
+      internalID: 575123398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_30
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 1800
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 955ba1edfd715d5439e4207a84222d0a
+      internalID: -1381127611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_31
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 1800
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ef38e2d163c9ff47a99719d829ed720
+      internalID: -863763588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_32
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1800
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff367c6eb82690f42b6ec56ff5cfa85f
+      internalID: -587668611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_33
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1800
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 318af3f9ca1f9ef429255be14677d7ad
+      internalID: 58778189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_34
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1800
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a050c7ce610f3b94e9f31b3705a36695
+      internalID: -1291739134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1620
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec823c02af9d43b4a8e645b4352a9892
+      internalID: 481019853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_36
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 1620
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eeff23b632929547b85f129db50bd87
+      internalID: -1909065519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_37
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 1620
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27d730bbf27f44b408c81917dcb0357f
+      internalID: 1954869600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_38
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 1620
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19977f54b5ba6b547b4d522340e7a2ba
+      internalID: -1195637087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_39
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1620
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5b5758301264594ca4f1101704dae66
+      internalID: 1544808909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_40
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1620
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92084ac9c2aa8124689b5215229b3dbe
+      internalID: -2005201243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_41
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1620
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c2b7af63361f09459d29324507eea45
+      internalID: -98831417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1440
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bad56ed411bb834594d1bf4a6c80451
+      internalID: 1573884458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_43
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 1440
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5197087107c20f34d9902b8278e0846b
+      internalID: -2082141385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_44
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 1440
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95a3369ce0ba78b41af46d103c387ac0
+      internalID: 1967040277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_45
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 1440
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98ec7280cbffdde4aaab3991eb58385a
+      internalID: 1371594669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_46
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1440
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7730cf516b3f8b94799bd0be0dfb002c
+      internalID: -930782362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_47
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1440
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33cbe076c17e17d4eabde5f8561ddd51
+      internalID: 65984200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_48
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1440
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56dc45377ebb84441bb0b87107f82ead
+      internalID: -1839191613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1260
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c4a7fe6177c94743872b0c319f009a7
+      internalID: -1869964193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_50
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 1260
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27322d461a39184429869ee7741a2d4b
+      internalID: -1058832482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_51
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 1260
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5f905708ee0681419f74571f765891c
+      internalID: 1005389028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_52
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 1260
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37fb63a2cf0b71f4882800d907a78aed
+      internalID: 771621003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_53
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1260
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f04b4d0409498024f97abb6de00e81bd
+      internalID: 150588806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_54
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1260
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3245d868cf4944b47bd9683a2aeb376b
+      internalID: 1678552842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_55
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1260
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8219da62bd5b9734aa25a57e953aa60b
+      internalID: -1475488480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1080
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bc229e1e99714d44a2be04ca77dfdd8
+      internalID: 295663310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_57
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 1080
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53a0c167b76ae1b4b959bc8f0853a39c
+      internalID: -663639419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_58
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 1080
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 771919aa578c9e445915e056c7f91679
+      internalID: 1540306475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_59
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 1080
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7963fde03f5dc44f9a73479305066bd
+      internalID: 1738279835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_60
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1080
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 401f255e18099534d9da4f6fcc13c51d
+      internalID: 252383216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_61
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1080
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 182d60a09c2a4f041a6e96b8c6e89ee8
+      internalID: -1767569731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_62
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1080
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce2984c6616487644887e94304e0f4a3
+      internalID: 630349678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 900
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a1966130faea0f45a0e85a868a169e2
+      internalID: 819537770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_64
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 900
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b2973e4ba6ba1240a2a4a6c1dc51ecb
+      internalID: -96004692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_65
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 900
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcd42a282981f17469353f492cc3d5ae
+      internalID: -132008361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_66
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 900
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85da221baf9ac204eb5a5c6ea4d044c6
+      internalID: 757769886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_67
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 900
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26dd5503e474fff4592e70d5881bd405
+      internalID: 492241909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_68
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 900
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea01775a4e24ff94cb21c25e0de73c05
+      internalID: -937434258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_69
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 900
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f903adbb5397c9347a034a50392eb0fc
+      internalID: -314513114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 720
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32fdf985b9db2254782ec55ec131ab9b
+      internalID: -977896653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_71
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 720
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6c30632f8dc22942952d53d8300d9cd
+      internalID: -1678429710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_72
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 720
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceb7ad50af45f6c4894ee84bf65138c4
+      internalID: -1578575439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_73
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 720
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 843101475cb76f4439882ecfc645b7c1
+      internalID: -1350646594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_74
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 720
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38da327b4971e7846bfdaa70e2f1fcd5
+      internalID: 1385014531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_75
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 720
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f75d9bddf2d614a46a580a2b950b7f7b
+      internalID: 974597723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_76
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 720
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03a2dcd740b65cc49845732bfc0bcc13
+      internalID: 73075654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_77
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 540
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0315f5d89f4bbb34ca653c6fbc1c26d2
+      internalID: 344836174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_78
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 540
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf7b5038d00256042b47e78d3008451b
+      internalID: 203257712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_79
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 540
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56bfeb94d1c23014fbc0019f864cf58f
+      internalID: -307049089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_80
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 540
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 406b6ff36ed271b46b6b21799984c506
+      internalID: 1898426357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_81
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 540
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 650571bd09b285f4ba0c2a9ea50ba429
+      internalID: -1093138461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_82
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 540
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 810c51769bf718343ad420382702189c
+      internalID: -313829212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_83
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 540
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74786667e5e2d5b419e41378b431101f
+      internalID: -1287343077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 360
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31b0f581509efe745be3915276c1ef51
+      internalID: 2045647764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_85
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 360
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 483de01599d627049b5ab66a378ca59a
+      internalID: -2108171325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_86
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 360
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a41458d01976a3b46afe91d7256ad048
+      internalID: -736009457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_87
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 360
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7997ae205c959c2429de69e3ecd9832a
+      internalID: -1511351430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_88
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 360
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1950ee27cf07e043a516887381e63fd
+      internalID: -233757502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_89
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 360
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d9f1e1c251eb1044a4f0275fc7b43f1
+      internalID: -920709684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_90
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 360
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46b811bd5d1f2614dab9ada311021cba
+      internalID: 392091761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_91
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f35286c83cf5374cbb55a51b859ed02
+      internalID: -442711717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_92
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 180
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da6d97f9e5ef121429b2d99b403e46b2
+      internalID: 838342497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_93
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 180
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79fd982f17a965549b72bd046d7d98ba
+      internalID: -1766737799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_94
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 180
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0293512ecde6ac34c9fb1a71db059466
+      internalID: -1250611923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_95
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 180
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5abfabd924b63a4f9d2b1aba530fa52
+      internalID: 14529555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_96
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 180
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96deea7ed63ee184da06a577a6018b39
+      internalID: -745288549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_97
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 180
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b7982e40e10e6b45934663aa5ec0802
+      internalID: 865351590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_98
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1013d6e679e6cb242955b75cd08e0e4e
+      internalID: -309191987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_99
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 0
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f4ad44d2d5a2b74c82113ac3fd97ca8
+      internalID: -120230151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hamood-clapping_100
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 0
+        width: 220
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92f189ac32272f940be4dadbfb684754
+      internalID: 191153801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 13fbb8c33837aae448ebf3beb249d6f5
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":220.0,"y":180.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      hamood-clapping_0: 130678775
+      hamood-clapping_1: -1499428622
+      hamood-clapping_10: -1858599730
+      hamood-clapping_100: 191153801
+      hamood-clapping_101: -1024490257
+      hamood-clapping_102: 1619698506
+      hamood-clapping_103: -1410205678
+      hamood-clapping_104: -1791754996
+      hamood-clapping_11: -1692225435
+      hamood-clapping_12: -104051113
+      hamood-clapping_13: 932508702
+      hamood-clapping_14: -175548780
+      hamood-clapping_15: 1255377497
+      hamood-clapping_16: 2053835875
+      hamood-clapping_17: -1678042029
+      hamood-clapping_18: 1919804786
+      hamood-clapping_19: 696177514
+      hamood-clapping_2: -75087732
+      hamood-clapping_20: -1437690154
+      hamood-clapping_21: 1730921547
+      hamood-clapping_22: -1993373259
+      hamood-clapping_23: 677253904
+      hamood-clapping_24: 1464208830
+      hamood-clapping_25: 1984885506
+      hamood-clapping_26: 1762456796
+      hamood-clapping_27: -1357587174
+      hamood-clapping_28: -687232175
+      hamood-clapping_29: 575123398
+      hamood-clapping_3: -573055112
+      hamood-clapping_30: -1381127611
+      hamood-clapping_31: -863763588
+      hamood-clapping_32: -587668611
+      hamood-clapping_33: 58778189
+      hamood-clapping_34: -1291739134
+      hamood-clapping_35: 481019853
+      hamood-clapping_36: -1909065519
+      hamood-clapping_37: 1954869600
+      hamood-clapping_38: -1195637087
+      hamood-clapping_39: 1544808909
+      hamood-clapping_4: 1407522154
+      hamood-clapping_40: -2005201243
+      hamood-clapping_41: -98831417
+      hamood-clapping_42: 1573884458
+      hamood-clapping_43: -2082141385
+      hamood-clapping_44: 1967040277
+      hamood-clapping_45: 1371594669
+      hamood-clapping_46: -930782362
+      hamood-clapping_47: 65984200
+      hamood-clapping_48: -1839191613
+      hamood-clapping_49: -1869964193
+      hamood-clapping_5: -1450677354
+      hamood-clapping_50: -1058832482
+      hamood-clapping_51: 1005389028
+      hamood-clapping_52: 771621003
+      hamood-clapping_53: 150588806
+      hamood-clapping_54: 1678552842
+      hamood-clapping_55: -1475488480
+      hamood-clapping_56: 295663310
+      hamood-clapping_57: -663639419
+      hamood-clapping_58: 1540306475
+      hamood-clapping_59: 1738279835
+      hamood-clapping_6: 1802402396
+      hamood-clapping_60: 252383216
+      hamood-clapping_61: -1767569731
+      hamood-clapping_62: 630349678
+      hamood-clapping_63: 819537770
+      hamood-clapping_64: -96004692
+      hamood-clapping_65: -132008361
+      hamood-clapping_66: 757769886
+      hamood-clapping_67: 492241909
+      hamood-clapping_68: -937434258
+      hamood-clapping_69: -314513114
+      hamood-clapping_7: -224007981
+      hamood-clapping_70: -977896653
+      hamood-clapping_71: -1678429710
+      hamood-clapping_72: -1578575439
+      hamood-clapping_73: -1350646594
+      hamood-clapping_74: 1385014531
+      hamood-clapping_75: 974597723
+      hamood-clapping_76: 73075654
+      hamood-clapping_77: 344836174
+      hamood-clapping_78: 203257712
+      hamood-clapping_79: -307049089
+      hamood-clapping_8: 931915928
+      hamood-clapping_80: 1898426357
+      hamood-clapping_81: -1093138461
+      hamood-clapping_82: -313829212
+      hamood-clapping_83: -1287343077
+      hamood-clapping_84: 2045647764
+      hamood-clapping_85: -2108171325
+      hamood-clapping_86: -736009457
+      hamood-clapping_87: -1511351430
+      hamood-clapping_88: -233757502
+      hamood-clapping_89: -920709684
+      hamood-clapping_9: -1958993054
+      hamood-clapping_90: 392091761
+      hamood-clapping_91: -442711717
+      hamood-clapping_92: 838342497
+      hamood-clapping_93: -1766737799
+      hamood-clapping_94: -1250611923
+      hamood-clapping_95: 14529555
+      hamood-clapping_96: -745288549
+      hamood-clapping_97: 865351590
+      hamood-clapping_98: -309191987
+      hamood-clapping_99: -120230151
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
