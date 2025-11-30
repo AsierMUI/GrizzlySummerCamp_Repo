@@ -5,13 +5,21 @@ public class LoadingUI : MonoBehaviour
 {
     [SerializeField] float duracion = 5f;
     [SerializeField] private TextMeshProUGUI loadingText;
+    [SerializeField] GameObject Button;
 
-    private string baseText = "Generating Maze";
+    //private string baseText = "Generating Maze";
+
+    [SerializeField] private string[] loadingTLines; //Asignar el texto en cada escena
+
+    private string baseText;
     private int dotCount = 0;
     private LTDescr loopTween;
 
     void Start()
     {
+
+        baseText = loadingTLines[Random.Range(0, loadingTLines.Length)];
+
         AnimateDots();
         StartCoroutine(DesactivarTrasTiempo());
     }
@@ -33,9 +41,13 @@ public class LoadingUI : MonoBehaviour
 
         if (loopTween != null)
             LeanTween.cancel(gameObject);
-        gameObject.SetActive(false);
-    }
 
+        loadingText.text = "Game Ready!";
+
+        //gameObject.SetActive(false);
+        if (Button != null)
+           Button.SetActive(true);
+    }
     private void OnDisable()
     {
         if (loopTween != null)
