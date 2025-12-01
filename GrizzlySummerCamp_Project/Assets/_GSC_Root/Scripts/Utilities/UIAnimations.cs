@@ -17,6 +17,12 @@ public class UIAnimations : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            CambiarLibreta();
+    }
+
     private void BajarAlpha()
     {
         LeanTween.alpha(inicio.GetComponent<RectTransform>(), 0f, 1f).setDelay(0.5f);
