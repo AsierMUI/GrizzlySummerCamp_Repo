@@ -5,11 +5,16 @@ public class UIAnimations : MonoBehaviour
     [SerializeField] private GameObject logo;
     [SerializeField] private GameObject inicio;
     [SerializeField] private GameObject libreta;
+    [SerializeField] private GameObject instruccionesLibreta;
 
     private bool isLibretaActive = true;
 
+    private static bool instruccionesDestruidasEnSesion = false;
+
     private void Start()
     {
+        if (instruccionesLibreta !=null)
+            instruccionesLibreta.SetActive(!instruccionesDestruidasEnSesion);
         if (logo!=null)
         {
             LeanTween.moveY(logo.GetComponent<RectTransform>(), 0, 1.5f).setDelay(1f) //animacion del logo, con delay al empezar y su duracion
@@ -20,7 +25,14 @@ public class UIAnimations : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (instruccionesLibreta !=null && instruccionesLibreta.activeSelf)
+            {
+                InstruccionesEscape();
+            }
+
             CambiarLibreta();
+        }
     }
 
     private void BajarAlpha()
@@ -50,5 +62,11 @@ public class UIAnimations : MonoBehaviour
     public void DesactivarLibreta()
     {
         LeanTween.moveY(libreta.GetComponent<RectTransform>(), -609, 1f).setEase(LeanTweenType.easeOutSine);
+    }
+
+    private void InstruccionesEscape()
+    {
+        instruccionesLibreta.SetActive(false);
+        instruccionesDestruidasEnSesion = true;
     }
 }
