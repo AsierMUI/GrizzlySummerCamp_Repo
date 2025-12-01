@@ -8,7 +8,6 @@ public class UIAnimations : MonoBehaviour
     [SerializeField] private GameObject instruccionesLibreta;
 
     private bool isLibretaActive = true;
-
     private static bool instruccionesDestruidasEnSesion = false;
 
     private void Start()
