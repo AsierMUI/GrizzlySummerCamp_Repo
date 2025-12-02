@@ -6,8 +6,7 @@ public class UIAnimations : MonoBehaviour
     [SerializeField] private GameObject inicio;
     [SerializeField] private GameObject libreta;
 
-    [SerializeField] bool isLibretaActive = true;
-    [SerializeField] bool isLoading = false;
+    private bool isLibretaActive = true;
 
     private void Start()
     {
@@ -35,10 +34,6 @@ public class UIAnimations : MonoBehaviour
 
     public void CambiarLibreta()
     {
-        if (isLoading) return;
-
-        isLoading = true;
-
         if (isLibretaActive)
         {
             DesactivarLibreta();
@@ -52,12 +47,11 @@ public class UIAnimations : MonoBehaviour
 
     public void ActivarLibreta()
     {
-        LeanTween.moveY(libreta.GetComponent<RectTransform>(), 0, 1f).setEase(LeanTweenType.easeOutSine).setOnComplete(() => isLoading = false);
+        LeanTween.moveY(libreta.GetComponent<RectTransform>(), 0, 1f).setEase(LeanTweenType.easeOutSine);
     }
 
     public void DesactivarLibreta()
     {
-        LeanTween.moveY(libreta.GetComponent<RectTransform>(), -609, 1f).setEase(LeanTweenType.easeOutSine).setOnComplete(() => isLoading = false);
-
+        LeanTween.moveY(libreta.GetComponent<RectTransform>(), -609, 1f).setEase(LeanTweenType.easeOutSine);
     }
 }
