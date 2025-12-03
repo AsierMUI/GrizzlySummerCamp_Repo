@@ -8,7 +8,7 @@ public class Temporizador : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private GameObject canvasResultado;
     [SerializeField] private TMP_Text resultadoTexto;
-    [SerializeField] private GameObject canvasInstrucciones;
+    //[SerializeField] private GameObject canvasInstrucciones;
 
     private float tiempoActual;
     private bool tiempoActivado = false;
@@ -25,19 +25,19 @@ public class Temporizador : MonoBehaviour
         if (pescaScript == null)
             pescaScript = FindFirstObjectByType<Pesca_Prueba>();
 
-        if (canvasInstrucciones !=null && canvasInstrucciones.activeSelf)
-            tiempoActivado=false;
-        else
-            tiempoActivado=true;
+        //if (canvasInstrucciones !=null && canvasInstrucciones.activeSelf)
+        //    tiempoActivado=false;
+        //else
+        tiempoActivado = true;
     }
     private void Update()
     {
-        if (!tiempoActivado &&  !tiempoFinalizado && canvasInstrucciones != null)
+        if (!tiempoActivado &&  !tiempoFinalizado /*&& canvasInstrucciones != null*/)
         {
-            if (!canvasInstrucciones.activeSelf)
-            {
-                ActivarTemporizador();
-            }
+            //if (!canvasInstrucciones.activeSelf)
+            //{
+            ActivarTemporizador();
+            //}
         }
 
         if (tiempoActivado)
