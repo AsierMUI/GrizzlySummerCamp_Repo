@@ -21,7 +21,7 @@ public class ButtonClickSound : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
         {
             int index = i;
-            if (buttons!=null)
+            if (buttons[i]!=null)
             {
                 buttons[i].onClick.AddListener(() => OnClick(index));
             }
