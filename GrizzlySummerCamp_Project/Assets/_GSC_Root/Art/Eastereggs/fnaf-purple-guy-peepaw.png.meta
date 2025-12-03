@@ -1,0 +1,3921 @@
+fileFormatVersion: 2
+guid: 8db725aea49b3224f937e478b25c6ac7
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 13294
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08a4de0421c7ecf498eea0f3d098560d
+      internalID: -1204985590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_1
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 13294
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba6a22cb88bc1064cab377d0be963b26
+      internalID: -311927296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_2
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 13294
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f63e1f006be45b14ab6bda3ba153bcd0
+      internalID: -1111379403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_3
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 13294
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed33f0228811a243826f2cefa30a621
+      internalID: -952109784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_4
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 13294
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00c5dc6c6b4eece438f33ec538cdfd66
+      internalID: -635919718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_5
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 13294
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56d757f0853531242b49877ffdd6bd4b
+      internalID: 778900468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_6
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 13294
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8057cab69c332de41aab190867d74de4
+      internalID: -1082876182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 12716
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a99583b9f35fbb94d8f200b4f71b2edc
+      internalID: 189251915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_8
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 12716
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e74cf685013804d9c0d66b914f6257
+      internalID: -1844991936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_9
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 12716
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d10a4778ebd32f543926f9d4bc78570d
+      internalID: -612433885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_10
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 12716
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3230bf5b35587554bac76a11d2e337c2
+      internalID: -771997618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_11
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 12716
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 331e4785f014a5644a2e6b39aae77b0a
+      internalID: -2063785146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_12
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 12716
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4190e09ae6971cd40b61d4842b4dae39
+      internalID: 1601474584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_13
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 12716
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7639194122bf9f04da706b24a9bab4b0
+      internalID: -2088136878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 12138
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7e60696a5758eb428c27e71bb7db6a9
+      internalID: 1102005904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_15
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 12138
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cdfe08f85b24944fb933f90b7d5a4b9
+      internalID: -1673153992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 12138
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f633dd32c12703b4ba25a686fa078780
+      internalID: -1893650025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_17
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 12138
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62c2a228f1898884ea1a094a2620aed8
+      internalID: -2087502571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_18
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 12138
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b12f24f930b27564d8ba675e62185c88
+      internalID: -1878415733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_19
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 12138
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8086c6fd04d1442857f87ae7af3e06
+      internalID: 159347308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_20
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 12138
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76944113e040eae4080cf25a27175bee
+      internalID: 859824783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 11560
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35ce164c519bd1e43bec805295cfbaa6
+      internalID: -1441324500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_22
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 11560
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a3909174b148ba4592180761e79a901
+      internalID: -2122476229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_23
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 11560
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dc372266beda9c40b88b0dd2bc2ff1e
+      internalID: -731413632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_24
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 11560
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042fd936ed0224e49929f02e17158002
+      internalID: 1174258658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_25
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 11560
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbd7044abcb14284dbdab51aedc14de0
+      internalID: 209414683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_26
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 11560
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 940e9b6c28d0f7d4497ffbac394b021b
+      internalID: 175060928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_27
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 11560
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f1a9744422c9454db94a24ffd7bf3b9
+      internalID: 1098905146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10982
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbf9691c2b6f5ff499ef4d3310083d57
+      internalID: -1435603406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_29
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 10982
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eae4f7827f7c7f4cb651bee7a6fbaaf
+      internalID: 916423740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_30
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 10982
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8de7f7a2bea731245a26818394796534
+      internalID: -1840212509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_31
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 10982
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98d7a09e7a8f5d141828d95cc661588a
+      internalID: -1797402429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_32
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 10982
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1be0d5003c2ae9e4f911befbecfed486
+      internalID: 433025707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_33
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 10982
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0d20ac3344bb0e4390c8849d9179292
+      internalID: 385245915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_34
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 10982
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cffb04d82a0cad43be9f97766a28f28
+      internalID: -1417989903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10404
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb9c02c175b307c41919ab759673a7d1
+      internalID: -469785172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_36
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 10404
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73dff270a7a5b234a953af5f3414d561
+      internalID: 158478584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_37
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 10404
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 900d34e3dcad08e4f967bbcc21dcd05b
+      internalID: 1559135241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_38
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 10404
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e57fef0d282b144d9b1b93adb0f42d9
+      internalID: 862450074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_39
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 10404
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f53a2ff0876e50489c79ba89e8952d0
+      internalID: 1088014197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_40
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 10404
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 667f1eb6fff210742880e82faada34f8
+      internalID: -2010192583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_41
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 10404
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e744988368057c2498b514baff5db5ed
+      internalID: -496302166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9826
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d87173734df1fe544a645d3fe3da90ad
+      internalID: -625688601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_43
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 9826
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba9e8486d84ce9d49bb5bd998c742faf
+      internalID: -997511441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_44
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 9826
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2205b08498249e54d96e796fe3dd581b
+      internalID: -507099076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_45
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 9826
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c232b3241a3c3044c97098e59c932c18
+      internalID: 866940648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_46
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 9826
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a8d921691387bd4ea2836a2e0eca0a7
+      internalID: -1991880849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_47
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 9826
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b85e781c72eb7e6499af189a2da7f01a
+      internalID: -965273457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_48
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 9826
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca978bb7afc4ec64bad1ea26325d3a56
+      internalID: -2139809214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9248
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3fae509d0e06c3469acc2dcfaf443b0
+      internalID: 918752624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_50
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 9248
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7869182912de8a4dbfd5ee0e1b96275
+      internalID: 1613166535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_51
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 9248
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8ea61bae7b1f9241a24b90da5824b08
+      internalID: -1861772731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_52
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 9248
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4541349ca1428e04f88399ce36a2ba1e
+      internalID: 248144470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_53
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 9248
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f70f9b4d9564604e88f54cef56fc4af
+      internalID: 425688432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_54
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 9248
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdb617bbf820635439293d797dfe39fb
+      internalID: 1160828004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_55
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 9248
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2d2bc97d115d2c4f8f576fa5db2ae48
+      internalID: 180244719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8670
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60768b92c14bf5b488dd63ad0199303a
+      internalID: -1837376470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_57
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 8670
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90170e6565e6ccd4293ecb66e143e4df
+      internalID: 1960357583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_58
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 8670
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e98e46f38694f34e91613f77a976938
+      internalID: -756751796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_59
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 8670
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c44a4b4e5ca469542b158b9a81f8306a
+      internalID: -1374377069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_60
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 8670
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57b261bcdd6ef93419604e3142d5e980
+      internalID: -694082835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_61
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 8670
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44978aa59a785db49b571f3fb4299244
+      internalID: 186922059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_62
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 8670
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c976b094aafc101419588597ebddf480
+      internalID: -1370623059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8092
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7adff8885ede2674888d1efcb18d6e9b
+      internalID: 85123501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_64
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 8092
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 712ee42279efb92428d514cb2a76b8e6
+      internalID: 273917588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_65
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 8092
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06fb80ae19143714d95a66fcc107b819
+      internalID: -1454931908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_66
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 8092
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0df17ace6cfc988488b79d0ff3e75ac0
+      internalID: -2120222239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_67
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 8092
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 023797172d9e01a41a29dbc0dc9f487d
+      internalID: -626683614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_68
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 8092
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b1495245563c424baa5f5dfad8b892d
+      internalID: 1570407273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_69
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 8092
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70b6bcac1e6209f4db3839b34be23d6b
+      internalID: -1690569929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7514
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18f6553663e12024ea58726a022cabb2
+      internalID: -2108015811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_71
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 7514
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31429b428bf71af4cb963705dc9fcd7f
+      internalID: 1286363134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_72
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 7514
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49ac2a93f0b679547b918b60ae53d017
+      internalID: -846869198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_73
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 7514
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d834ce1592441164db1e756f27633cf5
+      internalID: 634600171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_74
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 7514
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8e56b2b44709e4985e6c29afda8e3b
+      internalID: -1569965493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_75
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 7514
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a5e412b75d963e4c943766f12a93f46
+      internalID: -1114655441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_76
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 7514
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c67f933824ed4df4faaeaa0fed2f7ca4
+      internalID: -2119540565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_77
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6936
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2566131843b0d64192e8e057a9fd9df
+      internalID: 1827162443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_78
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 6936
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7312db36a82741e4c9f37a94997a369d
+      internalID: -331481212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_79
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 6936
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542711e5a888bd24aa0a602324608043
+      internalID: 2049199907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_80
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 6936
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e837a89dbc4eee46b9f0cb6f322b24e
+      internalID: -300997252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_81
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 6936
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9dfb0eec80e12f498b3b5be01c61b93
+      internalID: 786671557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_82
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 6936
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 061c0f84b37aa774cbf88e763283f949
+      internalID: 2146169956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_83
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 6936
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21247adc763f5364c9d1a013f0b052a7
+      internalID: 1236928574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6358
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f887fb056f38854c890ff0a55a616cc
+      internalID: -1991635045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_85
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 6358
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6444511ca635a3e408996a2d60a27304
+      internalID: 896640514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_86
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 6358
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 775ef618cdd386e4b9e1362658270d9f
+      internalID: -1271557323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_87
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 6358
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d648cee269920014c8e0275ada62e511
+      internalID: 1182388926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_88
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 6358
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13c12173ead046e4eb38e196f8d5e428
+      internalID: 651695994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_89
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 6358
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f2d63651ed4d9140b3b6d8c3ea83fd7
+      internalID: -1120874658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_90
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 6358
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49add7b3c272674449c91b27fbcc3684
+      internalID: -829005869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_91
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5780
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 856fccfdb6a758f4fa298e12d0b9ca56
+      internalID: -244771083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_92
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 5780
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d744827a90b3524dadbc9b59e94c0d8
+      internalID: -1635812862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_93
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 5780
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eee5ab1796913b42ba4b7fedfbe8c05
+      internalID: -200301288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_94
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 5780
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96fd11a954881c444a075dda36e14642
+      internalID: 2080324615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_95
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 5780
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e3b042b8272c2741ba0af4fa3d95cc5
+      internalID: -496694988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_96
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 5780
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c95dce647285e23418b84cfd23ad2bda
+      internalID: 693078468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_97
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 5780
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66845ffbb1abb3748ad386d6ca08452d
+      internalID: 1428206825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_98
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5202
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e67672a9debc5e34db581a8e3d62958f
+      internalID: 1102202569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_99
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 5202
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8019b0ead9eb5cf4b9b0423352b2b591
+      internalID: -1752922553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_100
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 5202
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 062e1ca2365b4b8438d70e7b0d485c7a
+      internalID: 793464196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_101
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 5202
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d3c82e41e9f8ca4c8d8ec909a6519fc
+      internalID: 182759583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_102
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 5202
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b08dfb2b2d0408c45a68d6135144a1d9
+      internalID: 1696272505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_103
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 5202
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89f83afb1852c694a8223982224eb619
+      internalID: -1288824959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_104
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 5202
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba1c16b77b02874429dc988c4f4464a4
+      internalID: 1128747478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_105
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4624
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8be8384211252a94abee63c38c556aec
+      internalID: 582547467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_106
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 4624
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 670a466496f928e4c9c36e884ae7d8fe
+      internalID: 2124422255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_107
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 4624
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa705bd84dc7f154abdf4d64a4fbe133
+      internalID: -1788830601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_108
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 4624
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b74db11ac0127764593434a478d4fb15
+      internalID: -2958435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_109
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 4624
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10f4dedd24d3fa54e98e9de11d1fe8d6
+      internalID: 596613288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_110
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 4624
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c2322f0bad23644a1cda801da5c5a3
+      internalID: 1925121790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_111
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 4624
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52773252d26ae9e4bb5d505c2d3f18b9
+      internalID: 497082985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_112
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4046
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faed2f12bbf84654aa0ad8b0a382ec22
+      internalID: -2105600240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_113
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 4046
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51165db7a6c2fe343990a5a9b588f0cc
+      internalID: -439483929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_114
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 4046
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a73ae36b43ef9e418ad223f6e6bb06f
+      internalID: 1007095259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_115
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 4046
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 747bc3eaab242ce43aaecec085ee3e60
+      internalID: 1376506350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_116
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 4046
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeb56644dfc61f441909a1e6a23fefd3
+      internalID: -125050164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_117
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 4046
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b76fa1c1ac67cde4c93dce3f75ea91d4
+      internalID: 1663004126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_118
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 4046
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1de5df573e7177b4f9f666df42706670
+      internalID: 1337541505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_119
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3468
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4fb23113f56c684eb5853170cbeda0b
+      internalID: -1055694660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_120
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 3468
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98dec86d41fea1445953251a301a06aa
+      internalID: -903335781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_121
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 3468
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb5dad3be41a6b340abd8d6304eecda7
+      internalID: -1160427256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_122
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 3468
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d4ee00a821d25d4bab135e574ce233a
+      internalID: 119505338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_123
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 3468
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb0d55501973e104fada73e4b2d1efd0
+      internalID: -2115832971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_124
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 3468
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa4ba5e567d8c8946bbf0c87b891a966
+      internalID: 577896513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_125
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 3468
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f515222d4ce7e5045a4b1313bd3c9d32
+      internalID: -889658387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_126
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2890
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b46c75b0cf4132444b6ac53b3bb2d54c
+      internalID: 2101079284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_127
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 2890
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b5a2d4dc2906c044b515861789fa8d9
+      internalID: 895941397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_128
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2890
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5daf935db2d346c4f9b83630424ada01
+      internalID: 229293421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_129
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 2890
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d908536b1fdf5574e8a1cd5363cd38d0
+      internalID: -515025896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_130
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 2890
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca8fa6c97def6d4ab2e8095ee5bc675
+      internalID: -1138228071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_131
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 2890
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a03d447dd989d8449823aff3400adf2
+      internalID: -1378076896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_132
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 2890
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 659118fe617c93d4e8d33dade91f4696
+      internalID: -1145017744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_133
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2312
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49ebe2ccc4ed0c14b8abe6daaa929617
+      internalID: -1791017875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_134
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 2312
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f4febc8ee87e2f47a309cf9c7400d34
+      internalID: 1918574237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_135
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2312
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8ace33ad6ad7a84bbdc8b22e79a92f0
+      internalID: 267401591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_136
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 2312
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fee7776b896be6443a429f58fb01bfea
+      internalID: 1700443795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_137
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 2312
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06f7874c35584c941acc6ea3859741fc
+      internalID: -1504238618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_138
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 2312
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e486001d0cd728b4c9550bd37362e29b
+      internalID: 1688911757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_139
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 2312
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a8a0ba22fc5da245ae27e8bbee2fa25
+      internalID: -1133103635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_140
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1734
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06441a03612c890419fd9f1c0c39db8e
+      internalID: -1149779613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_141
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1734
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d62b94d861e2447b55c49ee829fc79
+      internalID: -106201188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_142
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1734
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca31806776728204fa180afd90ca08dc
+      internalID: 821765753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_143
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1734
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f600f3f7f2fea4fbf58a6b80c51a94
+      internalID: -476195812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_144
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1734
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 923bcb17ba29ee8498c343267f033e98
+      internalID: -796661868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_145
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 1734
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cbe82e688a09094e98f32f0333466be
+      internalID: -1092119911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_146
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 1734
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d981e41602e5e1f42969ced07ed8943e
+      internalID: 616136396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_147
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1156
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10942f230b368c84781701ea66918fb6
+      internalID: 463007200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_148
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1156
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc74d492706a1514d965cb7d2b2eb4e9
+      internalID: 1975879229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_149
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1156
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 973d547f1cc68c040a839a815b2e81fc
+      internalID: 386055825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_150
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1156
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 208455d94d05d524a8ac2c4db8881927
+      internalID: -1516232121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_151
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1156
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14bbf6fa60004ac43b8d99791af4b2a4
+      internalID: 2122762989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_152
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 1156
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f444102571d0f9b42b56b4cc02c0d442
+      internalID: 1215808670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_153
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 1156
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42e318aa66ab3c841a64693781e82329
+      internalID: -384864201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_154
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 578
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c71a697cd71df61428da6f2815ad9504
+      internalID: 921447586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_155
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 578
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c49f29c7af86e864ab8173fd608e9456
+      internalID: -1882618302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_156
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 578
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18b8aaf9b88267e47b7dd9a064811068
+      internalID: -1695787805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_157
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 578
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f691a8dbdb8fc344b93b2e42552bd05
+      internalID: 150697932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_158
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 578
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffbe2a7c513d0bb499464117b17a29bb
+      internalID: 174694864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_159
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 578
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a561a4dc1e744d4c830bb5cac21b689
+      internalID: 883115127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_160
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 578
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f43eafebe946bb42a8ed46a96e989cf
+      internalID: 231616254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_161
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11a2e872c3455cb4b97f56ea7f0e0336
+      internalID: -158862711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_162
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6af3d4f5cf36e543bfd27cedd767eb9
+      internalID: 1664963198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fnaf-purple-guy-peepaw_163
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 640
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e5baa0deaa693946bcdc72724b77cbf
+      internalID: -465481161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e4d8022664e9b064581bead4dc4b1e14
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":640.0,"y":578.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      fnaf-purple-guy-peepaw_0: -1204985590
+      fnaf-purple-guy-peepaw_1: -311927296
+      fnaf-purple-guy-peepaw_10: -771997618
+      fnaf-purple-guy-peepaw_100: 793464196
+      fnaf-purple-guy-peepaw_101: 182759583
+      fnaf-purple-guy-peepaw_102: 1696272505
+      fnaf-purple-guy-peepaw_103: -1288824959
+      fnaf-purple-guy-peepaw_104: 1128747478
+      fnaf-purple-guy-peepaw_105: 582547467
+      fnaf-purple-guy-peepaw_106: 2124422255
+      fnaf-purple-guy-peepaw_107: -1788830601
+      fnaf-purple-guy-peepaw_108: -2958435
+      fnaf-purple-guy-peepaw_109: 596613288
+      fnaf-purple-guy-peepaw_11: -2063785146
+      fnaf-purple-guy-peepaw_110: 1925121790
+      fnaf-purple-guy-peepaw_111: 497082985
+      fnaf-purple-guy-peepaw_112: -2105600240
+      fnaf-purple-guy-peepaw_113: -439483929
+      fnaf-purple-guy-peepaw_114: 1007095259
+      fnaf-purple-guy-peepaw_115: 1376506350
+      fnaf-purple-guy-peepaw_116: -125050164
+      fnaf-purple-guy-peepaw_117: 1663004126
+      fnaf-purple-guy-peepaw_118: 1337541505
+      fnaf-purple-guy-peepaw_119: -1055694660
+      fnaf-purple-guy-peepaw_12: 1601474584
+      fnaf-purple-guy-peepaw_120: -903335781
+      fnaf-purple-guy-peepaw_121: -1160427256
+      fnaf-purple-guy-peepaw_122: 119505338
+      fnaf-purple-guy-peepaw_123: -2115832971
+      fnaf-purple-guy-peepaw_124: 577896513
+      fnaf-purple-guy-peepaw_125: -889658387
+      fnaf-purple-guy-peepaw_126: 2101079284
+      fnaf-purple-guy-peepaw_127: 895941397
+      fnaf-purple-guy-peepaw_128: 229293421
+      fnaf-purple-guy-peepaw_129: -515025896
+      fnaf-purple-guy-peepaw_13: -2088136878
+      fnaf-purple-guy-peepaw_130: -1138228071
+      fnaf-purple-guy-peepaw_131: -1378076896
+      fnaf-purple-guy-peepaw_132: -1145017744
+      fnaf-purple-guy-peepaw_133: -1791017875
+      fnaf-purple-guy-peepaw_134: 1918574237
+      fnaf-purple-guy-peepaw_135: 267401591
+      fnaf-purple-guy-peepaw_136: 1700443795
+      fnaf-purple-guy-peepaw_137: -1504238618
+      fnaf-purple-guy-peepaw_138: 1688911757
+      fnaf-purple-guy-peepaw_139: -1133103635
+      fnaf-purple-guy-peepaw_14: 1102005904
+      fnaf-purple-guy-peepaw_140: -1149779613
+      fnaf-purple-guy-peepaw_141: -106201188
+      fnaf-purple-guy-peepaw_142: 821765753
+      fnaf-purple-guy-peepaw_143: -476195812
+      fnaf-purple-guy-peepaw_144: -796661868
+      fnaf-purple-guy-peepaw_145: -1092119911
+      fnaf-purple-guy-peepaw_146: 616136396
+      fnaf-purple-guy-peepaw_147: 463007200
+      fnaf-purple-guy-peepaw_148: 1975879229
+      fnaf-purple-guy-peepaw_149: 386055825
+      fnaf-purple-guy-peepaw_15: -1673153992
+      fnaf-purple-guy-peepaw_150: -1516232121
+      fnaf-purple-guy-peepaw_151: 2122762989
+      fnaf-purple-guy-peepaw_152: 1215808670
+      fnaf-purple-guy-peepaw_153: -384864201
+      fnaf-purple-guy-peepaw_154: 921447586
+      fnaf-purple-guy-peepaw_155: -1882618302
+      fnaf-purple-guy-peepaw_156: -1695787805
+      fnaf-purple-guy-peepaw_157: 150697932
+      fnaf-purple-guy-peepaw_158: 174694864
+      fnaf-purple-guy-peepaw_159: 883115127
+      fnaf-purple-guy-peepaw_16: -1893650025
+      fnaf-purple-guy-peepaw_160: 231616254
+      fnaf-purple-guy-peepaw_161: -158862711
+      fnaf-purple-guy-peepaw_162: 1664963198
+      fnaf-purple-guy-peepaw_163: -465481161
+      fnaf-purple-guy-peepaw_164: 400859589
+      fnaf-purple-guy-peepaw_165: 442661595
+      fnaf-purple-guy-peepaw_166: 7078845
+      fnaf-purple-guy-peepaw_167: -1821536557
+      fnaf-purple-guy-peepaw_17: -2087502571
+      fnaf-purple-guy-peepaw_18: -1878415733
+      fnaf-purple-guy-peepaw_19: 159347308
+      fnaf-purple-guy-peepaw_2: -1111379403
+      fnaf-purple-guy-peepaw_20: 859824783
+      fnaf-purple-guy-peepaw_21: -1441324500
+      fnaf-purple-guy-peepaw_22: -2122476229
+      fnaf-purple-guy-peepaw_23: -731413632
+      fnaf-purple-guy-peepaw_24: 1174258658
+      fnaf-purple-guy-peepaw_25: 209414683
+      fnaf-purple-guy-peepaw_26: 175060928
+      fnaf-purple-guy-peepaw_27: 1098905146
+      fnaf-purple-guy-peepaw_28: -1435603406
+      fnaf-purple-guy-peepaw_29: 916423740
+      fnaf-purple-guy-peepaw_3: -952109784
+      fnaf-purple-guy-peepaw_30: -1840212509
+      fnaf-purple-guy-peepaw_31: -1797402429
+      fnaf-purple-guy-peepaw_32: 433025707
+      fnaf-purple-guy-peepaw_33: 385245915
+      fnaf-purple-guy-peepaw_34: -1417989903
+      fnaf-purple-guy-peepaw_35: -469785172
+      fnaf-purple-guy-peepaw_36: 158478584
+      fnaf-purple-guy-peepaw_37: 1559135241
+      fnaf-purple-guy-peepaw_38: 862450074
+      fnaf-purple-guy-peepaw_39: 1088014197
+      fnaf-purple-guy-peepaw_4: -635919718
+      fnaf-purple-guy-peepaw_40: -2010192583
+      fnaf-purple-guy-peepaw_41: -496302166
+      fnaf-purple-guy-peepaw_42: -625688601
+      fnaf-purple-guy-peepaw_43: -997511441
+      fnaf-purple-guy-peepaw_44: -507099076
+      fnaf-purple-guy-peepaw_45: 866940648
+      fnaf-purple-guy-peepaw_46: -1991880849
+      fnaf-purple-guy-peepaw_47: -965273457
+      fnaf-purple-guy-peepaw_48: -2139809214
+      fnaf-purple-guy-peepaw_49: 918752624
+      fnaf-purple-guy-peepaw_5: 778900468
+      fnaf-purple-guy-peepaw_50: 1613166535
+      fnaf-purple-guy-peepaw_51: -1861772731
+      fnaf-purple-guy-peepaw_52: 248144470
+      fnaf-purple-guy-peepaw_53: 425688432
+      fnaf-purple-guy-peepaw_54: 1160828004
+      fnaf-purple-guy-peepaw_55: 180244719
+      fnaf-purple-guy-peepaw_56: -1837376470
+      fnaf-purple-guy-peepaw_57: 1960357583
+      fnaf-purple-guy-peepaw_58: -756751796
+      fnaf-purple-guy-peepaw_59: -1374377069
+      fnaf-purple-guy-peepaw_6: -1082876182
+      fnaf-purple-guy-peepaw_60: -694082835
+      fnaf-purple-guy-peepaw_61: 186922059
+      fnaf-purple-guy-peepaw_62: -1370623059
+      fnaf-purple-guy-peepaw_63: 85123501
+      fnaf-purple-guy-peepaw_64: 273917588
+      fnaf-purple-guy-peepaw_65: -1454931908
+      fnaf-purple-guy-peepaw_66: -2120222239
+      fnaf-purple-guy-peepaw_67: -626683614
+      fnaf-purple-guy-peepaw_68: 1570407273
+      fnaf-purple-guy-peepaw_69: -1690569929
+      fnaf-purple-guy-peepaw_7: 189251915
+      fnaf-purple-guy-peepaw_70: -2108015811
+      fnaf-purple-guy-peepaw_71: 1286363134
+      fnaf-purple-guy-peepaw_72: -846869198
+      fnaf-purple-guy-peepaw_73: 634600171
+      fnaf-purple-guy-peepaw_74: -1569965493
+      fnaf-purple-guy-peepaw_75: -1114655441
+      fnaf-purple-guy-peepaw_76: -2119540565
+      fnaf-purple-guy-peepaw_77: 1827162443
+      fnaf-purple-guy-peepaw_78: -331481212
+      fnaf-purple-guy-peepaw_79: 2049199907
+      fnaf-purple-guy-peepaw_8: -1844991936
+      fnaf-purple-guy-peepaw_80: -300997252
+      fnaf-purple-guy-peepaw_81: 786671557
+      fnaf-purple-guy-peepaw_82: 2146169956
+      fnaf-purple-guy-peepaw_83: 1236928574
+      fnaf-purple-guy-peepaw_84: -1991635045
+      fnaf-purple-guy-peepaw_85: 896640514
+      fnaf-purple-guy-peepaw_86: -1271557323
+      fnaf-purple-guy-peepaw_87: 1182388926
+      fnaf-purple-guy-peepaw_88: 651695994
+      fnaf-purple-guy-peepaw_89: -1120874658
+      fnaf-purple-guy-peepaw_9: -612433885
+      fnaf-purple-guy-peepaw_90: -829005869
+      fnaf-purple-guy-peepaw_91: -244771083
+      fnaf-purple-guy-peepaw_92: -1635812862
+      fnaf-purple-guy-peepaw_93: -200301288
+      fnaf-purple-guy-peepaw_94: 2080324615
+      fnaf-purple-guy-peepaw_95: -496694988
+      fnaf-purple-guy-peepaw_96: 693078468
+      fnaf-purple-guy-peepaw_97: 1428206825
+      fnaf-purple-guy-peepaw_98: 1102202569
+      fnaf-purple-guy-peepaw_99: -1752922553
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
