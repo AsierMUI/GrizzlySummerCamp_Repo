@@ -21,6 +21,7 @@ public class UIAnimations : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            FindFirstObjectByType<ButtonClickSound>()?.OnClick(0);
             OcultaInstrucciones.Instance.OcultarInstrucciones();
             CambiarLibreta();
         }

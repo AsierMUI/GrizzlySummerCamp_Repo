@@ -21,6 +21,7 @@ public class ButtonClickSound : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
         {
             int index = i;
+            Debug.Log(buttons + " numero");
             if (buttons[i]!=null)
             {
                 buttons[i].onClick.AddListener(() => OnClick(index));
@@ -28,7 +29,7 @@ public class ButtonClickSound : MonoBehaviour
         }
     }
 
-    void OnClick(int buttonIndex)
+    public void OnClick(int buttonIndex)
     {
         if (audioSource != null && buttonIndex < clickSounds.Count)
             audioSource.PlayOneShot(clickSounds[buttonIndex]);
