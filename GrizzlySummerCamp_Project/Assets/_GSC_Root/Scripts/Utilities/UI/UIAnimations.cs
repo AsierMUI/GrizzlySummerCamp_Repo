@@ -16,7 +16,7 @@ public class UIAnimations : MonoBehaviour
                 .setEase(LeanTweenType.easeOutBounce).setOnComplete(BajarAlpha); //set on complete llama a la funcion bajaralpha al acabar la animacion del logo
         }
     }
-
+    //
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
