@@ -23,8 +23,9 @@ public class InteractableObject : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerInput = player.GetComponent<PlayerInput>();
         interactAction = playerInput.actions.FindAction("Interact");
-        
-        spriteObject.SetActive(false);
+
+        if (spriteObject != null)
+            spriteObject.SetActive(false);
 
     }
 
