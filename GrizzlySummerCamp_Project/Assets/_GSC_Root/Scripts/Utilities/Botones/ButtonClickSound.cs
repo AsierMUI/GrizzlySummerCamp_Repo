@@ -20,7 +20,7 @@ public class ButtonClickSound : MonoBehaviour
     {
         foreach (var bs in buttonsounds) 
         {
-            if (bs!=null)
+            if (bs!=null && bs.button != null)
             {
                 bs.button.onClick.AddListener(() => AudioManager.Current?.PlaySFX(bs.soundKey));
             }

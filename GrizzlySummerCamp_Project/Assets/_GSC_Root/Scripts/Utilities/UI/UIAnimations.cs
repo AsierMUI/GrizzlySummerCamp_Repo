@@ -7,6 +7,8 @@ public class UIAnimations : MonoBehaviour
     [SerializeField] private GameObject libreta;
 
     private bool isLibretaActive = true;
+    private bool AnimaciónActiva = false;
+
     private void Start()
     {
         if (logo !=null)
@@ -20,10 +22,15 @@ public class UIAnimations : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            AudioManager.Current?.PlaySFX("Button");
+            if (!AnimaciónActiva)
+            {
+                AnimaciónActiva = true;
+                AudioManager.Current?.PlaySFX("Button");
 
-            OcultaInstrucciones.Instance.OcultarInstrucciones();
-            CambiarLibreta();
+                OcultaInstrucciones.Instance.OcultarInstrucciones();
+                CambiarLibreta();
+
+            }
             
         }
     }
@@ -49,11 +56,11 @@ public class UIAnimations : MonoBehaviour
 
     public void ActivarLibreta()
     {
-        LeanTween.moveY(libreta.GetComponent<RectTransform>(), 0, 1f).setEase(LeanTweenType.easeOutSine);
+        LeanTween.moveY(libreta.GetComponent<RectTransform>(), 0, 1f).setEase(LeanTweenType.easeOutSine).setOnComplete(() => AnimaciónActiva = false);
     }
 
     public void DesactivarLibreta()
     {
-        LeanTween.moveY(libreta.GetComponent<RectTransform>(), -609, 1f).setEase(LeanTweenType.easeOutSine);
+        LeanTween.moveY(libreta.GetComponent<RectTransform>(), -609, 1f).setEase(LeanTweenType.easeOutSine).setOnComplete(() => AnimaciónActiva = false);
     }
 }
