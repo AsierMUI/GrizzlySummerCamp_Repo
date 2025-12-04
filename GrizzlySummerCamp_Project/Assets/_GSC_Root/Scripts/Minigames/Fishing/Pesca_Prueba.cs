@@ -59,13 +59,14 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] GameObject miniResultUI;
     [SerializeField] TextMeshProUGUI resultText;
     [SerializeField] float resultDisplayTime = 1f;
+    [SerializeField] TextMeshProUGUI dificultadTexto;
 
     [Header("Final Result UI")]
     [SerializeField] GameObject finalUI;
     [SerializeField] TextMeshProUGUI mensajeFinalText;
 
-    [Header("Instructions UI")]
-    [SerializeField] GameObject instruccionesUI;
+    [Header("Loading UI")]
+    [SerializeField] GameObject loadingUI;
 
     [Header("Fishing Time Limit")]
     [SerializeField] Temporizador temporizador;
@@ -103,8 +104,8 @@ public class Pesca_Prueba : MonoBehaviour
         fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
 
-        if (instruccionesUI != null)
-            instruccionesUI.SetActive(true);
+        if (loadingUI != null)
+            loadingUI.SetActive(true);
 
         if (escapeSlider != null) 
             escapeOriginalPos = escapeSlider.transform.localPosition;
@@ -152,7 +153,7 @@ public class Pesca_Prueba : MonoBehaviour
             return;
 
         bool hayUIBloqueante =
-            (instruccionesUI != null && instruccionesUI.activeSelf) ||
+            (loadingUI != null && loadingUI.activeSelf) ||
             (fishingUI != null && fishingUI.activeSelf) ||
             (miniResultUI != null && miniResultUI.activeSelf) ||
             (finalUI != null && finalUI.activeSelf) ||
@@ -419,6 +420,25 @@ public class Pesca_Prueba : MonoBehaviour
                     hookProgressLossSpeed = 0.07f;
                     break;
             }
+
+        MostrarDificultadEnUI();
+    }
+    void MostrarDificultadEnUI()
+    {
+        if (dificultadTexto == null) return;
+        
+        switch (dificultadActual)
+        {
+            case Dificultad.Facil:
+                dificultadTexto.text = "Easy";
+                break;
+            case Dificultad.Normal:
+                dificultadTexto.text = "Normal";
+                break;
+            case Dificultad.Dificil:
+                dificultadTexto.text = "Hard";
+                break;
+        }
     }
     void ActualizarInsignia()
     {
@@ -476,7 +496,7 @@ public class Pesca_Prueba : MonoBehaviour
     }
     public void EmpezarJuego() 
     {
-        instruccionesUI.SetActive(false);
+        loadingUI.SetActive(false);
         Time.timeScale = 1f;
         if (temporizador != null)
             temporizador.ActivarTemporizador();
