@@ -5,6 +5,7 @@ public class UIAnimations : MonoBehaviour
     [SerializeField] private GameObject logo;
     [SerializeField] private GameObject inicio;
     [SerializeField] private GameObject libreta;
+    [SerializeField] string key;
 
     private bool isLibretaActive = true;
     private bool AnimaciónActiva = false;
@@ -20,12 +21,17 @@ public class UIAnimations : MonoBehaviour
     //
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            ToggleLibreta();
+        }
+        /*
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!AnimaciónActiva)
+            if (!AnimaciónActiva && key!=null)
             {
                 AnimaciónActiva = true;
-                AudioManager.Current?.PlaySFX("Button");
+                AudioManager.Current?.PlaySFX(key);
 
                 OcultaInstrucciones.Instance.OcultarInstrucciones();
                 CambiarLibreta();
@@ -33,7 +39,21 @@ public class UIAnimations : MonoBehaviour
             }
             
         }
+        */
     }
+
+    public void ToggleLibreta() 
+    {
+        if (AnimaciónActiva) return;
+
+        AnimaciónActiva=true;
+
+        AudioManager.Current?.PlaySFX(key);
+
+        OcultaInstrucciones.Instance.OcultarInstrucciones();
+        CambiarLibreta();
+    }
+
 
     private void BajarAlpha()
     {
