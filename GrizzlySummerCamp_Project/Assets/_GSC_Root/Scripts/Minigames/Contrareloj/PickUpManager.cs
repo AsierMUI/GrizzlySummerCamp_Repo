@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class PickUpManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PickUpManager : MonoBehaviour
     [SerializeField] GameObject goal;
     [SerializeField] GameObject winUI;
     [SerializeField] GameObject boat;
+
+    [SerializeField] GameObject Notification;
 
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip pointSound;
@@ -61,7 +64,17 @@ public class PickUpManager : MonoBehaviour
 
     void ActivateGoal()
     {
+        StartCoroutine("Notice");
         goal.SetActive(true);
+    }
+    IEnumerator Notice() 
+    {
+        if (Notification != null)
+        {
+            Notification.SetActive(true);
+            yield return new WaitForSeconds(3f);
+            Notification.SetActive(false);
+        }
     }
 
     public void ReachedGoal()
