@@ -384,25 +384,41 @@ public class Pesca_Prueba : MonoBehaviour
     }
     void SeleccionarDificultadAleatoria()
     {
-        dificultadActual = (Dificultad)Random.Range(0, 3);
-        Debug.Log("Dificultad seleccionada:" + dificultadActual);
-
-        //parametros base
-        switch (dificultadActual)
+        float r = Random.value; //numero entre 0 y 1
+        //40% facil
+        if (r < 0.04f)
         {
-            case Dificultad.Facil:
-                hookPower = 0.09f;
-                hookProgressLossSpeed = 0.03f;
-                break;
-            case Dificultad.Normal:
-                hookPower = 0.07f;
-                hookProgressLossSpeed = 0.05f;
-                break;
-            case Dificultad.Dificil:
-                hookPower = 0.03f;
-                hookProgressLossSpeed = 0.07f;
-                break;
+            dificultadActual = Dificultad.Facil;
         }
+        //40% Normal (0.050 a 0.95)
+        else if (r < 0.8f)
+        {
+            dificultadActual = Dificultad.Normal;
+        }
+        //20% dificil (0.80 a 1)
+        else
+        {
+            dificultadActual = Dificultad.Dificil;
+        }
+
+        Debug.Log ("Dificultad seleccionada :" + dificultadActual);
+
+            //parametros base por dificultad
+            switch (dificultadActual)
+            {
+                case Dificultad.Facil:
+                    hookPower = 0.09f;
+                    hookProgressLossSpeed = 0.03f;
+                    break;
+                case Dificultad.Normal:
+                    hookPower = 0.07f;
+                    hookProgressLossSpeed = 0.05f;
+                    break;
+                case Dificultad.Dificil:
+                    hookPower = 0.03f;
+                    hookProgressLossSpeed = 0.07f;
+                    break;
+            }
     }
     void ActualizarInsignia()
     {
