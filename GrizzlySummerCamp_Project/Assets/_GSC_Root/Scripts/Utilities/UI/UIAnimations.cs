@@ -20,15 +20,11 @@ public class UIAnimations : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            AudioManager.Current?.PlaySFX("paper");
+            AudioManager.Current?.PlaySFX("Button");
 
             OcultaInstrucciones.Instance.OcultarInstrucciones();
             CambiarLibreta();
-            /*
-            FindFirstObjectByType<ButtonClickSound>()?.OnClick(0);
-            OcultaInstrucciones.Instance.OcultarInstrucciones();
-            CambiarLibreta();
-            */
+            
         }
     }
 

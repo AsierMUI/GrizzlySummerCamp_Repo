@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -8,59 +9,44 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
 
-    [Header("Audio Clip")]
-    public AudioClip background;
-    public AudioClip walking;
-    public AudioClip fishing;
-    public AudioClip boat;
-    public AudioClip bonk;
-    public AudioClip paper;
+    [System.Serializable]
+    public class NamedAudio 
+    {
+        public string key;
+        public AudioClip clip;
+    }
 
+    [Header("Sonidos escena")]
+    public List<NamedAudio> soundList = new();
+
+    private Dictionary<string, AudioClip> soundDict;
 
     private void Awake()
     {
         Current = this;
+
+        soundDict = new Dictionary<string, AudioClip>();
+        foreach (var sound in soundList) 
+        {
+            if (!soundDict.ContainsKey(sound.key))
+            {
+                soundDict.Add(sound.key, sound.clip);
+            }
+        }
     }
 
     private void Start()
     {
-        if (background != null) 
+        if (musicSource != null && soundDict.ContainsKey("Music")) 
         {
-            musicSource.clip = background;
+            musicSource.clip = soundDict["Music"];
             musicSource.Play();
         }
-        /*
-        musicSource.clip = background;
-        musicSource.Play();
-         */
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(string key)
     {
-        if (clip!=null) return;
-        SFXSource.PlayOneShot(clip);
-    }
-
-    public void PlaySFX(string clipName) 
-    {
-        AudioClip clip = GetClipByName(clipName);
-        if (clip != null) 
-        {
-            SFXSource.PlayOneShot(clip);
-        }
-    }
-
-    private AudioClip GetClipByName(string name) 
-    {
-        return name switch
-        {
-            "background" => background,
-            "walking" => walking,
-            "fishing" => fishing,
-            "boat" => boat,
-            "bonk" => bonk,
-            "paper" => paper,
-            _ => null
-        };
+        if (SFXSource != null && soundDict.ContainsKey(key))
+            SFXSource.PlayOneShot(soundDict[key]);
     }
 }
