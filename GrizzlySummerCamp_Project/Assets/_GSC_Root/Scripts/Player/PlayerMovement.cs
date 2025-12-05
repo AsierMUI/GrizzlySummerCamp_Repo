@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    [SerializeField] ParticleSystem walkingVFX;
+
     //Player Input = El input es una función que recive valores y los traduce (teclado&ratón,mando,etc. a dirección,cantidad,etc) se usa para efectuar acciones
     PlayerInput playerInput;
     InputAction moveAction;
@@ -56,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
         bool isWalking = moveDir.sqrMagnitude > 0.01;
         animator.SetBool("isWalking", isWalking);
 
+        HandleWalkingVFX(isWalking);
+
         // Deseamos una velocidad en esa dirección
         Vector3 desiredVelocity = moveDir * Speed;
         Vector3 velocityChange = desiredVelocity - rb.linearVelocity;   // Aplicamos cambio instantáneo de velocidad (como velocity pero moderno)
@@ -73,5 +77,15 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity *= collisionSlowdown;
         }
+    }
+
+    void HandleWalkingVFX(bool isWalking)
+    {
+        if (walkingVFX == null) return;
+
+        if (isWalking && !walkingVFX.isPlaying)
+            walkingVFX.Play();
+        else if (!isWalking && walkingVFX.isPlaying)
+            walkingVFX.Stop();
     }
 }
