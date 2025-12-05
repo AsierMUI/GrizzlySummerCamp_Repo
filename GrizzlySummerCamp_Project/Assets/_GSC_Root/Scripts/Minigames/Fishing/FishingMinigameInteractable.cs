@@ -7,7 +7,6 @@ public class FishingMinigameInteractable : MonoBehaviour
     [SerializeField] float interactionDistance = 4f;
     [SerializeField] GameObject spriteObject;
     [SerializeField] Pesca_Prueba pescaScript;
-
     [SerializeField] GameObject player;
     PlayerInput playerInput;
     InputAction interactAction;

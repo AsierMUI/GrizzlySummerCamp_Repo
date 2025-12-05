@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
 
+    [Header("AudioMixer")]
+    public AudioMixer mixer;
+
     [System.Serializable]
     public class NamedAudio 
     {
@@ -16,9 +20,8 @@ public class AudioManager : MonoBehaviour
         public AudioClip clip;
     }
 
-    [Header("Sonidos escena")]
+    [Header("Listas de sonidos")/*"Sonidos escena"*/]
     public List<NamedAudio> soundList = new();
-
     private Dictionary<string, AudioClip> soundDict;
 
     private void Awake()
@@ -49,4 +52,8 @@ public class AudioManager : MonoBehaviour
         if (SFXSource != null && soundDict.ContainsKey(key))
             SFXSource.PlayOneShot(soundDict[key]);
     }
+
+    public void SetMusicVolume(float value) => mixer.SetFloat("Music", Mathf.Log10(value) * 20);
+    public void SetSFXVolume(float value) => mixer.SetFloat("SFX", Mathf.Log10(value) * 20);
+
 }
