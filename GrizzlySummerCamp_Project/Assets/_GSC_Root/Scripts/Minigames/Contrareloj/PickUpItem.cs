@@ -1,13 +1,12 @@
 using UnityEngine;
 
-public class PickUpLaberinto : MonoBehaviour
+public class PickUpItem : MonoBehaviour
 {
-    [SerializeField] private int puntosC = 1;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            PickUpManager.instance.AddScore(puntosC);
+            PickUpManager.instance.AddScore(transform);
             Destroy(gameObject);
         }
     }
