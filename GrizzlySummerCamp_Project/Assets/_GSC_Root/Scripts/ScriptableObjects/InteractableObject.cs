@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour
 {
-
     [SerializeField] float interactionDistance = 4f;
     //[SerializeField] int sceneToLoad;
     [SerializeField] GameObject spriteObject;
