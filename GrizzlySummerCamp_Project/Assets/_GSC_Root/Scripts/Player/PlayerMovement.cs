@@ -3,6 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // =====================================================
+    // MOVIMIENTO
+    // =====================================================
+
     [Header("Move Stats")]
     [SerializeField] float Speed;
     [SerializeField] float rotationSpeed;
@@ -13,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ParticleSystem walkingVFX;
     [SerializeField] float sprintMultiplier = 3f;
 
+    // =====================================================
+    // INPUT SYSTEM
+    // =====================================================
     PlayerInput playerInput;
     InputAction moveAction;
     InputAction sprintAction;
