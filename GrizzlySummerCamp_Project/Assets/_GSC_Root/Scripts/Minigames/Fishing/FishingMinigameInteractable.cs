@@ -42,5 +42,6 @@ public class FishingMinigameInteractable : MonoBehaviour
             pescaScript.StartFishing();
 
         gameObject.SetActive(false);
+        FishingZoneSpawner.instance.RespawnSingleZone(10f);
     }
 }

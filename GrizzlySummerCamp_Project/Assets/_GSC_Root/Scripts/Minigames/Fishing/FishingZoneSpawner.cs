@@ -1,8 +1,11 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class FishingZoneSpawner : MonoBehaviour
 {
+    public static FishingZoneSpawner instance;
+
     [Header("Prefab zona pesca")]
     public GameObject fishingZonePrefab;
 
@@ -12,7 +15,12 @@ public class FishingZoneSpawner : MonoBehaviour
     [Header("Numero de zonas de pesca")]
     public int numberOfZones = 5;
 
-    private List<Transform> usedPoints = new List<Transform>(); 
+    private List<Transform> usedPoints = new List<Transform>();
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -27,15 +35,28 @@ public class FishingZoneSpawner : MonoBehaviour
 
         for (int i = 0; i < zonesToSpawn; i++)
         {
-            Transform spawnPoint = GetRandomUnusedSpawnPoint();
-            if (spawnPoint == null)
-                return;
-
-            GameObject zone = Instantiate(fishingZonePrefab, spawnPoint.position, spawnPoint.rotation);
-            zone.name = "FishingZone_" + (i + 1);
-
-            usedPoints.Add(spawnPoint);
+            SpawnAtRandomPoint();
         }
+    }
+
+    public void RespawnSingleZone(float delay)
+    {
+        StartCoroutine(RespawnCoroutine(delay));
+    }
+
+    private IEnumerator RespawnCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SpawnAtRandomPoint();
+    }
+
+    private void SpawnAtRandomPoint()
+    {
+        Transform spawnPoint = GetRandomUnusedSpawnPoint();
+        if (spawnPoint == null) return;
+
+        GameObject zone = Instantiate(fishingZonePrefab, spawnPoint.position, spawnPoint.rotation);
+        usedPoints.Add(spawnPoint);
     }
 
     Transform GetRandomUnusedSpawnPoint()
@@ -44,7 +65,10 @@ public class FishingZoneSpawner : MonoBehaviour
         avaliablePoints.RemoveAll(point => usedPoints.Contains(point));
 
         if (avaliablePoints.Count == 0)
-            return null;
+        {
+            usedPoints.Clear();
+            avaliablePoints = new List<Transform>(spawnPoints);
+        }
 
         int randomIndex = Random.Range(0, avaliablePoints.Count);
         return avaliablePoints[randomIndex];
