@@ -13,7 +13,6 @@ public class AudioManager : MonoBehaviour
 
     [Header("AudioMixer")]
     public AudioMixer mixer;
-    [Icon("Assets/_GSC_Root/Art/Sprites/Pesca/S_Gancho.png")]
 
     [System.Serializable]
     public class NamedAudio 

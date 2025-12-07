@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +14,33 @@ public class ButtonClickSound : MonoBehaviour
         public string soundKey;
     
     }
-  
+
+
+    [System.Serializable]
+    public class ButtonSoundGroup
+    {
+        public string groupName = "Nuevo grupo";
+        public List<ButtonSound> sounds = new();
+        public bool foldout = true; // Estado visual de expandido en inspector
+    }
+
+
+    public List<ButtonSoundGroup> groups = new();
+
+    private void Start()
+    {
+        foreach (var group in groups)
+        {
+            foreach (var bs in group.sounds)
+            {
+                if (bs != null && bs.button != null)
+                {
+                    bs.button.onClick.AddListener(() => AudioManager.Current?.PlaySFX(bs.soundKey));
+                }
+            }
+        }
+    }
+    /*
     public List<ButtonSound> buttonsounds = new();
     private void Start()
     {
@@ -26,5 +52,6 @@ public class ButtonClickSound : MonoBehaviour
             }
         }
     }
+    */
 
 }

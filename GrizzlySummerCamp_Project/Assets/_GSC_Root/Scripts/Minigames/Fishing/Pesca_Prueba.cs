@@ -367,6 +367,7 @@ public class Pesca_Prueba : MonoBehaviour
     {
         isFishing = true;
 
+
         fishingUI.SetActive(true);
         miniResultUI.SetActive(false);
 
@@ -382,6 +383,8 @@ public class Pesca_Prueba : MonoBehaviour
 
         SeleccionarDificultadAleatoria();
         ControlarMovimientoBarco();
+
+        AudioManager.Current?.PlaySFX("Splash");
     }
     void SeleccionarDificultadAleatoria()
     {
