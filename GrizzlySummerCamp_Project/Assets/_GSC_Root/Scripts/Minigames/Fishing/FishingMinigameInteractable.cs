@@ -6,7 +6,10 @@ public class FishingMinigameInteractable : MonoBehaviour
     [Header("Conf interacción")]
     [SerializeField] float interactionDistance = 4f;
     [SerializeField] GameObject spriteObject;
-    [SerializeField] Pesca_Prueba pescaScript;
+
+    [Header("Script minijuego")]
+    [SerializeField] FMControler fishingController;
+
     [SerializeField] GameObject player;
     PlayerInput playerInput;
     InputAction interactAction;
@@ -19,6 +22,14 @@ public class FishingMinigameInteractable : MonoBehaviour
         playerInput = player.GetComponent<PlayerInput>();
         interactAction = playerInput.actions.FindAction("Interact");
         spriteObject.SetActive(false);
+
+        if (fishingController == null)
+        {
+            fishingController = FindFirstObjectByType<FMControler>();
+
+            if (fishingController == null)
+                Debug.LogError("no hay fmcontroler en la escena");
+        }
     }
 
     void Update()
@@ -36,11 +47,15 @@ public class FishingMinigameInteractable : MonoBehaviour
 
     void ShowInterface()
     {
-        var pescaScript = Object.FindFirstObjectByType<Pesca_Prueba>();
-
-        if (pescaScript != null)
-            pescaScript.StartFishing();
-
+        if (fishingController != null)
+        {
+            fishingController.StartFishing();
+        }
+        else
+        {
+            Debug.LogError("el prefab no tiene fmcoltroler");
+            return;
+        }
         gameObject.SetActive(false);
         FishingZoneSpawner.instance.RespawnSingleZone(10f);
     }
