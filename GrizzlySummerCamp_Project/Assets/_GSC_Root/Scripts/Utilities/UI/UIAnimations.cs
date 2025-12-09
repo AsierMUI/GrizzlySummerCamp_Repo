@@ -7,6 +7,12 @@ public class UIAnimations : MonoBehaviour
     [SerializeField] private GameObject libreta;
     [SerializeField] string key;
 
+    [Header("Manecilla tiempo")]
+    [SerializeField] private GameObject LoadingUI;
+    [SerializeField] private Animator animManecilla;
+    [SerializeField] private string tiempoAnim;
+    private bool animacionTiempoIniciada = false;
+
     private bool isLibretaActive = true;
     private bool AnimaciónActiva = false;
 
@@ -24,7 +30,12 @@ public class UIAnimations : MonoBehaviour
         {
             ToggleLibreta();
         }
+
+        if (!animacionTiempoIniciada && LoadingUI != null && !LoadingUI.activeSelf)
+            IniciarAnimacionManecilla();
     }
+
+    //Funciones libreta
 
     public void ToggleLibreta() 
     {
@@ -37,7 +48,6 @@ public class UIAnimations : MonoBehaviour
         OcultaInstrucciones.Instance.OcultarInstrucciones();
         CambiarLibreta();
     }
-
 
     private void BajarAlpha()
     {
@@ -66,5 +76,13 @@ public class UIAnimations : MonoBehaviour
     public void DesactivarLibreta()
     {
         LeanTween.moveY(libreta.GetComponent<RectTransform>(), -609, 1f).setEase(LeanTweenType.easeOutSine).setOnComplete(() => AnimaciónActiva = false);
+    }
+
+    //Funciones tiempo
+
+    public void IniciarAnimacionManecilla()
+    {
+        animacionTiempoIniciada = true; if (animManecilla != null)
+            animManecilla.Play(tiempoAnim);
     }
 }
