@@ -9,6 +9,10 @@ public class BowShoot : MonoBehaviour
     public float upwardForce = 3f;
     public LayerMask aimLayer;
 
+    [Header("Cooldown")]
+    public float shootCooldown = 1f;
+    private bool canShoot = true;
+
     [Header("Trajectory Preview")]
     public LineRenderer lineRenderer;
     public int lineSegmentCount = 30; // más puntos = curva más suave
@@ -43,12 +47,14 @@ public class BowShoot : MonoBehaviour
         if (showTrajectory)
             UpdateTrajectory();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canShoot)
             Shoot();
     }
 
     void Shoot()
     {
+        canShoot = false; //Se activa el cooldown
+
         // Calcular dirección del disparo
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
         Vector3 targetPoint = ray.GetPoint(50); // fallback
@@ -69,8 +75,14 @@ public class BowShoot : MonoBehaviour
         lineRenderer.enabled = false;
         showTrajectory = false;
 
-        // Opcional: mostrar línea otra vez después de recarga
-        Invoke(nameof(ShowLineAgain), 1.2f);
+        // Opcional: mostrar línea otra vez después de recarga + permitir disparar otra vez
+        Invoke(nameof(ResetShot), shootCooldown);
+    }
+
+    void ResetShot()
+    {
+        canShoot = true;
+        ShowLineAgain();
     }
 
     void ShowLineAgain()
