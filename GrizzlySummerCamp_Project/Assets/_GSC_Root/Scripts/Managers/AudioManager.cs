@@ -5,8 +5,6 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Current;
-
     [Header("Audio Source")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
@@ -21,14 +19,12 @@ public class AudioManager : MonoBehaviour
         public AudioClip clip;
     }
 
-    [Header("Listas de sonidos")/*"Sonidos escena"*/]
+    [Header("Listas de sonidos")]/*"Sonidos escena"*/
     public List<NamedAudio> soundList = new();
     private Dictionary<string, AudioClip> soundDict;
 
     private void Awake()
     {
-        Current = this;
-
         soundDict = new Dictionary<string, AudioClip>();
         foreach (var sound in soundList) 
         {
@@ -53,8 +49,15 @@ public class AudioManager : MonoBehaviour
         if (SFXSource != null && soundDict.ContainsKey(key))
             SFXSource.PlayOneShot(soundDict[key]);
     }
-
-    public void SetMusicVolume(float value) => mixer.SetFloat("Music", Mathf.Log10(value) * 20);
-    public void SetSFXVolume(float value) => mixer.SetFloat("SFX", Mathf.Log10(value) * 20);
+    
+    public void PlayMusic(string key) 
+    {
+        if (musicSource != null && soundDict.ContainsKey(key))
+        {
+            musicSource.clip = soundDict[key];
+            musicSource.Play();
+        }
+    
+    }
 
 }

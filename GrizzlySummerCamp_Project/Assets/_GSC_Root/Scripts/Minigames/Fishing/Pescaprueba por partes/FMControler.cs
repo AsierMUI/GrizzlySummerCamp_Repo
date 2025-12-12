@@ -69,7 +69,7 @@ public class FMControler : MonoBehaviour
         if (niñaAnimator != null)
             niñaAnimator.SetTrigger("cast");
 
-        AudioManager.Current?.PlaySFX("Splash");
+        //AudioManager.Current?.PlaySFX("Splash");
     }
 
     void Win()

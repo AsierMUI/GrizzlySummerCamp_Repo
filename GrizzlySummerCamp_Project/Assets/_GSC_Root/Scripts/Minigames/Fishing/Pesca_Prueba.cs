@@ -9,6 +9,10 @@ using UnityEngine.SceneManagement;
 
 public class Pesca_Prueba : MonoBehaviour
 {
+    //audio
+    public AudioManager audioManager;
+
+
     [Header("Player animator")]
     [SerializeField] Animator niñaAnimator;
     private bool isMoving = false;
@@ -384,7 +388,7 @@ public class Pesca_Prueba : MonoBehaviour
         SeleccionarDificultadAleatoria();
         ControlarMovimientoBarco();
 
-        AudioManager.Current?.PlaySFX("Splash");
+        audioManager.PlaySFX("Splash");
     }
     void SeleccionarDificultadAleatoria()
     {

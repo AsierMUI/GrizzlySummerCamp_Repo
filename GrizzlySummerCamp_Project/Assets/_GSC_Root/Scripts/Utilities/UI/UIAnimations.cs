@@ -16,6 +16,8 @@ public class UIAnimations : MonoBehaviour
     private bool isLibretaActive = true;
     private bool AnimaciónActiva = false;
 
+    public AudioManager audioManager;
+
     private void Start()
     {
         if (logo !=null)
@@ -43,7 +45,7 @@ public class UIAnimations : MonoBehaviour
 
         AnimaciónActiva=true;
 
-        AudioManager.Current?.PlaySFX(key);
+       audioManager.PlaySFX(key);
 
         OcultaInstrucciones.Instance.OcultarInstrucciones();
         CambiarLibreta();

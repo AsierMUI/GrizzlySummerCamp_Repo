@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 public class ButtonClickSound : MonoBehaviour
 {
+    public AudioManager audioManager;
+
 
     [System.Serializable]
     public class ButtonSound 
@@ -35,23 +37,10 @@ public class ButtonClickSound : MonoBehaviour
             {
                 if (bs != null && bs.button != null)
                 {
-                    bs.button.onClick.AddListener(() => AudioManager.Current?.PlaySFX(bs.soundKey));
+                    bs.button.onClick.AddListener(() => audioManager.PlaySFX(bs.soundKey));
                 }
             }
         }
     }
-    /*
-    public List<ButtonSound> buttonsounds = new();
-    private void Start()
-    {
-        foreach (var bs in buttonsounds) 
-        {
-            if (bs!=null && bs.button != null)
-            {
-                bs.button.onClick.AddListener(() => AudioManager.Current?.PlaySFX(bs.soundKey));
-            }
-        }
-    }
-    */
 
 }
