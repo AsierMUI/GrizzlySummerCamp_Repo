@@ -16,6 +16,8 @@ public class Temporizador : MonoBehaviour
 
     [SerializeField] private Pesca_Prueba pescaScript;
 
+    [SerializeField] private GameObject loadingUI;
+
     private void Start()
     {
         tiempoActual = tiempoMax;
@@ -28,22 +30,17 @@ public class Temporizador : MonoBehaviour
         //if (canvasInstrucciones !=null && canvasInstrucciones.activeSelf)
         //    tiempoActivado=false;
         //else
+
         tiempoActivado = true;
     }
     private void Update()
     {
-        if (!tiempoActivado &&  !tiempoFinalizado /*&& canvasInstrucciones != null*/)
-        {
-            //if (!canvasInstrucciones.activeSelf)
-            //{
-            ActivarTemporizador();
-            //}
-        }
 
-        if (tiempoActivado)
-        {
+        if (loadingUI != null && loadingUI.activeSelf) return;
+
+        if (!tiempoActivado || tiempoFinalizado) return;
+
             CambiarContador();
-        }
     }
     private void CambiarContador()
     {

@@ -70,7 +70,7 @@ public class Pesca_Prueba : MonoBehaviour
     [SerializeField] GameObject loadingUI;
 
     [Header("Fishing Time Limit")]
-    [SerializeField] Temporizador temporizador;
+    public Temporizador temporizador; //Ref al script de temporizador para solo llamarlo al acabarse el tiempo(por ahora)
 
     [Header("Score System")]
     [SerializeField] TextMeshProUGUI puntosTexto;
@@ -99,8 +99,6 @@ public class Pesca_Prueba : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0f;
-        if (temporizador == null) 
-            temporizador = FindFirstObjectByType<Temporizador>();
 
         fishPosition = Random.Range(0f, 1f);
         fishDestination = fishPosition;
@@ -158,9 +156,7 @@ public class Pesca_Prueba : MonoBehaviour
             (fishingUI != null && fishingUI.activeSelf) ||
             (miniResultUI != null && miniResultUI.activeSelf) ||
             (finalUI != null && finalUI.activeSelf) ||
-            (pauseGame != null && pauseGame.menuPausa != null && pauseGame.menuPausa.activeSelf) ||
-            (temporizador != null && temporizador.gameObject.activeInHierarchy &&
-            TieneCanvasResultadoActivo());
+            (pauseGame != null && pauseGame.menuPausa != null && pauseGame.menuPausa.activeSelf);
 
         if (pauseGame != null && pauseGame.juegoPausado)
         {
@@ -204,13 +200,6 @@ public class Pesca_Prueba : MonoBehaviour
             niñaAnimator.SetBool("isFishing", false);
             niñaAnimator.SetBool("isMoving", isMoving);
         }
-    }
-
-    bool TieneCanvasResultadoActivo()
-    {
-        return temporizador != null &&
-            temporizador.GetCanvasResultado() != null &&
-            temporizador.GetCanvasResultado().activeSelf;
     }
 
     void ReproducirSonido(AudioClip clip)
