@@ -2,9 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
-using UnityEngine.InputSystem;
-using UnityEditor.MemoryProfiler;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class Pesca_Prueba : MonoBehaviour

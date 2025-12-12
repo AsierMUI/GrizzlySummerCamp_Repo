@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SkillCheckTarget : MonoBehaviour
+public class SkillCheckTarget : MonoBehaviour, IPointerClickHandler
 {
     private FishingSkillCheckManager manager;
 

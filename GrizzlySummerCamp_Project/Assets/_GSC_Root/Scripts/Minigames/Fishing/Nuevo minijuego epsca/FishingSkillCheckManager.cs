@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using Unity.VisualScripting;
 
 public class FishingSkillCheckManager : MonoBehaviour
 {
@@ -59,7 +57,7 @@ public class FishingSkillCheckManager : MonoBehaviour
         progressSlider.value += progressPerHit;
         checksRemaining--;
 
-        if (progressSlider.value >=1f)
+        if (progressSlider.value >= 1f)
         {
             Win();
             return;
@@ -71,18 +69,20 @@ public class FishingSkillCheckManager : MonoBehaviour
 
     private void SpawnNextTarget()
     {
-        spawner.SpawnTarget(this);
+        spawner.ShowSkillcheckUI(this);
     }
 
     private void Win()
     {
         isActive = false;
+        spawner.HideSkillcheckUI();
         OnWin?.Invoke();
     }
 
     private void Lose()
     {
         isActive = false;
+        spawner.HideSkillcheckUI();
         OnLose?.Invoke();
     }
 }
