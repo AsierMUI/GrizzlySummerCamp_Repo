@@ -9,11 +9,14 @@ public class FishingZoneSpawner : MonoBehaviour
     [Header("Prefab zona pesca")]
     public GameObject fishingZonePrefab;
 
-    [Header("puntos de spawn")]
+    [Header("Puntos de spawn")]
     public List<Transform> spawnPoints = new List<Transform>();
 
     [Header("Numero de zonas de pesca")]
     public int numberOfZones = 5;
+
+    [Header("Respawn")]
+    public float respawnDelay = 10f;
 
     private List<Transform> usedPoints = new List<Transform>();
 
@@ -39,14 +42,15 @@ public class FishingZoneSpawner : MonoBehaviour
         }
     }
 
-    public void RespawnSingleZone(float delay)
+    public void RespawnSingleZone(Transform usedPoint)
     {
-        StartCoroutine(RespawnCoroutine(delay));
+        StartCoroutine(RespawnCoroutine(usedPoint));
     }
 
-    private IEnumerator RespawnCoroutine(float delay)
+    private IEnumerator RespawnCoroutine(Transform usedPoint)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(respawnDelay);
+        usedPoints.Remove(usedPoint);
         SpawnAtRandomPoint();
     }
 
@@ -56,6 +60,9 @@ public class FishingZoneSpawner : MonoBehaviour
         if (spawnPoint == null) return;
 
         GameObject zone = Instantiate(fishingZonePrefab, spawnPoint.position, spawnPoint.rotation);
+
+        zone.GetComponent<FishingZone>().SetSpawnPoint(spawnPoint);
+
         usedPoints.Add(spawnPoint);
     }
 

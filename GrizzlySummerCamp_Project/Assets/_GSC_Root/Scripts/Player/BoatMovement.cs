@@ -15,7 +15,7 @@ public class BoatMovement : MonoBehaviour
 
     private Vector3 velocity;
 
-    [SerializeField] public bool canMove = false;
+    [SerializeField] public bool canMove = true; //cambiar a falso luego
 
     [Header("Child Player Animator")]
     [SerializeField] private Animator childAnimator;
@@ -24,6 +24,8 @@ public class BoatMovement : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
+
+        canMove = true; //quitar luego
     }
 
     void Start()
