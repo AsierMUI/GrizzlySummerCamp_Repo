@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.IO;
 
 public class FishingSkillCheck : MonoBehaviour
 {
@@ -12,9 +13,12 @@ public class FishingSkillCheck : MonoBehaviour
 
     [Header("Setting")]
     public float needleSpeed = 400f;
+    public float maxTime = 10f;
 
     float barWidth;
     float needlePosX;
+    int direction = 1; //la derecha 1 y la izquierda -1
+    float timer;
     bool active;
 
     public Action<bool> OnSkillCheckFinished;
@@ -29,13 +33,27 @@ public class FishingSkillCheck : MonoBehaviour
     {
         if (!active) return;
 
-        needlePosX += needleSpeed * Time.deltaTime;
-        needle.anchoredPosition = new Vector2(needlePosX, needle.anchoredPosition.y);
-
-        if (needlePosX >= barWidth)
+        timer += Time.deltaTime;
+        if(timer >= maxTime)
         {
             EndSkillCheck(false);
+            return;
         }
+
+        needlePosX += needleSpeed * direction * Time.deltaTime;
+
+        if (needlePosX <= 0)
+        {
+            needlePosX = 0;
+            direction = 1;
+        }
+        else if (needlePosX >= barWidth)
+        {
+            needlePosX = barWidth;
+            direction = -1;
+        }
+
+        needle.anchoredPosition = new Vector2 (needlePosX, needle.anchoredPosition.y);
 
         if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
@@ -47,6 +65,9 @@ public class FishingSkillCheck : MonoBehaviour
     {
         panel.SetActive(true);
         active = true;
+
+        timer = 0f;
+        direction = 1;
 
         needlePosX = 0;
         needle.anchoredPosition = new Vector2(0, needle.anchoredPosition.y);
