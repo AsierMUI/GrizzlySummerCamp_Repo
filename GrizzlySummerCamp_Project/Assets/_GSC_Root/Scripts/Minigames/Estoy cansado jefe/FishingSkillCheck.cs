@@ -4,7 +4,7 @@ using TMPro;
 
 public class FishingSkillCheck : MonoBehaviour
 {
-    //ESTE SCRIPT SE ENCARGA DE LAS DIFICULTADES E INTERFAZ DEL MINIJUEGO
+    //Este script se encarga SOLO del minijuego, su dificultad e interfaz
 
     public enum SkillDifficulty
     {
