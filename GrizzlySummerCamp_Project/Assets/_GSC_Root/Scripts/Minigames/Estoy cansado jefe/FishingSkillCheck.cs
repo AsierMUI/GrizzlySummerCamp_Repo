@@ -19,24 +19,32 @@ public class FishingSkillCheck : MonoBehaviour
     public RectTransform successZone;
     public RectTransform barBackground;
     public TMP_Text difficultyText;
+    public TMP_Text chainText;
 
     [Header("Dificulty Chances (%)")]
     [Range(0, 100)] public int easyChance = 60;
     [Range(0, 100)] public int mediumChance = 30;
     [Range(0, 100)] public int hardChance = 10;
 
-    [Header("Difficulty Setting")]
+    [Header("Needle Speed")]
     public float easyNeedleSpeed = 300f;
     public float mediumNeedleSpeed = 450f;
     public float hardNeedleSpeed = 650f;
 
+    [Header("Zone Width")]
     public float easyZoneWidth = 100f;
     public float mediumZoneWidth = 70f;
     public float hardZoneWidth = 40f;
 
+    [Header("Max Time")]
     public float easyMaxTime = 10f;
     public float mediumMaxTime = 8f;
     public float hardMaxTime = 6f;
+
+    [Header("Skillchecks Required")]
+    public int easyRequired = 2;
+    public int mediumRequired = 3;
+    public int hardRequired = 4;
 
     float barWidth;
     float needlePosX;
@@ -44,7 +52,9 @@ public class FishingSkillCheck : MonoBehaviour
     float timer;
     bool active;
 
-    SkillDifficulty currentDifficulty = SkillDifficulty.Easy;
+    SkillDifficulty currentDifficulty;
+    int requiredChecks;
+    int currentSuccesses;
 
     float currentNeedleSpeed;
     float currentMaxTime;
@@ -56,8 +66,8 @@ public class FishingSkillCheck : MonoBehaviour
         panel.SetActive(false);
         barWidth = barBackground.rect.width;
 
-        if (difficultyText != null )
-            difficultyText.gameObject.SetActive(false);
+        if (difficultyText) difficultyText.gameObject.SetActive(false);
+        if (chainText) chainText.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -67,7 +77,7 @@ public class FishingSkillCheck : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= currentMaxTime)
         {
-            EndSkillCheck(false);
+            FailFishing();
             return;
         }
 
@@ -99,15 +109,12 @@ public class FishingSkillCheck : MonoBehaviour
 
         RollDifficultyByChance();
         ApplyDifficultySettings();
+
+        currentSuccesses = 0;
         UpdateDifficultyUI();
+        UpdateChainUI();
 
-        timer = 0f;
-        direction = 1;
-
-        needlePosX = 0;
-        needle.anchoredPosition = new Vector2(0, needle.anchoredPosition.y);
-
-        RandomizeSuccessZone();
+        StartSingleSkillCheck();
     }
 
     void RollDifficultyByChance()
@@ -129,62 +136,71 @@ public class FishingSkillCheck : MonoBehaviour
             case SkillDifficulty.Easy:
                 currentNeedleSpeed = easyNeedleSpeed;
                 currentMaxTime = easyMaxTime;
+                requiredChecks = easyRequired;
                 successZone.sizeDelta = new Vector2(easyZoneWidth, successZone.sizeDelta.y);
                 break;
 
             case SkillDifficulty.Medium:
                 currentNeedleSpeed = mediumNeedleSpeed;
                 currentMaxTime = mediumMaxTime;
+                requiredChecks = mediumRequired;
                 successZone.sizeDelta = new Vector2(mediumZoneWidth, successZone.sizeDelta.y);
                 break;
 
             case SkillDifficulty.Hard:
                 currentNeedleSpeed = hardNeedleSpeed;
                 currentMaxTime = hardMaxTime;
+                requiredChecks = hardRequired;
                 successZone.sizeDelta = new Vector2(hardZoneWidth, successZone.sizeDelta.y);
                 break;
         }
     }
 
-    void UpdateDifficultyUI()
+    void StartSingleSkillCheck()
     {
-        if (difficultyText == null) return;
+        timer = 0f;
+        direction = 1;
+        needlePosX = 0;
 
-        difficultyText.gameObject.SetActive(true);
+        needle.anchoredPosition = new Vector2(needlePosX, needle.anchoredPosition.y);
 
-        switch (currentDifficulty)
-        {
-            case SkillDifficulty.Easy:
-                difficultyText.text = "Easy";
-                difficultyText.color = Color.green;
-                break;
-
-            case SkillDifficulty.Medium:
-                difficultyText.text = "Medium";
-                difficultyText.color = Color.yellow;
-                break;
-
-            case SkillDifficulty.Hard:
-                difficultyText.text = "Hard";
-                difficultyText.color = Color.red;
-                break;
-        }
+        RandomizeSuccessZone();
     }
 
-    void RandomizeSuccessZone()
+    void CheckResult()
     {
-        float maxX = barWidth - successZone.rect.width;
-        float randomX = UnityEngine.Random.Range(0, maxX);
-        successZone.anchoredPosition = new Vector2 (randomX, successZone.anchoredPosition.y);
-    }
-
-    public void CheckResult()
-    {
-        bool success =
+        bool success = 
             needlePosX >= successZone.anchoredPosition.x &&
             needlePosX <= successZone.anchoredPosition.x + successZone.rect.width;
 
-        EndSkillCheck(success);
+        if (success )
+        {
+            currentSuccesses++;
+            UpdateChainUI();
+
+            if (currentSuccesses >= requiredChecks)
+            {
+                CompleteFishing();
+            }
+            else
+            {
+                StartSingleSkillCheck();
+            }
+        }
+        else
+        {
+            FailFishing();
+        }
+    }
+
+    void CompleteFishing()
+    {
+        EndSkillCheck(true);
+    }
+
+    void FailFishing()
+    {
+        EndSkillCheck(false);
     }
 
     void EndSkillCheck(bool success)
@@ -192,10 +208,39 @@ public class FishingSkillCheck : MonoBehaviour
         active = false;
         panel.SetActive(false);
 
-        if (difficultyText != null)
-            difficultyText.gameObject.SetActive(false);
+        if (difficultyText) difficultyText.gameObject.SetActive(false);
+        if (chainText) chainText.gameObject.SetActive(false);
 
         OnSkillCheckFinished?.Invoke(success);
     }
 
+    void RandomizeSuccessZone()
+    {
+        float maxX = barWidth - successZone.rect.width;
+        float randomX = UnityEngine.Random.Range(0, maxX);
+        successZone.anchoredPosition = new Vector2(randomX, successZone.anchoredPosition.y);
+    }
+
+    void UpdateDifficultyUI()
+    {
+        if (!difficultyText) return;
+
+        difficultyText.gameObject.SetActive(true);
+
+        difficultyText.text = currentDifficulty switch
+        {
+            SkillDifficulty.Easy => "Easy",
+            SkillDifficulty.Medium => "Medium",
+            SkillDifficulty.Hard => "Hard",
+            _ => ""
+        };
+    }
+
+    void UpdateChainUI()
+    {
+        if (!chainText) return;
+
+        chainText.gameObject.SetActive(true);
+        chainText.text = $"{currentSuccesses}/{requiredChecks}";
+    }
 }
