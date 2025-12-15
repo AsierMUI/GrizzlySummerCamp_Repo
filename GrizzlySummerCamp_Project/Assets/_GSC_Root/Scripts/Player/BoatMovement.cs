@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BoatMovement : MonoBehaviour
+public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
 {
     [Header("Move Stats")]
     [SerializeField] float Speed = 5f;
@@ -15,7 +15,7 @@ public class BoatMovement : MonoBehaviour
 
     private Vector3 velocity;
 
-    [SerializeField] public bool canMove = true; //cambiar a falso luego
+    [SerializeField] public bool canMove = false;
 
     [Header("Child Player Animator")]
     [SerializeField] private Animator childAnimator;
@@ -73,18 +73,19 @@ public class BoatMovement : MonoBehaviour
         }
     }
 
-    public void CanMove() 
+    public void EnableMovement() 
     {
         canMove = true;
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+        ResetVelocity();
     }
 
     public void ResetVelocity()
     {
         velocity = Vector3.zero; //para quitar la inercia
-    }
-
-    public bool IsMoving()
-    {
-        return velocity.magnitude > 0.01f;
     }
 }

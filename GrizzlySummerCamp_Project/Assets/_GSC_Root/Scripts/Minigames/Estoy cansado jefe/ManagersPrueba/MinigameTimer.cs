@@ -5,15 +5,59 @@ using System;
 
 public class MinigameTimer : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static MinigameTimer instance;
+
+    [Header("Timer Settings")]
+    [SerializeField] float totalTime = 90f;
+
+    public float CurrentTime {  get; private set; }
+
+    public bool IsRunning { get; private set; }
+
+    public event Action OnTimerFinished;
+
+    private void Awake()
     {
-        
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        ResetTimer();
+        PauseTimer();
     }
+
+    private void Update()
+    {
+        if (!IsRunning) return;
+
+        CurrentTime -= Time.deltaTime;
+
+        if (CurrentTime <= 0f)
+        {
+            CurrentTime = 0f;
+            IsRunning = false;
+            OnTimerFinished?.Invoke();
+        }
+    }
+
+    public void StartTimer()
+    {
+        IsRunning = true;
+    }
+
+    public void PauseTimer()
+    {
+        IsRunning = false;
+    }
+
+    public void ResetTimer()
+    {
+        CurrentTime = totalTime;
+    }
+
+
 }

@@ -1,7 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+
+
+//Editado para que en el hub funcione normalmente y sea compatible con el minigamemanager
+
+
+public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
 {
     // =====================================================
     // MOVIMIENTO
@@ -24,10 +29,13 @@ public class PlayerMovement : MonoBehaviour
     InputAction moveAction;
     InputAction sprintAction;
 
+    [SerializeField] private bool canMove = true;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
+
         rb.freezeRotation = true;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
@@ -36,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
 
+        canMove = true;
     }
     void Start()
     {
@@ -45,6 +54,12 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(!canMove)
+        {
+            StopMovement();
+            return;
+        }
+
         MovePlayer();
     }
 
@@ -91,5 +106,26 @@ public class PlayerMovement : MonoBehaviour
             walkingVFX.Play();
         else if (!isWalking && walkingVFX.isPlaying)
             walkingVFX.Stop();
+    }
+
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+        StopMovement();
+    }
+
+    void StopMovement()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        animator.SetBool("isWalking", false);
+
+        if (walkingVFX != null && walkingVFX.isPlaying) {walkingVFX.Stop();}
     }
 }
