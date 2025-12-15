@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using TMPro;
+using UnityEditor;
 
 public class FishingSkillCheck : MonoBehaviour
 {
@@ -13,13 +15,22 @@ public class FishingSkillCheck : MonoBehaviour
         Hard
     }
 
-    [Header("UI")]
+    [Header("Skillcheck UI")]
     public GameObject panel;
     public RectTransform needle;
     public RectTransform successZone;
     public RectTransform barBackground;
     public TMP_Text difficultyText;
     public TMP_Text chainText;
+
+    [Header("Progress UI")]
+    public RectTransform progressBarBG;
+    public RectTransform fishMarker;
+
+    [Header("Result UI")]
+    public GameObject resultPanel;
+    public TMP_Text resultText;
+    public float resultDelay = 2f;
 
     [Header("Dificulty Chances (%)")]
     [Range(0, 100)] public int easyChance = 60;
@@ -51,6 +62,7 @@ public class FishingSkillCheck : MonoBehaviour
     int direction = 1; //la derecha 1 y la izquierda -1
     float timer;
     bool active;
+    bool ending;
 
     SkillDifficulty currentDifficulty;
     int requiredChecks;
@@ -64,23 +76,29 @@ public class FishingSkillCheck : MonoBehaviour
     private void Start()
     {
         panel.SetActive(false);
+        if (resultPanel) resultPanel.SetActive(false);
+
         barWidth = barBackground.rect.width;
 
         if (difficultyText) difficultyText.gameObject.SetActive(false);
         if (chainText) chainText.gameObject.SetActive(false);
+
+        ResetFishPosition();
     }
 
     private void Update()
     {
-        if (!active) return;
+        if (!active || ending) return;
 
         timer += Time.deltaTime;
+
         if (timer >= currentMaxTime)
         {
             FailFishing();
             return;
         }
 
+        //Movimiento aguja
         needlePosX += currentNeedleSpeed * direction * Time.deltaTime;
 
         if (needlePosX <= 0)
@@ -102,21 +120,27 @@ public class FishingSkillCheck : MonoBehaviour
         }
     }
 
+    //Entrada al minijuego
     public void StartSkillCheck()
     {
         panel.SetActive(true);
+        if (resultPanel) resultPanel.SetActive(false);
+
         active = true;
+        ending = false;
 
         RollDifficultyByChance();
         ApplyDifficultySettings();
 
         currentSuccesses = 0;
+        UpdateProgressBar();
         UpdateDifficultyUI();
-        UpdateChainUI();
+        UpdateChainUI();     
 
         StartSingleSkillCheck();
     }
 
+    //Dificultad por %
     void RollDifficultyByChance()
     {
         int roll = UnityEngine.Random.Range(1, 101);
@@ -155,7 +179,7 @@ public class FishingSkillCheck : MonoBehaviour
                 break;
         }
     }
-
+    //Skillcheck individual
     void StartSingleSkillCheck()
     {
         timer = 0f;
@@ -173,10 +197,11 @@ public class FishingSkillCheck : MonoBehaviour
             needlePosX >= successZone.anchoredPosition.x &&
             needlePosX <= successZone.anchoredPosition.x + successZone.rect.width;
 
-        if (success )
+        if (success)
         {
             currentSuccesses++;
             UpdateChainUI();
+            UpdateProgressBar();
 
             if (currentSuccesses >= requiredChecks)
             {
@@ -195,21 +220,33 @@ public class FishingSkillCheck : MonoBehaviour
 
     void CompleteFishing()
     {
-        EndSkillCheck(true);
+        StartCoroutine(EndWithResult(true));
     }
 
     void FailFishing()
     {
-        EndSkillCheck(false);
+        StartCoroutine(EndWithResult(false));
     }
 
-    void EndSkillCheck(bool success)
+    IEnumerator EndWithResult(bool success)
     {
+        ending = true;
         active = false;
-        panel.SetActive(false);
+        
+        if (resultPanel && resultText)
+        {
+            resultPanel.SetActive(true);
+            resultText.text = success ? "Fish caught!" : "It escaped!";
+            resultText.color = success ? Color.green : Color.red;
+        }
 
-        if (difficultyText) difficultyText.gameObject.SetActive(false);
-        if (chainText) chainText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(resultDelay);
+
+        panel.SetActive(false);
+        if(resultPanel) resultPanel.SetActive(false);
+
+        ResetFishPosition();
+        ending = false;
 
         OnSkillCheckFinished?.Invoke(success);
     }
@@ -221,12 +258,31 @@ public class FishingSkillCheck : MonoBehaviour
         successZone.anchoredPosition = new Vector2(randomX, successZone.anchoredPosition.y);
     }
 
+    //Progreso pez
+    void UpdateProgressBar()
+    {
+        if (!progressBarBG || !fishMarker) return;
+
+        float progress = (float)currentSuccesses / requiredChecks;
+        float barHeight = progressBarBG.rect.height;
+
+        float yPos = progress * barHeight;
+
+        fishMarker.anchoredPosition = new Vector2(fishMarker.anchoredPosition.x, yPos);
+    }
+
+    void ResetFishPosition()
+    {
+        if (!fishMarker) return;
+
+        fishMarker.anchoredPosition = new Vector2(fishMarker.anchoredPosition.x, 0f);
+    }
+
     void UpdateDifficultyUI()
     {
         if (!difficultyText) return;
 
         difficultyText.gameObject.SetActive(true);
-
         difficultyText.text = currentDifficulty switch
         {
             SkillDifficulty.Easy => "Easy",
