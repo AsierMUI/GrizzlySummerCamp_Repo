@@ -2,7 +2,6 @@ using UnityEngine;
 using System;
 using System.Collections;
 using TMPro;
-using UnityEditor;
 
 public class FishingSkillCheck : MonoBehaviour
 {
@@ -56,6 +55,9 @@ public class FishingSkillCheck : MonoBehaviour
     public int easyRequired = 2;
     public int mediumRequired = 3;
     public int hardRequired = 4;
+
+    [Header("Fish Data")]
+    [SerializeField] private string currentFishID;
 
     float barWidth;
     float needlePosX;
@@ -220,6 +222,12 @@ public class FishingSkillCheck : MonoBehaviour
 
     void CompleteFishing()
     {
+        FishingScoreHandler scoreHandler =
+          FindFirstObjectByType<FishingScoreHandler>();
+
+        if (scoreHandler != null)
+            scoreHandler.OnFishCaptured(currentFishID);
+
         StartCoroutine(EndWithResult(true));
     }
 
