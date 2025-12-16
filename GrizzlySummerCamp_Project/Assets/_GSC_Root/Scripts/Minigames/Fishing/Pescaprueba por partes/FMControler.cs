@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class FMControler : MonoBehaviour
 {
-    [Header("Animator")]
+    /*[Header("Animator")]
     [SerializeField] Animator niñaAnimator;
 
     [Header("Modules")]
@@ -176,5 +176,5 @@ public class FMControler : MonoBehaviour
 
         temporizador?.ActivarTemporizador();
     }
-
+    */
 }

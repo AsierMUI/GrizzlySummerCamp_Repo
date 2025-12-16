@@ -49,6 +49,10 @@ public class PickUpManager : MonoBehaviour
     [SerializeField] Transform player;
 
     //Lista de pickups
+    [Header("Minigame Info")]
+    [SerializeField] string minigameName = "Race";
+
+
     private List<Transform> pickups = new List<Transform>();
     private Transform lastPickup;
 
@@ -132,6 +136,7 @@ public class PickUpManager : MonoBehaviour
         StartCoroutine(Notice());
         goal.SetActive(true);
     }
+
     IEnumerator Notice() 
     {
         if (Notification != null)
@@ -147,10 +152,18 @@ public class PickUpManager : MonoBehaviour
         if (winUI != null)
             winUI.SetActive(true);
 
+        if (boatMovement != null)
         boatMovement.enabled = false;
 
         if (InsigniaManager.Instance != null)
-            InsigniaManager.Instance.GuardarEstrella(1);
+        {
+            InsigniaManager.Instance.GuardarEstrella(minigameName, 1);
+            Debug.Log("[PickUpManager] Estrella guardada para minijuego:" + minigameName);
+        }
+        else
+        {
+            Debug.Log("[PickUpManager] no se ha encotnrado insigniamanager al intentar guardar la estrella");
+        }
     }
 
     void PlayPointSound()

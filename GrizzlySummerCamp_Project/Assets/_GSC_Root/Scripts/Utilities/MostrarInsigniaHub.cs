@@ -1,101 +1,66 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MostrarInsigniaHub : MonoBehaviour
 {
-    [Header("Insignias pesca")]
-    [SerializeField] private Image insigniaImage;
-    [SerializeField] private Sprite insignianull;
-    [SerializeField] private Sprite insigniaBronce;
-    [SerializeField] private Sprite insigniaPlata;
-    [SerializeField] private Sprite insigniaOro;
+    [System.Serializable]
+    public class MinigameUI
+    {
+        public string minigameName;
+        public Image insigniaImage;
+        public Sprite insigniaNull;
+        public Sprite insigniaBronce;
+        public Sprite insigniaPlata;
+        public Sprite insigniaOro;
 
-    [Header("Estrella")]
-    [SerializeField] private Image estrellaImage;
-    [SerializeField] private Sprite estrellaNull;
-    [SerializeField] private Sprite estrellaSprite;
+        public Image estrellaImage;
+        public Sprite estrellaNull;
+        public Sprite estrellaSprite;
+    }
+
+    [Header("Minijuegos a mostrar")]
+    public MinigameUI[] minijuegos;
 
     private void OnEnable()
     {
-        BuscarReferenciasUI(); //  Se asegura de tener las imágenes correctas
-        ActualizarVisual();
+        ActualizarVisuales();
     }
 
     private void Start()
     {
-        BuscarReferenciasUI();
-        ActualizarVisual();
-    }
-    private void BuscarReferenciasUI()
-    {
-        // Busca los objetos por nombre si no están asignados manualmente
-        if (insigniaImage == null)
-        {
-            GameObject obj = GameObject.Find("ImageInsignia"); //  cambia el nombre al que uses en tu Canvas
-            if (obj != null)
-            {
-                insigniaImage = obj.GetComponent<Image>();
-                Debug.Log("[MostrarInsigniaHub] Se reasignó la imagen de insignia automáticamente.");
-            }
-            else
-            {
-                Debug.LogWarning("[MostrarInsigniaHub] No se encontró el objeto 'InsigniaImage'.");
-            }
-        }
-
-        if (estrellaImage == null)
-        {
-            GameObject obj = GameObject.Find("ImageEstrella"); //  cambia el nombre al real en tu escena
-            if (obj != null)
-            {
-                estrellaImage = obj.GetComponent<Image>();
-                Debug.Log("[MostrarInsigniaHub] Se reasignó la imagen de estrella automáticamente.");
-            }
-            else
-            {
-                Debug.LogWarning("[MostrarInsigniaHub] No se encontró el objeto 'EstrellaImage'.");
-            }
-        }
+        ActualizarVisuales();
     }
 
-    private void ActualizarVisual()
+    private void ActualizarVisuales()
     {
         if (InsigniaManager.Instance == null)
         {
-            Debug.LogWarning("[MostrarInsigniaHub] No se encontró InsigniaManager.");
+            Debug.LogWarning("[MostrarInsigniaHub] No se ha encotnrado InsigniaManager");
             return;
         }
 
-        if (insigniaImage == null)
+        foreach (var mg in minijuegos)
         {
-            Debug.LogWarning("[MostrarInsigniaHub] No se asignó la imagen de la insignia.");
-            return;
+            if (mg.insigniaImage != null)
+            {
+                int nivel = InsigniaManager.Instance.GetInsignia(mg.minigameName);
+                switch (nivel)
+                {
+                    case 1: mg.insigniaImage.sprite = mg.insigniaBronce; break;
+                    case 2: mg.insigniaImage.sprite = mg.insigniaPlata; break;
+                    case 3: mg.insigniaImage.sprite = mg.insigniaOro; break;
+                    default: mg.insigniaImage.sprite = mg.insigniaNull; break;
+                }
+            }
+
+            if (mg.estrellaImage != null)
+            {
+                int estrella = InsigniaManager.Instance.GetEstrella(mg.minigameName);
+                mg.estrellaImage.sprite = (estrella > 0) ? mg.estrellaSprite : mg.estrellaNull;
+            }
+
+            Debug.Log($"[MostrarInsigniaHub] {mg.minigameName}: Insignia={InsigniaManager.Instance.GetInsignia(mg.minigameName)}, Estrella={InsigniaManager.Instance.GetEstrella(mg.minigameName)}");
         }
 
-        int nivel = InsigniaManager.Instance.ultimaInsignia;
-        Debug.Log($"[MostrarInsigniaHub] Mostrando insignia nivel {nivel}");
-
-        switch (nivel)
-        {
-            case 1:
-                insigniaImage.sprite = insigniaBronce;
-                break;
-            case 2:
-                insigniaImage.sprite = insigniaPlata;
-                break;
-            case 3:
-                insigniaImage.sprite = insigniaOro;
-                break;
-            default:
-                insigniaImage.sprite = insignianull;
-                break;
-        }
-
-        if (estrellaImage != null)
-        {
-            int tieneEstrella = InsigniaManager.Instance.ultimaEstrella;
-            estrellaImage.sprite = (tieneEstrella > 0) ? estrellaSprite : estrellaNull;
-        }
     }
 }

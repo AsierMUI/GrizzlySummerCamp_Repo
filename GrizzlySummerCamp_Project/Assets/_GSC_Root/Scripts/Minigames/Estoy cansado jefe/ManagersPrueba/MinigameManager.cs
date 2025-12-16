@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class MinigameManager : MonoBehaviour
 {
 
@@ -8,7 +8,8 @@ public class MinigameManager : MonoBehaviour
 
     public static MinigameManager Instance;
 
-    [Header("Minigame Time")]
+    [Header("Minigame Settings")]
+    [SerializeField] public string minigameName;
     [SerializeField] private float minigameDuration = 90f;
     private float currentTime;
     private bool isRunning = false;
@@ -17,7 +18,15 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private GameObject endMinigameUI;
     [SerializeField] private TMP_Text finalScoreText;
-    [SerializeField] private TMP_Text finalInsigniaText;
+
+    [Header("End Game Message")]
+    [SerializeField] private TMP_Text messageText;
+    [SerializeField] private Image insigniaImage;
+
+    [Header("Insignia Sprites")]
+    [SerializeField] private Sprite bronzeSprite;
+    [SerializeField] private Sprite silverSprite;
+    [SerializeField] private Sprite goldSprite;
 
     private void Awake()
     {
@@ -54,6 +63,7 @@ public class MinigameManager : MonoBehaviour
         currentTime = minigameDuration;
         isRunning = true;
 
+        if (ScoreManager.Instance != null)
         ScoreManager.Instance.ResetScore();
     }
 
@@ -61,39 +71,69 @@ public class MinigameManager : MonoBehaviour
     {
         isRunning = false;
 
-        int puntos = ScoreManager.Instance.GetTotalPoints();
+        int puntos = ScoreManager.Instance != null ? ScoreManager.Instance.GetTotalPoints() : 0;
+
+        int insignia = GetInsigniaByScore(puntos);
+
+        if (minigameName == "Race")
+        {
+            int estrella = puntos > 0 ? 1 : 0;
+            InsigniaManager.Instance.GuardarEstrella(minigameName, estrella);
+        }
+        else
+        {
+            InsigniaManager.Instance.GuardarInsignia(minigameName, insignia);
+        }
 
         if (finalScoreText)
             finalScoreText.text = puntos.ToString();
 
-        int insignia = GetInsigniaByScore(puntos);
-
-        InsigniaManager.Instance.GuardarInsignia(insignia);
-
-        if (finalInsigniaText)
-            finalInsigniaText.text = GetInsigniaText(insignia);
+        UpdateEndGameUI(insignia);
 
         if (endMinigameUI)
             endMinigameUI.SetActive(true);
     }
 
-    int GetInsigniaByScore(int score)
+    void UpdateEndGameUI(int insignia)
     {
-        if (score >= 300) return 3;
-        if (score >= 150) return 2;
-        if (score >= 50) return 1;
-        return 0;
+        if (messageText)
+            messageText.text = GetMessageByInsignia(insignia);
+
+        if (insigniaImage)
+        {
+            insigniaImage.sprite = GetSpriteByInsignia(insignia);
+            insigniaImage.enabled = insignia > 0;
+        }
     }
 
-    string GetInsigniaText(int insignia)
+    string GetMessageByInsignia(int insignia)
     {
         switch (insignia)
         {
-            case 3: return "Gold Badge!";
-            case 2: return "Silver Badge!";
-            case 1: return "Bronce Badge!";
-            default: return "Oops :(";
+            case 3: return "Wow!";
+            case 2: return "Great job!";
+            case 1: return "Nice try;";
+            default: return "Better luck next time!";
         }
+    }
+
+    Sprite GetSpriteByInsignia(int insignia)
+    {
+        switch (insignia)
+        {
+            case 3: return goldSprite;
+            case 2: return silverSprite;
+            case 1: return bronzeSprite;
+            default: return null;
+        }
+    }
+
+    int GetInsigniaByScore(int score)
+    {
+        if (score >= 200) return 3;
+        if (score >= 150) return 2;
+        if (score >= 50) return 1;
+        return 0;
     }
 
     void UpdateTimerUI()

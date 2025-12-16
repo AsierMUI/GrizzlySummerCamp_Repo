@@ -476,7 +476,7 @@ public class Pesca_Prueba : MonoBehaviour
         if (mensajeFinalText != null)
             mensajeFinalText.text = mensaje;
 
-        // guardar la insignia guardada si se termina el tiempo
+        /*// guardar la insignia guardada si se termina el tiempo
         int nivel = ObtenerNivelMedalla();
         if (InsigniaManager.Instance != null)
             InsigniaManager.Instance.GuardarInsignia(nivel);
@@ -485,7 +485,7 @@ public class Pesca_Prueba : MonoBehaviour
         {
             if (puntosC > 0)
                 InsigniaManager.Instance.GuardarEstrella(1);
-        }
+        }*/
     }
     public void EmpezarJuego() 
     {
