@@ -45,19 +45,11 @@ public class InsigniaManager : MonoBehaviour
 
     //Funciones en minijuegos
 
-    public void ShowInsignia(int score)
+    public int CalcularInsignia(int score)
     {
-        // 0-3 bronce, 4-6 plata, 7+ oro
-
-        int insignia = 0;
-
-        if (score >= 0 && score <= 3) insignia = 1; // bronce
-        else if (score >= 4 && score <= 6) insignia = 2; // plata
-        else if (score >= 7) insignia = 3; // oro
-
-        GuardarInsignia(insignia);
-
-        Debug.Log($"[InsigniaManager] Insignia obtenida por scroe {score}: {insignia}");
+        if (score >= 100) return 3;
+        if (score >= 60) return 2;
+        if (score >= 30) return 1;
+        return 0;
     }
-
 }

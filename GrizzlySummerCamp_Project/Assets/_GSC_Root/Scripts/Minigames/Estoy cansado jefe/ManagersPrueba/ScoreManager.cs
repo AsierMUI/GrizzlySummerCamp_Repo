@@ -5,14 +5,19 @@ public class ScoreManager : MonoBehaviour
 
     //GENERICO PARA TODOS LOS MINIJUEGOS
 
-    public static ScoreManager instance;
+    public static ScoreManager Instance;
 
-    private int score = 0;
+    public static System.Action<int> OnScoreChanged;
+
+    private int score;
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
             Destroy(gameObject);
     }
@@ -20,6 +25,7 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
+        OnScoreChanged?.Invoke(score);
         Debug.Log($"[ScoreManager] Score actual: {score}");
     }
 
@@ -31,6 +37,7 @@ public class ScoreManager : MonoBehaviour
     public void ResetScore()
     {
         score = 0;
+        OnScoreChanged?.Invoke(score);
         Debug.Log("[ScoreManager] Score reseteado");
     }
 

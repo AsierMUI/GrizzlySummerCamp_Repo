@@ -4,7 +4,7 @@ public class MinigameManager : MonoBehaviour
 
     //GENERICO SIRVE PARA TODOS LOS MINIJUEGOS
 
-    public static MinigameManager instance;
+    public static MinigameManager Instance;
 
     public enum MinigameState
     {
@@ -20,10 +20,12 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private MonoBehaviour playerMovementBehaviour;
     private IMinigamePlayerMovement playerMovement;
 
+    [Header("UI")]
+    [SerializeField] private EndMinigameUI endUI;
+
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null) Instance = this;
         else
             Destroy(gameObject);
     }
@@ -37,8 +39,6 @@ public class MinigameManager : MonoBehaviour
         if (playerMovement != null)
             playerMovement.DisableMovement();
 
-        if (MinigameTimer.instance != null)
-            MinigameTimer.instance.OnTimerFinished += OnTimeFinished;
     }
 
     public void SetPlayerMovement(MonoBehaviour movement)
@@ -49,20 +49,10 @@ public class MinigameManager : MonoBehaviour
 
     public void OnMinigameStarted()
     {
-        if (CurrentState != MinigameState.WaitingToStart) return;
-
         CurrentState = MinigameState.Playing;
 
-        if (playerMovement !=null)
-            playerMovement.EnableMovement();
-
-        if (ScoreManager.instance != null)
-            ScoreManager.instance.ResetScore();
-    }
-
-    private void OnTimeFinished()
-    {
-        EndMinigame();
+        playerMovement.EnableMovement();
+        ScoreManager.Instance.ResetScore();
     }
 
     public void EndMinigame()
@@ -71,18 +61,12 @@ public class MinigameManager : MonoBehaviour
 
         CurrentState = MinigameState.Finished;
 
-        if (playerMovement != null)
-            playerMovement.DisableMovement();
+        playerMovement.DisableMovement();
 
-        if (InsigniaManager.Instance != null && ScoreManager.instance != null)
-        {
-            InsigniaManager.Instance.ShowInsignia(ScoreManager.instance.GetScore());
-        }
-    }
+        int finalScore = ScoreManager.Instance.GetScore();
+        int insignia = InsigniaManager.Instance.CalcularInsignia(finalScore);
 
-    private void OnDestroy()
-    {
-        if (MinigameTimer.instance != null)
-            MinigameTimer.instance.OnTimerFinished -= OnTimeFinished;
+        InsigniaManager.Instance.GuardarInsignia(insignia);
+        endUI.ShowResult(insignia);
     }
 }
