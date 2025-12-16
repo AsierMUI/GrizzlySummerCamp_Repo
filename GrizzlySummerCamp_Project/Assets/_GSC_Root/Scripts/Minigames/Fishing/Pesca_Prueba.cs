@@ -174,7 +174,7 @@ public class Pesca_Prueba : MonoBehaviour
         }
 
         //Actualizar animacion segun movimiento
-        if (niñaAnimator !=null)
+        /*if (niñaAnimator !=null)
         {
             bool moving = boat != null && boat.canMove && boat.IsMoving();
             if (moving != isMoving)
@@ -182,7 +182,7 @@ public class Pesca_Prueba : MonoBehaviour
                 isMoving = moving;
                 ActualizarAnimatorIdle();
             }
-        }
+        }*/
 
     }
 

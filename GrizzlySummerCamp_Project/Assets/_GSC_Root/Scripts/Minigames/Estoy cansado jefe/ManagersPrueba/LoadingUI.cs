@@ -62,8 +62,8 @@ public class LoadingUI : MonoBehaviour
         MinigameTimer.instance.StartTimer();
 
         //Avisa al manager
-        if (MinigameManager.Instance != null)
-            MinigameManager.Instance.OnMinigameStarted();
+        if (MinigameManager.instance != null)
+            MinigameManager.instance.OnMinigameStarted();
     }
     private void OnDisable()
     {
