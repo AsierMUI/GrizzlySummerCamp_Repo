@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 public class MinigameManager : MonoBehaviour
 {
 
@@ -6,67 +8,99 @@ public class MinigameManager : MonoBehaviour
 
     public static MinigameManager Instance;
 
-    public enum MinigameState
-    {
-        WaitingToStart,
-        Playing,
-        Finished
-    }
-
-    [Header("State")]
-    public MinigameState CurrentState { get; private set; }
-
-    [Header("Player")]
-    [SerializeField] private MonoBehaviour playerMovementBehaviour;
-    private IMinigamePlayerMovement playerMovement;
+    [Header("Minigame Time")]
+    [SerializeField] private float minigameDuration = 90f;
+    private float currentTime;
+    private bool isRunning = false;
 
     [Header("UI")]
-    [SerializeField] private EndMinigameUI endUI;
+    [SerializeField] private TMP_Text timerText;
+    [SerializeField] private GameObject endMinigameUI;
+    [SerializeField] private TMP_Text finalScoreText;
+    [SerializeField] private TMP_Text finalInsigniaText;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
             Destroy(gameObject);
     }
 
     private void Start()
     {
-        CurrentState = MinigameState.WaitingToStart;
-
-        playerMovement = playerMovementBehaviour as IMinigamePlayerMovement;
-
-        if (playerMovement != null)
-            playerMovement.DisableMovement();
-
+        currentTime = minigameDuration;
+        UpdateTimerUI();
     }
 
-    public void SetPlayerMovement(MonoBehaviour movement)
+    private void Update()
     {
-        playerMovementBehaviour = movement;
-        playerMovement = movement as IMinigamePlayerMovement;
+        if (!isRunning) return;
+
+        currentTime -=Time.deltaTime;
+        UpdateTimerUI();
+
+        if (currentTime <=0f)
+        {
+            EndMinigame();
+        }
     }
 
-    public void OnMinigameStarted()
+    public void StartMinigame()
     {
-        CurrentState = MinigameState.Playing;
+        currentTime = minigameDuration;
+        isRunning = true;
 
-        playerMovement.EnableMovement();
         ScoreManager.Instance.ResetScore();
     }
 
     public void EndMinigame()
     {
-        if (CurrentState == MinigameState.Finished) return;
+        isRunning = false;
 
-        CurrentState = MinigameState.Finished;
+        int puntos = ScoreManager.Instance.GetTotalPoints();
 
-        playerMovement.DisableMovement();
+        if (finalScoreText)
+            finalScoreText.text = puntos.ToString();
 
-        int finalScore = ScoreManager.Instance.GetScore();
-        int insignia = InsigniaManager.Instance.CalcularInsignia(finalScore);
+        int insignia = GetInsigniaByScore(puntos);
 
         InsigniaManager.Instance.GuardarInsignia(insignia);
-        endUI.ShowResult(insignia);
+
+        if (finalInsigniaText)
+            finalInsigniaText.text = GetInsigniaText(insignia);
+
+        if (endMinigameUI)
+            endMinigameUI.SetActive(true);
+    }
+
+    int GetInsigniaByScore(int score)
+    {
+        if (score >= 300) return 3;
+        if (score >= 150) return 2;
+        if (score >= 50) return 1;
+        return 0;
+    }
+
+    string GetInsigniaText(int insignia)
+    {
+        switch (insignia)
+        {
+            case 3: return "Gold Badge!";
+            case 2: return "Silver Badge!";
+            case 1: return "Bronce Badge!";
+            default: return "Oops :(";
+        }
+    }
+
+    void UpdateTimerUI()
+    {
+        if (!timerText) return;
+
+        int seconds = Mathf.CeilToInt(currentTime);
+        timerText.text = seconds.ToString();
     }
 }

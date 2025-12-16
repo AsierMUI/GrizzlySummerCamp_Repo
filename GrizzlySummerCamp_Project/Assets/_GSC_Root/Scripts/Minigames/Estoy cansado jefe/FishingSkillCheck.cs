@@ -56,8 +56,8 @@ public class FishingSkillCheck : MonoBehaviour
     public int mediumRequired = 3;
     public int hardRequired = 4;
 
-    [Header("Fish Data")]
-    [SerializeField] private string currentFishID;
+    [Header("Score")]
+    [SerializeField] private FishingScoreHandler scoreHandler;
 
     float barWidth;
     float needlePosX;
@@ -84,6 +84,13 @@ public class FishingSkillCheck : MonoBehaviour
 
         if (difficultyText) difficultyText.gameObject.SetActive(false);
         if (chainText) chainText.gameObject.SetActive(false);
+
+        if (scoreHandler == null)
+        {
+            scoreHandler = FindFirstObjectByType<FishingScoreHandler>(FindObjectsInactive.Include);
+        }
+        if (scoreHandler == null)
+            Debug.LogError("No se encuentra fishingScoreHandler en la escena");
 
         ResetFishPosition();
     }
@@ -114,7 +121,7 @@ public class FishingSkillCheck : MonoBehaviour
             direction = -1;
         }
 
-        needle.anchoredPosition = new Vector2 (needlePosX, needle.anchoredPosition.y);
+        needle.anchoredPosition = new Vector2(needlePosX, needle.anchoredPosition.y);
 
         if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
@@ -222,11 +229,14 @@ public class FishingSkillCheck : MonoBehaviour
 
     void CompleteFishing()
     {
-        FishingScoreHandler scoreHandler =
-          FindFirstObjectByType<FishingScoreHandler>();
-
         if (scoreHandler != null)
-            scoreHandler.OnFishCaptured(currentFishID);
+        {
+            scoreHandler.OnFishCaptured(currentDifficulty);
+        }
+        else
+        {
+            Debug.LogWarning("[FishingSkillCheck] FishingScoreHandler no asignado");
+        }
 
         StartCoroutine(EndWithResult(true));
     }
@@ -251,7 +261,7 @@ public class FishingSkillCheck : MonoBehaviour
         yield return new WaitForSeconds(resultDelay);
 
         panel.SetActive(false);
-        if(resultPanel) resultPanel.SetActive(false);
+        if (resultPanel) resultPanel.SetActive(false);
 
         ResetFishPosition();
         ending = false;
@@ -273,7 +283,6 @@ public class FishingSkillCheck : MonoBehaviour
 
         float progress = (float)currentSuccesses / requiredChecks;
         float barHeight = progressBarBG.rect.height;
-
         float yPos = progress * barHeight;
 
         fishMarker.anchoredPosition = new Vector2(fishMarker.anchoredPosition.x, yPos);
@@ -291,13 +300,7 @@ public class FishingSkillCheck : MonoBehaviour
         if (!difficultyText) return;
 
         difficultyText.gameObject.SetActive(true);
-        difficultyText.text = currentDifficulty switch
-        {
-            SkillDifficulty.Easy => "Easy",
-            SkillDifficulty.Medium => "Medium",
-            SkillDifficulty.Hard => "Hard",
-            _ => ""
-        };
+        difficultyText.text = currentDifficulty.ToString();
     }
 
     void UpdateChainUI()

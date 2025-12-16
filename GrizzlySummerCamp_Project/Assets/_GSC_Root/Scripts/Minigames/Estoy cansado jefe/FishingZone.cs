@@ -16,9 +16,10 @@ public class FishingZone : MonoBehaviour
     {
         interactIcon.SetActive(false);
 
-        skillCheck = FindObjectOfType<FishingSkillCheck>(true);
+        skillCheck = FindFirstObjectByType<FishingSkillCheck>(FindObjectsInactive.Include);
 
-        if (skillCheck != null) Debug.Log("No se encuentra Fishingskillcheck en escena");
+        if (skillCheck == null)
+            Debug.LogError("[FishingZone] No se encuentra FishingSkillCheck en la escena");
     }
 
     private void Update()

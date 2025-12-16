@@ -6,19 +6,11 @@ public class ScoreUI : MonoBehaviour
     // Generico para todos los minijuegos
     [SerializeField] private TextMeshProUGUI scoreText;
 
-    private void OnEnable()
+    private void Update()
     {
-        ScoreManager.OnScoreChanged += UpdateScore;
+        if (ScoreManager.Instance != null)
+        {
+            scoreText.text = $"Puntos: {ScoreManager.Instance.GetTotalPoints()}";
+        }
     }
-
-    private void OnDisable()
-    {
-        ScoreManager.OnScoreChanged -= UpdateScore;
-    }
-
-    void UpdateScore(int newScore)
-    {
-        scoreText.text = $"Puntos: {newScore}";
-    }
-
 }

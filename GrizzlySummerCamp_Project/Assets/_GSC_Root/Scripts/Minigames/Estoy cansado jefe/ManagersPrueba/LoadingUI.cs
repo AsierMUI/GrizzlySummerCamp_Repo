@@ -58,13 +58,11 @@ public class LoadingUI : MonoBehaviour
         //Oculta loading
         gameObject.SetActive(false);
 
-        //Arranca el timer
-        MinigameTimer.instance.StartTimer();
-
         //Avisa al manager
         if (MinigameManager.Instance != null)
-            MinigameManager.Instance.OnMinigameStarted();
+            MinigameManager.Instance.StartMinigame();
     }
+
     private void OnDisable()
     {
         if (loopTween != null)

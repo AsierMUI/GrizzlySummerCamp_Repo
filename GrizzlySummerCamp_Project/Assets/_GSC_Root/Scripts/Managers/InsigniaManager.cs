@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class InsigniaManager : MonoBehaviour
@@ -41,15 +40,5 @@ public class InsigniaManager : MonoBehaviour
             ultimaEstrella = nuevaEstrella;
             Debug.Log("nuevaEstrella estrella guardada");
         }
-    }
-
-    //Funciones en minijuegos
-
-    public int CalcularInsignia(int score)
-    {
-        if (score >= 100) return 3;
-        if (score >= 60) return 2;
-        if (score >= 30) return 1;
-        return 0;
     }
 }

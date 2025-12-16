@@ -5,41 +5,47 @@ public class FishingScoreHandler : MonoBehaviour
     //Administra  los puntos de el minijuego de pesca unicamente y se los envia a el scoremanager
 
     [System.Serializable]
-   public class FishScoreData
+   public class FishScore
     {
-        public string fishID;
-        public int baseScore;
+        public string fishName;
+        public int basePoints;
     }
 
-    [Header("Fish Score Settings")]
-    [SerializeField] private FishScoreData[] fishScores;
+    [Header("Fish Score")]
+    public FishScore easyFish;
+    public FishScore mediumFish;
+    public FishScore hardFish;
 
-    [Header("Difficulty Multipliers")]
-    [SerializeField] private float easyMultiplier = 1f;
-    [SerializeField] private float mediumMultiplier = 1.5f;
-    [SerializeField] private float hardMultiplier = 2f;
-
-    /* public void OnFishCaptured(string fishID, FishingSkillCheck.SkillDifficulty difficulty)
+    public void OnFishCaptured(FishingSkillCheck.SkillDifficulty difficulty)
      {
-         int baseScore = GetBaseScoreForFish(fishID);
-         float multiplier = GetMultiplier(difficulty);
+         int points = GetPointsByDifficulty(difficulty);
 
-         if (baseScore <= 0)
+         if (points <= 0)
          {
-             Debug.LogWarning($"No hay puntos para el pez : {fishID}");
+             Debug.LogWarning($"No hay puntos asignados");
              return;
          }
+        
+        ScoreManager.Instance.AddPoints(points);
+
+        Debug.Log($"[FishingScoreHandler]+{points} puntos ({difficulty})");
      }
 
-     private int GetScoreForFish(string fishID)
-     {
-         foreach (var fish in fishScores)
-         {
-             if (fish.fishID == fishID)
-                 return fish.scoreValue;
-         }
+    int GetPointsByDifficulty(FishingSkillCheck.SkillDifficulty difficulty)
+    {
+        switch (difficulty)
+        {
+            case FishingSkillCheck.SkillDifficulty.Easy:
+                return easyFish.basePoints;
 
-         Debug.LogWarning($"No hay puntos definidos para el pez: {fishID}");
-         return 0;
-     }*/
+            case FishingSkillCheck.SkillDifficulty.Medium:
+                return mediumFish.basePoints;
+
+            case FishingSkillCheck.SkillDifficulty.Hard:
+                return hardFish.basePoints;
+
+            default:
+                return 0;
+        }
+    }
 }

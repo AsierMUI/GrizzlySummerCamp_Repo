@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -7,9 +8,11 @@ public class ScoreManager : MonoBehaviour
 
     public static ScoreManager Instance;
 
-    public static System.Action<int> OnScoreChanged;
+    [Header("Score")]
+    [SerializeField] private int puntosTotales = 0;
 
-    private int score;
+    [Header("UI")]
+    [SerializeField] private TMP_Text scoreText;
 
     private void Awake()
     {
@@ -22,23 +25,34 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void AddScore(int amount)
+    private void Start()
     {
-        score += amount;
-        OnScoreChanged?.Invoke(score);
-        Debug.Log($"[ScoreManager] Score actual: {score}");
+        UpdateUI();
     }
 
-    public int GetScore()
+    public void AddPoints(int amount)
     {
-        return score;
+        puntosTotales += amount;
+        UpdateUI();
+
+        Debug.Log($"[ScoreManager] Puntos actuales: {puntosTotales}");
+    }
+
+    public int GetTotalPoints()
+    {
+        return puntosTotales;
     }
 
     public void ResetScore()
     {
-        score = 0;
-        OnScoreChanged?.Invoke(score);
-        Debug.Log("[ScoreManager] Score reseteado");
+        puntosTotales = 0;
+        UpdateUI();
+    }
+
+    void UpdateUI()
+    {
+        if (scoreText != null )
+            scoreText.text = puntosTotales.ToString();
     }
 
 }
