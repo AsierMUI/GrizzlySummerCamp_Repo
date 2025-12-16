@@ -16,7 +16,7 @@ public class FishingZoneSpawner : MonoBehaviour
     public int numberOfZones = 5;
 
     [Header("Respawn")]
-    public float respawnDelay = 10f;
+    public float respawnDelay = 20f;
 
     private List<Transform> usedPoints = new List<Transform>();
 
