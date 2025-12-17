@@ -18,6 +18,12 @@ public class UIAnimations : MonoBehaviour
 
     public AudioManager audioManager;
 
+    private void Awake()
+    {
+        if (audioManager == null)
+            audioManager = FindFirstObjectByType<AudioManager>();
+    }
+
     private void Start()
     {
         if (logo !=null)
@@ -45,7 +51,8 @@ public class UIAnimations : MonoBehaviour
 
         AnimaciónActiva=true;
 
-       audioManager.PlaySFX(key);
+        if (!string.IsNullOrEmpty(key))
+            audioManager?.PlaySFX(key);
 
         OcultaInstrucciones.Instance.OcultarInstrucciones();
         CambiarLibreta();
