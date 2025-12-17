@@ -44,6 +44,8 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
     {
         moveAction = playerInput.actions["Move"];
         sprintAction = playerInput.actions["Sprint"];
+
+        SetCanMove(true);
     }
 
     void FixedUpdate()

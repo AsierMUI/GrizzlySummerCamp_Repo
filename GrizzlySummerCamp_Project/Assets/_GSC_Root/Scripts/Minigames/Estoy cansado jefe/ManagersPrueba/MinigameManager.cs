@@ -74,6 +74,8 @@ public class MinigameManager : MonoBehaviour
         currentTime = minigameDuration;
         isRunning = true;
 
+        SetPlayerMovement(true);
+
         if (ScoreManager.Instance != null)
         ScoreManager.Instance.ResetScore();
     }

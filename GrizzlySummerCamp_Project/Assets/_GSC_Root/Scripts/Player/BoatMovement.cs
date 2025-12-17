@@ -14,7 +14,7 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
     private InputAction moveAction;
     private Vector3 velocity;
 
-    [SerializeField] private bool canMove = false;
+    [SerializeField] private bool canMove = true;
 
     [Header("Child Player Animator")]
     [SerializeField] private Animator childAnimator;
@@ -31,6 +31,9 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
     void Start()
     {
         moveAction = playerInput.actions.FindAction("Move");
+
+        SetCanMove(true);
+
     }
 
     void FixedUpdate()
@@ -43,7 +46,6 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
         }
 
         MoveBoat();
-
     }
 
     void MoveBoat()
