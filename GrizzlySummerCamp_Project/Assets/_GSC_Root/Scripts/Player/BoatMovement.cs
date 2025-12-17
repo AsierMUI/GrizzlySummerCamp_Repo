@@ -31,9 +31,6 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
     void Start()
     {
         moveAction = playerInput.actions.FindAction("Move");
-
-        SetCanMove(true);
-
     }
 
     void FixedUpdate()

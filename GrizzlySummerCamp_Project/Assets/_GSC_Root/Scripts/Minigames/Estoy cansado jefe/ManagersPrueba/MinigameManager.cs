@@ -1,6 +1,9 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Linq;
+
 public class MinigameManager : MonoBehaviour
 {
 
@@ -27,9 +30,7 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private Sprite bronzeSprite;
     [SerializeField] private Sprite silverSprite;
     [SerializeField] private Sprite goldSprite;
-
-    [Header("Player Movement")]
-    [SerializeField] private MonoBehaviour playerMovementBehaviour;
+    
     private IMinigamePlayerMovement playerMovement;
 
 
@@ -39,21 +40,40 @@ public class MinigameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
             Destroy(gameObject);
     }
 
-    private void Start()
+    private void OnDestroy()
     {
-        currentTime = minigameDuration;
-        UpdateTimerUI();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
-        if (playerMovementBehaviour != null)
-            playerMovement = playerMovementBehaviour as IMinigamePlayerMovement;
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        FindPlayerMovementInScene();
+    }
 
-        if (playerMovementBehaviour != null && playerMovement == null)
-            Debug.LogError("[MinigameManager] el script asignado no implementa IMinigamePlayerMovement");
+    void FindPlayerMovementInScene()
+    {
+        playerMovement = FindObjectsByType<MonoBehaviour>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+            )
+            .OfType<IMinigamePlayerMovement>()
+            .FirstOrDefault();
+
+        if (playerMovement != null)
+        {
+            Debug.Log($"[MinigameManager] PlayerMovement detectado {playerMovement}");
+            playerMovement.SetCanMove(false);
+        }
+        else
+        {
+            Debug.LogWarning("[MinigameManager] no se encontro IMinigamePlayerMovement en la escena");
+        }
     }
 
     private void Update()
@@ -69,7 +89,7 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-    public void StartMinigame()
+    public void OnMinigameStarted()
     {
         currentTime = minigameDuration;
         isRunning = true;
@@ -77,7 +97,12 @@ public class MinigameManager : MonoBehaviour
         SetPlayerMovement(true);
 
         if (ScoreManager.Instance != null)
-        ScoreManager.Instance.ResetScore();
+            ScoreManager.Instance.ResetScore();
+    }
+
+    public void StartMinigame()
+    {
+        OnMinigameStarted(); //lo dejo pq estoy cansao de cambiar scripts
     }
 
     public void SetPlayerMovement(bool canMove)
