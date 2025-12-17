@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using System;
 
 public class MinigameManager : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class MinigameManager : MonoBehaviour
     private bool isRunning = false;
 
     [Header("UI")]
-    [SerializeField] private TMP_Text timerText;
     [SerializeField] private GameObject endMinigameUI;
     [SerializeField] private TMP_Text finalScoreText;
 
@@ -33,6 +33,8 @@ public class MinigameManager : MonoBehaviour
     
     private IMinigamePlayerMovement playerMovement;
 
+    public static event Action OnMinigameStarted;
+    public static event Action OnMinigameEnded;
 
     private void Awake()
     {
@@ -81,15 +83,15 @@ public class MinigameManager : MonoBehaviour
         if (!isRunning) return;
 
         currentTime -=Time.deltaTime;
-        UpdateTimerUI();
 
         if (currentTime <=0f)
         {
+            currentTime = 0f;
             EndMinigame();
         }
     }
 
-    public void OnMinigameStarted()
+    public void StartMinigame()
     {
         currentTime = minigameDuration;
         isRunning = true;
@@ -98,11 +100,8 @@ public class MinigameManager : MonoBehaviour
 
         if (ScoreManager.Instance != null)
             ScoreManager.Instance.ResetScore();
-    }
 
-    public void StartMinigame()
-    {
-        OnMinigameStarted(); //lo dejo pq estoy cansao de cambiar scripts
+        OnMinigameStarted?.Invoke();
     }
 
     public void SetPlayerMovement(bool canMove)
@@ -115,6 +114,8 @@ public class MinigameManager : MonoBehaviour
         isRunning = false;
 
         SetPlayerMovement(false);
+
+        OnMinigameEnded?.Invoke();
 
         int puntos = ScoreManager.Instance != null ? ScoreManager.Instance.GetTotalPoints() : 0;
         int insignia = GetInsigniaByScore(puntos);
@@ -178,14 +179,6 @@ public class MinigameManager : MonoBehaviour
         if (score >= 150) return 2;
         if (score >= 50) return 1;
         return 0;
-    }
-
-    void UpdateTimerUI()
-    {
-        if (!timerText) return;
-
-        int seconds = Mathf.CeilToInt(currentTime);
-        timerText.text = seconds.ToString();
     }
 
     public float GetCurrentTime()

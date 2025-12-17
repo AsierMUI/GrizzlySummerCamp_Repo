@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class UIAnimations : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class UIAnimations : MonoBehaviour
     {
         if (audioManager == null)
             audioManager = FindFirstObjectByType<AudioManager>();
+
+        animManecilla.enabled = false;
     }
 
     private void Start()
@@ -38,9 +41,6 @@ public class UIAnimations : MonoBehaviour
         {
             ToggleLibreta();
         }
-
-        if (!animacionTiempoIniciada && LoadingUI != null && !LoadingUI.activeSelf)
-            IniciarAnimacionManecilla();
     }
 
     //Funciones libreta
@@ -91,7 +91,23 @@ public class UIAnimations : MonoBehaviour
 
     public void IniciarAnimacionManecilla()
     {
-        animacionTiempoIniciada = true; if (animManecilla != null)
-            animManecilla.Play(tiempoAnim);
+        if (!animacionTiempoIniciada)
+            StartCoroutine(EsperarYAnimarManecilla());
+    }
+    private IEnumerator EsperarYAnimarManecilla()
+    {
+        while (LoadingUI != null && LoadingUI.activeSelf)
+            yield return null;
+
+
+        animacionTiempoIniciada = true;
+        if(animManecilla !=null)
+        {
+            animManecilla.enabled = true;
+
+            yield return null;
+
+            animManecilla.Play(tiempoAnim, 0, 0f);
+        }
     }
 }
