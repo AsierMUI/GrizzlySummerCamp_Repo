@@ -1,10 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-
 //Editado para que en el hub funcione normalmente y sea compatible con el minigamemanager
-
 
 public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
 {
@@ -24,8 +21,8 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
     PlayerInput playerInput;
     InputAction moveAction;
     InputAction sprintAction;
-
-    [SerializeField] private bool canMove = true;
+    
+    private bool canMove = true;
 
     private void Awake()
     {
@@ -45,12 +42,12 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         moveAction = playerInput.actions["Move"];
         sprintAction = playerInput.actions["Sprint"];
 
-        SetCanMove(true);
+        canMove = true;
     }
 
     void FixedUpdate()
     {
-        if(!canMove)
+        if (!canMove)
         {
             StopMovement();
             return;
@@ -114,6 +111,7 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         if (walkingVFX != null && walkingVFX.isPlaying) {walkingVFX.Stop();}
     }
 
+    //Para otros scripts
     public void SetCanMove(bool value)
     {
         canMove = value;
@@ -121,4 +119,8 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
             StopMovement();
     }
 
+    public bool GetCanMove()
+    {
+        return canMove;
+    }
 }

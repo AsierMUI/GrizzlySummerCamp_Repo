@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
@@ -10,7 +11,7 @@ public class PauseGame : MonoBehaviour
     [Header("Estado")]
     public bool juegoPausado = false;
 
-    [SerializeField] int EscenaJuego = 2;
+    private PlayerMovement playerMovement;
 
     private void Start()
     {
@@ -19,11 +20,15 @@ public class PauseGame : MonoBehaviour
 
         if (menuPausa != null)
             menuPausa.SetActive(false);
+
+        playerMovement = FindFirstObjectByType<PlayerMovement>();
+        if (playerMovement == null)
+            Debug.LogWarning("PauseGame no se ha encontrado playermovement en escena");
         
     }
+
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex != EscenaJuego) return;
 
         if (Input.GetKeyDown(KeyCode.Escape) && (loadingUI == null || !loadingUI.activeSelf))
         {
@@ -46,10 +51,7 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 0f;
         juegoPausado = true;
 
-        if (MinigameManager.Instance != null) MinigameManager.Instance.SetPlayerMovement(false);
-
-        Debug.Log("Juego pausado");
-
+        if (playerMovement != null) playerMovement.SetCanMove(false);
     }
 
     public void Reanudar()
@@ -60,9 +62,6 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1f;
         juegoPausado = false;
 
-        if (MinigameManager.Instance != null) MinigameManager.Instance.SetPlayerMovement(true);
-
-        Debug.Log("Juego reanudado");
-
+        if (playerMovement != null) playerMovement.SetCanMove(true);
     }
 }
