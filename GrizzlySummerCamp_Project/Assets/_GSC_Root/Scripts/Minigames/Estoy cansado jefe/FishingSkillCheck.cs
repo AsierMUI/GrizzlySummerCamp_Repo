@@ -138,6 +138,9 @@ public class FishingSkillCheck : MonoBehaviour
         active = true;
         ending = false;
 
+        if (MinigameManager.Instance != null)
+            MinigameManager.Instance.SetPlayerMovement(false);
+
         RollDifficultyByChance();
         ApplyDifficultySettings();
 
@@ -265,6 +268,8 @@ public class FishingSkillCheck : MonoBehaviour
 
         ResetFishPosition();
         ending = false;
+
+        if (MinigameManager.Instance != null) MinigameManager.Instance.SetPlayerMovement(true);
 
         OnSkillCheckFinished?.Invoke(success);
     }

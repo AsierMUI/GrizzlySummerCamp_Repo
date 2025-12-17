@@ -3,25 +3,29 @@ using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
-
     [Header("Refs UI")]
     public GameObject menuPausa;
-    public GameObject canvasInstrucciones;
+    public GameObject loadingUI;
+
+    [Header("Estado")]
     public bool juegoPausado = false;
+
     [SerializeField] int EscenaJuego = 2;
 
     private void Start()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
         juegoPausado = false;
+
         if (menuPausa != null)
             menuPausa.SetActive(false);
         
     }
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex != EscenaJuego) { return; }
-        if (Input.GetKeyDown(KeyCode.Escape) && (canvasInstrucciones == null || !canvasInstrucciones.activeSelf))
+        if (SceneManager.GetActiveScene().buildIndex != EscenaJuego) return;
+
+        if (Input.GetKeyDown(KeyCode.Escape) && (loadingUI == null || !loadingUI.activeSelf))
         {
             TogglePausa();
         }
@@ -36,21 +40,15 @@ public class PauseGame : MonoBehaviour
     }
     public void Pausar()
     {
-
         if (menuPausa !=null)
             menuPausa.SetActive(true);
 
         Time.timeScale = 0f;
         juegoPausado = true;
 
-        var boat = FindFirstObjectByType<BoatMovement>();
-        if (boat != null)
-        {
-            boat.canMove = false;
-            boat.ResetVelocity();
-        }
+        if (MinigameManager.Instance != null) MinigameManager.Instance.SetPlayerMovement(false);
 
-        Debug.Log("Juego pausado. Time.timeScale = " + Time.timeScale);
+        Debug.Log("Juego pausado");
 
     }
 
@@ -62,10 +60,9 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1f;
         juegoPausado = false;
 
-        var boat = FindFirstObjectByType<BoatMovement>();
-        boat.canMove = true;
+        if (MinigameManager.Instance != null) MinigameManager.Instance.SetPlayerMovement(true);
 
-        Debug.Log("Juego reanudado. Time.timeScale = " + Time.timeScale);
+        Debug.Log("Juego reanudado");
 
     }
 }

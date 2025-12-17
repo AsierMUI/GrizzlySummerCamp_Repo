@@ -6,44 +6,26 @@ using System.Collections.Generic;
 
 public class PickUpManager : MonoBehaviour
 {
-    // =====================================================
-    // SINGLETON
-    // =====================================================
     public static PickUpManager instance;
 
-    // =====================================================
-    // SISTEMA DE PUNTOS
-    // =====================================================
     [Header("ScoreSystem")]
     public int score = 0;
     public int maxScore = 4;
     [SerializeField] TMP_Text scoreText; //UI que muestra los puntos (puede que se borre)
 
-    // =====================================================
-    // ELEMENTOS NIVEL
-    // =====================================================
     [Header("Lvl elements")]
     [SerializeField] GameObject goal;
     [SerializeField] GameObject boat;
     private BoatMovement boatMovement;
 
-    // =====================================================
-    // UI
-    // =====================================================
     [Header("UI")]
     [SerializeField] GameObject Notification;
     [SerializeField] GameObject winUI;
- 
-    // =====================================================
-    // AUDIO
-    // =====================================================
+
     [Header("Sounds")]
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip pointSound;
 
-    // =====================================================
-    // SISTEMA FLECHA
-    // =====================================================
     [Header("Arrow System")]
     [SerializeField] Image arrowUI;
     [SerializeField] Transform player;
@@ -51,7 +33,6 @@ public class PickUpManager : MonoBehaviour
     //Lista de pickups
     [Header("Minigame Info")]
     [SerializeField] string minigameName = "Race";
-
 
     private List<Transform> pickups = new List<Transform>();
     private Transform lastPickup;

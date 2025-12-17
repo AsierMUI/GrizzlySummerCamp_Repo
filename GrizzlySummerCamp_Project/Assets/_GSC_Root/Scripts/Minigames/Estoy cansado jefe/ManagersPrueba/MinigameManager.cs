@@ -28,6 +28,11 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private Sprite silverSprite;
     [SerializeField] private Sprite goldSprite;
 
+    [Header("Player Movement")]
+    [SerializeField] private MonoBehaviour playerMovementBehaviour;
+    private IMinigamePlayerMovement playerMovement;
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -43,6 +48,12 @@ public class MinigameManager : MonoBehaviour
     {
         currentTime = minigameDuration;
         UpdateTimerUI();
+
+        if (playerMovementBehaviour != null)
+            playerMovement = playerMovementBehaviour as IMinigamePlayerMovement;
+
+        if (playerMovementBehaviour != null && playerMovement == null)
+            Debug.LogError("[MinigameManager] el script asignado no implementa IMinigamePlayerMovement");
     }
 
     private void Update()
@@ -67,12 +78,18 @@ public class MinigameManager : MonoBehaviour
         ScoreManager.Instance.ResetScore();
     }
 
+    public void SetPlayerMovement(bool canMove)
+    {
+        if (playerMovement != null) playerMovement.SetCanMove(canMove);
+    }
+
     public void EndMinigame()
     {
         isRunning = false;
 
-        int puntos = ScoreManager.Instance != null ? ScoreManager.Instance.GetTotalPoints() : 0;
+        SetPlayerMovement(false);
 
+        int puntos = ScoreManager.Instance != null ? ScoreManager.Instance.GetTotalPoints() : 0;
         int insignia = GetInsigniaByScore(puntos);
 
         if (minigameName == "Race")
@@ -86,7 +103,7 @@ public class MinigameManager : MonoBehaviour
         }
 
         if (finalScoreText)
-            finalScoreText.text = puntos.ToString();
+            finalScoreText.text = $"You got {puntos} points!";
 
         UpdateEndGameUI(insignia);
 
@@ -142,5 +159,15 @@ public class MinigameManager : MonoBehaviour
 
         int seconds = Mathf.CeilToInt(currentTime);
         timerText.text = seconds.ToString();
+    }
+
+    public float GetCurrentTime()
+    {
+        return currentTime;
+    }
+
+    public float GetMaxTime()
+    {
+        return minigameDuration;
     }
 }

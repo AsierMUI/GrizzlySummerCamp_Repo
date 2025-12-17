@@ -1,21 +1,20 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
 {
     [Header("Move Stats")]
-    [SerializeField] float Speed = 5f;
+    [SerializeField] float speed = 5f;
     [SerializeField] float rotationSpeed = 10f;
     [SerializeField] float friction = 0.98f;
-    [Space]
     [SerializeField] Rigidbody rb;
 
     private PlayerInput playerInput;
     private InputAction moveAction;
-
     private Vector3 velocity;
 
-    [SerializeField] public bool canMove = false;
+    [SerializeField] private bool canMove = false;
 
     [Header("Child Player Animator")]
     [SerializeField] private Animator childAnimator;
@@ -25,23 +24,26 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
 
-        canMove = true; //quitar luego
+        if (childAnimator == null)
+            childAnimator = GetComponentInChildren<Animator>();
     }
 
     void Start()
     {
         moveAction = playerInput.actions.FindAction("Move");
-        if(childAnimator == null)
-            childAnimator = GetComponentInChildren<Animator>();
     }
 
     void FixedUpdate()
     {
-        if (canMove == true)
+        if (!canMove)
         {
-            MoveBoat();
+            ResetVelocity();
+            UpdateAnimation(false);
+            return;
         }
-        else { ResetVelocity(); }
+
+        MoveBoat();
+
     }
 
     void MoveBoat()
@@ -51,7 +53,7 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
 
         if (moveDir.sqrMagnitude > 0.01f)
         {
-            velocity += moveDir * Speed * Time.fixedDeltaTime;
+            velocity += moveDir * speed * Time.fixedDeltaTime;
         }
 
         velocity *= friction;
@@ -64,28 +66,23 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
         }
 
-        //Animaciones
-
-        if (childAnimator != null)
-        {
-            bool isMoving = velocity.sqrMagnitude > 0.01f;
-            childAnimator.SetBool("isMoving", isMoving);
-        }
+        UpdateAnimation(velocity.sqrMagnitude > 0.01f);
     }
 
-    public void EnableMovement() 
+    void UpdateAnimation(bool isMoving)
     {
-        canMove = true;
-    }
-
-    public void DisableMovement()
-    {
-        canMove = false;
-        ResetVelocity();
+        if (childAnimator != null) childAnimator.SetBool("isMoving", isMoving);
     }
 
     public void ResetVelocity()
     {
         velocity = Vector3.zero; //para quitar la inercia
+    }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+        if (!value)
+            ResetVelocity();
     }
 }

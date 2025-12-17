@@ -8,23 +8,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
 {
-    // =====================================================
-    // MOVIMIENTO
-    // =====================================================
 
     [Header("Move Stats")]
-    [SerializeField] float Speed;
+    [SerializeField] float speed;
     [SerializeField] float rotationSpeed;
-    [SerializeField] Rigidbody rb;
     [SerializeField] float collisionSlowdown = 0.6f; //Entre 0.0-1.0 (0 a 100) 
     [SerializeField] float drag = 5f;
-    [SerializeField] Animator animator;
-    [SerializeField] ParticleSystem walkingVFX;
     [SerializeField] float sprintMultiplier = 3f;
 
-    // =====================================================
-    // INPUT SYSTEM
-    // =====================================================
+    [Header("Refeences")]
+    [SerializeField] Rigidbody rb;
+    [SerializeField] Animator animator;
+    [SerializeField] ParticleSystem walkingVFX;
+
     PlayerInput playerInput;
     InputAction moveAction;
     InputAction sprintAction;
@@ -43,8 +39,6 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
 
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
-
-        canMove = true;
     }
     void Start()
     {
@@ -63,7 +57,6 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         MovePlayer();
     }
 
-
     void MovePlayer()
     {
         Vector2 input = moveAction.ReadValue<Vector2>();
@@ -75,7 +68,7 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         HandleWalkingVFX(isWalking);
 
         //Comprueba si se pulsa sprint
-        float currentSpeed = Speed;
+        float currentSpeed = speed;
         if (sprintAction.ReadValue<float>()> 0.1f)
             currentSpeed *= sprintMultiplier;
 
@@ -90,6 +83,7 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.deltaTime));
         }
     }
+
     private void OnCollisionStay(Collision other)
     {
         if (other.collider.CompareTag("Obstacle"))
@@ -108,17 +102,6 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
             walkingVFX.Stop();
     }
 
-    public void EnableMovement()
-    {
-        canMove = true;
-    }
-
-    public void DisableMovement()
-    {
-        canMove = false;
-        StopMovement();
-    }
-
     void StopMovement()
     {
         rb.linearVelocity = Vector3.zero;
@@ -128,4 +111,12 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
 
         if (walkingVFX != null && walkingVFX.isPlaying) {walkingVFX.Stop();}
     }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+        if (!value)
+            StopMovement();
+    }
+
 }

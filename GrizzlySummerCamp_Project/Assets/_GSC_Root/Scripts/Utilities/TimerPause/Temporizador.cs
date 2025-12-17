@@ -4,86 +4,36 @@ using TMPro;
 
 public class Temporizador : MonoBehaviour
 {
-    [SerializeField] private float tiempoMax;
+    [Header("UI")]
     [SerializeField] private Slider slider;
-    [SerializeField] private GameObject canvasResultado;
-    [SerializeField] private TMP_Text resultadoTexto;
-    //[SerializeField] private GameObject canvasInstrucciones;
+    [SerializeField] private TMP_Text timeText;
 
-    private float tiempoActual;
-    private bool tiempoActivado = false;
-    private bool tiempoFinalizado = false;
-
-    [SerializeField] private Pesca_Prueba pescaScript;
-
+    [Header("Opcional")]
     [SerializeField] private GameObject loadingUI;
+
+    private float maxTime;
 
     private void Start()
     {
-        tiempoActual = tiempoMax;
-        slider.maxValue = tiempoMax;
-        slider.value = tiempoActual;
-
-        if (pescaScript == null)
-            pescaScript = FindFirstObjectByType<Pesca_Prueba>();
-
-        //if (canvasInstrucciones !=null && canvasInstrucciones.activeSelf)
-        //    tiempoActivado=false;
-        //else
-
-        tiempoActivado = true;
+        if (MinigameManager.Instance != null)
+        {
+            maxTime = MinigameManager.Instance.GetMaxTime();
+            slider.maxValue = maxTime;
+        }
     }
+
     private void Update()
     {
 
         if (loadingUI != null && loadingUI.activeSelf) return;
 
-        if (!tiempoActivado || tiempoFinalizado) return;
+        if (MinigameManager.Instance == null) return;
 
-            CambiarContador();
-    }
-    private void CambiarContador()
-    {
-        tiempoActual -= Time.deltaTime;
+        float currentTime = MinigameManager.Instance.GetCurrentTime();
 
-        if (tiempoActual >= 0)
-        {
-            slider.value = tiempoActual;
-        }
-        else 
-        {
-            tiempoActual = 0;
-            slider.value = 0;
+        slider.value = currentTime;
 
-            tiempoActivado = false;
-            tiempoFinalizado = true;
-            MostrarResultados();
-        }
-    }
-    public void ActivarTemporizador()
-    {
-        if (!tiempoFinalizado)
-        {
-            tiempoActual = tiempoMax;
-            tiempoActivado = true;
-        }
-    }
-    public void DesactivarTemporizador()
-    {
-        tiempoActivado = false;
-    }
-    public void MostrarResultados()
-    {
-        resultadoTexto.text = "You got:";
-        canvasResultado.SetActive(true);
-
-        if (pescaScript != null)
-            pescaScript.FinalizarPorTiempo();
-
-    }
-
-    public GameObject GetCanvasResultado()
-    {
-        return canvasResultado;
+        if (timeText != null)
+            timeText.text = Mathf.CeilToInt(currentTime).ToString();
     }
 }
