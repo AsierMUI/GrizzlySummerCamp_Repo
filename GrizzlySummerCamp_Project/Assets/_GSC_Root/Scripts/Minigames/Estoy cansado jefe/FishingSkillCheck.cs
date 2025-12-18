@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using TMPro;
@@ -30,6 +31,10 @@ public class FishingSkillCheck : MonoBehaviour
     public GameObject resultPanel;
     public TMP_Text resultText;
     public float resultDelay = 2f;
+
+    [Header("Timer UI")]
+    public RectTransform timerBarBG;
+    public Image timerFill;
 
     [Header("Dificulty Chances (%)")]
     [Range(0, 100)] public int easyChance = 60;
@@ -100,6 +105,8 @@ public class FishingSkillCheck : MonoBehaviour
         if (!active || ending) return;
 
         timer += Time.deltaTime;
+
+        UpdateTimerUI();
 
         if (timer >= currentMaxTime)
         {
@@ -199,6 +206,9 @@ public class FishingSkillCheck : MonoBehaviour
         needlePosX = 0;
 
         needle.anchoredPosition = new Vector2(needlePosX, needle.anchoredPosition.y);
+
+        if (timerFill)
+            timerFill.fillAmount = 1f;
 
         RandomizeSuccessZone();
     }
@@ -314,5 +324,13 @@ public class FishingSkillCheck : MonoBehaviour
 
         chainText.gameObject.SetActive(true);
         chainText.text = $"{currentSuccesses}/{requiredChecks}";
+    }
+
+    void UpdateTimerUI()
+    {
+        if (!timerFill) return;
+
+        float normalizedTime = 1f - (timer / currentMaxTime);
+        timerFill.fillAmount = normalizedTime;
     }
 }
