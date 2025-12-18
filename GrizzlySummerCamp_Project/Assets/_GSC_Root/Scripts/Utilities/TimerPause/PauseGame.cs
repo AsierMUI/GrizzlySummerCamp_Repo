@@ -29,6 +29,7 @@ public class PauseGame : MonoBehaviour
 
     void Update()
     {
+        if (loadingUI != null && loadingUI.activeSelf) return;
 
         if (Input.GetKeyDown(KeyCode.Escape) && (loadingUI == null || !loadingUI.activeSelf))
         {
@@ -63,5 +64,21 @@ public class PauseGame : MonoBehaviour
         juegoPausado = false;
 
         if (playerMovement != null) playerMovement.SetCanMove(true);
+    }
+
+    public void ReiniciarEscena()
+    {
+        Time.timeScale = 1f;
+        juegoPausado = false;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void VolverAlHub()
+    {
+        Time.timeScale = 1f;
+        juegoPausado = false;
+
+        SceneManager.LoadScene("SCN_HUB");
     }
 }
