@@ -102,6 +102,9 @@ public class FishingSkillCheck : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f)
+            return;
+
         if (!active || ending) return;
 
         timer += Time.deltaTime;
