@@ -40,6 +40,8 @@ public class AudioManager : MonoBehaviour
         {
             musicSource.clip = soundDict["Music"];
             if (!musicSource.isPlaying) musicSource.Play();
+
+            AudioSettings.Instance.SetVolume(VolumeType.Music, AudioSettings.Instance.MusicVolume);
         }
     }
 

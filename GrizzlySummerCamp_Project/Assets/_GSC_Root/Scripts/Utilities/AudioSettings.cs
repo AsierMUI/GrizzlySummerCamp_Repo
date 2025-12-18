@@ -158,6 +158,12 @@ public class AudioSettings : MonoBehaviour
         mixer.SetFloat("Master", MasterMuted ? MUTE_DB : ToDb(masterLast));
         mixer.SetFloat("Music", MusicMuted ? MUTE_DB : ToDb(musicLast));
         mixer.SetFloat("SFX", SFXMuted ? MUTE_DB : ToDb(sfxLast));
+
+        if (musicSource != null)
+            musicSource.mute = MusicMuted;
+
+        if (sfxSource != null)
+            sfxSource.mute = SFXMuted;
     }
 
     private float ToDb(float value)
