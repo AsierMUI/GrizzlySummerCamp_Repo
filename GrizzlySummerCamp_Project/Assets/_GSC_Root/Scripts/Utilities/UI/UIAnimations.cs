@@ -23,8 +23,8 @@ public class UIAnimations : MonoBehaviour
     {
         if (audioManager == null)
             audioManager = FindFirstObjectByType<AudioManager>();
-
-        animManecilla.enabled = false;
+        if(animManecilla != null)
+            animManecilla.enabled = false;
     }
 
     private void Start()
