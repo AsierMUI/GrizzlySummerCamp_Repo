@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
+    //Este script no debe ser persistente
+
+
+
     [Header("Refs UI")]
     public GameObject menuPausa;
     public GameObject loadingUI;
