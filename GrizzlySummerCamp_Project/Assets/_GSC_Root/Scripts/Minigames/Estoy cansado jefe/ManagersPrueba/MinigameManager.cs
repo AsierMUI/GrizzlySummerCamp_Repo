@@ -89,12 +89,36 @@ public class MinigameManager : MonoBehaviour
 
     void FindUIReferences()
     {
-        endMinigameUI = GameObject.Find("EndMinigameUI");
-        finalScoreText = GameObject.Find("FinalScoreText")?.GetComponent<TMP_Text>();
-        messageText = GameObject.Find("MessageText")?.GetComponent<TMP_Text>();
-        insigniaImage = GameObject.Find("InsigniaImage")?.GetComponent<Image>();
+        endMinigameUI = FindDeepChildInScene("EndMinigameUI")?.gameObject;
+        finalScoreText = FindDeepChildInScene("FinalScoreText")?.GetComponent<TMP_Text>();
+        messageText = FindDeepChildInScene("MessageText")?.GetComponent<TMP_Text>();
+        insigniaImage = FindDeepChildInScene("InsigniaImage")?.GetComponent<Image>();
 
         Debug.Log($"[MinigameManager] UI references - EndUI: {endMinigameUI}, ScoreText: {finalScoreText}, MessageText: {messageText}, InsigniaImage: {insigniaImage}");
+    }
+
+    Transform FindDeepChildInScene(string name)
+    {
+        foreach (GameObject root in SceneManager.GetActiveScene().GetRootGameObjects())
+        {
+            Transform result = FindDeepChild(root.transform, name);
+            if (result != null)
+                return result;
+        }
+        return null;
+    }
+
+    Transform FindDeepChild(Transform parent, string name)
+    {
+        if (parent.name == name) return parent;
+
+        foreach (Transform child in parent)
+        {
+            Transform result = FindDeepChild(child, name);
+            if (result != null)
+                return result;
+        }
+        return null;
     }
     #endregion
 
