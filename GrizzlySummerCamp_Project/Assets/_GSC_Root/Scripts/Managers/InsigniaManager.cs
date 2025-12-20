@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class InsigniaManager : MonoBehaviour
 {
-
-    //GENERICO PARA TODOS LOS MINIJUEGOS
-
+    //GENERICO PARA TODOS LOS MINIJUEGOS, no hace falta que tenga destroyonload a se encarga persistent root
+    #region Singleton y Variables
     public static InsigniaManager Instance;
 
     //Diccionario: clave = nombre del minijuego, valor = insignia maxima(0 nada 1 bronze, etc)
@@ -13,21 +12,23 @@ public class InsigniaManager : MonoBehaviour
 
     //Diccionario: clave = nombre del minijuego, valor = estrella obtenida(0 no 1 si)
     private Dictionary<string, int> minigameEstrellas = new Dictionary<string, int>();
+    #endregion
 
+    #region Awake
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); //hace que se mantenga entre escenas
         }
         else
         {
             Destroy(gameObject);
         }
     }
+    #endregion
 
-    //INSIGNIAS
+    #region Insignias
     public void GuardarInsignia(string minigameName, int nuevaInsignia)
     {
         if (!minigameInsignias.ContainsKey(minigameName))
@@ -46,8 +47,9 @@ public class InsigniaManager : MonoBehaviour
             return minigameInsignias[minigameName];
         return 0;
     }
+    #endregion
 
-    //ESTRELLA
+    #region Estrellas
     public void GuardarEstrella(string minigameName, int nuevaEstrella)
     {
         if (!minigameEstrellas.ContainsKey(minigameName))
@@ -66,8 +68,10 @@ public class InsigniaManager : MonoBehaviour
             return minigameEstrellas[minigameName];
         return 0;
     }
+    #endregion
 
+    #region Getters Completos
     public Dictionary<string, int> GetAllInsignias() => new Dictionary<string, int>(minigameInsignias);
     public Dictionary<string, int> GetAllEstrellas() => new Dictionary<string, int>(minigameEstrellas);
-
+    #endregion
 }

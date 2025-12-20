@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MostrarInsigniaHub : MonoBehaviour
 {
+    #region Clases y variables
     [System.Serializable]
     public class MinigameUI
     {
@@ -20,17 +22,29 @@ public class MostrarInsigniaHub : MonoBehaviour
 
     [Header("Minijuegos a mostrar")]
     public MinigameUI[] minijuegos;
+    #endregion
 
+    #region Unity Callbacks
     private void OnEnable()
     {
-        ActualizarVisuales();
+        SceneManager.sceneLoaded += OnSceneLoaded; 
     }
 
-    private void Start()
+    private void OnDisable()
     {
-        ActualizarVisuales();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "SCN_HUB")
+        {
+            ActualizarVisuales();
+        }
+    }
+    #endregion
+
+    #region Funciones
     private void ActualizarVisuales()
     {
         if (InsigniaManager.Instance == null)
@@ -61,6 +75,6 @@ public class MostrarInsigniaHub : MonoBehaviour
 
             Debug.Log($"[MostrarInsigniaHub] {mg.minigameName}: Insignia={InsigniaManager.Instance.GetInsignia(mg.minigameName)}, Estrella={InsigniaManager.Instance.GetEstrella(mg.minigameName)}");
         }
-
     }
+    #endregion
 }
