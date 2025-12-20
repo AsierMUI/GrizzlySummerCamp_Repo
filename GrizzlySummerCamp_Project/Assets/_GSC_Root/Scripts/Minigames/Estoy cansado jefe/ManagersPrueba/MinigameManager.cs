@@ -55,6 +55,12 @@ public class MinigameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (scene.name == "SCN_Menu" || scene.name == "SCN_HUB")
+        {
+            Debug.Log($"[MinigamManager] Escena '{scene.name}' ignorada para referencias.");
+            return;
+        }
+
         FindPlayerMovementInScene();
         FindUIReferences();
     }
@@ -83,17 +89,12 @@ public class MinigameManager : MonoBehaviour
 
     void FindUIReferences()
     {
-        if (endMinigameUI == null)
-            endMinigameUI = GameObject.Find("EndMinigameUI");
+        endMinigameUI = GameObject.Find("EndMinigameUI");
+        finalScoreText = GameObject.Find("FinalScoreText")?.GetComponent<TMP_Text>();
+        messageText = GameObject.Find("MessageText")?.GetComponent<TMP_Text>();
+        insigniaImage = GameObject.Find("InsigniaImage")?.GetComponent<Image>();
 
-        if (finalScoreText == null)
-            finalScoreText = GameObject.Find("FinalScoreText")?.GetComponent<TMP_Text>();
-
-        if (messageText == null)
-            messageText = GameObject.Find("MessageText")?.GetComponent<TMP_Text>();
-
-        if (insigniaImage == null)
-            insigniaImage = GameObject.Find("InsigniaImage")?.GetComponent<Image>();
+        Debug.Log($"[MinigameManager] UI references - EndUI: {endMinigameUI}, ScoreText: {finalScoreText}, MessageText: {messageText}, InsigniaImage: {insigniaImage}");
     }
     #endregion
 
