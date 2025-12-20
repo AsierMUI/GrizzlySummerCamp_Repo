@@ -45,8 +45,6 @@ public class AudioSettings : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
-
 
         Load();
         ApplyAll();
