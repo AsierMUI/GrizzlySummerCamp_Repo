@@ -1,3 +1,4 @@
+/*
 using UnityEngine;
 using UnityEditor;
  
@@ -148,3 +149,4 @@ public class Object2Terrain : EditorWindow {
         Debug.Log("TerrainData guardado en: " + path);
     }
 }
+*/
