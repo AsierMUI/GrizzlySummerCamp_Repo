@@ -7,9 +7,8 @@ using System;
 
 public class MinigameManager : MonoBehaviour
 {
-
-    //GENERICO SIRVE PARA TODOS LOS MINIJUEGOS
-
+    #region Singleton y variables generales
+    //GENERICO SIRVE PARA TODOS LOS MINIJUEGOS, debe mantenerse en todas las escenas pero no tener dontdestroyonload (se encarga PersistentRoot)
     public static MinigameManager Instance;
 
     [Header("Minigame Settings")]
@@ -18,11 +17,16 @@ public class MinigameManager : MonoBehaviour
     private float currentTime;
     private bool isRunning = false;
 
-    [Header("UI")]
+    private IMinigamePlayerMovement playerMovement;
+
+    public static event Action OnMinigameStarted;
+    public static event Action OnMinigameEnded;
+    #endregion
+
+    #region UI (Scene Refs)
+    [Header("UI (Scene Refs)")]
     [SerializeField] private GameObject endMinigameUI;
     [SerializeField] private TMP_Text finalScoreText;
-
-    [Header("End Game Message")]
     [SerializeField] private TMP_Text messageText;
     [SerializeField] private Image insigniaImage;
 
@@ -30,18 +34,14 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private Sprite bronzeSprite;
     [SerializeField] private Sprite silverSprite;
     [SerializeField] private Sprite goldSprite;
-    
-    private IMinigamePlayerMovement playerMovement;
+    #endregion
 
-    public static event Action OnMinigameStarted;
-    public static event Action OnMinigameEnded;
-
+    #region Awake y On
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
@@ -56,8 +56,11 @@ public class MinigameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         FindPlayerMovementInScene();
+        FindUIReferences();
     }
+    #endregion
 
+    #region Find in scene
     void FindPlayerMovementInScene()
     {
         playerMovement = FindObjectsByType<MonoBehaviour>(
@@ -78,13 +81,30 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+    void FindUIReferences()
+    {
+        if (endMinigameUI == null)
+            endMinigameUI = GameObject.Find("EndMinigameUI");
+
+        if (finalScoreText == null)
+            finalScoreText = GameObject.Find("FinalScoreText")?.GetComponent<TMP_Text>();
+
+        if (messageText == null)
+            messageText = GameObject.Find("MessageText")?.GetComponent<TMP_Text>();
+
+        if (insigniaImage == null)
+            insigniaImage = GameObject.Find("InsigniaImage")?.GetComponent<Image>();
+    }
+    #endregion
+
+    #region Update y Minijuego
     private void Update()
     {
         if (!isRunning) return;
 
         currentTime -=Time.deltaTime;
 
-        if (currentTime <=0f)
+        if (currentTime <= 0f)
         {
             currentTime = 0f;
             EndMinigame();
@@ -97,9 +117,8 @@ public class MinigameManager : MonoBehaviour
         isRunning = true;
 
         SetPlayerMovement(true);
-
-        if (ScoreManager.Instance != null)
-            ScoreManager.Instance.ResetScore();
+        
+        ScoreManager.Instance?.ResetScore();
 
         OnMinigameStarted?.Invoke();
     }
@@ -130,6 +149,14 @@ public class MinigameManager : MonoBehaviour
             InsigniaManager.Instance.GuardarInsignia(minigameName, insignia);
         }
 
+        UpdateUI(puntos, insignia);
+    }
+    #endregion
+
+    #region UI Updates
+
+    void UpdateUI(int puntos, int insignia)
+    {
         if (finalScoreText)
             finalScoreText.text = $"You got {puntos} points!";
 
@@ -151,6 +178,9 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Score/Insignia
     string GetMessageByInsignia(int insignia)
     {
         switch (insignia)
@@ -180,7 +210,9 @@ public class MinigameManager : MonoBehaviour
         if (score >= 50) return 1;
         return 0;
     }
+    #endregion
 
+    #region Getters
     public float GetCurrentTime()
     {
         return currentTime;
@@ -190,4 +222,5 @@ public class MinigameManager : MonoBehaviour
     {
         return minigameDuration;
     }
+    #endregion
 }
