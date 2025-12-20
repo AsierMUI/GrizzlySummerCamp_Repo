@@ -7,8 +7,8 @@ using System;
 
 public class MinigameManager : MonoBehaviour
 {
-    #region Singleton y variables generales
     //GENERICO SIRVE PARA TODOS LOS MINIJUEGOS, debe mantenerse en todas las escenas pero no tener dontdestroyonload (se encarga PersistentRoot)
+    #region Singleton y variables generales
     public static MinigameManager Instance;
 
     [Header("Minigame Settings")]
