@@ -8,6 +8,8 @@ public class FishingSkillCheck : MonoBehaviour
 {
     //Este script se encarga SOLO del minijuego, su dificultad e interfaz
 
+    #region Enums y Eventos
+
     public enum SkillDifficulty
     {
         Easy,
@@ -15,6 +17,10 @@ public class FishingSkillCheck : MonoBehaviour
         Hard
     }
 
+    public Action<bool> OnSkillCheckFinished;
+    #endregion
+
+    #region Skillcheck UI
     [Header("Skillcheck UI")]
     public GameObject panel;
     public RectTransform needle;
@@ -35,7 +41,9 @@ public class FishingSkillCheck : MonoBehaviour
     [Header("Timer UI")]
     public RectTransform timerBarBG;
     public Image timerFill;
+    #endregion
 
+    #region Dificultad
     [Header("Dificulty Chances (%)")]
     [Range(0, 100)] public int easyChance = 60;
     [Range(0, 100)] public int mediumChance = 30;
@@ -60,26 +68,30 @@ public class FishingSkillCheck : MonoBehaviour
     public int easyRequired = 2;
     public int mediumRequired = 3;
     public int hardRequired = 4;
+    #endregion
 
+    #region Score
     [Header("Score")]
     [SerializeField] private FishingScoreHandler scoreHandler;
+    #endregion
 
-    float barWidth;
-    float needlePosX;
-    int direction = 1; //la derecha 1 y la izquierda -1
-    float timer;
-    bool active;
-    bool ending;
+    #region Variables privadas
+    private float barWidth;
+    private float needlePosX;
+    private int direction = 1; //la derecha 1 y la izquierda -1
+    private float timer;
+    private bool active;
+    private bool ending;
 
-    SkillDifficulty currentDifficulty;
-    int requiredChecks;
-    int currentSuccesses;
+    private SkillDifficulty currentDifficulty;
+    private int requiredChecks;
+    private int currentSuccesses;
 
-    float currentNeedleSpeed;
-    float currentMaxTime;
+    private float currentNeedleSpeed;
+    private float currentMaxTime;
+    #endregion
 
-    public Action<bool> OnSkillCheckFinished;
-
+    #region Start y Update
     private void Start()
     {
         panel.SetActive(false);
@@ -102,13 +114,11 @@ public class FishingSkillCheck : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale == 0f)
-            return;
+        if (Time.timeScale == 0f) return;
 
         if (!active || ending) return;
 
         timer += Time.deltaTime;
-
         UpdateTimerUI();
 
         if (timer >= currentMaxTime)
@@ -117,29 +127,16 @@ public class FishingSkillCheck : MonoBehaviour
             return;
         }
 
-        //Movimiento aguja
-        needlePosX += currentNeedleSpeed * direction * Time.deltaTime;
-
-        if (needlePosX <= 0)
-        {
-            needlePosX = 0;
-            direction = 1;
-        }
-        else if (needlePosX >= barWidth)
-        {
-            needlePosX = barWidth;
-            direction = -1;
-        }
-
-        needle.anchoredPosition = new Vector2(needlePosX, needle.anchoredPosition.y);
+        UpdateNeedlePosition();
 
         if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
             CheckResult();
         }
     }
+    #endregion
 
-    //Entrada al minijuego
+    #region Skillcheck Logic
     public void StartSkillCheck()
     {
         panel.SetActive(true);
@@ -216,6 +213,24 @@ public class FishingSkillCheck : MonoBehaviour
         RandomizeSuccessZone();
     }
 
+    void UpdateNeedlePosition()
+    {
+        needlePosX += currentNeedleSpeed * direction * Time.deltaTime;
+
+        if (needlePosX <= 0)
+        {
+            needlePosX = 0;
+            direction = 1;
+        }
+        else if (needlePosX >= barWidth)
+        {
+            needlePosX = barWidth;
+            direction = -1;
+        }
+
+        needle.anchoredPosition = new Vector2(needlePosX, needle.anchoredPosition.y);
+    }
+
     void CheckResult()
     {
         bool success = 
@@ -286,13 +301,9 @@ public class FishingSkillCheck : MonoBehaviour
 
         OnSkillCheckFinished?.Invoke(success);
     }
+    #endregion
 
-    void RandomizeSuccessZone()
-    {
-        float maxX = barWidth - successZone.rect.width;
-        float randomX = UnityEngine.Random.Range(0, maxX);
-        successZone.anchoredPosition = new Vector2(randomX, successZone.anchoredPosition.y);
-    }
+    #region UI/Timer
 
     //Progreso pez
     void UpdateProgressBar()
@@ -300,9 +311,7 @@ public class FishingSkillCheck : MonoBehaviour
         if (!progressBarBG || !fishMarker) return;
 
         float progress = (float)currentSuccesses / requiredChecks;
-        float barHeight = progressBarBG.rect.height;
-        float yPos = progress * barHeight;
-
+        float yPos = progress * progressBarBG.rect.height;
         fishMarker.anchoredPosition = new Vector2(fishMarker.anchoredPosition.x, yPos);
     }
 
@@ -316,7 +325,6 @@ public class FishingSkillCheck : MonoBehaviour
     void UpdateDifficultyUI()
     {
         if (!difficultyText) return;
-
         difficultyText.gameObject.SetActive(true);
         difficultyText.text = currentDifficulty.ToString();
     }
@@ -324,7 +332,6 @@ public class FishingSkillCheck : MonoBehaviour
     void UpdateChainUI()
     {
         if (!chainText) return;
-
         chainText.gameObject.SetActive(true);
         chainText.text = $"{currentSuccesses}/{requiredChecks}";
     }
@@ -332,8 +339,17 @@ public class FishingSkillCheck : MonoBehaviour
     void UpdateTimerUI()
     {
         if (!timerFill) return;
-
         float normalizedTime = 1f - (timer / currentMaxTime);
         timerFill.fillAmount = normalizedTime;
     }
+    #endregion
+
+    #region Helper
+    void RandomizeSuccessZone()
+    {
+        float maxX = barWidth - successZone.rect.width;
+        float randomX = UnityEngine.Random.Range(0, maxX);
+        successZone.anchoredPosition = new Vector2(randomX, successZone.anchoredPosition.y);
+    }
+    #endregion
 }
