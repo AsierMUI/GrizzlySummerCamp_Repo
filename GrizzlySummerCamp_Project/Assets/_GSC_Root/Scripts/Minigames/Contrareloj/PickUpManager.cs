@@ -7,54 +7,44 @@ using System.Collections.Generic;
 public class PickUpManager : MonoBehaviour
 {
     #region Singleton
-    public static PickUpManager instance;
+    public static PickUpManager Instance;
     #endregion
 
-    #region Score
-    [Header("Score System")]
-    public int score = 0;
-    public int maxScore = 4;
+    #region Configuracion
+    [Header("Score")]
+    [SerializeField] private int maxScore = 4;
     [SerializeField] private TMP_Text scoreText;
-    #endregion
 
-    #region Level Elements
     [Header("Lvl elements")]
     [SerializeField] private GameObject goal;
-    #endregion
 
-    #region UI
     [Header("UI")]
     [SerializeField] private GameObject notificationUI;
     [SerializeField] private GameObject winUI;
-    #endregion
 
-    #region Sounds
-    [Header("Sounds")]
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip pointSound;
-    #endregion
-
-    #region Arrow System
     [Header("Arrow System")]
     [SerializeField] private Image arrowUI;
     [SerializeField] private Transform player;
-    #endregion
 
-    #region Minigame Info
+    [Header("Sounds")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pointSound;
+
+
     [Header("Minigame Info")]
-    [SerializeField] string minigameName = "Race";
+    [SerializeField] string minigameName = "Race"; //Lo dejamos asi por ahora por si sellama en otros scripts
     #endregion
 
-    #region Pickups Data
-    private List<Transform> pickups = new List<Transform>();
+    #region Pickups
+    private List<Transform> pickups = new();
     private Transform lastPickup;
     #endregion
 
-    #region Awake, Start y Update
+    #region Unity Callbacks
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else
         {
             Destroy(gameObject);
@@ -67,11 +57,12 @@ public class PickUpManager : MonoBehaviour
 
     private void Start()
     {
+        ScoreManager.Instance?.ResetScore();
         UpdateScoreUI();
 
         //Busca los pickups por tag
-        GameObject[] initialPickups = GameObject.FindGameObjectsWithTag("Pickup");
-        foreach (var p in initialPickups)
+        GameObject[] found = GameObject.FindGameObjectsWithTag("Pickup");
+        foreach (var p in found)
             pickups.Add(p.transform);
 
         if (arrowUI != null)
@@ -87,50 +78,39 @@ public class PickUpManager : MonoBehaviour
     }
     #endregion
 
-    #region AddScore y ReachedGoal
-    public void AddScore(Transform pickedObject)
+    #region Pickups
+    public void CollectPickup(Transform pickup)
     {
-        score ++;
-        Debug.Log($"[PickUpManager] Score: + {score}");
+        if (!pickups.Contains(pickup)) return;
 
+        pickups.Remove(pickup);
+
+        ScoreManager.Instance?.AddPoints(1);
         PlayPointSound();
         UpdateScoreUI();
-
-        pickups.Remove(pickedObject);
-
         UpdateArrowTarget();
 
-        if (score >= maxScore)
+        if (ScoreManager.Instance.GetTotalPoints() >= maxScore)
             ActivateGoal();
     }
+    #endregion
 
+    #region Goal
     public void ReachedGoal()
     {
-        Debug.Log("[PickUpManager] Meta alcanzada");
-
         if (winUI != null)
             winUI.SetActive(true);
 
         MinigameManager.Instance?.EndMinigame();
 
-        if (InsigniaManager.Instance != null)
-        {
-            InsigniaManager.Instance.GuardarEstrella(minigameName, 1);
-            Debug.Log($"[PickUpManager] Estrella guardada para {minigameName}");
-        }
-        else
-        {
-            Debug.Log("[PickUpManager] InsigniaMaanger no encontrado");
-        }
+        InsigniaManager.Instance?.GuardarEstrella(minigameName, 1);
     }
     #endregion
 
     #region Arrow
     private void UpdateArrowTarget()
     {
-        int remaining = pickups.Count;
-
-        if (remaining == 1)
+        if (pickups.Count == 1)
         {
             lastPickup = pickups[0];
             arrowUI.gameObject.SetActive(true);
@@ -144,7 +124,7 @@ public class PickUpManager : MonoBehaviour
 
     private void UpdateArrow()
     {
-        if (arrowUI == null || !arrowUI.gameObject.activeSelf || lastPickup == null) return;
+        if (!arrowUI || !arrowUI.gameObject.activeSelf || lastPickup == null) return;
 
         Vector3 dir = lastPickup.position - player.position;
         float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
@@ -155,11 +135,11 @@ public class PickUpManager : MonoBehaviour
     #region UI
     private void UpdateScoreUI()
     {
-        if (scoreText != null)
-            scoreText.text = $"Points:{score}/{maxScore}";
+        if (scoreText != null && ScoreManager.Instance != null)
+            scoreText.text = $"Points:{ScoreManager.Instance.GetTotalPoints()}/{maxScore}";
     }
 
-    void ActivateGoal()
+    private void ActivateGoal()
     {
         if (goal != null)
             goal.SetActive(true);
