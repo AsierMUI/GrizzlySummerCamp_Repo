@@ -56,15 +56,7 @@ public class InteractableObject : MonoBehaviour
 
     void OpenUI()
     {
-        SavePlayerPosition();
         InstructionsUI.SetActive(isPlayerInRange);
-        //SceneManager.LoadScene(sceneToLoad);
-
-    }
-    void SavePlayerPosition()
-    {
-        PlayerData.lastPosition = player.transform.position;
-        PlayerData.hasSavedPosition = true;
     }
 
 }
