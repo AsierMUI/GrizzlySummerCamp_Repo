@@ -6,46 +6,60 @@ using System.Collections.Generic;
 
 public class PickUpManager : MonoBehaviour
 {
+    #region Singleton
     public static PickUpManager instance;
+    #endregion
 
-    [Header("ScoreSystem")]
+    #region Score
+    [Header("Score System")]
     public int score = 0;
     public int maxScore = 4;
-    [SerializeField] TMP_Text scoreText; //UI que muestra los puntos (puede que se borre)
+    [SerializeField] private TMP_Text scoreText;
+    #endregion
 
+    #region Level Elements
     [Header("Lvl elements")]
-    [SerializeField] GameObject goal;
-    [SerializeField] GameObject boat;
-    private BoatMovement boatMovement;
+    [SerializeField] private GameObject goal;
+    #endregion
 
+    #region UI
     [Header("UI")]
-    [SerializeField] GameObject Notification;
-    [SerializeField] GameObject winUI;
+    [SerializeField] private GameObject notificationUI;
+    [SerializeField] private GameObject winUI;
+    #endregion
 
+    #region Sounds
     [Header("Sounds")]
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip pointSound;
+    #endregion
 
+    #region Arrow System
     [Header("Arrow System")]
-    [SerializeField] Image arrowUI;
-    [SerializeField] Transform player;
+    [SerializeField] private Image arrowUI;
+    [SerializeField] private Transform player;
+    #endregion
 
-    //Lista de pickups
+    #region Minigame Info
     [Header("Minigame Info")]
     [SerializeField] string minigameName = "Race";
+    #endregion
 
+    #region Pickups Data
     private List<Transform> pickups = new List<Transform>();
     private Transform lastPickup;
+    #endregion
 
+    #region Awake, Start y Update
     private void Awake()
     {
         if (instance == null)
             instance = this;
         else
+        {
             Destroy(gameObject);
-
-        if (boat != null)
-            boatMovement = boat.GetComponent<BoatMovement>();
+            return;
+        }
 
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
@@ -62,34 +76,58 @@ public class PickUpManager : MonoBehaviour
 
         if (arrowUI != null)
             arrowUI.gameObject.SetActive(false);
+
+        if (goal != null)
+            goal.SetActive(false);
     }
 
     private void Update()
     {
-        if (arrowUI != null && arrowUI.gameObject.activeSelf && lastPickup != null)
-        {
-            // La direccion del jugador hacia el pickup
-            Vector3 dir = lastPickup.position - player.position;
-
-            // Angulo calculado en gradios usando Atan2 
-            float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-
-            //Gira la flecha
-            arrowUI.rectTransform.rotation = Quaternion.Euler(0, 0, -angle);
-        }
+        UpdateArrow();
     }
+    #endregion
 
+    #region AddScore y ReachedGoal
     public void AddScore(Transform pickedObject)
     {
         score ++;
-        Debug.Log("Score:" + score);
+        Debug.Log($"[PickUpManager] Score: + {score}");
 
         PlayPointSound();
         UpdateScoreUI();
 
-        //quitamos pickup de la lista
         pickups.Remove(pickedObject);
 
+        UpdateArrowTarget();
+
+        if (score >= maxScore)
+            ActivateGoal();
+    }
+
+    public void ReachedGoal()
+    {
+        Debug.Log("[PickUpManager] Meta alcanzada");
+
+        if (winUI != null)
+            winUI.SetActive(true);
+
+        MinigameManager.Instance?.EndMinigame();
+
+        if (InsigniaManager.Instance != null)
+        {
+            InsigniaManager.Instance.GuardarEstrella(minigameName, 1);
+            Debug.Log($"[PickUpManager] Estrella guardada para {minigameName}");
+        }
+        else
+        {
+            Debug.Log("[PickUpManager] InsigniaMaanger no encontrado");
+        }
+    }
+    #endregion
+
+    #region Arrow
+    private void UpdateArrowTarget()
+    {
         int remaining = pickups.Count;
 
         if (remaining == 1)
@@ -97,15 +135,24 @@ public class PickUpManager : MonoBehaviour
             lastPickup = pickups[0];
             arrowUI.gameObject.SetActive(true);
         }
-        else if (remaining == 0)
+        else
         {
+            lastPickup = null;
             arrowUI.gameObject.SetActive(false);
         }
-
-        if (score >= maxScore)
-            ActivateGoal();
     }
 
+    private void UpdateArrow()
+    {
+        if (arrowUI == null || !arrowUI.gameObject.activeSelf || lastPickup == null) return;
+
+        Vector3 dir = lastPickup.position - player.position;
+        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+        arrowUI.rectTransform.rotation = Quaternion.Euler(0, 0, -angle);
+    }
+    #endregion
+
+    #region UI
     private void UpdateScoreUI()
     {
         if (scoreText != null)
@@ -114,42 +161,28 @@ public class PickUpManager : MonoBehaviour
 
     void ActivateGoal()
     {
-        StartCoroutine(Notice());
-        goal.SetActive(true);
+        if (goal != null)
+            goal.SetActive(true);
+
+        StartCoroutine(ShowNotification());
     }
 
-    IEnumerator Notice() 
+    IEnumerator ShowNotification() 
     {
-        if (Notification != null)
+        if (notificationUI != null)
         {
-            Notification.SetActive(true);
+            notificationUI.SetActive(true);
             yield return new WaitForSeconds(3f);
-            Notification.SetActive(false);
+            notificationUI.SetActive(false);
         }
     }
+    #endregion
 
-    public void ReachedGoal()
-    {
-        if (winUI != null)
-            winUI.SetActive(true);
-
-        if (boatMovement != null)
-        boatMovement.enabled = false;
-
-        if (InsigniaManager.Instance != null)
-        {
-            InsigniaManager.Instance.GuardarEstrella(minigameName, 1);
-            Debug.Log("[PickUpManager] Estrella guardada para minijuego:" + minigameName);
-        }
-        else
-        {
-            Debug.Log("[PickUpManager] no se ha encotnrado insigniamanager al intentar guardar la estrella");
-        }
-    }
-
+    #region Audio
     void PlayPointSound()
     {
         if (audioSource != null && pointSound != null)
             audioSource.PlayOneShot(pointSound);
     }
+    #endregion
 }

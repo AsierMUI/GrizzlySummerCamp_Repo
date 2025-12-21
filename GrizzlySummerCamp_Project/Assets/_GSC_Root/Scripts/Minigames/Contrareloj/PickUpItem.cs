@@ -6,8 +6,7 @@ public class PickUpItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PickUpManager.instance.AddScore(transform);
-            Destroy(gameObject);
+            //PickUpManager.instance.CollectPickup(this);
         }
     }
 }
