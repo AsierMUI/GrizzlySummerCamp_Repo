@@ -36,7 +36,7 @@ public class PickUpManager : MonoBehaviour
     #endregion
 
     #region Pickups
-    private List<Transform> pickups = new();
+    private List<Transform> pickups = new List<Transform>();
     private Transform lastPickup;
     #endregion
 

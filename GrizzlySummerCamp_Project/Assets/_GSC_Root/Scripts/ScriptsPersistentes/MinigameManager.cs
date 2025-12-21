@@ -164,7 +164,7 @@ public class MinigameManager : MonoBehaviour
         int puntos = ScoreManager.Instance != null ? ScoreManager.Instance.GetTotalPoints() : 0;
         int insignia = GetInsigniaByScore(puntos);
 
-        if (minigameName == "Race")
+        if (minigameName == "SCN_MContrareloj")
         {
             int estrella = puntos > 0 ? 1 : 0;
             InsigniaManager.Instance.GuardarEstrella(minigameName, estrella);
@@ -194,7 +194,20 @@ public class MinigameManager : MonoBehaviour
     void UpdateEndGameUI(int insignia)
     {
         if (messageText)
-            messageText.text = GetMessageByInsignia(insignia);
+        {
+            if (minigameName == "SCN_MContrareloj")
+            {
+                bool hasWon = ScoreManager.Instance != null && ScoreManager.Instance.GetTotalPoints() > 0;
+
+                messageText.text = hasWon
+                    ? "Well done"
+                    : "Try again :(";
+            }
+            else
+            {
+                messageText.text = GetMessageByInsignia(insignia);
+            }
+        }
 
         if (insigniaImage)
         {
@@ -202,7 +215,6 @@ public class MinigameManager : MonoBehaviour
             insigniaImage.enabled = insignia > 0;
         }
     }
-
     #endregion
 
     #region Score/Insignia
