@@ -1,8 +1,6 @@
-using NUnit.Framework.Internal.Filters;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
-using static VolumeController;
 
 [DefaultExecutionOrder(-100)]
 public class AudioSettings : MonoBehaviour
@@ -50,7 +48,7 @@ public class AudioSettings : MonoBehaviour
         ApplyAll();
     }
 
-    #region Public API --Volumes & Mute
+    #region Volumes
     public void SetVolume(VolumeType type, float value)
     {
         value = Mathf.Clamp01(value);
@@ -61,25 +59,28 @@ public class AudioSettings : MonoBehaviour
                 MasterVolume = value;
                 masterLast = value;
                 PlayerPrefs.SetFloat("MasterVolume", value);
-                if (!MasterMuted) mixer.SetFloat("Master", ToDb(value));
+                mixer.SetFloat("Master", ToDb(value));
                 break;
 
             case VolumeType.Music:
                 MusicVolume = value;
                 musicLast = value;
                 PlayerPrefs.SetFloat("MusicVolume", value);
-                if (!MusicMuted) mixer.SetFloat("Music", ToDb(value));
-                break;
+                mixer.SetFloat("Music", ToDb(value)); break;
 
             case VolumeType.SFX:
                 SFXVolume = value;
                 sfxLast = value;
                 PlayerPrefs.SetFloat("SFXVolume", value);
-                if (!SFXMuted) mixer.SetFloat("SFX", ToDb(value));
+                mixer.SetFloat("SFX", ToDb(value));
                 break;
         }
     }
 
+
+    #endregion
+
+    #region Mute
     public void SetMute(VolumeType type, bool mute)
     {
         switch (type)
@@ -103,6 +104,7 @@ public class AudioSettings : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
     #region Fade Music
     //Funciona?
@@ -127,12 +129,23 @@ public class AudioSettings : MonoBehaviour
             FadeMusicCoroutine(MusicVolume, musicLast, duration)
         );
     }
+
+    private IEnumerator FadeMusicCoroutine(float from, float to, float duration)
+    {
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float value = Mathf.Lerp(from, to, time / duration);
+            SetVolume(VolumeType.Music, value);
+            yield return null;
+        }
+
+        SetVolume(VolumeType.Music, to);
+    }
     #endregion
 
-    public AudioSource GetMusicSource() => musicSource;
-    public AudioSource GetSFXSource() => sfxSource;
-
-    #endregion
 
     #region Init --Load & Helpers
 
@@ -157,11 +170,6 @@ public class AudioSettings : MonoBehaviour
         mixer.SetFloat("Music", MusicMuted ? MUTE_DB : ToDb(musicLast));
         mixer.SetFloat("SFX", SFXMuted ? MUTE_DB : ToDb(sfxLast));
 
-        if (musicSource != null)
-            musicSource.mute = MusicMuted;
-
-        if (sfxSource != null)
-            sfxSource.mute = SFXMuted;
     }
 
     private float ToDb(float value)
@@ -169,46 +177,10 @@ public class AudioSettings : MonoBehaviour
         return Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20f;
     }
 
-    /*
-    private void LoadVolumes()
-    {
-        masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
-        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
-
-        masterMuted = PlayerPrefs.GetInt("MasterMuted", 0) == 1;
-        musicMuted = PlayerPrefs.GetInt("MusicMuted", 0) == 1;
-        sfxMuted = PlayerPrefs.GetInt("SFXMuted", 0) == 1;
-
-        masterLastVolume = PlayerPrefs.GetFloat("MasterLastVolume", masterVolume);
-        musicLastVolume = PlayerPrefs.GetFloat("MusicLastVolume", musicVolume);
-        sfxLastVolume = PlayerPrefs.GetFloat("SFXLastVolume", sfxVolume);
-
-        mixer.SetFloat("Master", masterMuted ? MUTE_DB : LinearToDb(masterLastVolume));
-        mixer.SetFloat("Music", musicMuted ? MUTE_DB : LinearToDb(musicLastVolume));
-        mixer.SetFloat("SFX", sfxMuted ? MUTE_DB : LinearToDb(sfxLastVolume));
-
-        // Aplicar volúmenes a los AudioSources
-        if (musicSource != null) musicSource.volume = musicMuted ? 0f : musicLastVolume;
-        if (sfxSource != null) sfxSource.volume = sfxMuted ? 0f : sfxLastVolume;
-    }
-    */
     #endregion
 
-    private IEnumerator FadeMusicCoroutine(float from, float to, float duration)
-    {
-        float time = 0f;
-
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            float value = Mathf.Lerp(from, to, time / duration);
-            SetVolume(VolumeType.Music, value);
-            yield return null;
-        }
-
-        SetVolume(VolumeType.Music, to);
-    }
+    public AudioSource GetMusicSource() => musicSource;
+    public AudioSource GetSFXSource() => sfxSource;
 }
 
 public enum VolumeType { Master, Music, SFX }

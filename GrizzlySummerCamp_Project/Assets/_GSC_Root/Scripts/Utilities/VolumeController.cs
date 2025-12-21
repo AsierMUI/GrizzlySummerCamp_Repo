@@ -22,7 +22,6 @@ public class VolumeController : MonoBehaviour
 
     private void OnSliderChanged(float value)
     {
-        AudioSettings.Instance.SetMute(type, value <= 0.001f);
         AudioSettings.Instance.SetVolume(type, value);
         UpdateText(value);
     }
@@ -31,6 +30,7 @@ public class VolumeController : MonoBehaviour
     {
         bool newMute = !IsMuted();
         AudioSettings.Instance.SetMute(type, newMute);
+
         slider.SetValueWithoutNotify(newMute ? 0f : GetVolume());
         UpdateText(slider.value);
     }

@@ -1,11 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    [Header("AudioMixer")]
-    public AudioMixer mixer;
 
     [System.Serializable]
     public class NamedAudio
@@ -16,8 +13,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Listas de sonidos")]
     public List<NamedAudio> soundList = new();
-    private Dictionary<string, AudioClip> soundDict;
 
+    private Dictionary<string, AudioClip> soundDict;
     private AudioSource musicSource;
     private AudioSource SFXSource;
 
@@ -39,11 +36,11 @@ public class AudioManager : MonoBehaviour
         if (musicSource != null && soundDict.ContainsKey("Music"))
         {
             musicSource.clip = soundDict["Music"];
-            if (!musicSource.isPlaying) musicSource.Play();
-
-            AudioSettings.Instance.SetVolume(VolumeType.Music, AudioSettings.Instance.MusicVolume);
+            musicSource.Play();
         }
     }
+
+    #region Play Function
 
     public void PlaySFX(string key)
     {
@@ -59,4 +56,5 @@ public class AudioManager : MonoBehaviour
             musicSource.Play();
         }
     }
+    #endregion
 }
