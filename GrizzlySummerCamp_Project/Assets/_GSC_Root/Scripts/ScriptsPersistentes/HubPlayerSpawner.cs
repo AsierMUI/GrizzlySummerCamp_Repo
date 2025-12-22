@@ -49,19 +49,31 @@ public class HubPlayerSpawner : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        player = null;
+
         if (scene.name == hubSceneName && hasSavedPosition)
         {
-            StartCoroutine(RestorePositionDelayed());
+            StartCoroutine(WaitForPlayerAndRestore());
         }
     }
 
-    private IEnumerator RestorePositionDelayed()
+    private IEnumerator WaitForPlayerAndRestore()
     {
-        yield return null;
-
-        if (player != null)
+        while (player == null)
         {
-            player.position = savedPosition;
+            yield return null;
         }
+
+        yield return new WaitForEndOfFrame();
+
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.Sleep();
+        }
+
+        player.position = savedPosition;
     }
 }
