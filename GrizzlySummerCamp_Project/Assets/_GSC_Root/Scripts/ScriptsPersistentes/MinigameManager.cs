@@ -14,8 +14,10 @@ public class MinigameManager : MonoBehaviour
     [Header("Minigame Settings")]
     [SerializeField] public string minigameName;
     [SerializeField] private float minigameDuration = 90f;
+
     private float currentTime;
     private bool isRunning = false;
+    private bool hasWonMinigame = false;
 
     private IMinigamePlayerMovement playerMovement;
 
@@ -61,6 +63,8 @@ public class MinigameManager : MonoBehaviour
             return;
         }
 
+        hasWonMinigame = false;
+
         FindPlayerMovementInScene();
         FindUIReferences();
     }
@@ -77,14 +81,7 @@ public class MinigameManager : MonoBehaviour
             .FirstOrDefault();
 
         if (playerMovement != null)
-        {
-            Debug.Log($"[MinigameManager] PlayerMovement detectado {playerMovement}");
             playerMovement.SetCanMove(false);
-        }
-        else
-        {
-            Debug.LogWarning("[MinigameManager] no se encontro IMinigamePlayerMovement en la escena");
-        }
     }
 
     void FindUIReferences()
@@ -140,23 +137,23 @@ public class MinigameManager : MonoBehaviour
     {
         currentTime = minigameDuration;
         isRunning = true;
+        hasWonMinigame = true;
 
         SetPlayerMovement(true);
-        
         ScoreManager.Instance?.ResetScore();
 
         OnMinigameStarted?.Invoke();
     }
 
-    public void SetPlayerMovement(bool canMove)
+    public void EndMinigame(bool won)
     {
-        if (playerMovement != null) playerMovement.SetCanMove(canMove);
+        hasWonMinigame = won;
+        EndMinigame();
     }
 
     public void EndMinigame()
     {
         isRunning = false;
-
         SetPlayerMovement(false);
 
         OnMinigameEnded?.Invoke();
@@ -164,42 +161,36 @@ public class MinigameManager : MonoBehaviour
         int puntos = ScoreManager.Instance != null ? ScoreManager.Instance.GetTotalPoints() : 0;
         int insignia = GetInsigniaByScore(puntos);
 
-        if (minigameName == "SCN_MContrareloj")
+        if (minigameName != "SCN_MContrareloj")
         {
-            int estrella = puntos > 0 ? 1 : 0;
-            InsigniaManager.Instance.GuardarEstrella(minigameName, estrella);
-        }
-        else
-        {
-            InsigniaManager.Instance.GuardarInsignia(minigameName, insignia);
+            InsigniaManager.Instance?.GuardarInsignia(minigameName, insignia);
         }
 
         UpdateUI(puntos, insignia);
     }
+
+    public void SetPlayerMovement(bool canMove)
+    {
+        if (playerMovement != null) playerMovement.SetCanMove(canMove);
+    }
     #endregion
 
     #region UI Updates
-
     void UpdateUI(int puntos, int insignia)
     {
-        if (finalScoreText)
-            finalScoreText.text = $"You got {puntos} points!";
-
-        UpdateEndGameUI(insignia);
-
         if (endMinigameUI)
             endMinigameUI.SetActive(true);
+
+        UpdateEndGameUI(puntos, insignia);
     }
 
-    void UpdateEndGameUI(int insignia)
+    void UpdateEndGameUI(int puntos, int insignia)
     {
         if (messageText)
         {
             if (minigameName == "SCN_MContrareloj")
             {
-                bool hasWon = ScoreManager.Instance != null && ScoreManager.Instance.GetTotalPoints() > 0;
-
-                messageText.text = hasWon
+                messageText.text = hasWonMinigame
                     ? "Well done"
                     : "Try again :(";
             }
@@ -208,6 +199,20 @@ public class MinigameManager : MonoBehaviour
                 messageText.text = GetMessageByInsignia(insignia);
             }
         }
+
+        if (minigameName == "SCN_MContrareloj")
+        {
+            if (finalScoreText)
+                finalScoreText.gameObject.SetActive(false);
+
+            if (insigniaImage)
+                insigniaImage.enabled = false;
+
+            return;
+        }
+
+        if (finalScoreText)
+            finalScoreText.text = $"You got {puntos} points!";
 
         if (insigniaImage)
         {
