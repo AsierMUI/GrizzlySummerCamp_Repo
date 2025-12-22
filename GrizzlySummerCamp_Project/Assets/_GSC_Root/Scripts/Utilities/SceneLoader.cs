@@ -18,6 +18,21 @@ public class SceneLoader : MonoBehaviour
         Instance = this;
     }
 
+    public void LoadSceneByIndex(int index)
+    {
+        CambiarEscena(index);
+    }
+
+    public void LoadSceneByName(string sceneName)
+    {
+        if (HubPlayerSpawner.Instance != null)
+        {
+            HubPlayerSpawner.Instance.SavePosition();
+        }
+
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void CambiarEscena(int index)
     {
         if (HubPlayerSpawner.Instance != null)

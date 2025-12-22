@@ -9,10 +9,6 @@ public class InteractableObject : MonoBehaviour
     [Header("Interaction")]
     [SerializeField] float interactionDistance = 4f;
 
-    [Header("Scene Change (Opcional)")]
-    [SerializeField] bool changesScene = false;
-    [SerializeField] int sceneToLoadIndex;
-
     [Header("UI")]
     [SerializeField] GameObject spriteObject;
     [SerializeField] GameObject InstructionsUI;
@@ -47,25 +43,22 @@ public class InteractableObject : MonoBehaviour
         if(spriteObject!=null)
             spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
 
-
-        if (InstructionsUI != null) 
+        if (InstructionsUI != null)
         {
-            if (isPlayerInRange && interactAction.WasPressedThisFrame()) //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
+            //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
+            if (isPlayerInRange && interactAction.WasPressedThisFrame())
             {
                 OpenUI();
             }
-            else if(!isPlayerInRange) //Si el jugador sale del rango, el tutorial se apaga.
+            else if (!isPlayerInRange)
             {
                 InstructionsUI.SetActive(false);
             }
-
         }
-    
     }
 
     void OpenUI()
     {
         InstructionsUI.SetActive(isPlayerInRange);
     }
-
 }
