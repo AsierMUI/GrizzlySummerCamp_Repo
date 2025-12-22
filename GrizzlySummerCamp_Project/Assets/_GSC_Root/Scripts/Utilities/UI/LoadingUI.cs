@@ -13,6 +13,8 @@ public class LoadingUI : MonoBehaviour
     [Header("Loading Texts")]
     [SerializeField] private string[] loadingTLines; //Asignar el texto en cada escena
 
+    [SerializeField] private UIAnimations uiAnimations;
+
     private string baseText;
     private int dotCount = 0;
     private LTDescr loopTween;
@@ -55,10 +57,20 @@ public class LoadingUI : MonoBehaviour
     //Metodo que llama el boton
     public void OnStartButtonPressed()
     {
-        //Oculta loading
+        Debug.Log("BOTON START PULSADO");
+
         gameObject.SetActive(false);
 
-        //Avisa al manager
+        if (uiAnimations != null)
+        {
+            Debug.Log("LLAMANDO A MANECILLA");
+            uiAnimations.IniciarAnimacionManecilla();
+        }
+        else
+        {
+            Debug.LogError("uiAnimations es null");
+        }
+
         if (MinigameManager.Instance != null)
             MinigameManager.Instance.StartMinigame();
     }

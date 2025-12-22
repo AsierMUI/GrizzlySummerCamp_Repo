@@ -9,7 +9,7 @@ public class UIAnimations : MonoBehaviour
     [SerializeField] string key;
 
     [Header("Manecilla tiempo")]
-    [SerializeField] private GameObject LoadingUI;
+    [SerializeField] private GameObject loadingUI;
     [SerializeField] private Animator animManecilla;
     [SerializeField] private string tiempoAnim;
     private bool animacionTiempoIniciada = false;
@@ -91,17 +91,19 @@ public class UIAnimations : MonoBehaviour
 
     public void IniciarAnimacionManecilla()
     {
-        if (!animacionTiempoIniciada)
-            Debug.Log("Entra coroutine");
-            StartCoroutine(EsperarYAnimarManecilla());
+        if (animacionTiempoIniciada) return;
+
+        Debug.Log("Entra coroutine");
+        StartCoroutine(EsperarYAnimarManecilla());
     }
     private IEnumerator EsperarYAnimarManecilla()
     {
-        while (LoadingUI != null && LoadingUI.activeSelf)
+        while (loadingUI != null && loadingUI.activeSelf)
             yield return null;
 
         animacionTiempoIniciada = true;
-        if(animManecilla !=null)
+
+        if (animManecilla != null)
         {
             Debug.Log("entra tiempo");
             animManecilla.enabled = true;
