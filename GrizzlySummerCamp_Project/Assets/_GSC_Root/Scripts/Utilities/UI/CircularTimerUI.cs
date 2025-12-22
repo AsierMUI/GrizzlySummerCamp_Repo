@@ -34,5 +34,4 @@ public class CircularTimerUI : MonoBehaviour
         float normalizedTime = Mathf.Clamp01(currentTime / maxTime);
         circularSlider.value = normalizedTime;
     }
-
 }

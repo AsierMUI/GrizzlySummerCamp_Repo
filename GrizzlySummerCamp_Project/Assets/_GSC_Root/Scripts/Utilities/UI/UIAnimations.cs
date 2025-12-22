@@ -92,6 +92,7 @@ public class UIAnimations : MonoBehaviour
     public void IniciarAnimacionManecilla()
     {
         if (!animacionTiempoIniciada)
+            Debug.Log("Entra coroutine");
             StartCoroutine(EsperarYAnimarManecilla());
     }
     private IEnumerator EsperarYAnimarManecilla()
@@ -99,10 +100,10 @@ public class UIAnimations : MonoBehaviour
         while (LoadingUI != null && LoadingUI.activeSelf)
             yield return null;
 
-
         animacionTiempoIniciada = true;
         if(animManecilla !=null)
         {
+            Debug.Log("entra tiempo");
             animManecilla.enabled = true;
 
             yield return null;

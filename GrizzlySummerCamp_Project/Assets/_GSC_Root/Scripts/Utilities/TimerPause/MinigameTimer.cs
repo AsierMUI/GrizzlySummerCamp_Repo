@@ -58,6 +58,4 @@ public class MinigameTimer : MonoBehaviour
     {
         CurrentTime = totalTime;
     }
-
-
 }
