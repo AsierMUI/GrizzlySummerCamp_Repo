@@ -5,8 +5,15 @@ using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour
 {
+
+    [Header("Interaction")]
     [SerializeField] float interactionDistance = 4f;
-    //[SerializeField] int sceneToLoad;
+
+    [Header("Scene Change (Opcional)")]
+    [SerializeField] bool changesScene = false;
+    [SerializeField] int sceneToLoadIndex;
+
+    [Header("UI")]
     [SerializeField] GameObject spriteObject;
     [SerializeField] GameObject InstructionsUI;
 
@@ -18,14 +25,16 @@ public class InteractableObject : MonoBehaviour
     
     void Start()
     {
-        //Asigna el jugador al iniciar.
         player = GameObject.FindGameObjectWithTag("Player");
-        playerInput = player.GetComponent<PlayerInput>();
-        interactAction = playerInput.actions.FindAction("Interact");
+
+        if (player != null)
+        {
+            playerInput = player.GetComponent<PlayerInput>();
+            interactAction = playerInput.actions.FindAction("Interact");
+        }
 
         if (spriteObject != null)
             spriteObject.SetActive(false);
-
     }
 
     void Update()

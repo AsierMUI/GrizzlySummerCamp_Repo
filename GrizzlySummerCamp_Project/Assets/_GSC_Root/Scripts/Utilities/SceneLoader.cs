@@ -3,7 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    //Lo ponemos en todo lo que cambie de escena(creoqyaesta)
+    //Persistente en persistent root
+
+    public static SceneLoader Instance;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     public void CambiarEscena(int index)
     {
