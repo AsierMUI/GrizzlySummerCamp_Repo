@@ -13,7 +13,7 @@ public class LoadingUI : MonoBehaviour
     [Header("Loading Texts")]
     [SerializeField] private string[] loadingTLines; //Asignar el texto en cada escena
 
-    [SerializeField] private UIAnimations uiAnimations;
+    [SerializeField] private UIAnimations uiAnimations; //Se llama a la funcion de la animacionde la manecilla al darle al boton de play
 
     private string baseText;
     private int dotCount = 0;
@@ -57,18 +57,11 @@ public class LoadingUI : MonoBehaviour
     //Metodo que llama el boton
     public void OnStartButtonPressed()
     {
-        Debug.Log("BOTON START PULSADO");
-
         gameObject.SetActive(false);
 
         if (uiAnimations != null)
         {
-            Debug.Log("LLAMANDO A MANECILLA");
             uiAnimations.IniciarAnimacionManecilla();
-        }
-        else
-        {
-            Debug.LogError("uiAnimations es null");
         }
 
         if (MinigameManager.Instance != null)
