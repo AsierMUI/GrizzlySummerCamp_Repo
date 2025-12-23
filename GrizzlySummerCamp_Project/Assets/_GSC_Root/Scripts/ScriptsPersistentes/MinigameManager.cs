@@ -38,6 +38,9 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private Sprite bronzeSprite;
     [SerializeField] private Sprite silverSprite;
     [SerializeField] private Sprite goldSprite;
+
+    [Header("Contrareloj")]
+    [SerializeField] private Sprite estrellaSprite;
     #endregion
 
     #region Awake y On
@@ -191,30 +194,33 @@ public class MinigameManager : MonoBehaviour
 
     void UpdateEndGameUI(int puntos, int insignia)
     {
-        if (messageText)
-        {
-            if (minigameName == "SCN_MContrareloj")
-            {
-                messageText.text = hasWonMinigame
-                    ? "Well done"
-                    : "Try again :(";
-            }
-            else
-            {
-                messageText.text = GetMessageByInsignia(insignia);
-            }
-        }
-
         if (minigameName == "SCN_MContrareloj")
         {
+            //Solo para contrareloj
+
+            int estrella = InsigniaManager.Instance.GetEstrella(minigameName);
+
+            if (messageText)
+            {
+                messageText.text = estrella > 0 ? "Start earned!" : "Try again :(";
+            }
+
             if (finalScoreText)
                 finalScoreText.gameObject.SetActive(false);
 
             if (insigniaImage)
-                insigniaImage.enabled = false;
+            {
+                insigniaImage.sprite = estrellaSprite;
+                insigniaImage.enabled = estrella > 0;
+            }
 
             return;
         }
+
+        //Demas minijuegos
+
+        if (messageText)
+            messageText.text = GetMessageByInsignia(insignia);
 
         if (finalScoreText)
             finalScoreText.text = $"You got {puntos} points!";
