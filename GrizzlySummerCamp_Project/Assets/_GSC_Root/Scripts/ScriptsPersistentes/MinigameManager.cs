@@ -252,9 +252,9 @@ public class MinigameManager : MonoBehaviour
 
     int GetInsigniaByScore(int score)
     {
-        if (score >= 200) return 3;
-        if (score >= 150) return 2;
-        if (score >= 50) return 1;
+        if (score >= 300) return 3;
+        if (score >= 200) return 2;
+        if (score >= 100) return 1;
         return 0;
     }
     #endregion
