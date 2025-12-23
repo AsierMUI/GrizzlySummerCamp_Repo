@@ -12,7 +12,9 @@ public class MinigameManager : MonoBehaviour
     public static MinigameManager Instance;
 
     [Header("Minigame Settings")]
-    [SerializeField] public string minigameName;
+    [SerializeField] public string minigameName; //Se asigna solo
+    public string MinigameName => minigameName;
+
     [SerializeField] private float minigameDuration = 90f;
 
     private float currentTime;
@@ -62,6 +64,9 @@ public class MinigameManager : MonoBehaviour
             Debug.Log($"[MinigamManager] Escena '{scene.name}' ignorada para referencias.");
             return;
         }
+
+        minigameName = scene.name;
+        Debug.Log($"[MinigameManager] MinigameName asignado: {minigameName}");
 
         hasWonMinigame = false;
 

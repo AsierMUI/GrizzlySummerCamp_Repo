@@ -29,10 +29,6 @@ public class PickUpManager : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pointSound;
-
-
-    [Header("Minigame Info")]
-    [SerializeField] string minigameName = "Race"; //Lo dejamos asi por ahora por si sellama en otros scripts
     #endregion
 
     #region Pickups
@@ -103,7 +99,10 @@ public class PickUpManager : MonoBehaviour
 
         MinigameManager.Instance?.EndMinigame();
 
-        InsigniaManager.Instance?.GuardarEstrella(minigameName, 1);
+        if (MinigameManager.Instance != null)
+        {
+            InsigniaManager.Instance?.GuardarEstrella(MinigameManager.Instance.MinigameName, 1);
+        }
     }
     #endregion
 
