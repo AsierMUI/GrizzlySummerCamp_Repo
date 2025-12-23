@@ -25,22 +25,25 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadSceneByName(string sceneName)
     {
-        if (HubPlayerSpawner.Instance != null)
-        {
-            HubPlayerSpawner.Instance.SavePosition();
-        }
-
+        SaveHubPositionIfNeeded(sceneName);
         SceneManager.LoadScene(sceneName);
     }
 
     public void CambiarEscena(int index)
     {
-        if (HubPlayerSpawner.Instance != null)
+        SaveHubPositionIfNeeded(SceneManager.GetSceneByBuildIndex(index).name);
+        SceneManager.LoadScene(index);
+    }
+
+    private void SaveHubPositionIfNeeded(string nextScene)
+    {
+        if (HubPlayerSpawner.Instance == null) return;
+
+        if (SceneManager.GetActiveScene().name == HubPlayerSpawner.Instance.hubSceneName
+            && nextScene != HubPlayerSpawner.Instance.hubSceneName)
         {
             HubPlayerSpawner.Instance.SavePosition();
         }
-
-        SceneManager.LoadScene(index);
     }
 
     public void QuitGame()
