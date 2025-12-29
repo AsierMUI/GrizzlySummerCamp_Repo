@@ -137,7 +137,7 @@ public class MinigameManager : MonoBehaviour
         if (currentTime <= 0f)
         {
             currentTime = 0f;
-            EndMinigame();
+            EndMinigame(false);
         }
     }
 
@@ -145,7 +145,7 @@ public class MinigameManager : MonoBehaviour
     {
         currentTime = minigameDuration;
         isRunning = true;
-        hasWonMinigame = true;
+        hasWonMinigame = true; //Por defecto asumimos que es victoria
 
         SetPlayerMovement(true);
         ScoreManager.Instance?.ResetScore();
@@ -198,11 +198,11 @@ public class MinigameManager : MonoBehaviour
         {
             //Solo para contrareloj
 
-            int estrella = InsigniaManager.Instance.GetEstrella(minigameName);
+            bool estrellaGanada = hasWonMinigame;
 
             if (messageText)
             {
-                messageText.text = estrella > 0 ? "Start earned!" : "Try again :(";
+                messageText.text = estrellaGanada ? "Start earned!" : "Try again :(";
             }
 
             if (finalScoreText)
@@ -211,7 +211,7 @@ public class MinigameManager : MonoBehaviour
             if (insigniaImage)
             {
                 insigniaImage.sprite = estrellaSprite;
-                insigniaImage.enabled = estrella > 0;
+                insigniaImage.enabled = estrellaGanada;
             }
 
             return;
