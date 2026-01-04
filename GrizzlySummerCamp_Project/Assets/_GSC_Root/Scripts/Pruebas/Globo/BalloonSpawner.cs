@@ -12,22 +12,22 @@ public class BalloonSpawner : MonoBehaviour
     [Header("Cantidad maxima globos")]
     public int maxBalloons = 5;
 
+    [Header("Respawn")]
+    public float respawnDelay = 0.5f;
+
     private List<BalloonPath> usedPaths = new List<BalloonPath>();
 
     void Start()
     {
-        SpawnBalloons();
+        SpawnInitialBalloons();
     }
 
-    void SpawnBalloons()
+    void SpawnInitialBalloons()
     {
         int toSpawn = Mathf.Min(maxBalloons, balloonPaths.Count);
-        usedPaths.Clear();
 
         for (int i = 0; i < toSpawn; i++)
-        {
             SpawnSingleBalloon();
-        }
     }
 
     void SpawnSingleBalloon()
@@ -38,9 +38,17 @@ public class BalloonSpawner : MonoBehaviour
         GameObject balloon = Instantiate(balloonPrefab, path.spawnPoint.position, path.spawnPoint.rotation);
 
         BalloonMovement movement = balloon.GetComponent<BalloonMovement>();
-        movement.SetWaypoints(path.waypoints);
+        movement.Initialize(path, this);
 
         usedPaths.Add(path);
+    }
+
+    public void OnBalloonDestroyed(BalloonPath path)
+    {
+        if (usedPaths.Contains(path))
+            usedPaths.Remove(path);
+
+        Invoke(nameof(SpawnSingleBalloon), respawnDelay);
     }
 
     BalloonPath GetRandomUnusedPath()

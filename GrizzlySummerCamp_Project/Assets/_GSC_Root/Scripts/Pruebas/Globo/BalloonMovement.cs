@@ -10,21 +10,21 @@ public class BalloonMovement : MonoBehaviour
     private int currentWaypointIndex = 0;
     private float speed;
 
+    private BalloonPath myPath;
+    private BalloonSpawner spawner;
+    private bool isDespawning = false;
+
     void Start()
     {
         speed = Random.Range(minSpeed, maxSpeed);
     }
 
-    public void SetWaypoints(Transform[] newWaypoints)
+    public void Initialize(BalloonPath path, BalloonSpawner balloonSpawner)
     {
-        if (newWaypoints == null || newWaypoints.Length == 0)
-        {
-            Debug.LogWarning("Globo sin waypoints asignados");
-            Destroy(gameObject);
-            return;
-        }
+        myPath = path;
+        spawner = balloonSpawner;
 
-        waypoints = newWaypoints;
+        waypoints = path.waypoints;
         currentWaypointIndex = 0;
 
         transform.position = waypoints[0].position;
@@ -43,9 +43,16 @@ public class BalloonMovement : MonoBehaviour
             currentWaypointIndex++;
 
             if (currentWaypointIndex >= waypoints.Length)
-            {
-                Destroy(gameObject);
-            }
+                Despawn();
         }
+    }
+
+    public void Despawn()
+    {
+        if (isDespawning) return;
+        isDespawning = true;
+
+        spawner.OnBalloonDestroyed(myPath);
+        Destroy(gameObject);
     }
 }
