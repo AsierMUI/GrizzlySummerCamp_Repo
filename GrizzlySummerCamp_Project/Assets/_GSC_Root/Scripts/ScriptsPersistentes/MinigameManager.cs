@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
 using System;
+using System.Collections.Generic;
 
 public class MinigameManager : MonoBehaviour
 {
@@ -26,9 +27,10 @@ public class MinigameManager : MonoBehaviour
     public static event Action OnMinigameStarted;
     public static event Action OnMinigameEnded;
 
+    [Header("Insignias")]
     [SerializeField] private InsigniaDatabase insigniaDatabase;
 
-    MinigameInsigniaData currentInsigniaData;
+    private MinigameInsigniaData currentInsigniaData;
     #endregion
 
     #region UI (Scene Refs)
@@ -37,11 +39,6 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private TMP_Text finalScoreText;
     [SerializeField] private TMP_Text messageText;
     [SerializeField] private Image insigniaImage;
-
-    [Header("Insignia Sprites")]
-    [SerializeField] private Sprite bronzeSprite;
-    [SerializeField] private Sprite silverSprite;
-    [SerializeField] private Sprite goldSprite;
 
     [Header("Contrareloj")]
     [SerializeField] private Sprite estrellaSprite;
@@ -78,9 +75,11 @@ public class MinigameManager : MonoBehaviour
         hasWonMinigame = false;
         isRunning = false;
 
-        if (insigniaDatabase != null)
+        if (minigameName != "SCN_MContrareloj")
         {
-            currentInsigniaData = insigniaDatabase.GetByScene(minigameName);
+            currentInsigniaData = insigniaDatabase != null
+                ? insigniaDatabase.GetByScene(minigameName)
+                : null;
 
             if (currentInsigniaData == null)
             {
@@ -89,7 +88,7 @@ public class MinigameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("[MinigameManager] InsigniaDataBase no asignada en el inspector");
+            currentInsigniaData = null;
         }
 
         FindPlayerMovementInScene();
@@ -268,13 +267,7 @@ public class MinigameManager : MonoBehaviour
     {
         if (currentInsigniaData == null) return null;
 
-        switch (insignia)
-        {
-            case 3: return goldSprite;
-            case 2: return silverSprite;
-            case 1: return bronzeSprite;
-            default: return null;
-        }
+        return currentInsigniaData.GetSpriteByInsignia(insignia);
     }
 
     int GetInsigniaByScore(int score)
