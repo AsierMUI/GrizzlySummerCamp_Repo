@@ -26,7 +26,7 @@ public class MinigameManager : MonoBehaviour
     public static event Action OnMinigameStarted;
     public static event Action OnMinigameEnded;
 
-    [SerializeField] private InsigniaDataBase insigniaDataBase;
+    [SerializeField] private InsigniaDatabase insigniaDatabase;
 
     MinigameInsigniaData currentInsigniaData;
     #endregion
@@ -78,9 +78,9 @@ public class MinigameManager : MonoBehaviour
         hasWonMinigame = false;
         isRunning = false;
 
-        if (insigniaDataBase != null)
+        if (insigniaDatabase != null)
         {
-            currentInsigniaData = insigniaDataBase.GetByScene(minigameName);
+            currentInsigniaData = insigniaDatabase.GetByScene(minigameName);
 
             if (currentInsigniaData == null)
             {
