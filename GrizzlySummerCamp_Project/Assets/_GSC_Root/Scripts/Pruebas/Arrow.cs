@@ -42,7 +42,7 @@ public class Arrow : MonoBehaviour
         {
             Instantiate(hitVFXPrefab, collision.contacts[0].point, Quaternion.identity);
 
-            balloon.Despawn();
+            balloon.Despawn(true);
 
             Destroy(gameObject);
             return;

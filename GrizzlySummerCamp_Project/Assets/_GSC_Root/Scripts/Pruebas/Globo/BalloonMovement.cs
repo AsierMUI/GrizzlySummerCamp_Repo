@@ -6,6 +6,9 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField] private float minSpeed = 1f;
     [SerializeField] private float maxSpeed = 3f;
 
+    [Header("Score")]
+    [SerializeField] private int scoreValue = 10;
+
     private Transform[] waypoints;
     private int currentWaypointIndex = 0;
     private float speed;
@@ -43,14 +46,19 @@ public class BalloonMovement : MonoBehaviour
             currentWaypointIndex++;
 
             if (currentWaypointIndex >= waypoints.Length)
-                Despawn();
+                Despawn(false);
         }
     }
 
-    public void Despawn()
+    public void Despawn(bool giveScore = true)
     {
         if (isDespawning) return;
         isDespawning = true;
+
+        if (giveScore && ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddPoints(scoreValue);
+        }
 
         spawner.OnBalloonDestroyed(myPath);
         Destroy(gameObject);
