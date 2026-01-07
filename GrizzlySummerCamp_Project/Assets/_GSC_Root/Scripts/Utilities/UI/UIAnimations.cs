@@ -12,28 +12,40 @@ public class UIAnimations : MonoBehaviour
     [SerializeField] private GameObject loadingUI;
     [SerializeField] private Animator animManecilla;
     [SerializeField] private string tiempoAnim;
-    private bool animacionTiempoIniciada = false;
 
+    //Bools
+    private bool animacionTiempoIniciada = false;
     private bool isLibretaActive = true;
     private bool AnimaciónActiva = false;
 
     public AudioManager audioManager;
 
+    //Nuevo, prueba para comprobar 
+    private RectTransform logoRT;
+
     private void Awake()
     {
         if (audioManager == null)
             audioManager = FindFirstObjectByType<AudioManager>();
+
+        if (logo != null)
+            logoRT = logo.GetComponent <RectTransform>();
+
         if(animManecilla != null)
             animManecilla.enabled = false;
     }
 
     private void Start()
     {
+        /*
         if (logo !=null)
         {
             LeanTween.moveY(logo.GetComponent<RectTransform>(), 0, 1.5f).setDelay(1f) //animacion del logo, con delay al empezar y su duracion
                 .setEase(LeanTweenType.easeOutBounce).setOnComplete(BajarAlpha); //set on complete llama a la funcion bajaralpha al acabar la animacion del logo
         }
+        */
+        //Nuevo metodo de animar el logo.
+        AnimarLogo();
     }
     private void Update()
     {
@@ -42,6 +54,24 @@ public class UIAnimations : MonoBehaviour
             ToggleLibreta();
         }
     }
+    //El metodo de la animación
+    private void AnimarLogo() 
+    {
+        if (logoRT == null) return;
+
+        Vector2 endPos = logoRT.anchoredPosition;
+        Vector2 startPos = endPos + Vector2.up * 300f; //offset Relativo
+
+        logoRT.anchoredPosition = startPos;
+
+        LeanTween.move(logoRT, endPos, 1.5f)
+            .setDelay(1f)
+            .setEase(LeanTweenType.easeOutBounce)
+            .setOnComplete(BajarAlpha);
+    }
+
+
+
 
     //Funciones libreta
 
