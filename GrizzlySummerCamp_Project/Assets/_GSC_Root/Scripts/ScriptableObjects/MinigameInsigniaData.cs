@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Minigames/Insignia Data")]
+[CreateAssetMenu(fileName = "MinigameInsigniaData", menuName = "Minigames/InsigniaData")]
 public class MinigameInsigniaData : ScriptableObject
 {
     public string minigameSceneName;

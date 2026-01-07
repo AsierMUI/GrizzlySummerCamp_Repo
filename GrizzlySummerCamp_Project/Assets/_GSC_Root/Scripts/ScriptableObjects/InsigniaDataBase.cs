@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Minigames/Insignia Database")]
-public class InsigniaDataBase : ScriptableObject
+[CreateAssetMenu(fileName = "InsigniaDatabase", menuName = "Minigames/Insignia Database")]
+public class InsigniaDatabase : ScriptableObject
 {
     public List<MinigameInsigniaData> minigames;
 
