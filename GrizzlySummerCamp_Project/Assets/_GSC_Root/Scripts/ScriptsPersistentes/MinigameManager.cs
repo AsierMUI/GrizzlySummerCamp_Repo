@@ -25,6 +25,10 @@ public class MinigameManager : MonoBehaviour
 
     public static event Action OnMinigameStarted;
     public static event Action OnMinigameEnded;
+
+    [SerializeField] private InsigniaDataBase insigniaDataBase;
+
+    MinigameInsigniaData currentInsigniaData;
     #endregion
 
     #region UI (Scene Refs)
@@ -72,6 +76,21 @@ public class MinigameManager : MonoBehaviour
         Debug.Log($"[MinigameManager] MinigameName asignado: {minigameName}");
 
         hasWonMinigame = false;
+        isRunning = false;
+
+        if (insigniaDataBase != null)
+        {
+            currentInsigniaData = insigniaDataBase.GetByScene(minigameName);
+
+            if (currentInsigniaData == null)
+            {
+                Debug.LogWarning($"[MinigameManager] No hay insigniadata para la escena '{minigameName}'");
+            }
+        }
+        else
+        {
+            Debug.LogError("[MinigameManager] InsigniaDataBase no asignada en el inspector");
+        }
 
         FindPlayerMovementInScene();
         FindUIReferences();
@@ -247,6 +266,8 @@ public class MinigameManager : MonoBehaviour
 
     Sprite GetSpriteByInsignia(int insignia)
     {
+        if (currentInsigniaData == null) return null;
+
         switch (insignia)
         {
             case 3: return goldSprite;
