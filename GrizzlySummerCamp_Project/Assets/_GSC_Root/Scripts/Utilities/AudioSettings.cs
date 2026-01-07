@@ -53,6 +53,9 @@ public class AudioSettings : MonoBehaviour
     {
         value = Mathf.Clamp01(value);
 
+        if(IsMuted(type))
+            SetMute(type, false);
+
         switch (type)
         {
             case VolumeType.Master:
@@ -104,6 +107,20 @@ public class AudioSettings : MonoBehaviour
                 break;
         }
     }
+
+    //Controlador del mute
+    private bool IsMuted(VolumeType type) 
+    {
+        return type switch
+        {
+            VolumeType.Master => MasterMuted,
+            VolumeType.Music => MusicMuted,
+            VolumeType.SFX => SFXMuted,
+            _ => false
+        };
+    
+    }
+
     #endregion
 
     #region Fade Music
