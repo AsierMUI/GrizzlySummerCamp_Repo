@@ -27,12 +27,12 @@ public class BalloonMovement : MonoBehaviour
         speed = Random.Range(minSpeed, maxSpeed);
     }
 
-    public void Initialize(BalloonPath path, BalloonSpawner balloonSpawner)
+    public void Initialize(BalloonPath path, Transform[] chosenWaypoints, BalloonSpawner balloonSpawner)
     {
         myPath = path;
         spawner = balloonSpawner;
 
-        waypoints = path.waypoints;
+        waypoints = chosenWaypoints;
         currentWaypointIndex = 0;
 
         transform.position = waypoints[0].position;

@@ -17,6 +17,8 @@ public class BalloonSpawner : MonoBehaviour
 
     private List<BalloonPath> usedPaths = new List<BalloonPath>();
 
+    private int currentBalloons = 0;
+
     void Start()
     {
         SpawnInitialBalloons();
@@ -24,23 +26,27 @@ public class BalloonSpawner : MonoBehaviour
 
     void SpawnInitialBalloons()
     {
-        int toSpawn = Mathf.Min(maxBalloons, balloonPaths.Count);
-
-        for (int i = 0; i < toSpawn; i++)
+        for (int i = 0; i < maxBalloons; i++)
             SpawnSingleBalloon();
     }
 
     void SpawnSingleBalloon()
     {
-        BalloonPath path = GetRandomUnusedPath();
+        if (currentBalloons >= maxBalloons) return;
+
+        BalloonPath path = GetRandomPath();
         if (path == null) return;
+
+        Transform[] route = path.GetRandomRoute();
+        if (route == null || route.Length == 0) return;
 
         GameObject balloon = Instantiate(balloonPrefab, path.spawnPoint.position, path.spawnPoint.rotation);
 
         BalloonMovement movement = balloon.GetComponent<BalloonMovement>();
-        movement.Initialize(path, this);
+        movement.Initialize(path, route, this);
 
         usedPaths.Add(path);
+        currentBalloons++;
     }
 
     public void OnBalloonDestroyed(BalloonPath path)
@@ -48,15 +54,18 @@ public class BalloonSpawner : MonoBehaviour
         if (usedPaths.Contains(path))
             usedPaths.Remove(path);
 
+        currentBalloons--;
+
         Invoke(nameof(SpawnSingleBalloon), respawnDelay);
     }
 
-    BalloonPath GetRandomUnusedPath()
+    BalloonPath GetRandomPath()
     {
         List<BalloonPath> available = new List<BalloonPath>(balloonPaths);
         available.RemoveAll(p => usedPaths.Contains(p));
 
-        if (available.Count == 0) return null;
+        if (available.Count == 0)
+            available = balloonPaths;
 
         return available[Random.Range(0, available.Count)];
     }
