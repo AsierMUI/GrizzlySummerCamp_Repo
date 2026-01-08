@@ -15,15 +15,16 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField] private Vector3 floatingOffset = Vector3.up * 0.5f;
 
     [Header("Balloon Type")]
-    [SerializeField] private int scoreSign = 1;
+    [SerializeField] private int scoreSign = 1; // Positivo = bueno, Negativo = malo
 
     private Transform[] waypoints;
     private int currentWaypointIndex = 0;
     private float speed;
 
-    private BalloonPath myPath;
     private BalloonSpawner spawner;
     private bool isDespawning = false;
+
+    public BalloonRouteInstance myRouteInstance;
 
     void Start()
     {
@@ -32,9 +33,7 @@ public class BalloonMovement : MonoBehaviour
 
     public void Initialize(BalloonPath path, Transform[] chosenWaypoints, BalloonSpawner balloonSpawner)
     {
-        myPath = path;
         spawner = balloonSpawner;
-
         waypoints = chosenWaypoints;
         currentWaypointIndex = 0;
 
@@ -47,7 +46,11 @@ public class BalloonMovement : MonoBehaviour
 
         Transform target = waypoints[currentWaypointIndex];
 
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            target.position,
+            speed * Time.deltaTime
+        );
 
         if (Vector3.Distance(transform.position, target.position) < 0.01f)
         {
@@ -69,7 +72,6 @@ public class BalloonMovement : MonoBehaviour
             float finalMultiplier = 1f + (speedNormalized * speedScoreMultiplier);
 
             int rawScore = Mathf.RoundToInt(baseScore * finalMultiplier);
-
             rawScore *= scoreSign;
 
             int finalScore = Mathf.RoundToInt(rawScore / 10f) * 10;
@@ -78,13 +80,22 @@ public class BalloonMovement : MonoBehaviour
 
             if (floatingScorePrefab != null)
             {
-                GameObject floating = Instantiate(floatingScorePrefab, transform.position + floatingOffset, Quaternion.identity);
+                GameObject floating = Instantiate(
+                    floatingScorePrefab,
+                    transform.position + floatingOffset,
+                    Quaternion.identity
+                );
 
                 floating.GetComponent<FloatingScoreText>().SetText(finalScore);
             }
         }
 
-        spawner.OnBalloonDestroyed(myPath);
+        spawner.OnBalloonDestroyed(myRouteInstance);
         Destroy(gameObject);
+    }
+
+    public void SetRouteInstance(BalloonRouteInstance routeInstance)
+    {
+        myRouteInstance = routeInstance;
     }
 }

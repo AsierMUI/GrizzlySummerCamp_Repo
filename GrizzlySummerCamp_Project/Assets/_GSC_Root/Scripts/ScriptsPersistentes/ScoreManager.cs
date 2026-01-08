@@ -5,7 +5,6 @@ public class ScoreManager : MonoBehaviour
 {
 
     //GENERICO PARA TODOS LOS MINIJUEGOS
-
     public static ScoreManager Instance;
 
     [Header("Score")]
@@ -33,6 +32,7 @@ public class ScoreManager : MonoBehaviour
     public void AddPoints(int amount)
     {
         puntosTotales += amount;
+        puntosTotales = Mathf.Max(0, puntosTotales);
         UpdateUI();
 
         Debug.Log($"[ScoreManager] Puntos actuales: {puntosTotales}");
@@ -54,5 +54,4 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null )
             scoreText.text = puntosTotales.ToString();
     }
-
 }
