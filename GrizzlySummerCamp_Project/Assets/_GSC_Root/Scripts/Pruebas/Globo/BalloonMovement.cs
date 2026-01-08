@@ -14,6 +14,9 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField] private GameObject floatingScorePrefab;
     [SerializeField] private Vector3 floatingOffset = Vector3.up * 0.5f;
 
+    [Header("Balloon Type")]
+    [SerializeField] private int scoreSign = 1;
+
     private Transform[] waypoints;
     private int currentWaypointIndex = 0;
     private float speed;
@@ -66,6 +69,9 @@ public class BalloonMovement : MonoBehaviour
             float finalMultiplier = 1f + (speedNormalized * speedScoreMultiplier);
 
             int rawScore = Mathf.RoundToInt(baseScore * finalMultiplier);
+
+            rawScore *= scoreSign;
+
             int finalScore = Mathf.RoundToInt(rawScore / 10f) * 10;
 
             ScoreManager.Instance.AddPoints(finalScore);

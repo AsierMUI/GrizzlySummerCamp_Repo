@@ -10,6 +10,10 @@ public class FloatingScoreText : MonoBehaviour
     [Header("Fade")]
     public float fadeDuration = 0.5f;
 
+    [Header("Colores")]
+    public Color positiveColor = Color.green;
+    public Color negativeColor = Color.red;
+
     private TMP_Text text;
     private Color startColor;
     private float timer;
@@ -17,12 +21,14 @@ public class FloatingScoreText : MonoBehaviour
     private void Awake()
     {
         text = GetComponent<TMP_Text>();
-        startColor = text.color;
     }
 
     public void SetText(int score)
     {
-        text.text = "+" + score;
+        text.text = score > 0 ? $"+{score}" : score.ToString();
+
+        startColor = score >= 0 ? positiveColor : negativeColor;
+        text.color = startColor;
     }
 
     private void Update()
