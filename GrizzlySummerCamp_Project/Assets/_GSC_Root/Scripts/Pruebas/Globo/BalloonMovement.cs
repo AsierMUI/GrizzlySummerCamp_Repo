@@ -2,20 +2,28 @@ using UnityEngine;
 
 public class BalloonMovement : MonoBehaviour
 {
-    [Header("Velocidad")]
+    [Header("Velocidad normal")]
     [SerializeField] private float minSpeed = 1f;
     [SerializeField] private float maxSpeed = 3f;
 
-    [Header("Score")]
-    [SerializeField] private int baseScore = 10;
+    [Header("Velocidad especial")]
+    [SerializeField] private bool useFixedSpeed = false;
+    [SerializeField] private float fixedSpeed = 5f;
+
+    [Header("Score normal")]
+    [SerializeField] private int baseScore = 5;
     [SerializeField] private float speedScoreMultiplier = 1.5f;
+
+    [Header("Score especial")]
+    [SerializeField] private bool useFixedScore = false;
+    [SerializeField] private int fixedScore = 30;
 
     [Header("Floating Score")]
     [SerializeField] private GameObject floatingScorePrefab;
     [SerializeField] private Vector3 floatingOffset = Vector3.up * 0.5f;
 
     [Header("Balloon Type")]
-    [SerializeField] private int scoreSign = 1; // Positivo = bueno, Negativo = malo
+    [SerializeField] private int scoreSign = 1; // Positivo = bueno | Negativo = malo
 
     private Transform[] waypoints;
     private int currentWaypointIndex = 0;
@@ -28,7 +36,10 @@ public class BalloonMovement : MonoBehaviour
 
     void Start()
     {
-        speed = Random.Range(minSpeed, maxSpeed);
+        if (useFixedSpeed)
+            speed = fixedSpeed;
+        else
+            speed = Random.Range(minSpeed, maxSpeed);
     }
 
     public void Initialize(BalloonPath path, Transform[] chosenWaypoints, BalloonSpawner balloonSpawner)
@@ -68,13 +79,22 @@ public class BalloonMovement : MonoBehaviour
 
         if (giveScore && ScoreManager.Instance != null)
         {
-            float speedNormalized = Mathf.InverseLerp(minSpeed, maxSpeed, speed);
-            float finalMultiplier = 1f + (speedNormalized * speedScoreMultiplier);
+            int finalScore;
 
-            int rawScore = Mathf.RoundToInt(baseScore * finalMultiplier);
-            rawScore *= scoreSign;
+            if (useFixedScore)
+            {
+                finalScore = fixedScore;
+            }
+            else
+            {
+                float speedNormalized = Mathf.InverseLerp(minSpeed, maxSpeed, speed);
+                float finalMultiplier = 1f + (speedNormalized * speedScoreMultiplier);
 
-            int finalScore = Mathf.RoundToInt(rawScore / 10f) * 10;
+                int rawScore = Mathf.RoundToInt(baseScore * finalMultiplier);
+                rawScore *= scoreSign;
+
+                finalScore = Mathf.RoundToInt(rawScore / 5f) * 5;
+            }
 
             ScoreManager.Instance.AddPoints(finalScore);
 
@@ -88,6 +108,12 @@ public class BalloonMovement : MonoBehaviour
 
                 floating.GetComponent<FloatingScoreText>().SetText(finalScore);
             }
+        }
+
+        BalloonExplosionFX fx = GetComponent<BalloonExplosionFX>();
+        if (fx != null)
+        {
+            fx.PlayExplosion(transform.position);
         }
 
         spawner.OnBalloonDestroyed(myRouteInstance);

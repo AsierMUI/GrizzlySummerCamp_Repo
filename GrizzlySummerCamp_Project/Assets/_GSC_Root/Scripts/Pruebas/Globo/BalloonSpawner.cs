@@ -6,9 +6,12 @@ public class BalloonSpawner : MonoBehaviour
     [Header("Prefabs")]
     public GameObject goodBalloonPrefab;
     public GameObject badBalloonPrefab;
+    public GameObject rareBalloonPrefab;
 
-    [Range(0, 100)]
-    public int goodBalloonChance = 70;
+    [Header("Probabilidades (%)")]
+    [Range(0, 100)] public int goodBalloonChance = 70;
+    [Range(0, 100)] public int badBalloonChance = 25;
+    [Range(0, 100)] public int rareBalloonChance = 5;
 
     [Header("Recorridos disponibles")]
     public List<BalloonPath> balloonPaths = new List<BalloonPath>();
@@ -53,9 +56,15 @@ public class BalloonSpawner : MonoBehaviour
 
     GameObject GetBalloonPrefab()
     {
-        return Random.Range(0, 100) < goodBalloonChance
-            ? goodBalloonPrefab
-            : badBalloonPrefab;
+        int roll = Random.Range(0, 100);
+
+        if (roll < rareBalloonChance)
+            return rareBalloonPrefab;
+
+        if (roll < rareBalloonChance + goodBalloonChance)
+            return goodBalloonPrefab;
+
+        return badBalloonPrefab;
     }
 
     BalloonRouteInstance GetRandomFreeRoute()

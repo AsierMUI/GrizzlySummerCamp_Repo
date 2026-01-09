@@ -7,10 +7,6 @@ public class Arrow : MonoBehaviour
 
     public bool stickOnHit = true; //true = se clava, false = rebota y desaparece //Nuevo, si no funciona quitar
     public float destroyDelay = 5f; //Nuevo, si no funciona quitar
-
-    [Header("VFX")]
-    public GameObject hitVFXPrefab;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -20,13 +16,6 @@ public class Arrow : MonoBehaviour
     {
         if (!hasHit && rb.linearVelocity.magnitude > 0.1f)
             transform.forward = rb.linearVelocity.normalized;
-
-        /*SCRIPT ANTERIOR
-        
-        if (rb.linearVelocity.magnitude > 0.1f)
-        {
-            transform.forward = rb.linearVelocity.normalized;
-        } */
     }
 
     void OnCollisionEnter(Collision collision)
@@ -34,16 +23,11 @@ public class Arrow : MonoBehaviour
         if (hasHit) return;
         hasHit = true;
 
-
-        //Comprobar si se ha golpeado el globo
         BalloonMovement balloon = collision.gameObject.GetComponent<BalloonMovement>();
 
         if (balloon != null)
         {
-            Instantiate(hitVFXPrefab, collision.contacts[0].point, Quaternion.identity);
-
             balloon.Despawn(true);
-
             Destroy(gameObject);
             return;
         }
@@ -66,15 +50,5 @@ public class Arrow : MonoBehaviour
             rb.linearDamping = 2f;
             Destroy(gameObject, destroyDelay);
         }
-
-
-
-        /*SCRIPT ANTERIOR
-        
-        //clavar la flecha
-        rb.isKinematic = true;
-        rb.linearVelocity = Vector3.zero;
-        transform.parent = collision.transform;
-        */
     }
 }
