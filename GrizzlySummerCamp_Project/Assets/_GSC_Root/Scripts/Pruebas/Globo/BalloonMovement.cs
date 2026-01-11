@@ -83,7 +83,7 @@ public class BalloonMovement : MonoBehaviour
 
             if (useFixedScore)
             {
-                finalScore = fixedScore;
+                finalScore = fixedScore * scoreSign;
             }
             else
             {
@@ -108,13 +108,13 @@ public class BalloonMovement : MonoBehaviour
 
                 floating.GetComponent<FloatingScoreText>().SetText(finalScore);
             }
-        }
 
-        BalloonExplosionFX fx = GetComponent<BalloonExplosionFX>();
-        if (fx != null)
-        {
-            fx.PlayExplosion(transform.position);
-        }
+            BalloonExplosionFX fx = GetComponent<BalloonExplosionFX>();
+            if (fx != null)
+            {
+                fx.PlayExplosion(transform.position);
+            }
+        }   
 
         spawner.OnBalloonDestroyed(myRouteInstance);
         Destroy(gameObject);
