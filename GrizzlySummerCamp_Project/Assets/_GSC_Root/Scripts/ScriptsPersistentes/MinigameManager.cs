@@ -91,6 +91,11 @@ public class MinigameManager : MonoBehaviour
             currentInsigniaData = null;
         }
 
+        if (scene.name == "SCN_MBasura") 
+        {
+            FindAnyObjectByType<TrashSpawner>()?.SpawnAllTrash();
+        }
+
         FindPlayerMovementInScene();
         FindUIReferences();
     }

@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
     InputAction sprintAction;
     
     private bool canMove = true;
+    private bool sprintBlocked = false;
+    private float speedModifier = 0f;
+
 
     private void Awake()
     {
@@ -67,8 +70,9 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         HandleWalkingVFX(isWalking);
 
         //Comprueba si se pulsa sprint
-        float currentSpeed = speed;
-        if (sprintAction.ReadValue<float>()> 0.1f)
+        float currentSpeed = speed + speedModifier;
+
+        if (!sprintBlocked && sprintAction.ReadValue<float>()> 0.1f)
             currentSpeed *= sprintMultiplier;
 
         // Deseamos una velocidad en esa dirección
@@ -122,5 +126,15 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
     public bool GetCanMove()
     {
         return canMove;
+    }
+
+    public void SetSprintBlocked(bool value) 
+    {
+        sprintBlocked = value;
+    }
+
+    public void SetSpeedModifier(float modifier) 
+    {
+        speedModifier = modifier;
     }
 }

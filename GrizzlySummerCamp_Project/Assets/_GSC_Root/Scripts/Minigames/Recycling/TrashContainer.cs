@@ -6,7 +6,7 @@ public class TrashContainer : MonoBehaviour
 
     public void TryDeposit(TrashPlayerCarry carry) 
     {
-        if (carry.IsCarryingTrash()) return;
+        if (!carry.IsCarryingTrash()) return;
 
         if (carry.GetCarriedType() == acceptedType)
         {

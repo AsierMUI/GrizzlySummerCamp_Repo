@@ -44,7 +44,7 @@ public class TrashPlayerCarry : MonoBehaviour
 
     public TrashType GetCarriedType() 
     {
-        return carriedTrash.trashType;
+        return carriedTrash != null ? carriedTrash.trashType : default;
     }
 
     public int GetCarriedPoints() 

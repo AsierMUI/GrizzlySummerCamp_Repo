@@ -1,15 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class TrashInteractor : MonoBehaviour
 {
+    /*
     [Header("Interaction Field")]
     [SerializeField] float interactRange = 2f;
     [SerializeField] LayerMask interactLayer;
-
+    */
     TrashPlayerCarry carry;
     PlayerInput playerInput;
     InputAction interactAction;
+
+    private readonly List<MonoBehaviour> nearbyInteractables = new(); 
 
     private void Awake()
     {
@@ -20,26 +24,46 @@ public class TrashInteractor : MonoBehaviour
     private void Start()
     {
         interactAction = playerInput.actions["Interact"];
-        interactAction.performed += _ = TryInteract();
+        //Sí se realiza la acción, se le suma el contexto "_" y se intenta "TryInteract()"
+        interactAction.performed += _ => TryInteract();
     }
 
     void TryInteract() 
     {
         if (!MinigameManager.Instance) return;
 
-        Ray ray = new Ray(Transform.position + Vector3.up, transform.forward);
-        if (!Physics.Raycast(ray, out RaycastHit hit, interactRange, interactLayer))
-            return;
-
-        if (hit.collider.TryGetComponent(out TrashItem trash))
+        foreach (var obj in nearbyInteractables) 
         {
-            carry.PickTrash(trash);
-            return;
-        }
+            if (obj is TrashItem trash && !carry.IsCarryingTrash()) 
+            {
+                carry.PickTrash(trash);
+                return;
+            }
 
-        if (hit.collider.TryGetComponent(out TrashContainter container))
-        {
-            container.TryDeposit(carry);
+            if (obj is TrashContainer container && carry.IsCarryingTrash())
+            {
+                container.TryDeposit(carry);
+                return;
+            }   
+        
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out TrashItem trash))
+            nearbyInteractables.Add(trash);
+
+        if (other.TryGetComponent(out TrashContainer container))    
+            nearbyInteractables.Add(container);
+    }
+
+    private void OnTriggerExit(Collider other) 
+    {
+        if (other.TryGetComponent(out TrashItem trash))
+            nearbyInteractables.Remove(trash);
+
+        if (other.TryGetComponent(out TrashContainer container))
+            nearbyInteractables.Remove(container);
     }
 }
