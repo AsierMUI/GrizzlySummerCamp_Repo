@@ -31,26 +31,29 @@ public class TrashInteractor : MonoBehaviour
     void TryInteract() 
     {
         if (!MinigameManager.Instance) return;
+        Debug.Log($"Carrying: {carry.IsCarryingTrash()}");
+
+        nearbyInteractables.RemoveAll(obj => obj == null);
 
         foreach (var obj in nearbyInteractables) 
         {
-            if (obj is TrashItem trash && !carry.IsCarryingTrash()) 
+            if (carry.IsCarryingTrash() && obj is TrashContainer container)
+            {
+                container.TryDeposit(carry);
+                return;
+            }
+
+            if (!carry.IsCarryingTrash() && obj is TrashItem trash)
             {
                 carry.PickTrash(trash);
                 return;
             }
-
-            if (obj is TrashContainer container && carry.IsCarryingTrash())
-            {
-                container.TryDeposit(carry);
-                return;
-            }   
-        
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"Entered: {other.name}");
         if (other.TryGetComponent(out TrashItem trash))
             nearbyInteractables.Add(trash);
 

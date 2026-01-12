@@ -6,7 +6,7 @@ public class TrashPlayerCarry : MonoBehaviour
     private PlayerMovement playerMovement;
 
     [Header("Movement Penalty")]
-    [Tooltip("This value changes how slow the player becomes after picking up waste.")]
+    [Tooltip("Este valor altera quan despacio vas tras recoger basura")]
     [SerializeField] float speedPenalty = -0.2f;
 
     private void Awake()
@@ -24,8 +24,10 @@ public class TrashPlayerCarry : MonoBehaviour
     {
         if (carriedTrash != null) return;
 
-        carriedTrash = trash;   
+        carriedTrash = trash;
+
         trash.gameObject.SetActive(false);
+
 
         playerMovement.SetSprintBlocked(true);
         playerMovement.SetSpeedModifier(speedPenalty);
@@ -35,6 +37,9 @@ public class TrashPlayerCarry : MonoBehaviour
 
     public void DeliverTrash() 
     {
+        if (carriedTrash != null)
+            Destroy(carriedTrash.gameObject);
+
         carriedTrash = null;
 
         //restaurar movimiento
