@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Asegura que se ejecute al inicio
 [DefaultExecutionOrder(-90)]
 public class VideoManager : MonoBehaviour
 {
