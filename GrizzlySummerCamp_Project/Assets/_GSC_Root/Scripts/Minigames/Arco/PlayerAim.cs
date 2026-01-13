@@ -14,6 +14,8 @@ public class PlayerAim : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
         Vector3 planePoint = transform.position + transform.forward * aimPlaneDistance;

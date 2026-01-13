@@ -44,6 +44,12 @@ public class BowShoot : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f)
+        {
+            lineRenderer.enabled = false;
+            return;
+        }
+
         if (showTrajectory)
             UpdateTrajectory();
 
@@ -53,6 +59,8 @@ public class BowShoot : MonoBehaviour
 
     void Shoot()
     {
+        if (Time.timeScale == 0f) return;
+
         canShoot = false; //Se activa el cooldown
 
         // Calcular dirección del disparo
