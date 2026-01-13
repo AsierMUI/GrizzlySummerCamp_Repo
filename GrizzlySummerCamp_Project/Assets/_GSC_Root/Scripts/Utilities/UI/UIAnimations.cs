@@ -14,6 +14,9 @@ public class UIAnimations : MonoBehaviour
     [SerializeField] private string tiempoAnim;
     private bool animacionTiempoIniciada = false;
 
+    //Nuevo bool
+    private static bool libretaAbierta = true;
+    
     private bool isLibretaActive = true;
     private bool AnimaciónActiva = false;
 
@@ -34,10 +37,15 @@ public class UIAnimations : MonoBehaviour
             LeanTween.moveY(logo.GetComponent<RectTransform>(), 0, 1.5f).setDelay(1f) //animacion del logo, con delay al empezar y su duracion
                 .setEase(LeanTweenType.easeOutBounce).setOnComplete(BajarAlpha); //set on complete llama a la funcion bajaralpha al acabar la animacion del logo
         }
+        //Nuevo
+        if (libreta !=null)
+        {
+            AplicarEstadoLibreta();
+        }
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) 
+        if (libreta != null && Input.GetKeyDown(KeyCode.Escape)) 
         {
             ToggleLibreta();
         }
@@ -66,6 +74,7 @@ public class UIAnimations : MonoBehaviour
 
     public void CambiarLibreta()
     {
+        Debug.Log("Libreta abierta: " + libretaAbierta);
         if (isLibretaActive)
         {
             DesactivarLibreta();
@@ -74,7 +83,9 @@ public class UIAnimations : MonoBehaviour
         {
             ActivarLibreta();
         }
+        
         isLibretaActive = !isLibretaActive; //cambia el estado al inverso
+        libretaAbierta = isLibretaActive;
     }
 
     public void ActivarLibreta()
@@ -113,4 +124,22 @@ public class UIAnimations : MonoBehaviour
             animManecilla.Play(tiempoAnim, 0, 0f);
         }
     }
+
+    //Funcion nueva
+    private void AplicarEstadoLibreta() 
+    {
+        RectTransform rt = libreta.GetComponent<RectTransform>();
+
+        if (libretaAbierta)
+        {
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, 0);
+        }
+        else
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -609);
+
+        isLibretaActive = libretaAbierta;
+    }
+
+
+
 }
