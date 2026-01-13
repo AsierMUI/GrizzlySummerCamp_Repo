@@ -225,7 +225,7 @@ public class MinigameManager : MonoBehaviour
 
             if (messageText)
             {
-                messageText.text = estrellaGanada ? "Start earned!" : "Try again :(";
+                messageText.text = estrellaGanada ? "Star earned!" : "Try again :(";
             }
 
             if (finalScoreText)
