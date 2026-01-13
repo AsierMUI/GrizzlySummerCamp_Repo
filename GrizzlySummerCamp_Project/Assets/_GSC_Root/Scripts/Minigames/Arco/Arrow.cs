@@ -9,6 +9,10 @@ public class Arrow : MonoBehaviour
     public bool stickOnHit = true;
     public float destroyDelay = 5f;
 
+    [Header("Punto de enganche")]
+    [Tooltip("Punto que dice dodne se clava la flecha")]
+    public Transform stickPoint;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -34,22 +38,31 @@ public class Arrow : MonoBehaviour
             return;
         }
 
-        if (stickOnHit)
+        if (!stickOnHit)
         {
-            ContactPoint contact = collision.contacts[0];
+            Destroy(gameObject, destroyDelay); return;
+        }
 
-            //Posiciona la flecha
-            transform.position = contact.point;
-            transform.forward = -contact.normal;
+        ContactPoint contact = collision.contacts[0];
 
-            //Elimina rigidbody
-            Destroy(rb);
+        Quaternion targetRotation = Quaternion.LookRotation(-contact.normal, Vector3.up);
 
-            Destroy(gameObject, destroyDelay);
+        if (stickPoint != null)
+        {
+            transform.rotation = targetRotation;
+
+            Vector3 offset = transform.position - stickPoint.position;
+            transform.position = contact.point + offset;
         }
         else
         {
-            Destroy(gameObject, destroyDelay);
+            transform.position = contact.point;
+            transform.rotation = targetRotation;
         }
+
+        rb.isKinematic = true;
+        rb.detectCollisions = false;
+
+        Destroy(gameObject, destroyDelay);
     }
 }
