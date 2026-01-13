@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    Rigidbody rb;
-    bool hasHit = false;
+    private Rigidbody rb;
+    private bool hasHit = false;
 
-    public bool stickOnHit = true; //true = se clava, false = rebota y desaparece //Nuevo, si no funciona quitar
-    public float destroyDelay = 5f; //Nuevo, si no funciona quitar
+    [Header("Comportamiento flecha")]
+    public bool stickOnHit = true;
+    public float destroyDelay = 5f;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -14,7 +16,7 @@ public class Arrow : MonoBehaviour
 
     private void Update()
     {
-        if (!hasHit && rb.linearVelocity.magnitude > 0.1f)
+        if (!hasHit && rb != null && rb.linearVelocity.magnitude > 0.1f)
             transform.forward = rb.linearVelocity.normalized;
     }
 
@@ -34,20 +36,19 @@ public class Arrow : MonoBehaviour
 
         if (stickOnHit)
         {
-            //Clavar flecha
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            rb.isKinematic = true;
+            ContactPoint contact = collision.contacts[0];
 
-            //posicionar en el punto deimpacto
-            transform.position = collision.contacts[0].point;
+            //Posiciona la flecha
+            transform.position = contact.point;
+            transform.forward = -contact.normal;
 
-            //apuntar en la direccion contraria al normal del impacto
-            transform.forward = -collision.contacts[0].normal;
+            //Elimina rigidbody
+            Destroy(rb);
+
+            Destroy(gameObject, destroyDelay);
         }
         else
         {
-            rb.linearDamping = 2f;
             Destroy(gameObject, destroyDelay);
         }
     }
