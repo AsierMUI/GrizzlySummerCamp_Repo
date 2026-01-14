@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour
 {
-
     [Header("Interaction")]
     [SerializeField] float interactionDistance = 4f;
 
@@ -11,6 +10,9 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] GameObject spriteObject;
     [SerializeField] GameObject InstructionsUI;
     [SerializeField] GameObject notebookUI;
+
+    [Header("Player")]
+    //[SerializeField] MonoBehaviour playerMovementScript
 
     [Header("Dialogue")]
     [SerializeField] bool hasDialogue = false;
