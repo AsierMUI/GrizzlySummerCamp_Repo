@@ -25,9 +25,10 @@ public class TrashPlayerCarry : MonoBehaviour
         if (carriedTrash != null) return;
 
         carriedTrash = trash;
+        Destroy(trash.gameObject);
 
-        trash.gameObject.SetActive(false);
-
+        PickupCounter.Instance?.RegisterPickup();
+        //trash.gameObject.SetActive(false);
 
         playerMovement.SetSprintBlocked(true);
         playerMovement.SetSpeedModifier(speedPenalty);
