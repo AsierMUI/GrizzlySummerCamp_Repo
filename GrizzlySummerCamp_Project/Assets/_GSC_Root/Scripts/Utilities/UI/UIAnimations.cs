@@ -45,10 +45,18 @@ public class UIAnimations : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (UIState.IsUIOpen) return;
+            
+            ToggleLibreta();
+        }   
+        /*
         if (libreta != null && Input.GetKeyDown(KeyCode.Escape)) 
         {
             ToggleLibreta();
         }
+        */
     }
 
     //Funciones libreta
@@ -56,13 +64,14 @@ public class UIAnimations : MonoBehaviour
     public void ToggleLibreta() 
     {
         if (AnimaciónActiva) return;
+        if (UIState.IsUIOpen) return;
 
         AnimaciónActiva=true;
 
         if (!string.IsNullOrEmpty(key))
             audioManager?.PlaySFX(key);
 
-        OcultaInstrucciones.Instance.OcultarInstrucciones();
+        //OcultaInstrucciones.Instance.OcultarInstrucciones();
         CambiarLibreta();
     }
 

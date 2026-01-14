@@ -43,6 +43,17 @@ public class InteractableObject : MonoBehaviour
         if(spriteObject!=null)
             spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
 
+        if (InstructionsUI == null) return;
+        //Hemos quitado el cierre automatico por distancia
+        if (isPlayerInRange && interactAction.WasPressedThisFrame()) 
+        {
+            OpenUI();
+        }
+        else if (!isPlayerInRange && InstructionsUI.activeSelf)
+        {
+            CloseUI();
+        }
+        /*
         if (InstructionsUI != null)
         {
             //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
@@ -53,12 +64,40 @@ public class InteractableObject : MonoBehaviour
             else if (!isPlayerInRange)
             {
                 InstructionsUI.SetActive(false);
+                UIState.IsUIOpen = false;
             }
         }
+        */
     }
 
     void OpenUI()
     {
+        if (InstructionsUI.activeSelf) return;
+
         InstructionsUI.SetActive(isPlayerInRange);
+        UIState.IsUIOpen = true;
+
+        /*
+        InstructionsUI.SetActive(isPlayerInRange);
+        //UIState.IsUIOpen = true;
+        */
+    }
+
+    void CloseUI() 
+    {
+        if (!InstructionsUI.activeSelf) return;
+
+        InstructionsUI.SetActive(false);
+        UIState.IsUIOpen = false;
+    }
+
+    public void CloseUIFromButton() 
+    {
+        CloseUI();
+    }
+
+    public void PlayUI() 
+    {
+        UIState.IsUIOpen = false;
     }
 }
