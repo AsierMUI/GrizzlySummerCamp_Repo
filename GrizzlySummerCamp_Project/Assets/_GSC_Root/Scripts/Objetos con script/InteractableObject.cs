@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-//using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 
 public class InteractableObject : MonoBehaviour
@@ -12,6 +10,11 @@ public class InteractableObject : MonoBehaviour
     [Header("UI")]
     [SerializeField] GameObject spriteObject;
     [SerializeField] GameObject InstructionsUI;
+    [SerializeField] GameObject notebookUI;
+
+    [Header("Dialogue")]
+    [SerializeField] bool hasDialogue = false;
+    [SerializeField] DialogueSystem dialogueSystem;
 
     private GameObject player;
     private PlayerInput playerInput;
@@ -31,6 +34,21 @@ public class InteractableObject : MonoBehaviour
 
         if (spriteObject != null)
             spriteObject.SetActive(false);
+
+        if (dialogueSystem != null)
+        {
+            dialogueSystem.OnDialogueStarted += DisableNotebook;
+            dialogueSystem.OnDialogueEnded += EnableNotebook;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (dialogueSystem != null)
+        {
+            dialogueSystem.OnDialogueStarted -= DisableNotebook;
+            dialogueSystem.OnDialogueEnded -= EnableNotebook;
+        }
     }
 
     void Update()
@@ -43,31 +61,25 @@ public class InteractableObject : MonoBehaviour
         if(spriteObject!=null)
             spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
 
-        if (InstructionsUI == null) return;
+        if (!isPlayerInRange) return;
+
+        //if (InstructionsUI == null) return;
         //Hemos quitado el cierre automatico por distancia
-        if (isPlayerInRange && interactAction.WasPressedThisFrame()) 
+        if (interactAction.WasPressedThisFrame() && !UIState.IsUIOpen) 
         {
-            OpenUI();
+            Interact();
         }
-        else if (!isPlayerInRange && InstructionsUI.activeSelf)
+    }
+
+    void Interact()
+    {
+        if (hasDialogue && dialogueSystem != null)
         {
-            CloseUI();
+            dialogueSystem.StartDialogue();
+            return;
         }
-        /*
-        if (InstructionsUI != null)
-        {
-            //Sí se da ambos casos (boolean == "true" y Se presiona la tecla "E") llama a "LoadScene"
-            if (isPlayerInRange && interactAction.WasPressedThisFrame())
-            {
-                OpenUI();
-            }
-            else if (!isPlayerInRange)
-            {
-                InstructionsUI.SetActive(false);
-                UIState.IsUIOpen = false;
-            }
-        }
-        */
+
+        OpenUI();
     }
 
     void OpenUI()
@@ -76,11 +88,6 @@ public class InteractableObject : MonoBehaviour
 
         InstructionsUI.SetActive(isPlayerInRange);
         UIState.IsUIOpen = true;
-
-        /*
-        InstructionsUI.SetActive(isPlayerInRange);
-        //UIState.IsUIOpen = true;
-        */
     }
 
     void CloseUI() 
@@ -99,5 +106,17 @@ public class InteractableObject : MonoBehaviour
     public void PlayUI() 
     {
         UIState.IsUIOpen = false;
+    }
+
+    void DisableNotebook()
+    {
+        if (notebookUI != null)
+            notebookUI.SetActive(false);
+    }
+
+    void EnableNotebook()
+    {
+        if (notebookUI != null)
+            notebookUI.SetActive(true);
     }
 }

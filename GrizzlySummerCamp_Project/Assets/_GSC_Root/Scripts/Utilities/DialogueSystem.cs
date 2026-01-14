@@ -1,13 +1,18 @@
 using UnityEngine;
 using TMPro;
+using System;
 using System.Collections;
 
 public class DialogueSystem : MonoBehaviour
 {
+    public GameObject dialogueUI;
     public TextMeshProUGUI dialogueText;
 
-    [TextArea(2, 5)]
+    [TextArea(2, 5)] // Sirve para el minimo y el maximo de lineas que se ven en el inspector.
     public string[] dialogues;
+
+    public event Action OnDialogueStarted;
+    public event Action OnDialogueEnded;
 
     private int index;
     private bool isTalking;
@@ -20,20 +25,28 @@ public class DialogueSystem : MonoBehaviour
         if (canClick && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)))
         {
             NextDialogue();
+            StartCoroutine(ClickCooldown());
         }
     }
 
     public void StartDialogue()
     {
-        isTalking = true;
+        if (dialogues.Length == 0) return;
+
         index = 0;
+        isTalking = true;
+        
+        dialogueUI.SetActive(true);
         dialogueText.text = dialogues[index];
-        dialogueText.gameObject.SetActive(true);
+
+        UIState.IsUIOpen = true;
+        OnDialogueStarted?.Invoke();
     }
 
     void NextDialogue()
     {
         index++;
+
         if (index < dialogues.Length)
         {
             dialogueText.text = dialogues[index];
@@ -47,7 +60,10 @@ public class DialogueSystem : MonoBehaviour
     void EndDialogue()
     {
         isTalking = false;
-        dialogueText.gameObject.SetActive(false);
+        dialogueUI.SetActive(false);
+
+        UIState.IsUIOpen = false;
+        OnDialogueEnded?.Invoke();
     }
 
     IEnumerator ClickCooldown()
