@@ -64,8 +64,8 @@ public class InteractableObject : MonoBehaviour
         float distance = Vector3.Distance(player.transform.position, transform.position);
         isPlayerInRange = distance < interactionDistance; //Booleano, se vuelve verdadero(true) sí "distancia" es menor a "interactionDistance";
 
-        if (spriteObject!=null)
-            spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
+        if (spriteObject != null)
+            spriteObject.SetActive(isPlayerInRange);
 
         if (!isPlayerInRange) return;
 
@@ -77,8 +77,8 @@ public class InteractableObject : MonoBehaviour
 
         if (isInDialogue)
         {
-            //SmoothLookAt(player, transform);
-           // SmoothLookAt(transform, player);
+           SmoothLookAt(player.transform, transform);
+           SmoothLookAt(transform, player.transform);
         }
     }
 
@@ -135,17 +135,18 @@ public class InteractableObject : MonoBehaviour
 
     void OnDialogueStart()
     {
+        isInDialogue = true;
         DisableNotebook();
         BlockPlayerMovement();
-        LookAtEachOther();
     }
 
     void OnDialogueEnded()
     {
+        isInDialogue = false;
         EnableNotebook();
         UnblockPlayerMovement();
     }
-
+     //Movimiento personaje
     void BlockPlayerMovement()
     {
         if (playerMovementScript != null)
@@ -162,20 +163,14 @@ public class InteractableObject : MonoBehaviour
         }
     }
 
-    void LookAtEachOther()
+    //Giro
+    void SmoothLookAt(Transform target, Transform self)
     {
-        if (player == null) return;
+        Vector3 dir = target.transform.position - self.position;
+        dir.y = 0;
+        if (dir == Vector3.zero) return;
 
-        Vector3 playerDir = transform.position - player.transform.position;
-        playerDir.y = 0;
-        if(playerDir != Vector3.zero)
-            player.transform.rotation = Quaternion.LookRotation(playerDir);
-
-
-        Vector3 npcDir = player.transform.position - transform.position;
-        npcDir.y = 0;
-        if(npcDir != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(npcDir);
-
+        Quaternion targetRot = Quaternion.LookRotation(dir);
+        self.rotation = Quaternion.Slerp(self.rotation, targetRot, lookSpeed * Time.deltaTime);
     }
 }
