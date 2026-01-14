@@ -12,17 +12,21 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] GameObject notebookUI;
 
     [Header("Player")]
-    //[SerializeField] MonoBehaviour playerMovementScript
+    [SerializeField] PlayerMovement playerMovementScript;
 
     [Header("Dialogue")]
     [SerializeField] bool hasDialogue = false;
     [SerializeField] DialogueSystem dialogueSystem;
+
+    [Header("Rotation")]
+    [SerializeField] float lookSpeed = 5f;
 
     private GameObject player;
     private PlayerInput playerInput;
     private InputAction interactAction;
 
     private bool isPlayerInRange = false;
+    private bool isInDialogue = false;
     
     void Start()
     {
@@ -39,8 +43,8 @@ public class InteractableObject : MonoBehaviour
 
         if (dialogueSystem != null)
         {
-            dialogueSystem.OnDialogueStarted += DisableNotebook;
-            dialogueSystem.OnDialogueEnded += EnableNotebook;
+            dialogueSystem.OnDialogueStarted += OnDialogueStart;
+            dialogueSystem.OnDialogueEnded += OnDialogueEnded;
         }
     }
 
@@ -48,8 +52,8 @@ public class InteractableObject : MonoBehaviour
     {
         if (dialogueSystem != null)
         {
-            dialogueSystem.OnDialogueStarted -= DisableNotebook;
-            dialogueSystem.OnDialogueEnded -= EnableNotebook;
+            dialogueSystem.OnDialogueStarted -= OnDialogueStart;
+            dialogueSystem.OnDialogueEnded -= OnDialogueEnded;
         }
     }
 
@@ -60,16 +64,21 @@ public class InteractableObject : MonoBehaviour
         float distance = Vector3.Distance(player.transform.position, transform.position);
         isPlayerInRange = distance < interactionDistance; //Booleano, se vuelve verdadero(true) sí "distancia" es menor a "interactionDistance";
 
-        if(spriteObject!=null)
+        if (spriteObject!=null)
             spriteObject.SetActive(isPlayerInRange); //Activa el objeto si el "isPlayerInRange" es verdadero
 
         if (!isPlayerInRange) return;
 
-        //if (InstructionsUI == null) return;
         //Hemos quitado el cierre automatico por distancia
         if (interactAction.WasPressedThisFrame() && !UIState.IsUIOpen) 
         {
             Interact();
+        }
+
+        if (isInDialogue)
+        {
+            //SmoothLookAt(player, transform);
+           // SmoothLookAt(transform, player);
         }
     }
 
@@ -86,9 +95,9 @@ public class InteractableObject : MonoBehaviour
 
     void OpenUI()
     {
-        if (InstructionsUI.activeSelf) return;
+        if (InstructionsUI == null || InstructionsUI.activeSelf) return;
 
-        InstructionsUI.SetActive(isPlayerInRange);
+        InstructionsUI.SetActive(true);
         UIState.IsUIOpen = true;
     }
 
@@ -120,5 +129,53 @@ public class InteractableObject : MonoBehaviour
     {
         if (notebookUI != null)
             notebookUI.SetActive(true);
+    }
+
+    //Cosas dialogo
+
+    void OnDialogueStart()
+    {
+        DisableNotebook();
+        BlockPlayerMovement();
+        LookAtEachOther();
+    }
+
+    void OnDialogueEnded()
+    {
+        EnableNotebook();
+        UnblockPlayerMovement();
+    }
+
+    void BlockPlayerMovement()
+    {
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.SetCanMove(false);
+        }
+    }
+
+    void UnblockPlayerMovement()
+    {
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.SetCanMove(true);
+        }
+    }
+
+    void LookAtEachOther()
+    {
+        if (player == null) return;
+
+        Vector3 playerDir = transform.position - player.transform.position;
+        playerDir.y = 0;
+        if(playerDir != Vector3.zero)
+            player.transform.rotation = Quaternion.LookRotation(playerDir);
+
+
+        Vector3 npcDir = player.transform.position - transform.position;
+        npcDir.y = 0;
+        if(npcDir != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(npcDir);
+
     }
 }
