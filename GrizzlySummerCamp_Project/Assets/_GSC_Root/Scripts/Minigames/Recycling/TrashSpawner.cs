@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 public class TrashSpawner : MonoBehaviour
 {
     [Header("Trash Prefabs")]
@@ -15,57 +16,88 @@ public class TrashSpawner : MonoBehaviour
 
     private List<GameObject> spawnedTrash = new();
 
-    //int maxspawnlist;
-
     public void SpawnAllTrash() 
     {
         ClearTrash();
 
         if (trashPrefabs.Count == 0 || spawnpoints.Count == 0) return;
 
-        List<Transform> freePoints = new(spawnpoints);
+        int spawnCount = Mathf.Min(maxTrashToSpawn, spawnpoints.Count);
+        int maxPerType = Mathf.FloorToInt(spawnCount * 0.5f);
 
-        int spawnCount = Mathf.Min(maxTrashToSpawn, freePoints.Count);
+        Dictionary<TrashType, List<GameObject>> prefabsByType = new();
 
-        for (int i = 0; i < spawnCount; i++)
+        foreach (var prefab in trashPrefabs) 
         {
-            int pointIndex = Random.Range(0, freePoints.Count);
-            Transform point = freePoints[pointIndex];
-            freePoints.RemoveAt(pointIndex);
+            if (prefab == null) continue;
 
-            //Aqui se elige el numero aleatorio de los objetos.
-            int prefabIndex = Random.Range(0, trashPrefabs.Count);
-            //Aqui se selecciona el objeto en base al numero.
-            GameObject prefab = trashPrefabs[prefabIndex];
-            if (prefab == null)
-            {
-                i--;
-                //No termina esta instancia del bucle, y vuelve al inicio del for.
-                continue;
-            }
+            var item = prefab.GetComponent<TrashItem>();
+            if (item == null) continue;
 
-            //Aqui se genera el objeto.
-            GameObject trash = Instantiate(prefab, point.position, point.rotation);
-            //Se añade a la lista de objetos generados.
-            spawnedTrash.Add(trash);
+            if (!prefabsByType.ContainsKey(item.trashType))
+                prefabsByType[item.trashType] = new List<GameObject>();
+
+            prefabsByType[item.trashType].Add(prefab);
         }
-        /*
+
         List<Transform> freePoints = new(spawnpoints);
+        Dictionary<TrashType, int> spawnedPerType = new();
 
-        foreach (GameObject prefab in trashPrefabs) 
+        foreach (var kvp in prefabsByType) 
         {
-            if (freePoints.Count == 0) break;
+            if (freePoints.Count == 0 || spawnedTrash.Count >= spawnCount)
+                break;
 
-            int index = Random.Range(0, freePoints.Count);
-            Transform point = freePoints[index];
-            freePoints.RemoveAt(index);
+            var prefabList = kvp.Value;
+            if (prefabList.Count == 0) continue;
 
-            GameObject trash = Instantiate(prefab, point.position, point.rotation);
-            spawnedTrash.Add (trash);
+            SpawnTrash(
+                prefabList[Random.Range(0, prefabList.Count)],
+                kvp.Key,
+                freePoints,
+                spawnedPerType
+            );
         }
-        */
+
+        while (spawnedTrash.Count < spawnCount && freePoints.Count > 0) 
+        {
+            var validTypes = prefabsByType.Keys
+                .Where(t => !spawnedPerType.ContainsKey(t) || spawnedPerType[t] < maxPerType)
+                .ToList();
+
+            if (validTypes.Count == 0)
+                break;
+
+            TrashType chosenType = validTypes[Random.Range(0, validTypes.Count)];
+            var prefabList = prefabsByType[chosenType];
+
+            SpawnTrash(
+                prefabList[Random.Range(0, prefabList.Count)],
+                chosenType,
+                freePoints,
+                spawnedPerType
+            );
+        }
     }
+    void SpawnTrash(
+        GameObject prefab,
+        TrashType type,
+        List<Transform> freePoints,
+        Dictionary<TrashType, int> spawnedPerType
+    )
+    {
+        int pointIndex = Random.Range(0, freePoints.Count);
+        Transform point = freePoints[pointIndex];
+        freePoints.RemoveAt(pointIndex);
 
+        GameObject trash = Instantiate(prefab, point.position, point.rotation);
+        spawnedTrash.Add(trash);
+
+        if (!spawnedPerType.ContainsKey(type))
+            spawnedPerType[type] = 0;
+
+        spawnedPerType[type]++;
+    }
     void ClearTrash() 
     {
         foreach (var t in spawnedTrash)
