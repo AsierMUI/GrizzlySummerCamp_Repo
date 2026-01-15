@@ -27,7 +27,7 @@ public class TrashSpawner : MonoBehaviour
             GameObject trash = Instantiate(prefab, point.position, point.rotation);
             spawnedTrash.Add (trash);
         }
-        PickupCounter.Instance?.SetTotal(spawnedTrash.Count);
+        //PickupCounter.Instance?.SetTotal(spawnedTrash.Count);
     }
 
     void ClearTrash() 
