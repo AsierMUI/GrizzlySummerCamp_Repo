@@ -4,20 +4,38 @@ public class PlayerAim : MonoBehaviour
 {
     public float rotationSpeed = 5f;
     public float aimPlaneDistance = 10f;
+    public BowShoot bowShoot;
 
     private Camera mainCam;
+    private Quaternion lockedRotation; //la rotacion en la que se queda margarita al disparar
+    private Rigidbody rb;
 
     private void Start()
     {
         mainCam = Camera.main;
+        rb = GetComponent<Rigidbody>();
+        lockedRotation = transform.rotation;
     }
 
     private void Update()
     {
         if (Time.timeScale == 0f) return;
 
-        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+        if (bowShoot != null && bowShoot.IsReloading)
+        {
+            if(rb != null)
+            {
+                rb.angularVelocity = Vector3.zero;
+                rb.rotation = lockedRotation;
+            }
+            else
+            {
+                transform.rotation = lockedRotation;
+            }     
+            return;
+        }
 
+        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
         Vector3 planePoint = transform.position + transform.forward * aimPlaneDistance;
         Plane aimPlane = new Plane(-mainCam.transform.forward, planePoint);
 
@@ -37,5 +55,7 @@ public class PlayerAim : MonoBehaviour
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        lockedRotation = transform.rotation;
     }
 }

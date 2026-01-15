@@ -28,6 +28,7 @@ public class BowShoot : MonoBehaviour
 
     private Camera mainCam;
     private bool showTrajectory = true;
+    public bool IsReloading => !canShoot;
 
     private void Start()
     {
@@ -63,6 +64,9 @@ public class BowShoot : MonoBehaviour
 
         canShoot = false; //Se activa el cooldown
 
+        if (TryGetComponent<PlayerAim>(out var aim))
+            aim.enabled = false;
+
         // Calcular dirección del disparo
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
         Vector3 targetPoint = ray.GetPoint(50); // fallback
@@ -80,8 +84,8 @@ public class BowShoot : MonoBehaviour
         rb.AddForce(force, ForceMode.Impulse);
 
         // Ocultar línea tras disparar
-        lineRenderer.enabled = false;
         showTrajectory = false;
+        lineRenderer.enabled = false;
 
         // Opcional: mostrar línea otra vez después de recarga + permitir disparar otra vez
         Invoke(nameof(ResetShot), shootCooldown);
@@ -90,6 +94,10 @@ public class BowShoot : MonoBehaviour
     void ResetShot()
     {
         canShoot = true;
+
+        if (TryGetComponent<PlayerAim>(out var aim))
+            aim.enabled = true;
+
         ShowLineAgain();
     }
 
