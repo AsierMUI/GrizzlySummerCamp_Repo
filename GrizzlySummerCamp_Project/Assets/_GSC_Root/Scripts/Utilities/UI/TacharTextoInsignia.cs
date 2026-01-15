@@ -13,7 +13,7 @@ public class TacharTextoInsignia : MonoBehaviour
     [Header("Textos a tachar")]
     public TextoMinijuego[] textos;
 
-    void Start()
+    void OnEnable()
     {
         ActualizarTextos();
     }
@@ -29,6 +29,7 @@ public class TacharTextoInsignia : MonoBehaviour
         foreach (var t in textos)
         {
             int insignia = InsigniaManager.Instance.GetInsignia(t.minigameName);
+            Debug.Log($"{t.minigameName} -> Insignia: {insignia}");
 
             if (t.texto == null) continue;
 
