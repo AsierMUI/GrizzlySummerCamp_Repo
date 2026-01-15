@@ -10,14 +10,16 @@ public class TrashCarryUI : MonoBehaviour
     [Tooltip("Icono para indicar que lleva basura")]
     [SerializeField] GameObject carryIcon;
 
+    //Hacer un controlador de cuantos items tienes.
+
     private void Update()
     {
         if (carry == null) return;
 
         bool carrying = carry.IsCarryingTrash();
 
+
         carryIcon.SetActive(carrying);
         carryText.text = carrying ? "1" : "0";
     }
-
 }
