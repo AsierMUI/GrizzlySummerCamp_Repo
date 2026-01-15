@@ -18,7 +18,6 @@ public class TrashCarryUI : MonoBehaviour
 
         bool carrying = carry.IsCarryingTrash();
 
-
         carryIcon.SetActive(carrying);
         carryText.text = carrying ? "1" : "0";
     }

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System;
 public class TrashPlayerCarry : MonoBehaviour
 {
     private TrashItem carriedTrash;
@@ -8,6 +8,9 @@ public class TrashPlayerCarry : MonoBehaviour
     [Header("Movement Penalty")]
     [Tooltip("Este valor altera quan despacio vas tras recoger basura")]
     [SerializeField] float speedPenalty = -0.2f;
+
+    public static event Action<bool> OnCarryStateChanged;
+    public static event Action OnTrashDelivered;
 
     private void Awake()
     {
@@ -24,6 +27,8 @@ public class TrashPlayerCarry : MonoBehaviour
     {
         if (carriedTrash != null) return;
 
+        OnCarryStateChanged?.Invoke(true);
+
         carriedTrash = trash;
 
         trash.gameObject.SetActive(false);
@@ -39,6 +44,8 @@ public class TrashPlayerCarry : MonoBehaviour
         if (carriedTrash != null)
             Destroy(carriedTrash.gameObject);
 
+        OnCarryStateChanged?.Invoke(false);
+        OnTrashDelivered?.Invoke();
         carriedTrash = null;
 
         //restaurar movimiento

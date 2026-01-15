@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+
 public class TrashSpawner : MonoBehaviour
 {
     [Header("Trash Prefabs")]
@@ -13,6 +15,8 @@ public class TrashSpawner : MonoBehaviour
     [Header("Max Spawn Nº")]
     [SerializeField] int maxTrashToSpawn = 5;
 
+    public static event Action<int> OnTrashSpawned;
+    public static event Action OnTrashRemoved;
 
     private List<GameObject> spawnedTrash = new();
 
@@ -52,7 +56,7 @@ public class TrashSpawner : MonoBehaviour
             if (prefabList.Count == 0) continue;
 
             SpawnTrash(
-                prefabList[Random.Range(0, prefabList.Count)],
+                prefabList[UnityEngine.Random.Range(0, prefabList.Count)],
                 kvp.Key,
                 freePoints,
                 spawnedPerType
@@ -68,16 +72,17 @@ public class TrashSpawner : MonoBehaviour
             if (validTypes.Count == 0)
                 break;
 
-            TrashType chosenType = validTypes[Random.Range(0, validTypes.Count)];
+            TrashType chosenType = validTypes[UnityEngine.Random.Range(0, validTypes.Count)];
             var prefabList = prefabsByType[chosenType];
 
             SpawnTrash(
-                prefabList[Random.Range(0, prefabList.Count)],
+                prefabList[UnityEngine.Random.Range(0, prefabList.Count)],
                 chosenType,
                 freePoints,
                 spawnedPerType
             );
         }
+        OnTrashSpawned?.Invoke(spawnedTrash.Count);
     }
     void SpawnTrash(
         GameObject prefab,
@@ -86,7 +91,7 @@ public class TrashSpawner : MonoBehaviour
         Dictionary<TrashType, int> spawnedPerType
     )
     {
-        int pointIndex = Random.Range(0, freePoints.Count);
+        int pointIndex = UnityEngine.Random.Range(0, freePoints.Count);
         Transform point = freePoints[pointIndex];
         freePoints.RemoveAt(pointIndex);
 
@@ -104,5 +109,23 @@ public class TrashSpawner : MonoBehaviour
             if (t != null) Destroy(t);
 
         spawnedTrash.Clear();
+    }
+    public int GetTotalSpawnedTrash() 
+    {
+        return spawnedTrash.Count;
+    }
+
+    public int GetRemainingTrash() 
+    {
+        int count = 0;
+
+        foreach (var t in spawnedTrash) 
+        {
+            if (t != null)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 }
