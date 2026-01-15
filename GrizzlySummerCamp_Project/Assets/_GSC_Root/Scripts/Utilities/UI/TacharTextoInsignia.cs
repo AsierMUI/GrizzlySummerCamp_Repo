@@ -3,10 +3,17 @@ using TMPro;
 
 public class TacharTextoInsignia : MonoBehaviour
 {
+    public enum TipoDesbloqueo
+    {
+        Insignia,
+        Estrella
+    }
+
     [System.Serializable]
     public class TextoMinijuego
     {
         public string minigameName;
+        public TipoDesbloqueo tipoDesbloqueo;
         public TextMeshProUGUI texto;
     }
 
@@ -28,19 +35,25 @@ public class TacharTextoInsignia : MonoBehaviour
 
         foreach (var t in textos)
         {
-            int insignia = InsigniaManager.Instance.GetInsignia(t.minigameName);
-            Debug.Log($"{t.minigameName} -> Insignia: {insignia}");
-
             if (t.texto == null) continue;
 
-            if (insignia > 0)
+            bool desbloqueado = false;
+
+            switch (t.tipoDesbloqueo)
             {
-                t.texto.fontStyle |= FontStyles.Strikethrough;
+                case TipoDesbloqueo.Insignia:
+                    desbloqueado = InsigniaManager.Instance.GetInsignia(t.minigameName) > 0;
+                    break;
+
+                case TipoDesbloqueo.Estrella:
+                    desbloqueado = InsigniaManager.Instance.GetEstrella(t.minigameName) > 0;
+                    break;
             }
-            else
-            {
-                t.texto.fontStyle &= ~FontStyles.Strikethrough;
-            }
+
+            t.texto.fontStyle = desbloqueado
+                ? FontStyles.Strikethrough : FontStyles.Normal;
+
+            Debug.Log($"{t.minigameName} [{t.tipoDesbloqueo}] -> {desbloqueado}");
         }
     }
 }
