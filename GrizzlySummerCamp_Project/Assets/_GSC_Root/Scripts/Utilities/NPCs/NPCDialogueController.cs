@@ -69,6 +69,24 @@ public class NPCDialogueController : MonoBehaviour
         }
     }
 
+    public bool HasImportantDialogue()
+    {
+        switch (modo)
+        {
+            case NPCDialogueMode.Simple:
+                return !state.dialogoNormalUsado || dialogoFinal != null;
+
+            case NPCDialogueMode.ConInsignias:
+                if (InsigniaManager.Instance == null) return false;
+
+                if (!state.tutorialCompletado && !TieneAlgunaInsignia()) return true;
+                if (TieneAlgunaInsignia() && dialogoProgreso != null) return true;
+                if (TieneTodasLasInsignias() && dialogoFinal != null) return true;
+                break;
+        }
+        return false;
+    }
+
     //NPC Simple
     void InteractSimple()
     {

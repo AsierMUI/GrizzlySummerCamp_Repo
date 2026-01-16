@@ -71,6 +71,11 @@ public class InteractableObject : MonoBehaviour
         if (npcController != null)
         {
             npcController.Interact();
+
+            var iconController = GetComponent<NPCIconController>();
+            if (iconController != null)
+                iconController.OnPlayerInteract();
+
             return;
         }
 
