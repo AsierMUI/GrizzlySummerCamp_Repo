@@ -20,6 +20,9 @@ public class TrashSpawner : MonoBehaviour
 
     private List<GameObject> spawnedTrash = new();
 
+    #region MyRegion
+
+    #endregion
     public void SpawnAllTrash() 
     {
         ClearTrash();
@@ -110,6 +113,7 @@ public class TrashSpawner : MonoBehaviour
 
         spawnedTrash.Clear();
     }
+    #region Contar Basura
     public int GetTotalSpawnedTrash() 
     {
         return spawnedTrash.Count;
@@ -128,4 +132,6 @@ public class TrashSpawner : MonoBehaviour
         }
         return count;
     }
+
+    #endregion
 }
