@@ -5,7 +5,16 @@ public class TrashUIController : MonoBehaviour
 {
     [Header("Carry UI")]
     [SerializeField] private TMP_Text carryText;
+
+
+    [Header("Carry UI Icons")]
     [SerializeField] private GameObject carryIcon;
+    [SerializeField] private UnityEngine.UI.Image carryImage;
+    [SerializeField] private Sprite organicaIcon;
+    [SerializeField] private Sprite papelIcon;
+    [SerializeField] private Sprite plasticoIcon;
+    [SerializeField] private Sprite cristalIcon;
+
 
     [Header("Counter UI")]
     [SerializeField] private TMP_Text counterText;
@@ -17,14 +26,16 @@ public class TrashUIController : MonoBehaviour
     {
         TrashSpawner.OnTrashSpawned += SetTotalTrash;
         TrashPlayerCarry.OnTrashDelivered += OnTrashRemoved;
-        TrashPlayerCarry.OnCarryStateChanged += UpdateCarryUI;
+        //TrashPlayerCarry.OnCarryStateChanged += UpdateCarryUI;
+        TrashPlayerCarry.OnCarryChanged += UpdateCarryUI;
     }
 
     private void OnDisable()
     {
         TrashSpawner.OnTrashSpawned -= SetTotalTrash;
         TrashPlayerCarry.OnTrashDelivered -= OnTrashRemoved;
-        TrashPlayerCarry.OnCarryStateChanged -= UpdateCarryUI;
+        //TrashPlayerCarry.OnCarryStateChanged -= UpdateCarryUI;
+        TrashPlayerCarry.OnCarryChanged -= UpdateCarryUI;
     }
 
     void SetTotalTrash(int total)
@@ -39,7 +50,25 @@ public class TrashUIController : MonoBehaviour
         remainingTrash = Mathf.Max(0, remainingTrash - 1);
         UpdateCounterUI();
     }
+    void UpdateCarryUI(TrashType? type)
+    {
+        if (carryIcon != null)
+            carryIcon.SetActive(type.HasValue);
 
+        if (!type.HasValue || carryImage == null)
+            return;
+
+        carryImage.sprite = type.Value switch
+        {
+            TrashType.Organica => organicaIcon,
+            TrashType.Papel => papelIcon,
+            TrashType.Plastico => plasticoIcon,
+            TrashType.Cristal => cristalIcon,
+            _ => null
+        };
+    }
+
+    /*
     void UpdateCarryUI(bool carrying)
     {
         if (carryIcon != null)
@@ -48,7 +77,7 @@ public class TrashUIController : MonoBehaviour
         if (carryText != null)
             carryText.text = carrying ? "1" : "0";
     }
-
+    */
     void UpdateCounterUI()
     {
         if (counterText != null)

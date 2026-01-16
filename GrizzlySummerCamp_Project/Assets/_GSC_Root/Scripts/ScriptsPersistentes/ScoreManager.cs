@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TMP_Text scoreText;
 
+    
     private void Awake()
     {
         if (Instance == null)
@@ -23,6 +24,7 @@ public class ScoreManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
+    
 
     private void Start()
     {
