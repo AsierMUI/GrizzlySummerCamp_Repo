@@ -21,6 +21,7 @@ public class DialogueSystem : MonoBehaviour
     private bool isTalking;
     private bool canClick = true;
     private Coroutine typingCoroutine;
+    private bool isTyping;
 
     public bool IsTalking => isTalking;
 
@@ -30,7 +31,15 @@ public class DialogueSystem : MonoBehaviour
 
         if (canClick && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)))
         {
-            NextDialogue();
+            if (isTyping)
+            {
+                CompleteCurrentSentence();
+            }
+            else
+            {
+                NextDialogue();
+            }
+
             StartCoroutine(ClickCooldown());
         }
     }
@@ -44,10 +53,7 @@ public class DialogueSystem : MonoBehaviour
         
         dialogueUI.SetActive(true);
 
-        if (typingCoroutine != null)
-            StopCoroutine(typingCoroutine);
-
-        typingCoroutine = StartCoroutine(TypeSentence(dialogues[index]));
+        ShowCurrentSentence();
 
         UIState.IsUIOpen = true;
         OnDialogueStarted?.Invoke();
@@ -59,15 +65,29 @@ public class DialogueSystem : MonoBehaviour
 
         if (index < dialogues.Length)
         {
-            if (typingCoroutine != null)
-                StopCoroutine(typingCoroutine);
-
-            typingCoroutine = StartCoroutine(TypeSentence(dialogueText.text = dialogues[index]));
+            ShowCurrentSentence();
         }
         else
         {
             EndDialogue();
         }
+    }
+
+    void ShowCurrentSentence()
+    {
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+
+        typingCoroutine = StartCoroutine(TypeSentence(dialogues[index]));
+    }
+
+    void CompleteCurrentSentence()
+    {
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+
+        dialogueText.text = dialogues[index];
+        isTyping = false;
     }
 
     void EndDialogue()
@@ -88,11 +108,15 @@ public class DialogueSystem : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence)
     {
+        isTyping = true;
         dialogueText.text = "";
+
         foreach (char letter in sentence)
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(letterDelay);
         }
+
+        isTyping = false;
     }
 }
