@@ -93,7 +93,7 @@ public class NPCDialogueController : MonoBehaviour
         //Locura de ifs como el undertale
 
         // primero el tutoial(si existe y no se ha completao)
-        if (dialogoTutorial != null && !state.tutorialCompletado)
+        if (dialogoTutorial != null && !state.tutorialCompletado && !TieneAlgunaInsignia())
         {
             state.tutorialCompletado = true;
             dialogoTutorial.StartDialogue();
