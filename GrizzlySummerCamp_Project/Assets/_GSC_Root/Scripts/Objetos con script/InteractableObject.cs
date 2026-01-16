@@ -51,7 +51,15 @@ public class InteractableObject : MonoBehaviour
         if (spriteObject != null)
             spriteObject.SetActive(isPlayerInRange);
 
-        if (!isPlayerInRange) return;
+        if (!isPlayerInRange) //return;
+        {
+            //Volvemos a meter que se cierra por distancia (debería funcionar)
+            if (!isInDialogue && InstructionsUI != null && InstructionsUI.activeSelf)
+            {
+                CloseUI();
+            }
+            return;
+        }
 
         //Hemos quitado el cierre automatico por distancia
         if (interactAction.WasPressedThisFrame() && !UIState.IsUIOpen) 
@@ -92,6 +100,7 @@ public class InteractableObject : MonoBehaviour
 
     void CloseUI() 
     {
+        if (isInDialogue) return;
         if (!InstructionsUI.activeSelf) return;
 
         InstructionsUI.SetActive(false);
