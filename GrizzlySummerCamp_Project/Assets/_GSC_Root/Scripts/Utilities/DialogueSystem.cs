@@ -3,6 +3,7 @@ using TMPro;
 using System;
 using System.Collections;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class DialogueSystem : MonoBehaviour
 {
     public GameObject dialogueUI;
@@ -18,6 +19,8 @@ public class DialogueSystem : MonoBehaviour
     private bool isTalking;
     private bool canClick = true;
 
+    public bool IsTalking => isTalking;
+
     private void Update()
     {
         if (!isTalking) return;
@@ -31,7 +34,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void StartDialogue()
     {
-        if (dialogues.Length == 0) return;
+        if (isTalking || dialogues.Length == 0) return;
 
         index = 0;
         isTalking = true;
@@ -69,7 +72,7 @@ public class DialogueSystem : MonoBehaviour
     IEnumerator ClickCooldown()
     {
         canClick = false;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         canClick = true;
     }
 }

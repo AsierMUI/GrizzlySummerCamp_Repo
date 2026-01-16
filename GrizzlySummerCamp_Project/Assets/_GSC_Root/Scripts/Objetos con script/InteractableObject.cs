@@ -14,9 +14,8 @@ public class InteractableObject : MonoBehaviour
     [Header("Player")]
     [SerializeField] PlayerMovement playerMovementScript;
 
-    [Header("Dialogue")]
-    [SerializeField] bool hasDialogue = false;
-    [SerializeField] DialogueSystem dialogueSystem;
+    [Header("NPC")]
+    public NPCDialogueController npcController;
 
     [Header("Rotation")]
     [SerializeField] float lookSpeed = 5f;
@@ -40,21 +39,6 @@ public class InteractableObject : MonoBehaviour
 
         if (spriteObject != null)
             spriteObject.SetActive(false);
-
-        if (dialogueSystem != null)
-        {
-            dialogueSystem.OnDialogueStarted += OnDialogueStart;
-            dialogueSystem.OnDialogueEnded += OnDialogueEnded;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (dialogueSystem != null)
-        {
-            dialogueSystem.OnDialogueStarted -= OnDialogueStart;
-            dialogueSystem.OnDialogueEnded -= OnDialogueEnded;
-        }
     }
 
     void Update()
@@ -84,9 +68,9 @@ public class InteractableObject : MonoBehaviour
 
     void Interact()
     {
-        if (hasDialogue && dialogueSystem != null)
+        if (npcController != null)
         {
-            dialogueSystem.StartDialogue();
+            npcController.Interact();
             return;
         }
 
@@ -132,15 +116,15 @@ public class InteractableObject : MonoBehaviour
     }
 
     //Cosas dialogo
-
-    void OnDialogueStart()
+    //Se llaman desde npcdialoguecontroller desde dialogue system
+    public void OnDialogueStart()
     {
         isInDialogue = true;
         DisableNotebook();
         BlockPlayerMovement();
     }
 
-    void OnDialogueEnded()
+    public void OnDialogueEnded()
     {
         isInDialogue = false;
         EnableNotebook();
