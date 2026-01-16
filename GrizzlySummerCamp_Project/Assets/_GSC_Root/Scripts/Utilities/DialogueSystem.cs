@@ -12,12 +12,15 @@ public class DialogueSystem : MonoBehaviour
     [TextArea(2, 5)] // Sirve para el minimo y el maximo de lineas que se ven en el inspector.
     public string[] dialogues;
 
+    public float letterDelay = 0.03f; //el tiempo entre letras
+
     public event Action OnDialogueStarted;
     public event Action OnDialogueEnded;
 
     private int index;
     private bool isTalking;
     private bool canClick = true;
+    private Coroutine typingCoroutine;
 
     public bool IsTalking => isTalking;
 
@@ -40,7 +43,11 @@ public class DialogueSystem : MonoBehaviour
         isTalking = true;
         
         dialogueUI.SetActive(true);
-        dialogueText.text = dialogues[index];
+
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+
+        typingCoroutine = StartCoroutine(TypeSentence(dialogues[index]));
 
         UIState.IsUIOpen = true;
         OnDialogueStarted?.Invoke();
@@ -52,7 +59,10 @@ public class DialogueSystem : MonoBehaviour
 
         if (index < dialogues.Length)
         {
-            dialogueText.text = dialogues[index];
+            if (typingCoroutine != null)
+                StopCoroutine(typingCoroutine);
+
+            typingCoroutine = StartCoroutine(TypeSentence(dialogueText.text = dialogues[index]));
         }
         else
         {
@@ -74,5 +84,15 @@ public class DialogueSystem : MonoBehaviour
         canClick = false;
         yield return new WaitForSeconds(0.3f);
         canClick = true;
+    }
+
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogueText.text = "";
+        foreach (char letter in sentence)
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(letterDelay);
+        }
     }
 }
