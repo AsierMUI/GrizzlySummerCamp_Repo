@@ -31,7 +31,7 @@ public class TrashInteractor : MonoBehaviour
     void TryInteract() 
     {
         if (!MinigameManager.Instance) return;
-        Debug.Log($"Carrying: {carry.IsCarryingTrash()}");
+        //Debug.Log($"Carrying: {carry.IsCarryingTrash()}");
 
         nearbyInteractables.RemoveAll(obj => obj == null);
 
@@ -53,7 +53,7 @@ public class TrashInteractor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Entered: {other.name}");
+        //Debug.Log($"Entered: {other.name}");
         if (other.TryGetComponent(out TrashItem trash))
             nearbyInteractables.Add(trash);
 
