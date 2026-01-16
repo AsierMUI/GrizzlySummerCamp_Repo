@@ -4,11 +4,6 @@ using System.Collections.Generic;
 
 public class TrashInteractor : MonoBehaviour
 {
-    /*
-    [Header("Interaction Field")]
-    [SerializeField] float interactRange = 2f;
-    [SerializeField] LayerMask interactLayer;
-    */
     TrashPlayerCarry carry;
     PlayerInput playerInput;
     InputAction interactAction;
@@ -31,7 +26,6 @@ public class TrashInteractor : MonoBehaviour
     void TryInteract() 
     {
         if (!MinigameManager.Instance) return;
-        //Debug.Log($"Carrying: {carry.IsCarryingTrash()}");
 
         nearbyInteractables.RemoveAll(obj => obj == null);
 
@@ -53,7 +47,6 @@ public class TrashInteractor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log($"Entered: {other.name}");
         if (other.TryGetComponent(out TrashItem trash))
             nearbyInteractables.Add(trash);
 

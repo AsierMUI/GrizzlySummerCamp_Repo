@@ -19,8 +19,25 @@ public class PlayerAim : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale == 0f) return;
+        if (MinigameManager.Instance == null || !MinigameManager.Instance.IsRunning)
+            return;
 
+        if (bowShoot != null && bowShoot.IsReloading)
+        {
+            if (rb != null)
+            {
+                rb.angularVelocity = Vector3.zero;
+                rb.rotation = lockedRotation;
+            }
+            else
+            {
+                transform.rotation = lockedRotation;
+            }
+            return;
+        }
+
+        /*
+        if (Time.timeScale == 0f) return;
         if (bowShoot != null && bowShoot.IsReloading)
         {
             if(rb != null)
@@ -34,6 +51,7 @@ public class PlayerAim : MonoBehaviour
             }     
             return;
         }
+        */
 
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
         Vector3 planePoint = transform.position + transform.forward * aimPlaneDistance;

@@ -45,7 +45,7 @@ public class BowShoot : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale == 0f)
+        if (MinigameManager.Instance == null || !MinigameManager.Instance.IsRunning)
         {
             lineRenderer.enabled = false;
             return;
@@ -60,7 +60,9 @@ public class BowShoot : MonoBehaviour
 
     void Shoot()
     {
-        if (Time.timeScale == 0f) return;
+        if (!MinigameManager.Instance.IsRunning) return;
+
+        //if (Time.timeScale == 0f) return;
 
         canShoot = false; //Se activa el cooldown
 

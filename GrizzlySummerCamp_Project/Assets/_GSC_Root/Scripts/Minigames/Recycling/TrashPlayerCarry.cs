@@ -9,7 +9,6 @@ public class TrashPlayerCarry : MonoBehaviour
     [Tooltip("Este valor altera quan despacio vas tras recoger basura")]
     [SerializeField] float speedPenalty = -0.2f;
 
-    //public static event Action<bool> OnCarryStateChanged;
     public static event Action OnTrashDelivered;
     public static event Action<TrashType?> OnCarryChanged;
 
@@ -28,7 +27,6 @@ public class TrashPlayerCarry : MonoBehaviour
     {
         if (carriedTrash != null) return;
 
-        //OnCarryStateChanged?.Invoke(true);
 
         carriedTrash = trash;
 
@@ -39,7 +37,6 @@ public class TrashPlayerCarry : MonoBehaviour
         playerMovement.SetSprintBlocked(true);
         playerMovement.SetSpeedModifier(speedPenalty);
 
-        //Debug.Log($"[Trash] Picked {trash.trashType}");
     }
 
     public void DeliverTrash() 
@@ -52,7 +49,6 @@ public class TrashPlayerCarry : MonoBehaviour
         OnCarryChanged?.Invoke(null);
         OnTrashDelivered?.Invoke();
 
-        //OnCarryStateChanged?.Invoke(false);
         carriedTrash = null;
 
         //restaurar movimiento

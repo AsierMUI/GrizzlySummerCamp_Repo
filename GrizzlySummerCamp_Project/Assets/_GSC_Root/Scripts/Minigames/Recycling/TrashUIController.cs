@@ -3,10 +3,6 @@ using TMPro;
 
 public class TrashUIController : MonoBehaviour
 {
-    [Header("Carry UI")]
-    [SerializeField] private TMP_Text carryText;
-
-
     [Header("Carry UI Icons")]
     [SerializeField] private GameObject carryIcon;
     [SerializeField] private UnityEngine.UI.Image carryImage;
@@ -26,7 +22,6 @@ public class TrashUIController : MonoBehaviour
     {
         TrashSpawner.OnTrashSpawned += SetTotalTrash;
         TrashPlayerCarry.OnTrashDelivered += OnTrashRemoved;
-        //TrashPlayerCarry.OnCarryStateChanged += UpdateCarryUI;
         TrashPlayerCarry.OnCarryChanged += UpdateCarryUI;
     }
 
@@ -34,7 +29,6 @@ public class TrashUIController : MonoBehaviour
     {
         TrashSpawner.OnTrashSpawned -= SetTotalTrash;
         TrashPlayerCarry.OnTrashDelivered -= OnTrashRemoved;
-        //TrashPlayerCarry.OnCarryStateChanged -= UpdateCarryUI;
         TrashPlayerCarry.OnCarryChanged -= UpdateCarryUI;
     }
 
@@ -68,16 +62,6 @@ public class TrashUIController : MonoBehaviour
         };
     }
 
-    /*
-    void UpdateCarryUI(bool carrying)
-    {
-        if (carryIcon != null)
-            carryIcon.SetActive(carrying);
-
-        if (carryText != null)
-            carryText.text = carrying ? "1" : "0";
-    }
-    */
     void UpdateCounterUI()
     {
         if (counterText != null)

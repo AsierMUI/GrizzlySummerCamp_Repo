@@ -27,8 +27,10 @@ public class BalloonSpawner : MonoBehaviour
 
     void Start()
     {
+        /*
         for (int i = 0; i < maxBalloons; i++)
             SpawnSingleBalloon();
+        */
     }
 
     void SpawnSingleBalloon()
@@ -94,5 +96,23 @@ public class BalloonSpawner : MonoBehaviour
         currentBalloons--;
 
         Invoke(nameof(SpawnSingleBalloon), respawnDelay);
+    }
+    private void OnEnable()
+    {
+        MinigameManager.OnMinigameStarted += StartSpawning;
+    }
+
+    private void OnDisable()
+    {
+        MinigameManager.OnMinigameStarted -= StartSpawning;
+    }
+
+    void StartSpawning()
+    {
+        usedRoutes.Clear();
+        currentBalloons = 0;
+
+        for (int i = 0; i < maxBalloons; i++)
+            SpawnSingleBalloon();
     }
 }

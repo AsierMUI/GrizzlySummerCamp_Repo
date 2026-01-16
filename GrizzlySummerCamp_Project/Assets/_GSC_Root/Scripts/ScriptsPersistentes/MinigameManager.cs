@@ -294,5 +294,7 @@ public class MinigameManager : MonoBehaviour
     {
         return minigameDuration;
     }
+    public bool IsRunning => isRunning;
+
     #endregion
 }

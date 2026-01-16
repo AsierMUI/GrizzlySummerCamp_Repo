@@ -24,6 +24,8 @@ public class FishingZone : MonoBehaviour
 
     private void Update()
     {
+        if (!CanInteract()) return;
+
         if (playerInside && !used && Input.GetKeyDown(KeyCode.E))
         {
             StartFishing();
@@ -37,6 +39,8 @@ public class FishingZone : MonoBehaviour
 
     void StartFishing()
     {
+        if (!CanInteract()) return;
+
         used = true;
 
         interactIcon.SetActive(false);
@@ -51,14 +55,12 @@ public class FishingZone : MonoBehaviour
 
     void OnSkillCheckResult(bool success)
     {
+        skillCheck.OnSkillCheckFinished -= OnSkillCheckResult;
+
         if (success)
-        {
             Debug.Log("Capturao");
-        }
         else
-        {
             Debug.Log("Eres un pollo");
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -82,4 +84,19 @@ public class FishingZone : MonoBehaviour
             interactIcon.SetActive(false);
         }
     }
+
+    bool CanInteract()
+    {
+        if (Time.timeScale == 0f)
+            return false;
+
+        if (UIState.IsUIOpen)
+            return false;
+
+        if (MinigameManager.Instance == null || !MinigameManager.Instance.IsRunning)
+            return false;
+
+        return true;
+    }
+
 }

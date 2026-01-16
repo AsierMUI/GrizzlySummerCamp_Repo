@@ -16,7 +16,6 @@ public class TrashSpawner : MonoBehaviour
     [SerializeField] int maxTrashToSpawn = 5;
 
     public static event Action<int> OnTrashSpawned;
-    public static event Action OnTrashRemoved;
 
     private List<GameObject> spawnedTrash = new();
 
