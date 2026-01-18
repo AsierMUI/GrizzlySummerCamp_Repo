@@ -13,21 +13,28 @@ public class NPCIconController : MonoBehaviour
     public Transform player;
     public float showDistance = 2f;
 
+    private bool isPlayerInRange;
+
+
+    private void Start()
+    {
+        SetIcon(exclamationIcon, false);
+        SetIcon(interactionIcon, false);
+    }
+
     private void Update()
     {
         if (npcController == null || player == null) return;
 
-        float distance = Vector3.Distance(player.position, transform.position);
-        bool isPlayerInRange = distance <= showDistance;
+        isPlayerInRange = Vector3.Distance(player.position, transform.position) <= showDistance;
+        bool hasImportantDialogue = npcController.HasImportantDialogue();
 
-        bool hasDialogue = npcController.HasImportantDialogue();
-
-        if (hasDialogue && !isPlayerInRange)
+        if (hasImportantDialogue && !isPlayerInRange)
         {
             SetIcon(exclamationIcon, true);
             SetIcon(interactionIcon, false);
         }
-        else if (hasDialogue && isPlayerInRange)
+        else if (hasImportantDialogue && isPlayerInRange)
         {
             SetIcon(exclamationIcon, false);
             SetIcon(interactionIcon, true);
