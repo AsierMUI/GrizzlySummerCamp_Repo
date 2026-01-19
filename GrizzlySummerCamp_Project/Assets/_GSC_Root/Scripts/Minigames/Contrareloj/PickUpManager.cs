@@ -109,7 +109,9 @@ public class PickUpManager : MonoBehaviour
     #region Arrow
     private void UpdateArrowTarget()
     {
-        if (pickups.Count == 1)
+        if (ScoreManager.Instance == null) return;
+
+        if (ScoreManager.Instance.GetTotalPoints() == maxScore - 1 && pickups.Count > 0)
         {
             lastPickup = pickups[0];
             arrowUI.gameObject.SetActive(true);
