@@ -33,10 +33,19 @@ public class NPCDialogueController : MonoBehaviour
 
     private void Awake()
     {
+        if(NPCStateManager.Instance == null)
+        {
+            Debug.LogError("[NPCDialogueController] NPCStateManager no encontrado en escena");
+            enabled = false;
+            return;
+        }
+
         state = NPCStateManager.Instance.GetState(npcID);
+
         interactable = GetComponent<InteractableObject>();
         interactable.npcController = this;
     }
+
     private void OnEnable()
     {
         SubscribeDialogue(dialogoTutorial);
@@ -71,19 +80,24 @@ public class NPCDialogueController : MonoBehaviour
 
     public bool HasImportantDialogue()
     {
-        switch (modo)
+        if (modo == NPCDialogueMode.Simple)
         {
-            case NPCDialogueMode.Simple:
-                return !state.dialogoNormalUsado || dialogoFinal != null;
-
-            case NPCDialogueMode.ConInsignias:
-                if (InsigniaManager.Instance == null) return false;
-
-                if (!state.tutorialCompletado && !TieneAlgunaInsignia()) return true;
-                if (TieneAlgunaInsignia() && dialogoProgreso != null) return true;
-                if (TieneTodasLasInsignias() && dialogoFinal != null) return true;
-                break;
+            if (!state.dialogoNormalUsado && dialogoNormal != null) return true;
+            if (dialogoFinal != null) return true;
+            return false;
         }
+
+        if (modo == NPCDialogueMode.ConInsignias)
+        {
+            if (InsigniaManager.Instance == null) return false;
+
+            if (!state.tutorialCompletado && !TieneAlgunaInsignia() && dialogoTutorial != null) return true;
+
+            if (TieneAlgunaInsignia() && dialogoProgreso != null) return true;
+
+            if (TieneTodasLasInsignias() && dialogoFinal != null) return true;
+        }
+
         return false;
     }
 
@@ -137,6 +151,14 @@ public class NPCDialogueController : MonoBehaviour
         {
             dialogoNormal.StartDialogue();
         }
+    }
+
+    public bool ShouldShowExclamation()
+    {
+        if (modo == NPCDialogueMode.Simple)
+            return false;
+
+        return dialogoTutorial != null && !state.tutorialCompletado;
     }
 
     bool TieneAlgunaInsignia()

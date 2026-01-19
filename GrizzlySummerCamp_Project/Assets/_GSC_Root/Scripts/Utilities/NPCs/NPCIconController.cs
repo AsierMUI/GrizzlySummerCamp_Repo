@@ -13,9 +13,6 @@ public class NPCIconController : MonoBehaviour
     public Transform player;
     public float showDistance = 2f;
 
-    private bool isPlayerInRange;
-
-
     private void Start()
     {
         SetIcon(exclamationIcon, false);
@@ -26,22 +23,26 @@ public class NPCIconController : MonoBehaviour
     {
         if (npcController == null || player == null) return;
 
-        isPlayerInRange = Vector3.Distance(player.position, transform.position) <= showDistance;
-        bool hasImportantDialogue = npcController.HasImportantDialogue();
+        bool inRange = Vector3.Distance(player.position, transform.position) <= showDistance;
+        bool showExclamation = npcController.ShouldShowExclamation();
 
-        if (hasImportantDialogue && !isPlayerInRange)
+        if (!showExclamation)
         {
-            SetIcon(exclamationIcon, true);
-            SetIcon(interactionIcon, false);
+            SetIcon(exclamationIcon, false);
+            SetIcon(interactionIcon, inRange);
+            FaceCamera(interactionIcon);
+            return;
         }
-        else if (hasImportantDialogue && isPlayerInRange)
+
+        if (inRange)
         {
             SetIcon(exclamationIcon, false);
             SetIcon(interactionIcon, true);
+            return;
         }
         else
         {
-            SetIcon(exclamationIcon, false);
+            SetIcon(exclamationIcon, true);
             SetIcon(interactionIcon, false);
         }
 
@@ -49,21 +50,15 @@ public class NPCIconController : MonoBehaviour
         FaceCamera(interactionIcon);
     }
 
-    public void OnPlayerInteract()
-    {
-        SetIcon(interactionIcon, false);
-        SetIcon(exclamationIcon, false);
-    }
-
     void SetIcon(SpriteRenderer icon, bool show)
     {
-        if (icon == null) return;
+        if (icon != null)
         icon.enabled = show;
     }
 
     void FaceCamera(SpriteRenderer icon)
     {
-        if (icon == null) return;
-        icon.transform.rotation = Quaternion.LookRotation(icon.transform.position - Camera.main.transform.forward);
+        if (icon == null || Camera.main == null) return;
+        icon.transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
     }
 }
