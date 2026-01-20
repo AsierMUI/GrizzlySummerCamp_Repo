@@ -21,28 +21,59 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] float lookSpeed = 5f;
 
     private GameObject player;
+    Transform playerTransform;
+    Transform selfTransform;
+
     private PlayerInput playerInput;
     private InputAction interactAction;
 
     private bool isPlayerInRange = false;
     private bool isInDialogue = false;
-    
+
+    private float interactionDistanceSqr;
+
+    private void Awake()
+    {
+        selfTransform = transform;
+        interactionDistanceSqr = interactionDistance * interactionDistance;
+    }
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        if (!player) return;
 
+        playerTransform = player.transform;
+        playerInput = player.GetComponent<PlayerInput>();
+        interactAction = playerInput.actions.FindAction("Interact");
+
+        /*
         if (player != null)
         {
             playerInput = player.GetComponent<PlayerInput>();
             interactAction = playerInput.actions.FindAction("Interact");
         }
-
+        */
         if (spriteObject != null)
             spriteObject.SetActive(false);
     }
 
     void Update()
     {
+        if (!playerTransform) return;
+
+        UpdateDistanceCheck();
+        UpdateSprite();
+
+        if (!isPlayerInRange) 
+        {
+            HandleAutoCloseUI();
+            return;
+        }
+
+        HandleInteractionInput();
+        HandleDialogueRotation();
+        /*
         if (player == null) return;
        
         float distance = Vector3.Distance(player.transform.position, transform.position);
@@ -72,7 +103,48 @@ public class InteractableObject : MonoBehaviour
            SmoothLookAt(player.transform, transform);
            SmoothLookAt(transform, player.transform);
         }
+        */
     }
+    //Nueva lógica
+    void UpdateDistanceCheck() 
+    {
+        float sqrDistance = (playerTransform.position - selfTransform.position).sqrMagnitude;
+
+        isPlayerInRange = sqrDistance < interactionDistanceSqr;
+    }
+
+    void UpdateSprite() 
+    {
+        if (spriteObject) 
+        {
+            spriteObject.SetActive(isPlayerInRange);
+        }
+    }
+
+    void HandleAutoCloseUI() 
+    {
+        if (!isInDialogue && InstructionsUI && InstructionsUI.activeSelf)
+        {
+            CloseUI();
+        }
+    }
+
+    void HandleInteractionInput() 
+    {
+        if (interactAction.WasPressedThisFrame() && !UIState.IsUIOpen) 
+        {
+            Interact();
+        }
+    }
+
+    void HandleDialogueRotation() 
+    {
+        if (!isInDialogue) return;
+
+        SmoothLookAt(playerTransform, selfTransform);
+        SmoothLookAt(selfTransform, playerTransform);
+    }
+
 
     void Interact()
     {
@@ -95,8 +167,7 @@ public class InteractableObject : MonoBehaviour
 
     void CloseUI() 
     {
-        if (isInDialogue) return;
-        if (!InstructionsUI.activeSelf) return;
+        if (isInDialogue || !InstructionsUI.activeSelf) return;
 
         InstructionsUI.SetActive(false);
         UIState.IsUIOpen = false;
@@ -107,10 +178,13 @@ public class InteractableObject : MonoBehaviour
         CloseUI();
     }
 
+    
     public void PlayUI() 
     {
         UIState.IsUIOpen = false;
     }
+    
+
 
     void DisableNotebook()
     {
@@ -159,9 +233,11 @@ public class InteractableObject : MonoBehaviour
     //Giro
     void SmoothLookAt(Transform target, Transform self)
     {
-        Vector3 dir = target.transform.position - self.position;
+        Vector3 dir = target.position - self.position;
+        //Vector3 dir = target.transform.position - self.position;
         dir.y = 0;
-        if (dir == Vector3.zero) return;
+        //if (dir == Vector3.zero) return;
+        if (dir.sqrMagnitude < 0.001f) return;
 
         Quaternion targetRot = Quaternion.LookRotation(dir);
         self.rotation = Quaternion.Slerp(self.rotation, targetRot, lookSpeed * Time.deltaTime);
