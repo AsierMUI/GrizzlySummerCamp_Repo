@@ -19,8 +19,12 @@ public class IntroVideoController : MonoBehaviour
     [Header("Fade")]
     public float fadeDuration = 1f;
 
+    [Header("Skip UI")]
+    public float hideSkipAfterSeconds = 3f;
+
     private bool skipButtonVisible = false;
     private bool isEnding = false;
+    private float lastInputTime = 0f;
 
     void Start()
     {
@@ -33,9 +37,15 @@ public class IntroVideoController : MonoBehaviour
 
     void Update()
     {
-        if (!skipButtonVisible && Input.anyKeyDown)
+        if (Input.anyKeyDown)
         {
             ShowSkipButton();
+            lastInputTime = Time.unscaledTime;
+        }
+
+        if (skipButtonVisible && Time.unscaledTime - lastInputTime > hideSkipAfterSeconds)
+        {
+            HideSkipButton();
         }
     }
 
@@ -45,11 +55,15 @@ public class IntroVideoController : MonoBehaviour
         skipButton.SetActive(true);
     }
 
+    void HideSkipButton()
+    {
+        skipButtonVisible = false;
+        skipButton.SetActive(false);
+    }
+
     public void SkipIntro()
     {
         if (isEnding) return;
-
-        videoPlayer.Stop();
         EndIntro();
     }
 
@@ -80,6 +94,7 @@ public class IntroVideoController : MonoBehaviour
             yield return null;
         }
 
+        videoPlayer.Stop();
         SceneManager.LoadScene(hubSceneName);
     }
 }

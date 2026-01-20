@@ -7,14 +7,12 @@ public class FadeInOnStart : MonoBehaviour
     public Image fadeImage;
     public float fadeDuration = 1f;
 
-    void Start()
+    IEnumerator Start()
     {
         fadeImage.color = new Color(0, 0, 0, 1);
-        StartCoroutine(FadeIn());
-    }
 
-    IEnumerator FadeIn()
-    {
+        yield return null;
+
         float t = 0f;
         Color c = fadeImage.color;
 
@@ -25,5 +23,7 @@ public class FadeInOnStart : MonoBehaviour
             fadeImage.color = c;
             yield return null;
         }
+
+        fadeImage.color = new Color(0, 0, 0, 0);
     }
 }
