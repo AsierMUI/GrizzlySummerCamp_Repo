@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - bronze: {fileID: 21300000, guid: ecd41738baa178b4b97a3956df504375, type: 3}
+  - bronze: {instanceID: 0}
   - silver: {instanceID: 0}
   - gold: {instanceID: 0}
   executionOrder: 0
