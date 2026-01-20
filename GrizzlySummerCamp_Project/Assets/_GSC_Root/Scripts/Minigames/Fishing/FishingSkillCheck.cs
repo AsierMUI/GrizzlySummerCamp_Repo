@@ -20,6 +20,11 @@ public class FishingSkillCheck : MonoBehaviour
     public Action<bool> OnSkillCheckFinished;
     #endregion
 
+    #region Audio
+    [Header("Audio")]
+    [SerializeField] private AudioManager audioManager;
+    #endregion
+
     #region Skillcheck UI
     [Header("Skillcheck UI")]
     public GameObject panel;
@@ -109,6 +114,9 @@ public class FishingSkillCheck : MonoBehaviour
         if (scoreHandler == null)
             Debug.LogError("No se encuentra fishingScoreHandler en la escena");
 
+        if (audioManager == null)
+            audioManager = FindFirstObjectByType<AudioManager>();
+
         ResetFishPosition();
     }
 
@@ -144,6 +152,8 @@ public class FishingSkillCheck : MonoBehaviour
 
         active = true;
         ending = false;
+
+        audioManager?.PlaySFX("Fishing_Start");
 
         if (MinigameManager.Instance != null)
             MinigameManager.Instance.SetPlayerMovement(false);
@@ -239,6 +249,8 @@ public class FishingSkillCheck : MonoBehaviour
 
         if (success)
         {
+            audioManager?.PlaySFX("Fishing_Success");
+
             currentSuccesses++;
             UpdateChainUI();
             UpdateProgressBar();
@@ -260,6 +272,8 @@ public class FishingSkillCheck : MonoBehaviour
 
     void CompleteFishing()
     {
+        audioManager.PlaySFX("Fishing_Catch");
+
         if (scoreHandler != null)
         {
             scoreHandler.OnFishCaptured(currentDifficulty);
@@ -274,6 +288,8 @@ public class FishingSkillCheck : MonoBehaviour
 
     void FailFishing()
     {
+        audioManager?.PlaySFX("Fishing_Fail");
+
         StartCoroutine(EndWithResult(false));
     }
 
