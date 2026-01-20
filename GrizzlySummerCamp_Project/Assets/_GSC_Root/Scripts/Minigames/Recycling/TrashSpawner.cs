@@ -11,7 +11,13 @@ public class TrashSpawner : MonoBehaviour
     [Header("Spawn Points (empites)")]
     [SerializeField] List<Transform> spawnpoints;
 
-    [Tooltip("El número máximo de basura que se spawneara.")]
+    //Test de generación en base a la posición del suelo con raycast.
+    [Header("Ground Detectión.")]
+    [Tooltip("Se asignar el mismo layer que el asignado al suelo.")]
+    [SerializeField] LayerMask groundLayer; //LayerMask Referenciando el Suelo
+    [SerializeField] float raycastHeight = 5f;  //
+
+    [Tooltip("El número máximo de basura que se generara.")]
     [Header("Max Spawn Nº")]
     [SerializeField] int maxTrashToSpawn = 5;
 
@@ -97,8 +103,12 @@ public class TrashSpawner : MonoBehaviour
         Transform point = freePoints[pointIndex];
         freePoints.RemoveAt(pointIndex);
 
-        GameObject trash = Instantiate(prefab, point.position, point.rotation);
+        Vector3 spawnPosition = GetGroundedPosition(prefab, point.position);//Linea nueva para garantizar la posición del prefab de basura.
+
+        //GameObject trash = Instantiate(prefab, point.position, point.rotation);
+        GameObject trash = Instantiate(prefab, spawnPosition, point.rotation);
         spawnedTrash.Add(trash);
+
 
         if (!spawnedPerType.ContainsKey(type))
             spawnedPerType[type] = 0;
@@ -133,4 +143,25 @@ public class TrashSpawner : MonoBehaviour
     }
 
     #endregion
+
+
+    Vector3 GetGroundedPosition(GameObject prefab, Vector3 basePosition) 
+    {
+        Vector3 rayOrigin = basePosition + Vector3.up * raycastHeight;
+
+        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, raycastHeight * 2f, groundLayer))
+        {
+            float yOffset = 0f;
+
+            Collider col = prefab.GetComponent<Collider>();
+            if (col != null)
+            {
+                yOffset = col.bounds.extents.y;
+            }
+
+            return hit.point + Vector3.up * yOffset;
+        }
+
+        return basePosition;
+    }
 }
