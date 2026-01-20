@@ -25,6 +25,11 @@ public class BalloonMovement : MonoBehaviour
     [Header("Balloon Type")]
     [SerializeField] private int scoreSign = 1; // Positivo = bueno | Negativo = malo
 
+    [Header("Audio")]
+    [SerializeField] private string hitSfxKey;
+
+    private AudioManager audioManager;
+
     private Transform[] waypoints;
     private int currentWaypointIndex = 0;
     private float speed;
@@ -36,10 +41,11 @@ public class BalloonMovement : MonoBehaviour
 
     void Start()
     {
-        if (useFixedSpeed)
-            speed = fixedSpeed;
-        else
-            speed = Random.Range(minSpeed, maxSpeed);
+        speed = useFixedSpeed
+        ? fixedSpeed
+        : Random.Range(minSpeed, maxSpeed);
+
+        audioManager = FindFirstObjectByType<AudioManager>();
     }
 
     public void Initialize(BalloonPath path, Transform[] chosenWaypoints, BalloonSpawner balloonSpawner)
@@ -72,12 +78,15 @@ public class BalloonMovement : MonoBehaviour
         }
     }
 
-    public void Despawn(bool giveScore = true)
+    public void OnHitByArrow()
     {
         if (isDespawning) return;
         isDespawning = true;
 
-        if (giveScore && ScoreManager.Instance != null)
+        if (!string.IsNullOrEmpty(hitSfxKey))
+            audioManager?.PlaySFX(hitSfxKey);
+
+        if (ScoreManager.Instance != null)
         {
             int finalScore;
 
@@ -92,7 +101,6 @@ public class BalloonMovement : MonoBehaviour
 
                 int rawScore = Mathf.RoundToInt(baseScore * finalMultiplier);
                 rawScore *= scoreSign;
-
                 finalScore = Mathf.RoundToInt(rawScore / 5f) * 5;
             }
 
@@ -104,17 +112,24 @@ public class BalloonMovement : MonoBehaviour
                     floatingScorePrefab,
                     transform.position + floatingOffset,
                     Quaternion.identity
-                );
+                    );
 
                 floating.GetComponent<FloatingScoreText>().SetText(finalScore);
             }
 
             BalloonExplosionFX fx = GetComponent<BalloonExplosionFX>();
             if (fx != null)
-            {
                 fx.PlayExplosion(transform.position);
-            }
-        }   
+        }
+
+        spawner.OnBalloonDestroyed(myRouteInstance);
+        Destroy(gameObject);
+    }
+
+    public void Despawn(bool giveScore)
+    {
+        if (isDespawning) return;
+        isDespawning = true;
 
         spawner.OnBalloonDestroyed(myRouteInstance);
         Destroy(gameObject);

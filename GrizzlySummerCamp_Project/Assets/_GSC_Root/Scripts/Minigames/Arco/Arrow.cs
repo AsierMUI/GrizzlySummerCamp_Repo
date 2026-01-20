@@ -33,7 +33,7 @@ public class Arrow : MonoBehaviour
 
         if (balloon != null)
         {
-            balloon.Despawn(true);
+            balloon.OnHitByArrow();
             Destroy(gameObject);
             return;
         }
@@ -44,13 +44,11 @@ public class Arrow : MonoBehaviour
         }
 
         ContactPoint contact = collision.contacts[0];
-
         Quaternion targetRotation = Quaternion.LookRotation(-contact.normal, Vector3.up);
 
         if (stickPoint != null)
         {
             transform.rotation = targetRotation;
-
             Vector3 offset = transform.position - stickPoint.position;
             transform.position = contact.point + offset;
         }

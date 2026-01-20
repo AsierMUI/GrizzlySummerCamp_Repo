@@ -4,7 +4,7 @@ public class BowShoot : MonoBehaviour
 {
     [Header("Arrow Settings")]
     public GameObject arrowPrefab;
-    public Transform shootPoint; // punto desde donde se lanza la flecha
+    public Transform shootPoint;
     public float shootForce = 20f;
     public float upwardForce = 3f;
     public LayerMask aimLayer;
@@ -30,6 +30,9 @@ public class BowShoot : MonoBehaviour
     private bool showTrajectory = true;
     public bool IsReloading => !canShoot;
 
+    [Header("Audio")]
+    [SerializeField] private AudioManager audioManager;
+
     private void Start()
     {
         mainCam = Camera.main;
@@ -41,6 +44,9 @@ public class BowShoot : MonoBehaviour
         lineRenderer.endColor = lineColor;
         lineRenderer.widthMultiplier = lineWidth;
         lineRenderer.enabled = false;
+
+        if (audioManager == null)
+            audioManager = FindFirstObjectByType<AudioManager>();
     }
 
     private void Update()
@@ -62,9 +68,9 @@ public class BowShoot : MonoBehaviour
     {
         if (!MinigameManager.Instance.IsRunning) return;
 
-        //if (Time.timeScale == 0f) return;
+        canShoot = false;
 
-        canShoot = false; //Se activa el cooldown
+        audioManager?.PlaySFX("Bow_Shoot");
 
         if (TryGetComponent<PlayerAim>(out var aim))
             aim.enabled = false;
@@ -96,6 +102,8 @@ public class BowShoot : MonoBehaviour
     void ResetShot()
     {
         canShoot = true;
+
+        audioManager?.PlaySFX("Bow_Reload");
 
         if (TryGetComponent<PlayerAim>(out var aim))
             aim.enabled = true;
