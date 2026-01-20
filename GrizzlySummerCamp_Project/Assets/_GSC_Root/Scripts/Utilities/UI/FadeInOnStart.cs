@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Video;
 public class FadeInOnStart : MonoBehaviour
 {
     public Image fadeImage;
