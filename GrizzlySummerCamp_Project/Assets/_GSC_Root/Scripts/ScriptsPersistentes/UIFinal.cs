@@ -8,8 +8,9 @@ public class UIFinal : MonoBehaviour
     [Header("UI HUB")]
     [SerializeField] private string nombreUIHub = "interfazFinal";
 
-    [Header("Miinjuegos obligatorios")]
-    [SerializeField] private string[] minijuegosObligatorios;
+    [Header("Condiciones")]
+    [SerializeField] private string[] minijuegosInsigniaOro;
+    [SerializeField] private string[] minijuegosEstrella;
 
     private bool yaMostrado = false;
 
@@ -50,38 +51,71 @@ public class UIFinal : MonoBehaviour
     private bool CumpleCondiciones()
     {
         if (InsigniaManager.Instance == null)
-        {
-            Debug.Log("[UIFinal] insigniamanager no encontrao");
             return false;
+
+        // Comprobar insignias
+        foreach (string minijuego in minijuegosInsigniaOro)
+        {
+            int insignia = InsigniaManager.Instance.GetInsignia(minijuego);
+            Debug.Log($"[UIFinal] {minijuego} => Insignia:{insignia}");
+
+            if (insignia < 3)
+                return false;
         }
 
-        foreach(string minigame in minijuegosObligatorios)
+        // Comprobar estrellas
+        foreach (string minijuego in minijuegosEstrella)
         {
-            int insignia = InsigniaManager.Instance.GetInsignia(minigame);
-            int estrella = InsigniaManager.Instance.GetEstrella(minigame);
+            int estrella = InsigniaManager.Instance.GetEstrella(minijuego);
+            Debug.Log($"[UIFinal] {minijuego} => Estrella:{estrella}");
 
-            Debug.Log($"[UIFinal] {minigame} => Insignia:{insignia} Estrella:{estrella}");
-
-            if (insignia < 3 || estrella <= 0)
-            {
+            if (estrella <= 0)
                 return false;
-            }
         }
 
         return true;
     }
 
+    // ===============================
+    // Función mejorada para buscar UI incluso si está desactivada
+    // ===============================
     private void MostrarUIEnHub()
     {
-        GameObject ui = GameObject.Find(nombreUIHub);
+        GameObject ui = BuscarUIInclusoInactiva(nombreUIHub);
 
         if (ui == null)
         {
-            Debug.LogWarning($"[UIFinal] no se ha encontrado la interfaz {nombreUIHub} en el hub");
+            Debug.LogWarning($"[UIFinal] no se ha encontrado la interfaz '{nombreUIHub}' en el HUB");
             return;
         }
 
         ui.SetActive(true);
         Debug.Log("[UIFinal] interfaz final mostrada");
+    }
+
+    private GameObject BuscarUIInclusoInactiva(string nombre)
+    {
+        // Buscar todos los Canvas, incluidos inactivos
+        Canvas[] canvases = FindObjectsOfType<Canvas>(true); // true = incluye desactivados
+
+        foreach (Canvas canvas in canvases)
+        {
+            Transform[] hijos = canvas.GetComponentsInChildren<Transform>(true); // true = incluye desactivados
+            foreach (Transform t in hijos)
+            {
+                if (t.name == nombre)
+                    return t.gameObject;
+            }
+        }
+
+        // Si no está en ningún Canvas, intentar buscar a nivel raíz
+        Transform[] todos = Resources.FindObjectsOfTypeAll<Transform>();
+        foreach (Transform t in todos)
+        {
+            if (t.name == nombre)
+                return t.gameObject;
+        }
+
+        return null;
     }
 }
