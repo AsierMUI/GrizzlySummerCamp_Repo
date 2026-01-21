@@ -4,9 +4,12 @@ using UnityEngine.SceneManagement;
 public class UIFinal : MonoBehaviour
 {
     public static UIFinal Instance;
-    [Header("Conf")]
-    [SerializeField] private string nommbreUIHub = "UIFinal";
-    [SerializeField] private string[] minigamesRequeridos;
+
+    [Header("UI HUB")]
+    [SerializeField] private string nombreUIHub = "interfazFinal";
+
+    [Header("Miinjuegos obligatorios")]
+    [SerializeField] private string[] minijuegosObligatorios;
 
     private bool yaMostrado = false;
 
@@ -35,7 +38,6 @@ public class UIFinal : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name != "SCN_HUB") return;
-
         if (yaMostrado) return;
 
         if (CumpleCondiciones())
@@ -48,12 +50,17 @@ public class UIFinal : MonoBehaviour
     private bool CumpleCondiciones()
     {
         if (InsigniaManager.Instance == null)
+        {
+            Debug.Log("[UIFinal] insigniamanager no encontrao");
             return false;
+        }
 
-        foreach(string minigame in minigamesRequeridos)
+        foreach(string minigame in minijuegosObligatorios)
         {
             int insignia = InsigniaManager.Instance.GetInsignia(minigame);
             int estrella = InsigniaManager.Instance.GetEstrella(minigame);
+
+            Debug.Log($"[UIFinal] {minigame} => Insignia:{insignia} Estrella:{estrella}");
 
             if (insignia < 3 || estrella <= 0)
             {
@@ -66,14 +73,15 @@ public class UIFinal : MonoBehaviour
 
     private void MostrarUIEnHub()
     {
-        GameObject ui = GameObject.Find(nommbreUIHub);
+        GameObject ui = GameObject.Find(nombreUIHub);
 
         if (ui == null)
         {
-            Debug.LogWarning($"no se ha encontrado la interfaz {nommbreUIHub}");
+            Debug.LogWarning($"[UIFinal] no se ha encontrado la interfaz {nombreUIHub} en el hub");
             return;
         }
 
         ui.SetActive(true);
+        Debug.Log("[UIFinal] interfaz final mostrada");
     }
 }
