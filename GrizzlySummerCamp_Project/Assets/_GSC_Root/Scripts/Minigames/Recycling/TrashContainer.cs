@@ -1,8 +1,14 @@
 using UnityEngine;
 
-public class TrashContainer : MonoBehaviour
+public class TrashContainer : MonoBehaviour, ITrashInteractable
 {
     public TrashType acceptedType;
+
+    [Header("Interaction")]
+    [SerializeField] private float interactionDistance = 3f;
+
+    public float InteractionDistance => interactionDistance;
+    public Transform Transform => transform;
 
     public void TryDeposit(TrashPlayerCarry carry) 
     {
