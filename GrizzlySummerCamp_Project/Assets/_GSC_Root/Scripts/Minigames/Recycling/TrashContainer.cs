@@ -7,12 +7,18 @@ public class TrashContainer : MonoBehaviour, ITrashInteractable
     [Header("Interaction")]
     [SerializeField] private float interactionDistance = 3f;
 
+    [Header("Front Check")]
+    [SerializeField] private TrashContainerFrontCheck frontCheck;
+
     public float InteractionDistance => interactionDistance;
     public Transform Transform => transform;
 
     public void TryDeposit(TrashPlayerCarry carry) 
     {
         if (!carry.IsCarryingTrash()) return;
+
+        if (frontCheck != null && !frontCheck.PlayerInFront)
+            return;
 
         if (carry.GetCarriedType() == acceptedType)
         {
