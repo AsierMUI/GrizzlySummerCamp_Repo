@@ -42,10 +42,13 @@ public class UIFinal : MonoBehaviour
     {
         if (scene.name != "SCN_HUB") return;
 
+        //Prioridad para que no se muestre la de todas si se ha cosneguido oro antes
         if (!yaMostrado && CumpleCondiciones())
         {
             MostrarUI(nombreUIHub);
             yaMostrado = true;
+
+            yaMostradoTodas = true;
             return;
         }
 
