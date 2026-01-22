@@ -73,37 +73,6 @@ public class InteractableObject : MonoBehaviour
 
         HandleInteractionInput();
         HandleDialogueRotation();
-        /*
-        if (player == null) return;
-       
-        float distance = Vector3.Distance(player.transform.position, transform.position);
-        isPlayerInRange = distance < interactionDistance; //Booleano, se vuelve verdadero(true) sí "distancia" es menor a "interactionDistance";
-
-        if (spriteObject != null)
-            spriteObject.SetActive(isPlayerInRange);
-
-        if (!isPlayerInRange) //return;
-        {
-            //Volvemos a meter que se cierra por distancia (debería funcionar)
-            if (!isInDialogue && InstructionsUI != null && InstructionsUI.activeSelf)
-            {
-                CloseUI();
-            }
-            return;
-        }
-
-        //Hemos quitado el cierre automatico por distancia
-        if (interactAction.WasPressedThisFrame() && !UIState.IsUIOpen) 
-        {
-            Interact();
-        }
-
-        if (isInDialogue)
-        {
-           SmoothLookAt(player.transform, transform);
-           SmoothLookAt(transform, player.transform);
-        }
-        */
     }
     //Nueva lógica
     void UpdateDistanceCheck() 
@@ -234,9 +203,7 @@ public class InteractableObject : MonoBehaviour
     void SmoothLookAt(Transform target, Transform self)
     {
         Vector3 dir = target.position - self.position;
-        //Vector3 dir = target.transform.position - self.position;
         dir.y = 0;
-        //if (dir == Vector3.zero) return;
         if (dir.sqrMagnitude < 0.001f) return;
 
         Quaternion targetRot = Quaternion.LookRotation(dir);

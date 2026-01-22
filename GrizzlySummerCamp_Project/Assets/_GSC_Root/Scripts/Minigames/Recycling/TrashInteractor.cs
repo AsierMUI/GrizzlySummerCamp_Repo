@@ -8,7 +8,6 @@ public class TrashInteractor : MonoBehaviour
     PlayerInput playerInput;
     InputAction interactAction;
 
-    //private readonly List<MonoBehaviour> nearbyInteractables = new(); 
 
     private readonly List<ITrashInteractable> interactables = new();
 
@@ -77,42 +76,4 @@ public class TrashInteractor : MonoBehaviour
             return;
         }
     }
-        /*
-        if (!MinigameManager.Instance) return;
-
-        nearbyInteractables.RemoveAll(obj => obj == null);
-
-        foreach (var obj in nearbyInteractables) 
-        {
-            if (carry.IsCarryingTrash() && obj is TrashContainer container)
-            {
-                container.TryDeposit(carry);
-                return;
-            }
-
-            if (!carry.IsCarryingTrash() && obj is TrashItem trash)
-            {
-                carry.PickTrash(trash);
-                return;
-            }
-        }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out TrashItem trash))
-            nearbyInteractables.Add(trash);
-
-        if (other.TryGetComponent(out TrashContainer container))    
-            nearbyInteractables.Add(container);
-    }
-
-    private void OnTriggerExit(Collider other) 
-    {
-        if (other.TryGetComponent(out TrashItem trash))
-            nearbyInteractables.Remove(trash);
-
-        if (other.TryGetComponent(out TrashContainer container))
-            nearbyInteractables.Remove(container);
-    }
-        */
 }

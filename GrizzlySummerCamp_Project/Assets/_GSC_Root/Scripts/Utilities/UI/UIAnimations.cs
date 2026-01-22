@@ -71,7 +71,6 @@ public class UIAnimations : MonoBehaviour
         if (!string.IsNullOrEmpty(key))
             audioManager?.PlaySFX(key);
 
-        //OcultaInstrucciones.Instance.OcultarInstrucciones();
         CambiarLibreta();
     }
 
