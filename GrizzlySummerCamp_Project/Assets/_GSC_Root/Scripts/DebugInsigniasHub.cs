@@ -9,18 +9,24 @@ public class DebugInsigniasHub : MonoBehaviour
     [Tooltip("Minijuegos que usan estrella (contrarreloj)")]
     [SerializeField] private string[] minijuegosEstrella;
 
-    [Tooltip("Tecla para activar el debug")]
-    [SerializeField] private KeyCode teclaDebug = KeyCode.F9;
+    [Header("Teclas Debug")]
+    [SerializeField] private KeyCode teclaOro = KeyCode.F9;
+    [SerializeField] private KeyCode teclaBronce = KeyCode.F8;
 
     private void Update()
     {
-        if (Input.GetKeyDown(teclaDebug))
+        if (Input.GetKeyDown(teclaOro))
         {
-            ForzarInsignias();
+            ForzarInsignias(3); // ORO
+        }
+
+        if (Input.GetKeyDown(teclaBronce))
+        {
+            ForzarInsignias(1); // BRONCE
         }
     }
 
-    private void ForzarInsignias()
+    private void ForzarInsignias(int nivelInsignia)
     {
         if (InsigniaManager.Instance == null)
         {
@@ -28,11 +34,11 @@ public class DebugInsigniasHub : MonoBehaviour
             return;
         }
 
-        // Forzar insignias a oro
+        // Forzar insignias (1 = bronce, 3 = oro)
         foreach (string minigame in minijuegosInsignia)
         {
-            InsigniaManager.Instance.GuardarInsignia(minigame, 3);
-            Debug.Log($"[Debug] Insignia ORO forzada → {minigame}");
+            InsigniaManager.Instance.GuardarInsignia(minigame, nivelInsignia);
+            Debug.Log($"[Debug] Insignia {(nivelInsignia == 3 ? "ORO" : "BRONCE")} forzada → {minigame}");
         }
 
         // Forzar estrellas
@@ -42,6 +48,6 @@ public class DebugInsigniasHub : MonoBehaviour
             Debug.Log($"[Debug] Estrella forzada → {minigame}");
         }
 
-        Debug.Log("[DebugInsigniasHub] TODAS las insignias forzadas");
+        Debug.Log($"[DebugInsigniasHub] TODAS las insignias forzadas a {(nivelInsignia == 3 ? "ORO" : "BRONCE")}");
     }
 }
