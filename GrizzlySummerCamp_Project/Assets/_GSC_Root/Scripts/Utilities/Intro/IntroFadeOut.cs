@@ -7,6 +7,7 @@ public class IntroFadeOut : MonoBehaviour
     [SerializeField] private Image fadeImage;
     [SerializeField] private float blackTime = 2f;
     [SerializeField] private float fadeDuration = 1f;
+    //public GameObject FadeCanvas;
 
     private void Awake()
     {
@@ -34,5 +35,6 @@ public class IntroFadeOut : MonoBehaviour
         }
 
         fadeImage.color = new Color(0, 0, 0, 0);
+        //FadeCanvas.SetActive(false);
     }
 }
