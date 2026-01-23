@@ -8,8 +8,8 @@ public class JumpScareUI : MonoBehaviour
 
     public GameObject interfazSecreta;
 
-    [Header("Duracion jumpscare")]
-    public float duracionInterfaz = 3f;
+    [Header("Animator")]
+    public Animator animatorJumpscare;
 
     [Header("Audio")]
     public string keyJumpScareSFX;
@@ -42,7 +42,9 @@ public class JumpScareUI : MonoBehaviour
         if (audioManager != null && !string.IsNullOrEmpty(keyJumpScareSFX))
             audioManager.PlaySFX(keyJumpScareSFX);
 
-        yield return new WaitForSeconds(duracionInterfaz);
+        float duracionAnimacion = animatorJumpscare.GetCurrentAnimatorStateInfo(0).length;
+
+        yield return new WaitForSeconds(duracionAnimacion);
         Application.Quit();
     }
 }
