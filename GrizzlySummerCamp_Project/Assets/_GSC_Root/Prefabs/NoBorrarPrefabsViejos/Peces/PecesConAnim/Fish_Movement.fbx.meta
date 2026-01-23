@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 62b11f5b949fa7b46afc982fce51f316
+guid: 993f859dc28affa498cd8a19ed35e2b4
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,18 +31,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature.002|Fish_2_Movement
-      takeName: Armature.002|Fish_2_Movement
-      internalID: -1396956287279079873
+      name: Armature.001|Fish_Movement
+      takeName: Armature.001|Fish_Movement
+      internalID: -112275914945680697
       firstFrame: 0
-      lastFrame: 155
+      lastFrame: 160
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
