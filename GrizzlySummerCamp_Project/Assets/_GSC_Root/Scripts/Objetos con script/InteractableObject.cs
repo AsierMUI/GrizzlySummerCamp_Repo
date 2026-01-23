@@ -18,6 +18,7 @@ public class InteractableObject : MonoBehaviour
     public NPCDialogueController npcController;
 
     [Header("Rotation")]
+    [SerializeField] bool rotateDurationDialogue = true;
     [SerializeField] float lookSpeed = 5f;
 
     private GameObject player;
@@ -109,6 +110,7 @@ public class InteractableObject : MonoBehaviour
     void HandleDialogueRotation() 
     {
         if (!isInDialogue) return;
+        if (!rotateDurationDialogue) return;
 
         SmoothLookAt(playerTransform, selfTransform);
         SmoothLookAt(selfTransform, playerTransform);
