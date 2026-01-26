@@ -6,7 +6,8 @@ public class PauseGame : MonoBehaviour
 {
     //Este script no debe ser persistente
 
-
+    public static System.Action OnPauseOpened;
+    public static System.Action OnPauseClosed;
 
     [Header("Refs UI")]
     public GameObject menuPausa;
