@@ -25,14 +25,6 @@ public class BalloonSpawner : MonoBehaviour
     private List<BalloonRouteInstance> usedRoutes = new List<BalloonRouteInstance>();
     private int currentBalloons = 0;
 
-    void Start()
-    {
-        /*
-        for (int i = 0; i < maxBalloons; i++)
-            SpawnSingleBalloon();
-        */
-    }
-
     void SpawnSingleBalloon()
     {
         if (currentBalloons >= maxBalloons) return;
