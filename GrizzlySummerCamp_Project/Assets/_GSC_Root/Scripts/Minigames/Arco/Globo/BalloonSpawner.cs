@@ -45,7 +45,7 @@ public class BalloonSpawner : MonoBehaviour
         GameObject balloon = Instantiate(
             prefab,
             routeInstance.path.spawnPoint.position,
-            routeInstance.path.spawnPoint.rotation
+            Quaternion.Euler(0f, 90f, 0f)
         );
 
         BalloonMovement movement = balloon.GetComponent<BalloonMovement>();
