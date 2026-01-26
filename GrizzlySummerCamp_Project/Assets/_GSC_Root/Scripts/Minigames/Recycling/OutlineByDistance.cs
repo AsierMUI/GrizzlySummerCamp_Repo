@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Renderer))]
 public class OutlineByDistance : MonoBehaviour
 {
-    /*
     Renderer rend;
     MaterialPropertyBlock mpb;
     Transform player;
@@ -14,14 +13,17 @@ public class OutlineByDistance : MonoBehaviour
     private void Awake()
     {
         rend = GetComponent<Renderer>();
-        mpb = GetComponent<MaterialPropertyBlock>();
-        trash = GetComponent<TrashItem>();
+        mpb = new MaterialPropertyBlock();
+
+        trash = GetComponentInParent<TrashItem>();
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null) 
         {
             player = playerObj.transform;
         }
+
+        SetHighlight(false);
     }
 
     private void Update()
@@ -38,8 +40,10 @@ public class OutlineByDistance : MonoBehaviour
         }
     }
 
-    void SetHighlight(bool highlight) {
-
-    */
-
+    void SetHighlight(bool active) 
+    {
+        rend.GetPropertyBlock(mpb);
+        mpb.SetFloat("_Highlight", active ? 1f : 0f);
+        rend.SetPropertyBlock(mpb);
+    }
 }
