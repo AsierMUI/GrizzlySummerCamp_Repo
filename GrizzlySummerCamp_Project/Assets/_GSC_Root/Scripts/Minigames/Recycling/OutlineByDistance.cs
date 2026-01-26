@@ -31,7 +31,7 @@ public class OutlineByDistance : MonoBehaviour
         if (player == null || trash == null) return;
 
         float dist = Vector3.Distance(player.position, transform.position);
-        bool shouldHighlight = dist <= trash.InteractionDistance;
+        bool shouldHighlight = dist <= trash.OutlineDistance;
 
         if (shouldHighlight != highlighted) 
         {

@@ -7,7 +7,9 @@ public class TrashItem : MonoBehaviour, ITrashInteractable
 
     [Header("Interaction")]
     [SerializeField] private float interactionDistance = 2f;
+    [SerializeField] private float outlineDistance = 0f;
 
     public float InteractionDistance => interactionDistance;
+    public float OutlineDistance => outlineDistance;
     public Transform Transform => transform;
 }
