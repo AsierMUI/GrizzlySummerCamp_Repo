@@ -12,6 +12,7 @@ public class BowShoot : MonoBehaviour
     [Header("Cooldown")]
     public float shootCooldown = 1f;
     private bool canShoot = true;
+    //Meter texto "Reloading!"
 
     [Header("Trajectory Preview")]
     public LineRenderer lineRenderer;
@@ -40,10 +41,7 @@ public class BowShoot : MonoBehaviour
         if (lineRenderer == null)
             lineRenderer = GetComponent<LineRenderer>();
 
-        lineRenderer.startColor = lineColor;
-        lineRenderer.endColor = lineColor;
-        lineRenderer.widthMultiplier = lineWidth;
-        lineRenderer.enabled = false;
+        SetupLineRenderer();
 
         if (audioManager == null)
             audioManager = FindFirstObjectByType<AudioManager>();
@@ -51,85 +49,109 @@ public class BowShoot : MonoBehaviour
 
     private void Update()
     {
-        if (MinigameManager.Instance == null || !MinigameManager.Instance.IsRunning)
+        if (!CanProcessInput()) 
         {
-            lineRenderer.enabled = false;
+            DisableTrajectory();
             return;
         }
 
-        if (showTrajectory)
-            UpdateTrajectory();
+        HandleTrajectory();
+        HandleShootInput();
 
-        if (Input.GetMouseButtonDown(0) && canShoot)
+    }
+
+    bool CanProcessInput() //Bool de seguridad.
+    {
+        if (MinigameManager.Instance == null) return false;
+        if (!MinigameManager.Instance.IsRunning) return false;
+        if (UIState.IsUIOpen) return false;
+
+        return true;
+    }
+    void HandleTrajectory() 
+    {
+        if (!showTrajectory) return;
+        {
+            UpdateTrajectory();
+        }
+    }
+    void HandleShootInput() 
+    {
+        if (!canShoot) return;
+
+        if (Input.GetMouseButtonDown(0))
             Shoot();
     }
 
     void Shoot()
     {
-        if (!MinigameManager.Instance.IsRunning) return;
-
+        if (!CanProcessInput()) return;
+        
+        //Deshabilitar el disparo+trayectoria.
         canShoot = false;
+        showTrajectory = false;
+        DisableTrajectory();
 
+        //Llamar al ruido de disparo
         audioManager?.PlaySFX("Bow_Shoot");
 
-        if (TryGetComponent<PlayerAim>(out var aim))
+        //Deshabilitar el apuntar.
+        if(TryGetComponent<PlayerAim>(out var aim))
             aim.enabled = false;
 
-        // Calcular dirección del disparo
-        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-        Vector3 targetPoint = ray.GetPoint(50); // fallback
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, aimLayer))
-            targetPoint = hit.point;
-
+        Vector3 targetPoint = GetAimPoint();
         Vector3 direction = (targetPoint - shootPoint.position).normalized;
 
-        // Instanciar flecha
-        GameObject arrow = Instantiate(arrowPrefab, shootPoint.position, Quaternion.LookRotation(direction));
-        Rigidbody rb = arrow.GetComponent<Rigidbody>();
+        GameObject arrow = Instantiate(
+            arrowPrefab,
+            shootPoint.position,
+            Quaternion.LookRotation(direction)
+        );
 
-        // Aplicar fuerza (parabólica)
+        Rigidbody rb = arrow.GetComponent<Rigidbody>();
         Vector3 force = direction * shootForce + Vector3.up * upwardForce;
         rb.AddForce(force, ForceMode.Impulse);
 
-        // Ocultar línea tras disparar
-        showTrajectory = false;
-        lineRenderer.enabled = false;
-
-        // Opcional: mostrar línea otra vez después de recarga + permitir disparar otra vez
         Invoke(nameof(ResetShot), shootCooldown);
+
     }
 
     void ResetShot()
     {
         canShoot = true;
+        showTrajectory = true;
 
         audioManager?.PlaySFX("Bow_Reload");
 
         if (TryGetComponent<PlayerAim>(out var aim))
             aim.enabled = true;
 
-        ShowLineAgain();
     }
 
-    void ShowLineAgain()
+    void SetupLineRenderer() 
     {
-        showTrajectory = true;
-        lineRenderer.enabled = true;
+        lineRenderer.startColor = lineColor;
+        lineRenderer.endColor = lineColor;
+        lineRenderer.widthMultiplier = lineWidth;
+        lineRenderer.enabled = false;
     }
+
+    void DisableTrajectory() 
+    {
+        if(lineRenderer.enabled)
+            lineRenderer.enabled = false;
+    }
+
 
     private void UpdateTrajectory()
     {
-        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-        Vector3 targetPoint = ray.GetPoint(50); // fallback
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, aimLayer))
-            targetPoint = hit.point;
-
+        Vector3 targetPoint = GetAimPoint();
         Vector3 direction = (targetPoint - shootPoint.position).normalized;
         Vector3 velocity = direction * shootForce + Vector3.up * upwardForce;
 
         int visiblePoints = Mathf.CeilToInt(lineSegmentCount * lineVisibleLength);
         lineRenderer.positionCount = visiblePoints;
-
+        
         Vector3 previousPoint = shootPoint.position;
 
         for (int i = 0; i < visiblePoints; i++)
@@ -137,12 +159,13 @@ public class BowShoot : MonoBehaviour
             float t = i * timeStep;
             Vector3 point = shootPoint.position + velocity * t + 0.5f * Physics.gravity * t * t;
 
-            // Raycast para colisiones
-            if (Physics.Raycast(previousPoint, point - previousPoint, out RaycastHit segmentHit,
-                                (point - previousPoint).magnitude, aimLayer))
+            if (Physics.Raycast(previousPoint, point - previousPoint,
+                out RaycastHit hit,
+                (point - previousPoint).magnitude,
+                aimLayer)) 
             {
                 lineRenderer.positionCount = i + 1;
-                lineRenderer.SetPosition(i, segmentHit.point);
+                lineRenderer.SetPosition(i, hit.point);
                 break;
             }
 
@@ -151,5 +174,17 @@ public class BowShoot : MonoBehaviour
         }
 
         lineRenderer.enabled = true;
+    }
+
+    Vector3 GetAimPoint() 
+    {
+        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, aimLayer))
+        {
+            return hit.point;
+        }
+
+        return ray.GetPoint(50f);
     }
 }
