@@ -16,6 +16,9 @@ public class NPCDialogueController : MonoBehaviour
     [Header("Modo de npc")]
     public NPCDialogueMode modo = NPCDialogueMode.Simple;
 
+    [Header("Nombre de NPC")]
+    public string npcDisplayName;
+
     [Header("Dialogues (Pon los que necesites)")]
     public DialogueSystem dialogoTutorial;
     public DialogueSystem dialogoNormal;
@@ -27,6 +30,9 @@ public class NPCDialogueController : MonoBehaviour
     public string basurakey = "Basura";
     public string arcoKey = "Arco";
     public string contrarelojKey = "Contrareloj";
+
+    [Header("Icon Controller")]
+    public NPCIconController iconController;
 
     private NPCState state;
     private InteractableObject interactable;
@@ -58,8 +64,19 @@ public class NPCDialogueController : MonoBehaviour
     {
         if (dialogue == null) return;
 
-        dialogue.OnDialogueStarted += interactable.OnDialogueStart;
-        dialogue.OnDialogueEnded += interactable.OnDialogueEnded;
+        dialogue.OnDialogueStarted += () =>
+        {
+            interactable.OnDialogueStart();
+            if (iconController != null)
+                iconController.SetDialoueState(true);
+        };
+
+        dialogue.OnDialogueEnded += () =>
+        {
+            interactable.OnDialogueEnded();
+            if (iconController != null)
+                iconController.SetDialoueState(false);
+        };
     }
 
     public void Interact()
@@ -107,13 +124,13 @@ public class NPCDialogueController : MonoBehaviour
         if (!state.dialogoNormalUsado && dialogoNormal != null)
         {
             state.dialogoNormalUsado = true;
-            dialogoNormal.StartDialogue();
+            dialogoNormal.StartDialogue(npcDisplayName);
             return;
         }
 
         if (dialogoFinal != null)
         {
-            dialogoFinal.StartDialogue();
+            dialogoFinal.StartDialogue(npcDisplayName);
         }
     }
 
@@ -128,28 +145,28 @@ public class NPCDialogueController : MonoBehaviour
         if (dialogoTutorial != null && !state.tutorialCompletado && !TieneAlgunaInsignia())
         {
             state.tutorialCompletado = true;
-            dialogoTutorial.StartDialogue();
+            dialogoTutorial.StartDialogue(npcDisplayName);
             return;
         }
 
         //Todas las insignias = final (si existe)
         if (dialogoFinal != null && TieneTodasLasInsignias())
         {
-            dialogoFinal.StartDialogue();
+            dialogoFinal.StartDialogue(npcDisplayName);
             return;
         }
 
         //Alguna insignia = progreso (si existe)
         if (dialogoProgreso != null && TieneAlgunaInsignia())
         {
-            dialogoProgreso.StartDialogue();
+            dialogoProgreso.StartDialogue(npcDisplayName);
             return;
         }
 
         //Normal (fallback seguro)
         if (dialogoNormal != null)
         {
-            dialogoNormal.StartDialogue();
+            dialogoNormal.StartDialogue(npcDisplayName);
         }
     }
 

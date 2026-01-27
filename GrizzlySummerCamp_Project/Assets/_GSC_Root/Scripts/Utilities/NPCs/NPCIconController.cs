@@ -13,6 +13,8 @@ public class NPCIconController : MonoBehaviour
     public Transform player;
     public float showDistance = 2f;
 
+    private bool isInDialogue;
+
     private void Start()
     {
         SetIcon(exclamationIcon, false);
@@ -22,6 +24,13 @@ public class NPCIconController : MonoBehaviour
     private void Update()
     {
         if (npcController == null || player == null) return;
+
+        if (isInDialogue)
+        {
+            SetIcon(exclamationIcon, false);
+            SetIcon(interactionIcon, false);
+            return;
+        }
 
         bool inRange = Vector3.Distance(player.position, transform.position) <= showDistance;
         bool showExclamation = npcController.ShouldShowExclamation();
@@ -48,6 +57,11 @@ public class NPCIconController : MonoBehaviour
 
         FaceCamera(exclamationIcon);
         FaceCamera(interactionIcon);
+    }
+
+    public void SetDialoueState(bool talking)
+    {
+        isInDialogue = talking;
     }
 
     void SetIcon(SpriteRenderer icon, bool show)

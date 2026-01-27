@@ -23,6 +23,9 @@ public class DialogueSystem : MonoBehaviour
     private Coroutine typingCoroutine;
     private bool isTyping;
 
+    [Header("NPC Name UI")]
+    public TextMeshProUGUI npcNameText;
+
     public bool IsTalking => isTalking;
 
     private void Update()
@@ -44,7 +47,7 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    public void StartDialogue()
+    public void StartDialogue(string npcName = "")
     {
         if (isTalking || dialogues.Length == 0) return;
 
@@ -52,6 +55,9 @@ public class DialogueSystem : MonoBehaviour
         isTalking = true;
         
         dialogueUI.SetActive(true);
+
+        if (npcNameText != null)
+            npcNameText.text = npcName;
 
         ShowCurrentSentence();
 
