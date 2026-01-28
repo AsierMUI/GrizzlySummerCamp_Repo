@@ -22,7 +22,8 @@ public class VolumeController : MonoBehaviour
         float value = GetVolume();
         bool muted = IsMuted();
 
-        slider.SetValueWithoutNotify(muted ? 0f : value);
+        if (slider != null)
+            slider.SetValueWithoutNotify(muted ? 0f : value);
         UpdateText(slider.value);
 
         slider.onValueChanged.AddListener(OnSliderChanged);
