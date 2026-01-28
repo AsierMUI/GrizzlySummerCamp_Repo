@@ -103,7 +103,7 @@ public class UIAnimations : MonoBehaviour
 
     public void DesactivarLibreta()
     {
-        LeanTween.moveY(libreta.GetComponent<RectTransform>(), -268, 1f).setEase(LeanTweenType.easeOutSine).setOnComplete(() => AnimaciónActiva = false);
+        LeanTween.moveY(libreta.GetComponent<RectTransform>(), -121, 1f).setEase(LeanTweenType.easeOutSine).setOnComplete(() => AnimaciónActiva = false);
     }
 
     //Funciones tiempo
@@ -143,7 +143,7 @@ public class UIAnimations : MonoBehaviour
             rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, 139);
         }
         else
-            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -268);
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -121);
 
         isLibretaActive = libretaAbierta;
     }
