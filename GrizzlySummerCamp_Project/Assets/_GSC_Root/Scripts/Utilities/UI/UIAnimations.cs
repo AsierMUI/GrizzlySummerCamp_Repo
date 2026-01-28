@@ -98,12 +98,12 @@ public class UIAnimations : MonoBehaviour
 
     public void ActivarLibreta()
     {
-        LeanTween.moveY(libreta.GetComponent<RectTransform>(), 0, 1f).setEase(LeanTweenType.easeOutSine).setOnComplete(() => AnimaciónActiva = false);
+        LeanTween.moveY(libreta.GetComponent<RectTransform>(), 139, 1f).setEase(LeanTweenType.easeOutSine).setOnComplete(() => AnimaciónActiva = false);
     }
 
     public void DesactivarLibreta()
     {
-        LeanTween.moveY(libreta.GetComponent<RectTransform>(), -609, 1f).setEase(LeanTweenType.easeOutSine).setOnComplete(() => AnimaciónActiva = false);
+        LeanTween.moveY(libreta.GetComponent<RectTransform>(), -268, 1f).setEase(LeanTweenType.easeOutSine).setOnComplete(() => AnimaciónActiva = false);
     }
 
     //Funciones tiempo
@@ -140,14 +140,11 @@ public class UIAnimations : MonoBehaviour
 
         if (libretaAbierta)
         {
-            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, 0);
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, 139);
         }
         else
-            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -609);
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -268);
 
         isLibretaActive = libretaAbierta;
     }
-
-
-
 }
