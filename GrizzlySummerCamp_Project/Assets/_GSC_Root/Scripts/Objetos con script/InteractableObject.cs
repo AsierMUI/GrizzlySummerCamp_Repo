@@ -22,8 +22,8 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] float lookSpeed = 5f;
 
     private GameObject player;
-    Transform playerTransform;
-    Transform selfTransform;
+    private Transform playerTransform;
+    private Transform selfTransform;
 
     private PlayerInput playerInput;
     private InputAction interactAction;
@@ -41,27 +41,41 @@ public class InteractableObject : MonoBehaviour
 
     void Start()
     {
+        TryGetPlayer();
+
+        if (spriteObject != null)
+            spriteObject.SetActive(false);
+    }
+    private void OnEnable()
+    {
+        TryGetPlayer();
+    }
+
+    void TryGetPlayer()
+    {
+        if (playerTransform != null) return;
+
         player = GameObject.FindGameObjectWithTag("Player");
         if (!player) return;
 
         playerTransform = player.transform;
         playerInput = player.GetComponent<PlayerInput>();
-        interactAction = playerInput.actions.FindAction("Interact");
 
-        /*
-        if (player != null)
+        if (playerInput != null)
         {
-            playerInput = player.GetComponent<PlayerInput>();
             interactAction = playerInput.actions.FindAction("Interact");
         }
-        */
-        if (spriteObject != null)
-            spriteObject.SetActive(false);
+
+        playerMovementScript = player.GetComponent<PlayerMovement>();
     }
 
     void Update()
     {
-        if (!playerTransform) return;
+        if (!playerTransform)
+        {
+            TryGetPlayer();
+            return;
+        }
 
         UpdateDistanceCheck();
         UpdateSprite();
