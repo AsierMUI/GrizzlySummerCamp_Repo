@@ -13,6 +13,14 @@ public class CinematicaHub : MonoBehaviour
 
     private void Start()
     {
+        if (CinematicaHubVista.Instance.cinematicaHubVista)
+        {
+            cineObj.SetActive(false);
+            gameplayObj.SetActive(true);
+            Destroy(this);
+            return;
+        }
+
         duracionCinematica = (float)cinematica.duration;
     }
 
@@ -22,9 +30,16 @@ public class CinematicaHub : MonoBehaviour
 
         if (t >= duracionCinematica)
         {
-            cineObj.SetActive(false);
-            gameplayObj.SetActive(true);
-            Destroy(this);
+            FinalizarCinematica();
         }
+    }
+
+    void FinalizarCinematica()
+    {
+        CinematicaHubVista.Instance.cinematicaHubVista = true;
+
+        cineObj.SetActive(false);
+        gameplayObj.SetActive(true);
+        Destroy(this);
     }
 }
