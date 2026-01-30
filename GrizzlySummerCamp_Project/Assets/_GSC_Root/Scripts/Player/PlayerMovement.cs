@@ -64,8 +64,9 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
 
         //animacion andar / idle
         bool isWalking = moveDir.sqrMagnitude > 0.01f;
-        bool isRunning = isWalking && !sprintBlocked && sprintAction.ReadValue<float>() > 0.1f;
-        
+        bool sprintPressed = !sprintBlocked && sprintAction.ReadValue<float>() > 0.1f;
+        bool isRunning = isWalking && sprintPressed;
+
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isRunning", isRunning);
         HandleWalkingVFX(isWalking);
@@ -73,7 +74,7 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         //Comprueba si se pulsa sprint
         float currentSpeed = speed + speedModifier;
 
-        if (!sprintBlocked && sprintAction.ReadValue<float>()> 0.1f)
+        if (!sprintPressed && isWalking)
             currentSpeed *= sprintMultiplier;
 
         // Deseamos una velocidad en esa dirección
