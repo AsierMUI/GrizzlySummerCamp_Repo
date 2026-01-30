@@ -74,12 +74,12 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         //Comprueba si se pulsa sprint
         float currentSpeed = speed + speedModifier;
 
-        if (!sprintPressed && isWalking)
+        if (isRunning)
             currentSpeed *= sprintMultiplier;
 
         // Deseamos una velocidad en esa dirección
         Vector3 desiredVelocity = moveDir * currentSpeed;
-        Vector3 velocityChange = desiredVelocity - rb.linearVelocity;   // Aplicamos cambio instantáneo de velocidad (como velocity pero moderno)
+        Vector3 velocityChange = desiredVelocity - rb.linearVelocity;
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
         if (isWalking)
