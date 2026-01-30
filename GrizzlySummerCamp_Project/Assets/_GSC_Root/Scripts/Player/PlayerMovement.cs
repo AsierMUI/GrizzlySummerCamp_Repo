@@ -44,8 +44,6 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
     {
         moveAction = playerInput.actions["Move"];
         sprintAction = playerInput.actions["Sprint"];
-
-        //canMove = true;
     }
 
     void FixedUpdate()
@@ -66,7 +64,10 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
 
         //animacion andar / idle
         bool isWalking = moveDir.sqrMagnitude > 0.01f;
+        bool isRunning = isWalking && !sprintBlocked && sprintAction.ReadValue<float>() > 0.1f;
+        
         animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isRunning", isRunning);
         HandleWalkingVFX(isWalking);
 
         //Comprueba si se pulsa sprint
@@ -111,6 +112,7 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         rb.angularVelocity = Vector3.zero;
 
         animator.SetBool("isWalking", false);
+        animator.SetBool("isRunning", false);
 
         if (walkingVFX != null && walkingVFX.isPlaying) {walkingVFX.Stop();}
     }
