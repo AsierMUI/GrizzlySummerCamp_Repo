@@ -123,9 +123,17 @@ public class MinigameManager : MonoBehaviour
     {
         if (playerAnimator != null) return;
 
-        var anim = FindAnyObjectByType<Animator>();
-        if (anim != null)
-            playerAnimator = anim;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerAnimator = player.GetComponentInChildren<Animator>();
+            if (playerAnimator == null)
+                Debug.LogWarning("[Animator] No se encontró Animator en el Player.");
+        }
+        else
+        {
+            Debug.LogWarning("[Animator] No se encontró GameObject con tag 'Player'.");
+        }
     }
 
     void FindUIReferences()
@@ -327,9 +335,14 @@ public class MinigameManager : MonoBehaviour
                 break;
 
             default:
+                Debug.Log($"[Animator] Escena '{sceneName}' no tiene animaciones especiales asignadas.");
                 break;
-
         }
+
+        Debug.Log($"[Animator Debug] Scene: {sceneName} | hasBow: {playerAnimator.GetBool("hasBow")}, " +
+              $"hasFishing: {playerAnimator.GetBool("hasFishing")}, " +
+              $"hasTrash: {playerAnimator.GetBool("hasTrash")}, " +
+              $"hasOars: {playerAnimator.GetBool("hasOars")}");
     }
 
     void ResetAnimatorStates()

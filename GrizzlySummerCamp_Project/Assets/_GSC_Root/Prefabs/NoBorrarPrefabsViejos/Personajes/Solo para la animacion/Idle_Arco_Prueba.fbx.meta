@@ -17,12 +17,85 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'rig.002|Idle_Arco_BAKE' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'DEF-thigh.L' has scale animation
+      that will be discarded.\n\t'DEF-thigh.L.001' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'DEF-shin.L' has scale
+      animation that will be discarded.\n\t'DEF-shin.L.001' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'DEF-foot.L'
+      has scale animation that will be discarded.\n\t'DEF-toe.L' has scale animation
+      that will be discarded.\n\t'DEF-thigh.R' has scale animation that will be discarded.\n\t'DEF-thigh.R.001'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-shin.R'
+      has scale animation that will be discarded.\n\t'DEF-shin.R.001' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-foot.R'
+      has scale animation that will be discarded.\n\t'DEF-toe.R' has scale animation
+      that will be discarded.\n\t'MCH-spine.002' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'MCH-spine.002' has scale
+      animation that will be discarded.\n\t'MCH-spine.003' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'MCH-spine.003'
+      has scale animation that will be discarded.\n\t'ORG-spine.004' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-spine.004'
+      has scale animation that will be discarded.\n\t'ORG-spine.005' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-COLETA.TOP.L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-COLETA.BOT.L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-COLETA.TOP.R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-COLETA.BOT.R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-upper_arm.L'
+      has scale animation that will be discarded.\n\t'DEF-upper_arm.R' has scale
+      animation that will be discarded.\n\nClip 'rig.002|Idle_Arco_NB' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'DEF-thigh.L' has scale animation
+      that will be discarded.\n\t'DEF-thigh.L.001' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'DEF-shin.L' has scale
+      animation that will be discarded.\n\t'DEF-shin.L.001' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'DEF-foot.L'
+      has scale animation that will be discarded.\n\t'DEF-toe.L' has scale animation
+      that will be discarded.\n\t'DEF-thigh.R' has scale animation that will be discarded.\n\t'DEF-thigh.R.001'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-shin.R'
+      has scale animation that will be discarded.\n\t'DEF-shin.R.001' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-foot.R'
+      has scale animation that will be discarded.\n\t'DEF-toe.R' has scale animation
+      that will be discarded.\n\t'MCH-spine.002' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'MCH-spine.002' has scale
+      animation that will be discarded.\n\t'MCH-spine.003' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'MCH-spine.003'
+      has scale animation that will be discarded.\n\t'ORG-spine.004' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-spine.004'
+      has scale animation that will be discarded.\n\t'ORG-spine.005' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-COLETA.TOP.L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-COLETA.BOT.L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-COLETA.TOP.R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-COLETA.BOT.R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-upper_arm.L'
+      has scale animation that will be discarded.\n\t'DEF-upper_arm.R' has scale
+      animation that will be discarded.\n\nClip 'rig.002|rigAction.004' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'DEF-thigh.L' has scale animation
+      that will be discarded.\n\t'DEF-thigh.L.001' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'DEF-shin.L' has scale
+      animation that will be discarded.\n\t'DEF-shin.L.001' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'DEF-foot.L'
+      has scale animation that will be discarded.\n\t'DEF-toe.L' has scale animation
+      that will be discarded.\n\t'DEF-thigh.R' has scale animation that will be discarded.\n\t'DEF-thigh.R.001'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-shin.R'
+      has scale animation that will be discarded.\n\t'DEF-shin.R.001' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-foot.R'
+      has scale animation that will be discarded.\n\t'DEF-toe.R' has scale animation
+      that will be discarded.\n\t'ORG-spine.004' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'ORG-spine.005' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-COLETA.TOP.L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'ORG-COLETA.TOP.R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-upper_arm.L.001'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-forearm.L.001'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-upper_arm.R.001'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-forearm.R.001'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -154,11 +227,11 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: d96ba9d95875c4b41a8973b9919d20a1, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

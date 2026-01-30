@@ -63,7 +63,6 @@ public class BowShoot : MonoBehaviour
 
         HandleTrajectory();
         HandleShootInput();
-
     }
 
     bool CanProcessInput() //Bool de seguridad.
@@ -149,7 +148,6 @@ public class BowShoot : MonoBehaviour
         if(lineRenderer.enabled)
             lineRenderer.enabled = false;
     }
-
 
     private void UpdateTrajectory()
     {
