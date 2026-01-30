@@ -304,7 +304,7 @@ public class MinigameManager : MonoBehaviour
         if (playerAnimator == null) return;
 
         playerAnimator.SetBool("hasBow", false);
-        playerAnimator.SetBool("hasFishing", false);
+        playerAnimator.SetBool("isFishing", false);
         playerAnimator.SetBool("hasTrash", false);
         playerAnimator.SetBool("hasOars", false);
 
@@ -337,7 +337,7 @@ public class MinigameManager : MonoBehaviour
         if (playerAnimator == null) return;
 
         playerAnimator.SetBool("hasBow", false);
-        playerAnimator.SetBool("hasFishing", false);
+        playerAnimator.SetBool("isFishing", false);
         playerAnimator.SetBool("hasTrash", false);
         playerAnimator.SetBool("hasOars", false);
     }
