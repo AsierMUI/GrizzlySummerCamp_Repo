@@ -31,6 +31,8 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private InsigniaDatabase insigniaDatabase;
 
     private MinigameInsigniaData currentInsigniaData;
+
+    private Animator playerAnimator;
     #endregion
 
     #region UI (Scene Refs)
@@ -97,6 +99,8 @@ public class MinigameManager : MonoBehaviour
         }
 
         FindPlayerMovementInScene();
+        FindPlayerAnimatorInScene();
+        SetUpAnimatorForScene(scene.name);
         FindUIReferences();
     }
     #endregion
@@ -113,6 +117,15 @@ public class MinigameManager : MonoBehaviour
 
         if (playerMovement != null)
             playerMovement.SetCanMove(false);
+    }
+
+    void FindPlayerAnimatorInScene()
+    {
+        if (playerAnimator != null) return;
+
+        var anim = FindAnyObjectByType<Animator>();
+        if (anim != null)
+            playerAnimator = anim;
     }
 
     void FindUIReferences()
@@ -187,6 +200,7 @@ public class MinigameManager : MonoBehaviour
         isRunning = false;
         SetPlayerMovement(false);
 
+        ResetAnimatorStates();
         OnMinigameEnded?.Invoke();
 
         int puntos = ScoreManager.Instance != null ? ScoreManager.Instance.GetTotalPoints() : 0;
@@ -281,6 +295,51 @@ public class MinigameManager : MonoBehaviour
         if (score >= 200) return 2;
         if (score >= 100) return 1;
         return 0;
+    }
+    #endregion
+
+    #region Animaciones
+    void SetUpAnimatorForScene(string sceneName)
+    {
+        if (playerAnimator == null) return;
+
+        playerAnimator.SetBool("hasBow", false);
+        playerAnimator.SetBool("hasFishing", false);
+        playerAnimator.SetBool("hasTrash", false);
+        playerAnimator.SetBool("hasOars", false);
+
+        switch (sceneName)
+        {
+            case "SCN_MArco":
+                playerAnimator.SetBool("hasBow", true);
+                break;
+
+            case "SCN_MPesca":
+                playerAnimator.SetBool("isFishing", true);
+                break;
+
+            case "SCN_MBasura":
+                playerAnimator.SetBool("hasTrash", true);
+                break;
+
+            case "SCN_MContrareloj":
+                playerAnimator.SetBool("hasOars", true);
+                break;
+
+            default:
+                break;
+
+        }
+    }
+
+    void ResetAnimatorStates()
+    {
+        if (playerAnimator == null) return;
+
+        playerAnimator.SetBool("hasBow", false);
+        playerAnimator.SetBool("hasFishing", false);
+        playerAnimator.SetBool("hasTrash", false);
+        playerAnimator.SetBool("hasOars", false);
     }
     #endregion
 

@@ -34,6 +34,9 @@ public class BowShoot : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioManager audioManager;
 
+    [Header("Animator")]
+    [SerializeField] private Animator animator;
+
     private void Start()
     {
         mainCam = Camera.main;
@@ -45,6 +48,9 @@ public class BowShoot : MonoBehaviour
 
         if (audioManager == null)
             audioManager = FindFirstObjectByType<AudioManager>();
+
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -91,6 +97,8 @@ public class BowShoot : MonoBehaviour
         canShoot = false;
         showTrajectory = false;
         DisableTrajectory();
+
+        animator.SetTrigger("shootBow");
 
         //Llamar al ruido de disparo
         audioManager?.PlaySFX("Bow_Shoot");
