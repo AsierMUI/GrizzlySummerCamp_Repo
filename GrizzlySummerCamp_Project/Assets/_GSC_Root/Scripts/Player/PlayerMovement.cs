@@ -26,7 +26,9 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
     private bool sprintBlocked = false;
     private float speedModifier = 0f;
 
-    [SerializeField] GameObject sprintIcon;
+    public static System.Action<bool> OnRunningChanged;
+    bool wasRunning;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -65,7 +67,7 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         //animacion andar / idle
         bool isWalking = moveDir.sqrMagnitude > 0.01f;
         bool sprintPressed = !sprintBlocked && sprintAction.ReadValue<float>() > 0.1f;
-        bool isRunning = isWalking && sprintPressed;
+        bool isRunning = canMove && isWalking && sprintPressed;
 
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isRunning", isRunning);
@@ -76,13 +78,16 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
 
         if (isRunning)
         {
-            sprintIcon.SetActive(true);
             currentSpeed *= sprintMultiplier;
         }
-        else sprintIcon.SetActive(false);
+        if (isRunning != wasRunning)
+        {
+            OnRunningChanged?.Invoke(isRunning);
+            wasRunning = isRunning;
+        }
 
-            // Deseamos una velocidad en esa dirección
-            Vector3 desiredVelocity = moveDir * currentSpeed;
+        // Deseamos una velocidad en esa dirección
+        Vector3 desiredVelocity = moveDir * currentSpeed;
         Vector3 velocityChange = desiredVelocity - rb.linearVelocity;
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
