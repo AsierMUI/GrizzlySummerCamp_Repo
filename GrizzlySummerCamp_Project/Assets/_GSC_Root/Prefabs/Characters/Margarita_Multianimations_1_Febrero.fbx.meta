@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: rig|MG_Arrow_Animation_BAKE
+      name: MG_Arrow_Shoot+Reload
       takeName: rig|MG_Arrow_Animation_BAKE
       internalID: -1117189850048408857
       firstFrame: 0
@@ -60,7 +60,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|MG_Fish_Animation
+      name: MG_Fishing
       takeName: rig|MG_Fish_Animation
       internalID: -7920391966320394464
       firstFrame: 0
@@ -89,7 +89,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|MG_Idle_Animation
+      name: MG_Idle
       takeName: rig|MG_Idle_Animation
       internalID: -6307315132286447814
       firstFrame: 0
@@ -118,7 +118,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|MG_Idle_Arrow_Animation_BAKE
+      name: MG_Arrow_Idle
       takeName: rig|MG_Idle_Arrow_Animation_BAKE
       internalID: -8549292562173252027
       firstFrame: 0
@@ -147,7 +147,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|MG_Row_Animation
+      name: MG_Rowing
       takeName: rig|MG_Row_Animation
       internalID: -4641490199707206254
       firstFrame: 0
@@ -176,7 +176,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|MG_Row_Idle_Animation
+      name: MG_RowIdle
       takeName: rig|MG_Row_Idle_Animation
       internalID: -1853435050977404050
       firstFrame: 0
@@ -205,7 +205,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|MG_Run_Animation
+      name: MG_Run
       takeName: rig|MG_Run_Animation
       internalID: 2898477065194030504
       firstFrame: 0
@@ -234,7 +234,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|MG_Walk_Animation
+      name: MG_Walk
       takeName: rig|MG_Walk_Animation
       internalID: 9035672101591941553
       firstFrame: 0
@@ -263,40 +263,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|MG_Walk_Trash_Animation
+      name: MG_WalkTrash
       takeName: rig|MG_Walk_Trash_Animation
       internalID: -1870083827882549389
       firstFrame: 0
       lastFrame: 24
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: rig|Reset_Anim
-      takeName: rig|Reset_Anim
-      internalID: -113218541411833444
-      firstFrame: 0
-      lastFrame: 0
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
