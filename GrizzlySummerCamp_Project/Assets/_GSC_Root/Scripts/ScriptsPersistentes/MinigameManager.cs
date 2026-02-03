@@ -311,48 +311,42 @@ public class MinigameManager : MonoBehaviour
     {
         if (playerAnimator == null) return;
 
-        playerAnimator.SetBool("hasBow", false);
-        playerAnimator.SetBool("isFishing", false);
-        playerAnimator.SetBool("hasTrash", false);
-        playerAnimator.SetBool("hasOars", false);
+        playerAnimator.SetBool("inArco", false);
+        playerAnimator.SetBool("inPesca", false);
+        playerAnimator.SetBool("inBasura", false);
+        playerAnimator.SetBool("inContrareloj", false);
 
         switch (sceneName)
         {
             case "SCN_MArco":
-                playerAnimator.SetBool("hasBow", true);
+                playerAnimator.SetBool("inArco", true);
                 break;
 
             case "SCN_MPesca":
-                playerAnimator.SetBool("isFishing", true);
+                playerAnimator.SetBool("inPesca", true);
                 break;
 
             case "SCN_MBasura":
-                playerAnimator.SetBool("hasTrash", true);
+                playerAnimator.SetBool("inBasura", true);
                 break;
 
             case "SCN_MContrareloj":
-                playerAnimator.SetBool("hasOars", true);
+                playerAnimator.SetBool("inContrareloj", true);
                 break;
 
             default:
-                Debug.Log($"[Animator] Escena '{sceneName}' no tiene animaciones especiales asignadas.");
                 break;
         }
-
-        Debug.Log($"[Animator Debug] Scene: {sceneName} | hasBow: {playerAnimator.GetBool("hasBow")}, " +
-              $"hasFishing: {playerAnimator.GetBool("hasFishing")}, " +
-              $"hasTrash: {playerAnimator.GetBool("hasTrash")}, " +
-              $"hasOars: {playerAnimator.GetBool("hasOars")}");
     }
 
     void ResetAnimatorStates()
     {
         if (playerAnimator == null) return;
 
-        playerAnimator.SetBool("hasBow", false);
-        playerAnimator.SetBool("isFishing", false);
-        playerAnimator.SetBool("hasTrash", false);
-        playerAnimator.SetBool("hasOars", false);
+        playerAnimator.SetBool("inArco", false);
+        playerAnimator.SetBool("inPesca", false);
+        playerAnimator.SetBool("inBasura", false);
+        playerAnimator.SetBool("inContrareloj", false);
     }
     #endregion
 

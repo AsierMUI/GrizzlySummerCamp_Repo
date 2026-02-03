@@ -88,7 +88,7 @@ public class BowShoot : MonoBehaviour
             Shoot();
     }
 
-    void Shoot()
+    public void Shoot()
     {
         if (!CanProcessInput()) return;
         

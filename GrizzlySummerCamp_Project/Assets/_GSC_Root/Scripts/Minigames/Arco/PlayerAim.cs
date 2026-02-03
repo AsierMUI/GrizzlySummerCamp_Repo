@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class PlayerAim : MonoBehaviour
 {
+
+    [Header("Player Settings")]
     public float rotationSpeed = 5f;
     public float aimPlaneDistance = 10f;
+
+    [Header("Bow Settings")]
     public BowShoot bowShoot;
+    private Animator playerAnimator;
 
     private Camera mainCam;
     private Quaternion lockedRotation; //la rotacion en la que se queda margarita al disparar
@@ -15,6 +20,10 @@ public class PlayerAim : MonoBehaviour
         mainCam = Camera.main;
         rb = GetComponent<Rigidbody>();
         lockedRotation = transform.rotation;
+
+        playerAnimator = GetComponentInChildren<Animator>();
+        if (playerAnimator == null)
+            Debug.LogWarning("[PlayerAim] No se ha encontrado el animator en el PLAYER");
     }
 
     private void Update()
@@ -24,17 +33,17 @@ public class PlayerAim : MonoBehaviour
 
         if (bowShoot != null && bowShoot.IsReloading)
         {
-            if (rb != null)
-            {
-                rb.angularVelocity = Vector3.zero;
-                rb.rotation = lockedRotation;
-            }
-            else
-            {
-                transform.rotation = lockedRotation;
-            }
+            LockRotation();
             return;
         }
+
+        HandleAiming();
+        HandleInput();
+
+    }
+
+    void HandleAiming()
+    {
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
         Vector3 planePoint = transform.position + transform.forward * aimPlaneDistance;
         Plane aimPlane = new Plane(-mainCam.transform.forward, planePoint);
@@ -43,6 +52,27 @@ public class PlayerAim : MonoBehaviour
         {
             Vector3 aimPoint = ray.GetPoint(enter);
             RotateTowards(aimPoint);
+        }
+    }
+
+    void HandleInput()
+    {
+        if (Input.GetMouseButtonDown(0) && playerAnimator != null && playerAnimator.GetBool("inArco"))
+        {
+            ShootBow();
+        }
+    }
+
+    void LockRotation()
+    {
+        if (rb != null)
+        {
+            rb.angularVelocity = Vector3.zero;
+            rb.rotation = lockedRotation;
+        }
+        else
+        {
+            transform.rotation = lockedRotation;
         }
     }
 
@@ -57,5 +87,17 @@ public class PlayerAim : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         lockedRotation = transform.rotation;
+    }
+
+    public void ShootBow()
+    {
+        if (bowShoot != null)
+            bowShoot.Shoot();
+
+        if (playerAnimator != null)
+        {
+            Debug.Log("[PlayerAim] ShootBow trigger lanzado");
+            playerAnimator.SetTrigger("shootBow");
+        }
     }
 }
