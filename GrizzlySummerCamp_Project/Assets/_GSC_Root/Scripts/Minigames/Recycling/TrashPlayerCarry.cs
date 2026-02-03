@@ -5,6 +5,7 @@ public class TrashPlayerCarry : MonoBehaviour
     private TrashItem carriedTrash;
     private PlayerMovement playerMovement;
     private AudioManager audioManager;
+    private Animator playerAnimator;
 
     [Header("Movement Penalty")]
     [Tooltip("Este valor altera quan despacio vas tras recoger basura")]
@@ -21,6 +22,11 @@ public class TrashPlayerCarry : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         audioManager = FindFirstObjectByType<AudioManager>();
+
+        playerAnimator = GetComponentInChildren<Animator>();
+
+        if (playerAnimator == null)
+            Debug.LogWarning("[TrashPlayerCarry] Animator no encontrado en el player");
     }
 
     public bool IsCarryingTrash()
@@ -43,6 +49,11 @@ public class TrashPlayerCarry : MonoBehaviour
 
         playerMovement.SetSprintBlocked(true);
         playerMovement.SetSpeedModifier(speedPenalty);
+
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("hasTrash", true);
+        }
     }
 
     public void DeliverTrash() 
@@ -63,6 +74,11 @@ public class TrashPlayerCarry : MonoBehaviour
         //restaurar movimiento
         playerMovement.SetSprintBlocked(false);
         playerMovement.SetSpeedModifier(0f);
+
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("hasTrash", false);
+        }
     }
 
     public TrashType GetCarriedType() 
