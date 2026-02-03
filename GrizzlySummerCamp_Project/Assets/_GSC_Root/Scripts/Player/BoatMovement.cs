@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -41,7 +40,7 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
             return;
         }
 
-        if (childAnimator.GetBool("inContrareloj"))
+        if (childAnimator.GetBool("inContrareloj") || childAnimator.GetBool("inPesca"))
         {
             MoveBoat();
         }
@@ -95,10 +94,14 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
            childAnimator.SetFloat("speed", currentSpeed);
            Debug.Log($"[BoatMovement] UpdateAnimation - speed set to: {currentSpeed}");
         }
-        else
+        else if (inPesca)
         {
            childAnimator.SetFloat("speed", 0f);
            Debug.Log("[BoatMovement] UpdateAnimation - not inContrareloj, speed set to 0");
+        }
+        else
+        {
+            childAnimator.SetFloat("speed", 0f);
         }
     }
 
