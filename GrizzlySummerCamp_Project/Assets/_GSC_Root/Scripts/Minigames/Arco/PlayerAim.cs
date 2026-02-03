@@ -35,24 +35,6 @@ public class PlayerAim : MonoBehaviour
             }
             return;
         }
-
-        /*
-        if (Time.timeScale == 0f) return;
-        if (bowShoot != null && bowShoot.IsReloading)
-        {
-            if(rb != null)
-            {
-                rb.angularVelocity = Vector3.zero;
-                rb.rotation = lockedRotation;
-            }
-            else
-            {
-                transform.rotation = lockedRotation;
-            }     
-            return;
-        }
-        */
-
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
         Vector3 planePoint = transform.position + transform.forward * aimPlaneDistance;
         Plane aimPlane = new Plane(-mainCam.transform.forward, planePoint);

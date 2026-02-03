@@ -4,27 +4,35 @@ public class UISprintIndicator : MonoBehaviour
 {
     [SerializeField] private GameObject sprintIcon;
 
+    private bool isRunning;
+
     private void OnEnable()
     {
         PlayerMovement.OnRunningChanged += OnRunningChanged;
+        UIState.OnUIStateChanged += OnUIStateChanged;
     }
 
     private void OnDisable()
     {
         PlayerMovement.OnRunningChanged -= OnRunningChanged;
+        UIState.OnUIStateChanged -= OnUIStateChanged;
     }
 
-    void OnRunningChanged(bool isRunning) 
+    void OnRunningChanged(bool running) 
+    {
+        isRunning = running;
+        Refresh();
+    }
+
+    void OnUIStateChanged(bool uiOpen)
+    {
+        Refresh();
+    }
+
+    void Refresh()
     {
         if (sprintIcon == null) return;
 
-        if (UIState.IsUIOpen)
-        {
-            sprintIcon.SetActive(false);
-            return;
-        }
-
-        sprintIcon.SetActive(isRunning);
+        sprintIcon.SetActive(isRunning && !UIState.IsUIOpen);
     }
-
 }

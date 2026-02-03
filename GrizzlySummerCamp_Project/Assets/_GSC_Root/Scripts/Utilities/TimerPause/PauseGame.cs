@@ -51,7 +51,7 @@ public class PauseGame : MonoBehaviour
     }
     public void Pausar()
     {
-        UIState.IsUIOpen = true;
+        UIState.SetUIOpen(true);
         if (menuPausa !=null)
             menuPausa.SetActive(true);
 

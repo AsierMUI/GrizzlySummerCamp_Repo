@@ -147,7 +147,7 @@ public class InteractableObject : MonoBehaviour
         if (InstructionsUI == null || InstructionsUI.activeSelf) return;
 
         InstructionsUI.SetActive(true);
-        UIState.IsUIOpen = true;
+        UIState.SetUIOpen(true);
     }
 
     void CloseUI() 

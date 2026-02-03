@@ -21,7 +21,7 @@ public class LoadingUI : MonoBehaviour
 
     void Start()
     {
-        UIState.IsUIOpen = true;
+        UIState.SetUIOpen(true);
         //Texto aleatorio
         baseText = loadingTLines[Random.Range(0, loadingTLines.Length)];
 
@@ -58,7 +58,7 @@ public class LoadingUI : MonoBehaviour
     //Metodo que llama el boton
     public void OnStartButtonPressed()
     {
-        UIState.IsUIOpen = false;
+        UIState.SetUIOpen(false);
         gameObject.SetActive(false);
 
         if (uiAnimations != null)
