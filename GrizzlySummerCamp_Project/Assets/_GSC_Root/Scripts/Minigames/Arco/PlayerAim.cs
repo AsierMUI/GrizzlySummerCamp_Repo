@@ -96,7 +96,7 @@ public class PlayerAim : MonoBehaviour
 
         if (playerAnimator != null)
         {
-            playerAnimator.SetTrigger("shootBow");
+            playerAnimator.CrossFade("MG_Arrow_Reload&Shoot", 0.1f, 0, 0f);
             Debug.Log($"[Animator] Trigger shootBow lanzado: inArco={playerAnimator.GetBool("inArco")}, currentState={playerAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash}");
         }
     }

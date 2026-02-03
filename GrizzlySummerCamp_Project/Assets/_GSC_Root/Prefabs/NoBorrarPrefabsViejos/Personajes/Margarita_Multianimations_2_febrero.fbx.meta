@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: MG_Arrow_Reload&Shot
+      name: MG_Arrow_Reload&Shoot
       takeName: rig|MG_Arrow_Animation_BAKE
       internalID: -1117189850048408857
       firstFrame: 0
