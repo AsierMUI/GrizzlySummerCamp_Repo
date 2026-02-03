@@ -86,10 +86,16 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         float velocityMagnitude = rb.GetPointVelocity(transform.position).magnitude;
         animator.SetFloat("speed", velocityMagnitude);
 
-        if ((velocityMagnitude > 0.1f && lastVelocity <= 0.1f) || (velocityMagnitude <= 0.1f && lastVelocity > 0.1f))
+        bool isSprinting =
+            sprintAction.ReadValue<float>() > 0.1f &&
+            !sprintBlocked &&
+            velocityMagnitude > 0.1f;
+
+        if (isSprinting != (lastVelocity > speed * 1.1f))
         {
-            OnRunningChanged?.Invoke(velocityMagnitude > 0.1f);
+            OnRunningChanged?.Invoke(isSprinting);
         }
+
         lastVelocity = velocityMagnitude;
 
         HandleWalkingVFX(velocityMagnitude > 0.1f);
