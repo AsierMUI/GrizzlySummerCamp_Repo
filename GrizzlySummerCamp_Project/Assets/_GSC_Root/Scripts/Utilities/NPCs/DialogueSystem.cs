@@ -54,7 +54,7 @@ public class DialogueSystem : MonoBehaviour
         index = 0;
         isTalking = true;
         
-        UIState.SetUIOpen(true);
+        //UIState.SetUIOpen(true);
         dialogueUI.SetActive(true);
 
         if (npcNameText != null)
@@ -99,8 +99,8 @@ public class DialogueSystem : MonoBehaviour
     void EndDialogue()
     {
         isTalking = false;
-        UIState.SetUIOpen(false);
         dialogueUI.SetActive(false);
+        //UIState.SetUIOpen(false);
 
         OnDialogueEnded?.Invoke();
     }

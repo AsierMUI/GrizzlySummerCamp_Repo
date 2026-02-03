@@ -193,10 +193,10 @@ public class InteractableObject : MonoBehaviour
 
     public void OnDialogueEnded()
     {
-        UIState.SetUIOpen(false);
         isInDialogue = false;
         EnableNotebook();
         UnblockPlayerMovement();
+        UIState.SetUIOpen(false);
     }
      //Movimiento personaje
     void BlockPlayerMovement()
