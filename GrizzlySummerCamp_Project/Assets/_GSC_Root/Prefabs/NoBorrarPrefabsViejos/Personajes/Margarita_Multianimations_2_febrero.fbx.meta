@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cf6c6241bd695b840a51091573cfeb32
+guid: 549887ab3b25d054380486d675ae5798
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: MG_Arrow_Shoot+Reload
+      name: MG_Arrow_Reload&Shot
       takeName: rig|MG_Arrow_Animation_BAKE
       internalID: -1117189850048408857
       firstFrame: 0
@@ -147,6 +147,35 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: MG_Idle_Trash
+      takeName: rig|MG_Idle_Trash_Bake
+      internalID: 2682659075286146454
+      firstFrame: 0
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: MG_Rowing
       takeName: rig|MG_Row_Animation
       internalID: -4641490199707206254
@@ -176,7 +205,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: MG_RowIdle
+      name: MG_Idle_Row
       takeName: rig|MG_Row_Idle_Animation
       internalID: -1853435050977404050
       firstFrame: 0
@@ -263,7 +292,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: MG_WalkTrash
+      name: MG_Walk_Trash
       takeName: rig|MG_Walk_Trash_Animation
       internalID: -1870083827882549389
       firstFrame: 0
