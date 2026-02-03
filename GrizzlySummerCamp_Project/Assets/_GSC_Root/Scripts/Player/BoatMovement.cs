@@ -42,7 +42,12 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
             return;
         }
 
-        if (childAnimator.GetBool("inContrareloj") /* || childAnimator.GetBool(inPesca)*/)
+        bool inContrareloj = childAnimator.GetBool("inContrareloj");
+        bool inPesca = childAnimator.GetBool("inPesca");
+
+        Debug.Log($"[BoatMovement] FixedUpdate - inContrareloj: {inContrareloj}, velocity: {velocity.sqrMagnitude}");
+
+        if (inContrareloj || inPesca)
         {
             MoveBoat();
         }
@@ -67,34 +72,47 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
 
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
 
-        if (velocity.sqrMagnitude > 0.01f)
+        if (velocity.sqrMagnitude > 0.001f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(velocity);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
         }
+
+        float normalizedSpeed = Mathf.Clamp(velocity.magnitude / speed, 0f, 1f);
+        Debug.Log($"[BoatMovement] MoveBoat - velocity magnitude: {velocity.magnitude}");
 
         UpdateAnimation(velocity.sqrMagnitude);
     }
 
     void UpdateAnimation(float currentSpeed)
     {
-        if (childAnimator != null)
+        if (childAnimator == null) return;
+
+        bool inContrareloj = childAnimator.GetBool("inContrareloj");
+        bool inPesca = childAnimator.GetBool("inPesca");
+
+        if (inContrareloj || inPesca)
         {
-            if (childAnimator.GetBool("inContrareloj")/* || childAnimator.GetBool(inPesca)*/)
-                childAnimator.SetFloat("speed", currentSpeed);
-            else
-                childAnimator.SetFloat("speed", 0f);
+           childAnimator.SetFloat("speed", currentSpeed);
+           Debug.Log($"[BoatMovement] UpdateAnimation - speed set to: {currentSpeed}");
+        }
+        else
+        {
+           childAnimator.SetFloat("speed", 0f);
+           Debug.Log("[BoatMovement] UpdateAnimation - not inContrareloj, speed set to 0");
         }
     }
 
     public void ResetVelocity()
     {
         velocity = Vector3.zero; //para quitar la inercia
+        Debug.Log("[BoatMovement] ResetVelocity called");
     }
 
     public void SetCanMove(bool value)
     {
         canMove = value;
+        Debug.Log("[BoatMovement] SetCanMove: " + value);
         if (!value)
             ResetVelocity();
     }
