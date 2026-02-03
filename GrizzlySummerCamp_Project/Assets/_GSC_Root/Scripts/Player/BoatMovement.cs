@@ -35,14 +35,22 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
 
     void FixedUpdate()
     {
-        if (!canMove)
+        if (!canMove || MinigameManager.Instance == null || !MinigameManager.Instance.IsRunning)
         {
             ResetVelocity();
-            UpdateAnimation(false);
+            UpdateAnimation(0f);
             return;
         }
 
-        MoveBoat();
+        if (childAnimator.GetBool("inContrareloj") /* || childAnimator.GetBool(inPesca)*/)
+        {
+            MoveBoat();
+        }
+        else
+        {
+            ResetVelocity();
+            UpdateAnimation(0f);
+        }
     }
 
     void MoveBoat()
@@ -65,12 +73,18 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
         }
 
-        UpdateAnimation(velocity.sqrMagnitude > 0.01f);
+        UpdateAnimation(velocity.sqrMagnitude);
     }
 
-    void UpdateAnimation(bool isMoving)
+    void UpdateAnimation(float currentSpeed)
     {
-        if (childAnimator != null) childAnimator.SetBool("isMoving", isMoving);
+        if (childAnimator != null)
+        {
+            if (childAnimator.GetBool("inContrareloj")/* || childAnimator.GetBool(inPesca)*/)
+                childAnimator.SetFloat("speed", currentSpeed);
+            else
+                childAnimator.SetFloat("speed", 0f);
+        }
     }
 
     public void ResetVelocity()

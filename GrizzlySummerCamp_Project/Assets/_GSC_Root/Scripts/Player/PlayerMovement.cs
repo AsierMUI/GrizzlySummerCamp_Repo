@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
     private float speedModifier = 0f;
 
     public static System.Action<bool> OnRunningChanged;
-    bool wasRunning;
+    float lastVelocity = 0f;
 
     private void Awake()
     {
@@ -65,44 +65,42 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         Vector3 moveDir = new Vector3(-input.x, 0, -input.y).normalized; //Código está en negativa "-input.x" para que mueva en dirección del mapa
 
         //animacion andar / idle
-        bool isWalking = moveDir.sqrMagnitude > 0.01f;
-        bool sprintPressed = !sprintBlocked && sprintAction.ReadValue<float>() > 0.1f;
-        bool isRunning = canMove && isWalking && sprintPressed;
-
-        animator.SetBool("isWalking", isWalking);
-        animator.SetBool("isRunning", isRunning);
-        HandleWalkingVFX(isWalking);
-
-        //Comprueba si se pulsa sprint
         float currentSpeed = speed + speedModifier;
-
-        if (isRunning)
-        {
-            currentSpeed *= sprintMultiplier;
-        }
-        if (isRunning != wasRunning)
-        {
-            OnRunningChanged?.Invoke(isRunning);
-            wasRunning = isRunning;
-        }
+        bool sprintPressed = !sprintBlocked && sprintAction.ReadValue<float>() > 0.1f;
+        if (sprintPressed) currentSpeed *= sprintMultiplier;
 
         // Deseamos una velocidad en esa dirección
         Vector3 desiredVelocity = moveDir * currentSpeed;
-        Vector3 velocityChange = desiredVelocity - rb.linearVelocity;
+        Vector3 currentVelocity = rb.GetPointVelocity(transform.position);
+        Vector3 velocityChange = desiredVelocity - currentVelocity;
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
-        if (isWalking)
+        if (moveDir.sqrMagnitude > 0.01f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.deltaTime));
         }
+
+        //Animacion
+
+        float velocityMagnitude = rb.GetPointVelocity(transform.position).magnitude;
+        animator.SetFloat("speed", velocityMagnitude);
+
+        if ((velocityMagnitude > 0.1f && lastVelocity <= 0.1f) || (velocityMagnitude <= 0.1f && lastVelocity > 0.1f))
+        {
+            OnRunningChanged?.Invoke(velocityMagnitude > 0.1f);
+        }
+        lastVelocity = velocityMagnitude;
+
+        HandleWalkingVFX(velocityMagnitude > 0.1f);
     }
 
     private void OnCollisionStay(Collision other)
     {
         if (other.collider.CompareTag("Obstacle"))
         {
-            rb.linearVelocity *= collisionSlowdown;
+            Vector3 vel = rb.GetPointVelocity(transform.position) * collisionSlowdown;
+            rb.AddForce(vel - rb.GetPointVelocity(transform.position), ForceMode.VelocityChange);
         }
     }
 
@@ -118,13 +116,13 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
 
     void StopMovement()
     {
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        Vector3 vel = rb.GetPointVelocity(transform.position);
+        rb.AddForce(-vel, ForceMode.VelocityChange);
 
-        animator.SetBool("isWalking", false);
-        animator.SetBool("isRunning", false);
+        animator.SetFloat("speed", 0f);
 
-        if (walkingVFX != null && walkingVFX.isPlaying) {walkingVFX.Stop();}
+        if (walkingVFX != null && walkingVFX.isPlaying)
+            walkingVFX.Stop();
     }
 
     //Para otros scripts
