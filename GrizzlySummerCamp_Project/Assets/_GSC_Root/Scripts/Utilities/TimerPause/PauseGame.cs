@@ -66,7 +66,7 @@ public class PauseGame : MonoBehaviour
         if (menuPausa != null)
             menuPausa.SetActive(false);
 
-        UIState.IsUIOpen = false;
+        UIState.SetUIOpen(false);
 
         Time.timeScale = 1f;
         juegoPausado = false;
@@ -86,9 +86,9 @@ public class PauseGame : MonoBehaviour
     {
         Time.timeScale = 1f;
         juegoPausado = false;
-        
-        UIState.IsUIOpen = false;
-        
+
+        UIState.SetUIOpen(false);
+
         SceneManager.LoadScene("SCN_HUB");
     }
 }

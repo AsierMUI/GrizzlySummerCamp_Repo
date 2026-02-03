@@ -54,6 +54,7 @@ public class DialogueSystem : MonoBehaviour
         index = 0;
         isTalking = true;
         
+        UIState.SetUIOpen(true);
         dialogueUI.SetActive(true);
 
         if (npcNameText != null)
@@ -61,7 +62,6 @@ public class DialogueSystem : MonoBehaviour
 
         ShowCurrentSentence();
 
-        UIState.IsUIOpen = true;
         OnDialogueStarted?.Invoke();
     }
 
@@ -99,9 +99,9 @@ public class DialogueSystem : MonoBehaviour
     void EndDialogue()
     {
         isTalking = false;
+        UIState.SetUIOpen(false);
         dialogueUI.SetActive(false);
 
-        UIState.IsUIOpen = false;
         OnDialogueEnded?.Invoke();
     }
 

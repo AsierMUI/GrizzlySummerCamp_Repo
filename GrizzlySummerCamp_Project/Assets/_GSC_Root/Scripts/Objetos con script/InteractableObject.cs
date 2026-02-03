@@ -155,7 +155,7 @@ public class InteractableObject : MonoBehaviour
         if (isInDialogue || !InstructionsUI.activeSelf) return;
 
         InstructionsUI.SetActive(false);
-        UIState.IsUIOpen = false;
+        UIState.SetUIOpen(false);
     }
 
     public void CloseUIFromButton() 
@@ -166,10 +166,8 @@ public class InteractableObject : MonoBehaviour
     
     public void PlayUI() 
     {
-        UIState.IsUIOpen = false;
+        UIState.SetUIOpen(false);
     }
-    
-
 
     void DisableNotebook()
     {
@@ -187,6 +185,7 @@ public class InteractableObject : MonoBehaviour
     //Se llaman desde npcdialoguecontroller desde dialogue system
     public void OnDialogueStart()
     {
+        UIState.SetUIOpen(true);
         isInDialogue = true;
         DisableNotebook();
         BlockPlayerMovement();
@@ -194,6 +193,7 @@ public class InteractableObject : MonoBehaviour
 
     public void OnDialogueEnded()
     {
+        UIState.SetUIOpen(false);
         isInDialogue = false;
         EnableNotebook();
         UnblockPlayerMovement();
