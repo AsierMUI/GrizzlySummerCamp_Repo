@@ -38,24 +38,23 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
         if (!canMove || MinigameManager.Instance == null || !MinigameManager.Instance.IsRunning)
         {
             ResetVelocity();
-            UpdateAnimation(0f);
             return;
         }
 
-        bool inContrareloj = childAnimator.GetBool("inContrareloj");
-        bool inPesca = childAnimator.GetBool("inPesca");
-
-        Debug.Log($"[BoatMovement] FixedUpdate - inContrareloj: {inContrareloj}, velocity: {velocity.sqrMagnitude}");
-
-        if (inContrareloj || inPesca)
+        if (childAnimator.GetBool("inContrareloj"))
         {
             MoveBoat();
         }
         else
         {
             ResetVelocity();
-            UpdateAnimation(0f);
         }
+    }
+
+    private void Update()
+    {
+        float normalizedSpeed = Mathf.Clamp(velocity.magnitude / speed, 0f, 1f);
+        UpdateAnimation(normalizedSpeed);
     }
 
     void MoveBoat()
