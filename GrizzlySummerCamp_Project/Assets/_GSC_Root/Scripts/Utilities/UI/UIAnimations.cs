@@ -51,12 +51,6 @@ public class UIAnimations : MonoBehaviour
             
             ToggleLibreta();
         }   
-        /*
-        if (libreta != null && Input.GetKeyDown(KeyCode.Escape)) 
-        {
-            ToggleLibreta();
-        }
-        */
     }
 
     //Funciones libreta
