@@ -97,8 +97,6 @@ public class BowShoot : MonoBehaviour
         showTrajectory = false;
         DisableTrajectory();
 
-        animator.SetTrigger("shootBow");
-
         //Llamar al ruido de disparo
         audioManager?.PlaySFX("Bow_Shoot");
 
@@ -132,7 +130,6 @@ public class BowShoot : MonoBehaviour
 
         if (TryGetComponent<PlayerAim>(out var aim))
             aim.enabled = true;
-
     }
 
     void SetupLineRenderer() 

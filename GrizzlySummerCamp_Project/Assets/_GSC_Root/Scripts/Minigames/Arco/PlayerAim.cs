@@ -96,8 +96,8 @@ public class PlayerAim : MonoBehaviour
 
         if (playerAnimator != null)
         {
-            Debug.Log("[PlayerAim] ShootBow trigger lanzado");
             playerAnimator.SetTrigger("shootBow");
+            Debug.Log($"[Animator] Trigger shootBow lanzado: inArco={playerAnimator.GetBool("inArco")}, currentState={playerAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash}");
         }
     }
 }
