@@ -30,18 +30,7 @@ public class EasterEggCameraInteractable : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
-
-        if (player != null )
-        {
-            playerInput = player.GetComponent<PlayerInput>();
-            playerMovement = player.GetComponent<PlayerMovement>();
-
-            if (playerInput != null )
-            {
-                interactAction = playerInput.actions.FindAction("Interact");
-            }
-        }
+        StartCoroutine(FindPlayerWhenAvailable());
 
         if (easterEggCamera != null)
         {
@@ -51,7 +40,7 @@ public class EasterEggCameraInteractable : MonoBehaviour
 
     private void Update()
     {
-        if (!player || isPlaying) return;
+        if (!player || interactAction == null || isPlaying) return;
 
         CheckDistance();
 
@@ -86,5 +75,29 @@ public class EasterEggCameraInteractable : MonoBehaviour
         if (playerMovement != null) playerMovement.SetCanMove(true);
 
         isPlaying = false;
+    }
+
+    IEnumerator FindPlayerWhenAvailable()
+    {
+        while (player == null)
+        {
+            GameObject playerGO = GameObject.FindGameObjectWithTag("Player");
+
+            if (playerGO != null && playerGO.activeInHierarchy)
+            {
+                player = playerGO.transform;
+
+                playerInput = playerGO.GetComponent<PlayerInput>();
+                playerMovement = playerGO.GetComponent<PlayerMovement>();
+
+                if (playerInput != null)
+                {
+                    interactAction = playerInput.actions.FindAction("Interact");
+                }
+                yield break;
+            }
+
+            yield return null;
+        }
     }
 }
