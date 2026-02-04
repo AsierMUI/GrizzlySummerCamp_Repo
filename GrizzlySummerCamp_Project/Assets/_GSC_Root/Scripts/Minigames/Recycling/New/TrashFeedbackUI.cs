@@ -1,17 +1,28 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+
 public class TrashFeedbackUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    /*
+    [SerializeField] private TMP_Text feedbackText;
+    [SerializeField] private float showTime = 1.2f;
+
+    Coroutine routine;
+
+    public void ShowFeedBack(bool correct) 
     {
-        
+        if (routine != null)
+            StopCoroutine(routine);
+
+        routine = StartCoroutine(ShowRoutine(correct));
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator ShowRoutine(bool correct) 
     {
-        
+        feedbackText.gameObject.SetActive(true);
+        feedbackText.text = correct ? "!Correct" : "Incorrect";
+    
     }
+    */
 }
