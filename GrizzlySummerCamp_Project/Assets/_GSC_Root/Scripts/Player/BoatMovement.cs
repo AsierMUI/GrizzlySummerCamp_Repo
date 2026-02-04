@@ -18,6 +18,9 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
     [Header("Child Player Animator")]
     [SerializeField] private Animator childAnimator;
 
+    [Header("NPC Animator")]
+    [SerializeField] private Animator npcAnimator;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -84,24 +87,30 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
 
     void UpdateAnimation(float currentSpeed)
     {
-        if (childAnimator == null) return;
+        if (childAnimator != null)
+        {
+            bool inContrareloj = childAnimator.GetBool("inContrareloj");
+            bool inPesca = childAnimator.GetBool("inPesca");
 
-        bool inContrareloj = childAnimator.GetBool("inContrareloj");
-        bool inPesca = childAnimator.GetBool("inPesca");
+            if (inContrareloj || inPesca)
+            {
+                childAnimator.SetFloat("speed", currentSpeed);
+                Debug.Log($"[BoatMovement] UpdateAnimation - speed set to: {currentSpeed}");
+            }
+            else if (inPesca)
+            {
+                childAnimator.SetFloat("speed", 0f);
+                Debug.Log("[BoatMovement] UpdateAnimation - not inContrareloj, speed set to 0");
+            }
+            else
+            {
+                childAnimator.SetFloat("speed", 0f);
+            }
+        }
 
-        if (inContrareloj || inPesca)
+        if (npcAnimator != null)
         {
-           childAnimator.SetFloat("speed", currentSpeed);
-           Debug.Log($"[BoatMovement] UpdateAnimation - speed set to: {currentSpeed}");
-        }
-        else if (inPesca)
-        {
-           childAnimator.SetFloat("speed", 0f);
-           Debug.Log("[BoatMovement] UpdateAnimation - not inContrareloj, speed set to 0");
-        }
-        else
-        {
-            childAnimator.SetFloat("speed", 0f);
+            npcAnimator.SetFloat("speed", currentSpeed);
         }
     }
 
