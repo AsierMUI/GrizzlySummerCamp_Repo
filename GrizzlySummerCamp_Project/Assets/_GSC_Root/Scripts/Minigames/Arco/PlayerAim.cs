@@ -11,6 +11,11 @@ public class PlayerAim : MonoBehaviour
     public BowShoot bowShoot;
     private Animator playerAnimator;
 
+    [Header("Visual Arrow")]
+    public GameObject arrowToHide;
+
+    private bool wasReloading;
+
     private Camera mainCam;
     private Quaternion lockedRotation; //la rotacion en la que se queda margarita al disparar
     private Rigidbody rb;
@@ -30,6 +35,16 @@ public class PlayerAim : MonoBehaviour
     {
         if (MinigameManager.Instance == null || !MinigameManager.Instance.IsRunning)
             return;
+
+        if (bowShoot != null)
+        {
+            if (!bowShoot.IsReloading && wasReloading)
+            {
+                OnReloadFinished();
+            }
+
+            wasReloading = bowShoot .IsReloading;
+        }
 
         if (bowShoot != null && bowShoot.IsReloading)
         {
@@ -94,10 +109,19 @@ public class PlayerAim : MonoBehaviour
         if (bowShoot != null)
             bowShoot.Shoot();
 
+        if (arrowToHide != null)
+            arrowToHide.SetActive(false);
+
         if (playerAnimator != null)
         {
             playerAnimator.CrossFade("MG_Arrow_Reload&Shoot", 0.1f, 0, 0f);
             Debug.Log($"[Animator] Trigger shootBow lanzado: inArco={playerAnimator.GetBool("inArco")}, currentState={playerAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash}");
         }
+    }
+
+    void OnReloadFinished()
+    {
+        if (arrowToHide != null)
+            arrowToHide.SetActive(true);
     }
 }
