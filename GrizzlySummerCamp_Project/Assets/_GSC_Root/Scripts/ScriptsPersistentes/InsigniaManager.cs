@@ -37,7 +37,6 @@ public class InsigniaManager : MonoBehaviour
         if (nuevaInsignia > minigameInsignias[minigameName])
         {
             minigameInsignias[minigameName] = nuevaInsignia;
-            Debug.Log($"[InsigniaManager] Nueva insignia para {minigameName}: {nuevaInsignia}");
         }
     }
 
@@ -58,7 +57,6 @@ public class InsigniaManager : MonoBehaviour
         if (nuevaEstrella > minigameEstrellas[minigameName])
         {
             minigameEstrellas[minigameName] = nuevaEstrella;
-            Debug.Log($"[InsigniaManager] Nueva estrella para {minigameName}:{nuevaEstrella}");
         }
     }
 

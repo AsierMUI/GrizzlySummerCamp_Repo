@@ -22,13 +22,10 @@ public class FishingScoreHandler : MonoBehaviour
 
          if (points <= 0)
          {
-             Debug.LogWarning($"No hay puntos asignados");
              return;
          }
         
         ScoreManager.Instance.AddPoints(points);
-
-        Debug.Log($"[FishingScoreHandler]+{points} puntos ({difficulty})");
      }
 
     int GetPointsByDifficulty(FishingSkillCheck.SkillDifficulty difficulty)

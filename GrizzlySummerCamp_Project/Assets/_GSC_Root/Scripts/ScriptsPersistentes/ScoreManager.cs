@@ -36,8 +36,6 @@ public class ScoreManager : MonoBehaviour
         puntosTotales += amount;
         puntosTotales = Mathf.Max(0, puntosTotales);
         UpdateUI();
-
-        Debug.Log($"[ScoreManager] Puntos actuales: {puntosTotales}");
     }
 
     public int GetTotalPoints()

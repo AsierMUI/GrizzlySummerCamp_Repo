@@ -27,7 +27,6 @@ public class PlayerAim : MonoBehaviour
         lockedRotation = transform.rotation;
 
         playerAnimator = GetComponentInChildren<Animator>();
-        if (playerAnimator == null)
     }
 
     private void Update()
