@@ -65,6 +65,6 @@ public class TrashUIController : MonoBehaviour
     void UpdateCounterUI()
     {
         if (counterText != null)
-            counterText.text = $"Basura: {totalTrash - remainingTrash}/{totalTrash}";
+            counterText.text = $"{totalTrash - remainingTrash}/{totalTrash}";
     }
 }
