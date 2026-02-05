@@ -10,7 +10,7 @@ public class ScoreUI : MonoBehaviour
     {
         if (ScoreManager.Instance != null)
         {
-            scoreText.text = $"Puntos: {ScoreManager.Instance.GetTotalPoints()}";
+            scoreText.text = $"Points: {ScoreManager.Instance.GetTotalPoints()}";
         }
     }
 }
