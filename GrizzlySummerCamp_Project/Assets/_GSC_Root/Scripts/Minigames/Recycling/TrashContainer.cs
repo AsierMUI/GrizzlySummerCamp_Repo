@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class TrashContainer : MonoBehaviour, ITrashInteractable
 {
@@ -13,6 +14,8 @@ public class TrashContainer : MonoBehaviour, ITrashInteractable
     public float InteractionDistance => interactionDistance;
     public Transform Transform => transform;
 
+    public static event Action<bool> OnTrashDeposited;
+
     public void TryDeposit(TrashPlayerCarry carry) 
     {
         if (!carry.IsCarryingTrash()) return;
@@ -20,15 +23,19 @@ public class TrashContainer : MonoBehaviour, ITrashInteractable
         if (frontCheck != null && !frontCheck.PlayerInFront)
             return;
 
-        if (carry.GetCarriedType() == acceptedType)
+        bool correct = carry.GetCarriedType() == acceptedType;
+
+        if (correct)
         {
             ScoreManager.Instance?.AddPoints(carry.GetCarriedPoints());
             Debug.Log("[Trash] Correct container");
         }
-        else 
+        else
         {
             Debug.Log("[Trash] Wrong container");
         }
+
+        OnTrashDeposited?.Invoke(correct);
 
         carry.DeliverTrash();
 
