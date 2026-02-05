@@ -28,7 +28,6 @@ public class PlayerAim : MonoBehaviour
 
         playerAnimator = GetComponentInChildren<Animator>();
         if (playerAnimator == null)
-            Debug.LogWarning("[PlayerAim] No se ha encontrado el animator en el PLAYER");
     }
 
     private void Update()
@@ -115,7 +114,6 @@ public class PlayerAim : MonoBehaviour
         if (playerAnimator != null)
         {
             playerAnimator.CrossFade("MG_Arrow_Reload&Shoot", 0.1f, 0, 0f);
-            Debug.Log($"[Animator] Trigger shootBow lanzado: inArco={playerAnimator.GetBool("inArco")}, currentState={playerAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash}");
         }
     }
 

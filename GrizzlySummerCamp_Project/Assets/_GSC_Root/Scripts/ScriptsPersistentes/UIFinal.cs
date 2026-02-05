@@ -68,7 +68,6 @@ public class UIFinal : MonoBehaviour
         foreach (string minijuego in minijuegosInsigniaOro)
         {
             int insignia = InsigniaManager.Instance.GetInsignia(minijuego);
-            Debug.Log($"[UIFinal] {minijuego} => Insignia:{insignia}");
 
             if (insignia < 3)
                 return false;
@@ -78,7 +77,6 @@ public class UIFinal : MonoBehaviour
         foreach (string minijuego in minijuegosEstrella)
         {
             int estrella = InsigniaManager.Instance.GetEstrella(minijuego);
-            Debug.Log($"[UIFinal] {minijuego} => Estrella:{estrella}");
 
             if (estrella <= 0)
                 return false;
@@ -95,7 +93,6 @@ public class UIFinal : MonoBehaviour
         foreach(string minijuego in minijuegosInsigniaOro)
         {
             int insignia = InsigniaManager.Instance.GetInsignia(minijuego);
-            Debug.Log($"[UIFinal] {minijuego} => Insignia:{insignia}");
 
             if (insignia <= 0)
                 return false;
@@ -110,12 +107,10 @@ public class UIFinal : MonoBehaviour
 
         if (ui == null)
         {
-            Debug.LogWarning($"[UIFinal] no se ha encontrado la interfaz '{nombreUI}' en el HUB");
             return;
         }
 
         ui.SetActive(true);
-        Debug.Log("[UIFinal] interfaz final mostrada");
     }
 
     private GameObject BuscarUIInclusoInactiva(string nombre)

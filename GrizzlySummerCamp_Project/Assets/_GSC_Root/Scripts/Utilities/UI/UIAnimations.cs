@@ -76,7 +76,6 @@ public class UIAnimations : MonoBehaviour
 
     public void CambiarLibreta()
     {
-        Debug.Log("Libreta abierta: " + libretaAbierta);
         if (isLibretaActive)
         {
             DesactivarLibreta();
@@ -106,7 +105,6 @@ public class UIAnimations : MonoBehaviour
     {
         if (animacionTiempoIniciada) return;
 
-        Debug.Log("Entra coroutine");
         StartCoroutine(EsperarYAnimarManecilla());
     }
     private IEnumerator EsperarYAnimarManecilla()
@@ -118,7 +116,6 @@ public class UIAnimations : MonoBehaviour
 
         if (animManecilla != null)
         {
-            Debug.Log("entra tiempo");
             animManecilla.enabled = true;
 
             yield return null;

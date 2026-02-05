@@ -80,7 +80,6 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
         }
 
         float normalizedSpeed = Mathf.Clamp(velocity.magnitude / speed, 0f, 1f);
-        Debug.Log($"[BoatMovement] MoveBoat - velocity magnitude: {velocity.magnitude}");
 
         UpdateAnimation(velocity.sqrMagnitude);
     }
@@ -95,12 +94,10 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
             if (inContrareloj || inPesca)
             {
                 childAnimator.SetFloat("speed", currentSpeed);
-                Debug.Log($"[BoatMovement] UpdateAnimation - speed set to: {currentSpeed}");
             }
             else if (inPesca)
             {
                 childAnimator.SetFloat("speed", 0f);
-                Debug.Log("[BoatMovement] UpdateAnimation - not inContrareloj, speed set to 0");
             }
             else
             {
@@ -117,13 +114,11 @@ public class BoatMovement : MonoBehaviour, IMinigamePlayerMovement
     public void ResetVelocity()
     {
         velocity = Vector3.zero; //para quitar la inercia
-        Debug.Log("[BoatMovement] ResetVelocity called");
     }
 
     public void SetCanMove(bool value)
     {
         canMove = value;
-        Debug.Log("[BoatMovement] SetCanMove: " + value);
         if (!value)
             ResetVelocity();
     }

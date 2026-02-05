@@ -29,7 +29,6 @@ public class TacharTextoInsignia : MonoBehaviour
     {
         if (InsigniaManager.Instance == null)
         {
-            Debug.LogWarning("[TacharTextoInsignia] InsigniaManager no encontrao");
             return;
         }
 
@@ -52,8 +51,6 @@ public class TacharTextoInsignia : MonoBehaviour
 
             t.texto.fontStyle = desbloqueado
                 ? FontStyles.Strikethrough : FontStyles.Normal;
-
-            Debug.Log($"{t.minigameName} [{t.tipoDesbloqueo}] -> {desbloqueado}");
         }
     }
 }

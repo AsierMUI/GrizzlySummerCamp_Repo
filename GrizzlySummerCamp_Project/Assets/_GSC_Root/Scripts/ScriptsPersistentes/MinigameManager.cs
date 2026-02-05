@@ -67,12 +67,10 @@ public class MinigameManager : MonoBehaviour
     {
         if (scene.name == "SCN_Menu" || scene.name == "SCN_HUB")
         {
-            Debug.Log($"[MinigamManager] Escena '{scene.name}' ignorada para referencias.");
             return;
         }
 
         minigameName = scene.name;
-        Debug.Log($"[MinigameManager] MinigameName asignado: {minigameName}");
 
         hasWonMinigame = false;
         isRunning = false;
@@ -142,8 +140,6 @@ public class MinigameManager : MonoBehaviour
         finalScoreText = FindDeepChildInScene("FinalScoreText")?.GetComponent<TMP_Text>();
         messageText = FindDeepChildInScene("MessageText")?.GetComponent<TMP_Text>();
         insigniaImage = FindDeepChildInScene("InsigniaImage")?.GetComponent<Image>();
-
-        Debug.Log($"[MinigameManager] UI references - EndUI: {endMinigameUI}, ScoreText: {finalScoreText}, MessageText: {messageText}, InsigniaImage: {insigniaImage}");
     }
 
     Transform FindDeepChildInScene(string name)

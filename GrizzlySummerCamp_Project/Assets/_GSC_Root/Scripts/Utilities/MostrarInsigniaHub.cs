@@ -49,7 +49,6 @@ public class MostrarInsigniaHub : MonoBehaviour
     {
         if (InsigniaManager.Instance == null)
         {
-            Debug.LogWarning("[MostrarInsigniaHub] No se ha encotnrado InsigniaManager");
             return;
         }
 
@@ -72,8 +71,6 @@ public class MostrarInsigniaHub : MonoBehaviour
                 int estrella = InsigniaManager.Instance.GetEstrella(mg.minigameName);
                 mg.estrellaImage.sprite = (estrella > 0) ? mg.estrellaSprite : mg.estrellaNull;
             }
-
-            Debug.Log($"[MostrarInsigniaHub] {mg.minigameName}: Insignia={InsigniaManager.Instance.GetInsignia(mg.minigameName)}, Estrella={InsigniaManager.Instance.GetEstrella(mg.minigameName)}");
         }
     }
     #endregion
