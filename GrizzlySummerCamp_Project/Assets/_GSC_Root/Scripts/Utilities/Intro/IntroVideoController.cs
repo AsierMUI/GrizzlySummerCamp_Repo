@@ -27,9 +27,12 @@ public class IntroVideoController : MonoBehaviour
     private float lastInputTime = 0f;
     void Start()
     {
-        var musicSource = AudioSettings.Instance.GetMusicSource();
+
+        //Cambiamos el audio source del video de Direct a AudioSource.
+        var musicSource = AudioSettings.Instance.GetMusicSource(); 
 
         videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+        //El audiosource de AudioSettings de musica es 0, sfx 1.
         videoPlayer.SetTargetAudioSource(0, musicSource);
 
         skipButton.SetActive(false);
