@@ -25,9 +25,13 @@ public class IntroVideoController : MonoBehaviour
     private bool skipButtonVisible = false;
     private bool isEnding = false;
     private float lastInputTime = 0f;
-
     void Start()
     {
+        var musicSource = AudioSettings.Instance.GetMusicSource();
+
+        videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+        videoPlayer.SetTargetAudioSource(0, musicSource);
+
         skipButton.SetActive(false);
         fadeImage.color = new Color(0, 0, 0, 0);
 
