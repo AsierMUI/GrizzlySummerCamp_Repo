@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour, IMinigamePlayerMovement
         //Animacion
 
         float velocityMagnitude = rb.GetPointVelocity(transform.position).magnitude;
-        animator.SetFloat("speed", velocityMagnitude);
+        animator.SetFloat("speed", velocityMagnitude,0.1f,Time.deltaTime);
 
         bool isSprinting =
             sprintAction.ReadValue<float>() > 0.1f &&
