@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cylinder|CylinderAction
+      name: Rotacion estrella
       takeName: Cylinder|CylinderAction
       internalID: -88723805440604879
       firstFrame: 0
