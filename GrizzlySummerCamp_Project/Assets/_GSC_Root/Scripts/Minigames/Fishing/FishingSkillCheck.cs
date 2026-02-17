@@ -137,7 +137,7 @@ public class FishingSkillCheck : MonoBehaviour
 
         UpdateNeedlePosition();
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             CheckResult();
         }
