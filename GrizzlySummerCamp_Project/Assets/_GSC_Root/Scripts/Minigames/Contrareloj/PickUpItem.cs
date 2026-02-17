@@ -6,14 +6,14 @@ public class PickUpItem : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private string pickupSfxKey;
 
+    [Header("Animator")]
+    [SerializeField] private Animator childAnimator;
+
     private AudioManager audioManager;
-    private Animator childAnimator;
 
     private void Start()
     {
         audioManager = FindFirstObjectByType<AudioManager>();
-
-        childAnimator = GetComponentInChildren<Animator>(true);
     }
 
     private void OnTriggerEnter(Collider other)
