@@ -43,24 +43,19 @@ public class UIAnimations : MonoBehaviour
             AplicarEstadoLibreta();
         }
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && libreta != null)
-        {
-            if (UIState.IsUIOpen) return;
-            
-            ToggleLibreta();
-        }   
-    }
-
-    //Funciones libreta
 
     public void ToggleLibreta() 
     {
         if (AnimaciónActiva) return;
         if (UIState.IsUIOpen) return;
 
-        AnimaciónActiva=true;
+        if (OcultaInstrucciones.Instance != null &&
+        OcultaInstrucciones.Instance.EstanActivas())
+        {
+            OcultaInstrucciones.Instance.OcultarInstrucciones();
+        }
+
+        AnimaciónActiva =true;
 
         if (!string.IsNullOrEmpty(key))
             audioManager?.PlaySFX(key);

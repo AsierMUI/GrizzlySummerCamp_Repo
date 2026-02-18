@@ -136,10 +136,4 @@ public class UIFinal : MonoBehaviour
 
         return null;
     }
-
-    public void CerrarFinalUI() 
-    {
-    
-    
-    }
 }

@@ -8,6 +8,8 @@ public class OcultaInstrucciones : MonoBehaviour
 
     private static bool instruccionesOcultasEnSesion = false;
 
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -21,12 +23,9 @@ public class OcultaInstrucciones : MonoBehaviour
         if (instrucciones != null)
             instrucciones.SetActive(!instruccionesOcultasEnSesion);
     }
-    private void Update()
+    public bool EstanActivas()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OcultarInstrucciones();
-        }
+        return instrucciones != null && instrucciones.activeSelf;
     }
 
     public void OcultarInstrucciones()

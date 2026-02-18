@@ -94,23 +94,11 @@ public class EscapeManager : MonoBehaviour
             return;
         }
 
-        OcultaInstrucciones instrucciones = FindFirstObjectByType<OcultaInstrucciones>();
-        if (instrucciones != null)
-        {
-            instrucciones.OcultarInstrucciones();
-            return;
-        }
-
-        UIFinal finalUI = FindFirstObjectByType<UIFinal>();
-        //añadir funcion para cerrar el Final UI
-
         UIAnimations libreta = FindFirstObjectByType<UIAnimations>();
         if (libreta != null)
         {
             libreta.ToggleLibreta();
         }
-
-    
     }
         #endregion
 
@@ -120,7 +108,7 @@ public class EscapeManager : MonoBehaviour
             PauseGame pause = FindFirstObjectByType<PauseGame>();
             if (pause != null)
             {
-                pause.SendMessage("TogglePausa", SendMessageOptions.DontRequireReceiver);
+                pause.TogglePausa();
             }
         
         }
