@@ -31,20 +31,15 @@ public class PauseGame : MonoBehaviour
             Debug.LogWarning("PauseGame no se ha encontrado playermovement en escena");
         
     }
-
-    void Update()
+    public void TogglePausa()
     {
-        if (loadingUI != null && loadingUI.activeSelf) return;
+        if (loadingUI != null && loadingUI.activeSelf)
+            return;
 
-        if (Input.GetKeyDown(KeyCode.Escape) && (loadingUI == null || !loadingUI.activeSelf))
-        {
-            TogglePausa();
-        }
-    }
+        if (MinigameTimer.instance != null && !MinigameTimer.instance.IsRunning)
+            return;
 
-    void TogglePausa()
-    {
-        if (juegoPausado)
+        if (juegoPausado) 
             Reanudar();
         else
             Pausar();

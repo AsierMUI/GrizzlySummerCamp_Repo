@@ -45,7 +45,7 @@ public class UIAnimations : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && libreta != null)
         {
             if (UIState.IsUIOpen) return;
             
