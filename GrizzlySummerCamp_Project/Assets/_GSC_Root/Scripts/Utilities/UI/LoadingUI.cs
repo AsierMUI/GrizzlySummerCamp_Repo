@@ -22,6 +22,8 @@ public class LoadingUI : MonoBehaviour
     void Start()
     {
         UIState.SetUIOpen(true);
+        //Se podría o bien meter la línea de código superior en LoadingUI.cs (donde esta) o bien en PauseGame.cs (en Restart) 
+
         //Texto aleatorio
         baseText = loadingTLines[Random.Range(0, loadingTLines.Length)];
 

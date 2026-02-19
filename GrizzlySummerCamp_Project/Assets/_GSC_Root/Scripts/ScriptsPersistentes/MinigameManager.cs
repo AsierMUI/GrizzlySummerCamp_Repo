@@ -257,7 +257,6 @@ public class MinigameManager : MonoBehaviour
 
             return;
         }
-
         //Demas minijuegos
 
         if (messageText)
