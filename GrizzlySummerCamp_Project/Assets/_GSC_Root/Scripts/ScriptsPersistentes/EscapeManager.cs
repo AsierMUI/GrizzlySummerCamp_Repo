@@ -94,6 +94,29 @@ public class EscapeManager : MonoBehaviour
             return;
         }
 
+        InteractableObject[] interactables =
+            FindObjectsByType<InteractableObject>(FindObjectsSortMode.None);
+
+        foreach (var interactable in interactables)
+        {
+            var instructionsField = typeof(InteractableObject)
+                .GetField("InstructionsUI",
+                    System.Reflection.BindingFlags.NonPublic |
+                    System.Reflection.BindingFlags.Instance);
+
+            if (instructionsField != null)
+            {
+                GameObject instructions =
+                    (GameObject)instructionsField.GetValue(interactable);
+
+                if (instructions != null && instructions.activeSelf)
+                {
+                    interactable.CloseUIFromButton();
+                    return;
+                }
+            }
+        }
+
         UIAnimations libreta = FindFirstObjectByType<UIAnimations>();
         if (libreta != null)
         {
