@@ -23,9 +23,6 @@ public class TrashContainer : MonoBehaviour, ITrashInteractable
         if (frontCheck != null && !frontCheck.PlayerInFront)
             return;
 
-        if (UIState.IsUIOpen)
-            return; 
-
         bool correct = carry.GetCarriedType() == acceptedType;
 
         if (correct)

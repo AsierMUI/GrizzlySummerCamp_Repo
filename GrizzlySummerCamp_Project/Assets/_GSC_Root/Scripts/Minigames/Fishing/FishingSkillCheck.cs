@@ -122,6 +122,9 @@ public class FishingSkillCheck : MonoBehaviour
 
     private void Update()
     {
+        if (!MinigameManager.Instance || !MinigameManager.Instance.IsRunning)
+            return;
+
         if (Time.timeScale == 0f) return;
 
         if (!active || ending) return;
@@ -272,7 +275,7 @@ public class FishingSkillCheck : MonoBehaviour
 
     void CompleteFishing()
     {
-        audioManager.PlaySFX("Fishing_Catch");
+        audioManager.PlaySFX("Fishing_Catch", 0.5f);
 
         if (scoreHandler != null)
         {
@@ -358,6 +361,26 @@ public class FishingSkillCheck : MonoBehaviour
         float normalizedTime = 1f - (timer / currentMaxTime);
         timerFill.fillAmount = normalizedTime;
     }
+
+    private void OnEnable()
+    {
+        MinigameManager.OnMinigameEnded += ForceClose;
+    }
+
+    private void OnDisable()
+    {
+        MinigameManager.OnMinigameEnded -= ForceClose;
+    }
+
+    void ForceClose()
+    {
+        active = false;
+        ending = false;
+
+        if (panel) panel.SetActive(false);
+        if (resultPanel) resultPanel.SetActive(false);
+    }
+
     #endregion
 
     #region Helper

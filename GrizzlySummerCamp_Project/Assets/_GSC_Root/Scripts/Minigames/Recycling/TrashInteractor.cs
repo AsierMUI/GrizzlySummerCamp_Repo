@@ -48,7 +48,8 @@ public class TrashInteractor : MonoBehaviour
 
     void TryInteract()
     {
-        if (!MinigameManager.Instance) return;
+        if (!MinigameManager.Instance || !MinigameManager.Instance.IsRunning) return;
+        if (UIState.IsUIOpen) return;
         if (interactables.Count == 0) return;
 
         ITrashInteractable closest = null;

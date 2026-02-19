@@ -42,10 +42,10 @@ public class AudioManager : MonoBehaviour
 
     #region Play Function
 
-    public void PlaySFX(string key)
+    public void PlaySFX(string key, float volumeMultiplier = 1f)
     {
         if (SFXSource != null && soundDict.ContainsKey(key))
-            SFXSource.PlayOneShot(soundDict[key]);
+            SFXSource.PlayOneShot(soundDict[key], volumeMultiplier);
     }
 
     public void PlayMusic(string key)
