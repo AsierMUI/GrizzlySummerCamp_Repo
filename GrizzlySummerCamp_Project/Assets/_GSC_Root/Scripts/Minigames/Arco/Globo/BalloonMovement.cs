@@ -84,7 +84,14 @@ public class BalloonMovement : MonoBehaviour
         isDespawning = true;
 
         if (!string.IsNullOrEmpty(hitSfxKey))
-            audioManager?.PlaySFX(hitSfxKey);
+            if (hitSfxKey != "SpecialBalloon")
+            {
+                audioManager?.PlaySFX(hitSfxKey);
+            }
+            else 
+            {
+                audioManager?.PlaySFX(hitSfxKey, 0.5f);
+            }
 
         if (ScoreManager.Instance != null)
         {

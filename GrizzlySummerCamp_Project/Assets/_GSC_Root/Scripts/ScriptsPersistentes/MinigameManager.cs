@@ -229,6 +229,7 @@ public class MinigameManager : MonoBehaviour
     {
         if (endMinigameUI)
             endMinigameUI.SetActive(true);
+            //UIState.SetUIOpen(true);
 
         UpdateEndGameUI(puntos, insignia);
     }
