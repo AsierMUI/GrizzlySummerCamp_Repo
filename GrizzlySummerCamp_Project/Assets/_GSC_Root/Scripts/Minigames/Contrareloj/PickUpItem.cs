@@ -6,25 +6,21 @@ public class PickUpItem : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private string pickupSfxKey;
 
+    public string PickupSFXKey => pickupSfxKey;
+
     [Header("Animator")]
     [SerializeField] private Animator childAnimator;
 
-    private AudioManager audioManager;
-
-    private void Start()
-    {
-        audioManager = FindFirstObjectByType<AudioManager>();
-    }
+    [Header("Additional Time")]
+    [SerializeField] private float extime;
+    public float Extratime => extime;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
 
-        if (!string.IsNullOrEmpty(pickupSfxKey))
-            audioManager?.PlaySFX(pickupSfxKey);
+        PickUpManager.Instance?.CollectPickup(this);
 
-
-        PickUpManager.Instance?.CollectPickup(transform);
         if(childAnimator != null)
         {
             childAnimator.SetTrigger("Conseguida");

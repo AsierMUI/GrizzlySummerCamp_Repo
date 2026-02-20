@@ -123,19 +123,18 @@ public class EscapeManager : MonoBehaviour
             libreta.ToggleLibreta();
         }
     }
-        #endregion
+    #endregion
 
-        #region Minigame(s)
-        void HandleMinigame() 
+    #region Minigame(s)
+    void HandleMinigame() 
+    {
+        PauseGame pause = FindFirstObjectByType<PauseGame>();
+        if (pause != null)
         {
-            PauseGame pause = FindFirstObjectByType<PauseGame>();
-            if (pause != null)
-            {
-                pause.TogglePausa();
-            }
-        
+            pause.TogglePausa();
         }
-        #endregion
-
-    
+        
     }
+    #endregion
+
+}

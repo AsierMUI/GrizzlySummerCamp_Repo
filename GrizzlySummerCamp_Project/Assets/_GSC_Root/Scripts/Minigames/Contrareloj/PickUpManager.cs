@@ -26,9 +26,12 @@ public class PickUpManager : MonoBehaviour
     [SerializeField] private Image arrowUI;
     [SerializeField] private Transform player;
 
+    /*
     [Header("Sounds")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pointSound;
+    */
+    private AudioManager audioManager;
     #endregion
 
     #region Pickups
@@ -46,9 +49,12 @@ public class PickUpManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        /*
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
+        */
+        audioManager = FindFirstObjectByType<AudioManager>();
+
     }
 
     private void Start()
@@ -75,14 +81,21 @@ public class PickUpManager : MonoBehaviour
     #endregion
 
     #region Pickups
-    public void CollectPickup(Transform pickup)
+    public void CollectPickup(PickUpItem pickup)
     {
-        if (!pickups.Contains(pickup)) return;
+        if (!pickups.Contains(pickup.transform)) return;
 
-        pickups.Remove(pickup);
+        pickups.Remove(pickup.transform);
+
+        MinigameManager.Instance?.AddTime(pickup.Extratime);
 
         ScoreManager.Instance?.AddPoints(1);
-        PlayPointSound();
+
+        if (!string.IsNullOrEmpty(pickup.PickupSFXKey))
+            audioManager?.PlaySFX(pickup.PickupSFXKey);
+
+
+        //PlayPointSound();
         UpdateScoreUI();
         UpdateArrowTarget();
 
@@ -159,6 +172,7 @@ public class PickUpManager : MonoBehaviour
     }
     #endregion
 
+    /*
     #region Audio
     void PlayPointSound()
     {
@@ -166,4 +180,5 @@ public class PickUpManager : MonoBehaviour
             audioSource.PlayOneShot(pointSound);
     }
     #endregion
+    */
 }

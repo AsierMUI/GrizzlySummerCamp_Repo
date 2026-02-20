@@ -193,6 +193,16 @@ public class MinigameManager : MonoBehaviour
         OnMinigameStarted?.Invoke();
     }
 
+    public void AddTime(float amount) 
+    {
+        if (!isRunning) return;
+
+        currentTime += amount;
+
+        currentTime = Mathf.Min(currentTime, minigameDuration);
+    }
+
+
     public void EndMinigame(bool won)
     {
         hasWonMinigame = won;

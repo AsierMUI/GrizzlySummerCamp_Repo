@@ -5,6 +5,9 @@ using System;
 
 public class MinigameTimer : MonoBehaviour
 {
+    //Parece no estar en uso.
+
+
     public static MinigameTimer instance;
 
     [Header("Timer Settings")]
